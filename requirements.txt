@@ -1,0 +1,16 @@
+Django>=5.1,<5.2
+djangorestframework
+mysqlclient
+gunicorn
+requests
+reportlab
+PyJWT
+python-decouple
+psycopg[binary]
+dj-database-url
+requests
+whitenoise
+django-allauth[socialaccount]
+django-allauth-ui==1.5.3
+paddle-python-sdk
+django-htmx

@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="text-center">
+            <!-- Badge -->
+            <div class="inline-flex items-center px-4 py-2 bg-red-500/10 border border-red-500/20 rounded-full mb-8">
+                <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse mr-2"></span>
+                <span class="text-red-400 text-sm font-medium">Used by 2.7K+ creators</span>
+            </div>
+            
+            <!-- Main Headline -->
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6">
+                The only AI thumbnail + hook tool that works for
+                <span class="gradient-text">both YouTube AND TikTok</span>
+                faceless channels
+            </h1>
+            
+            <!-- Subheadline -->
+            <p class="text-xl text-gray-400 max-w-3xl mx-auto mb-12">
+                Generate viral thumbnails, titles, and hooks in seconds. No design skills needed. 
+                Just paste your video URL or script, and watch the magic happen.
+            </p>
+            
+            <!-- CTA Button -->
+            <a href="{% url "account_signup" %}" class="inline-block bg-red-600 hover:bg-red-700 text-white text-xl font-bold px-12 py-5 rounded-xl transition glow-button mb-4">
+                Start creating now
+            </a>
+            <p class="text-sm text-gray-500">No credit card required • 3 free generations</p>
+        </div>
+        
+        <!-- Demo Video Section -->
+        {% comment %} <div class="mt-20 max-w-5xl mx-auto">
+            <div class="relative rounded-2xl overflow-hidden border-4 border-red-500/20 shadow-2xl">
+                <div class="aspect-video bg-gray-800 flex items-center justify-center">
+                    <!-- Placeholder for Loom video -->
+                    <div class="text-center">
+                        <svg class="w-24 h-24 text-red-500 mx-auto mb-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                        </svg>
+                        <p class="text-gray-400 text-lg">Watch how ThumbHook 10x'd my faceless channel</p>
+                        <p class="text-gray-500 text-sm mt-2">Demo video coming soon</p>
+                    </div>
+                </div>
+            </div>
+        </div> {% endcomment %}
+    </div>
+    
+    <!-- Background Effects -->
+    <div class="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
+        <div class="absolute top-1/4 -left-48 w-96 h-96 bg-red-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/4 -right-48 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl"></div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div class="grid md:grid-cols-3 gap-8">
+        <!-- Feature 1 -->
+        <div class="bg-gray-800 rounded-xl p-8 border border-gray-700 hover:border-red-500/50 transition">
+            <div class="w-12 h-12 bg-red-500/10 rounded-lg flex items-center justify-center mb-4">
+                <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">AI-Powered Titles</h3>
+            <p class="text-gray-400">Get 10 viral title options optimized for CTR. Tested on millions of views.</p>
+        </div>
+        
+        <!-- Feature 2 -->
+        <div class="bg-gray-800 rounded-xl p-8 border border-gray-700 hover:border-red-500/50 transition">
+            <div class="w-12 h-12 bg-red-500/10 rounded-lg flex items-center justify-center mb-4">
+                <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">8 Thumbnail Concepts</h3>
+            <p class="text-gray-400">Detailed prompts for DALL-E or Midjourney. Download all as a ZIP.</p>
+        </div>
+        
+        <!-- Feature 3 -->
+        <div class="bg-gray-800 rounded-xl p-8 border border-gray-700 hover:border-red-500/50 transition">
+            <div class="w-12 h-12 bg-red-500/10 rounded-lg flex items-center justify-center mb-4">
+                <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Viral Hooks</h3>
+            <p class="text-gray-400">First 3 seconds that stop the scroll. For both YouTube shorts & TikTok.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Social Proof -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-white mb-4">Join the creators getting millions of views</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
+            <p class="text-gray-300 mb-4">"ThumbHook gave me 5 thumbnail ideas I never would've thought of. My CTR jumped from 3% to 12%."</p>
+            <p class="text-sm text-gray-500">- Alex, 250K subs</p>
+        </div>
+        <div class="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
+            <p class="text-gray-300 mb-4">"I was spending hours on Canva. Now I generate 8 concepts in 30 seconds and pick the best one."</p>
+            <p class="text-sm text-gray-500">- Sarah, TikTok Creator</p>
+        </div>
+        <div class="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
+            <p class="text-gray-300 mb-4">"The hooks are insane. My average view duration went from 20% to 45%. This is a game changer."</p>
+            <p class="text-sm text-gray-500">- Marcus, 500K followers</p>
+        </div>
+    </div>
+</div>
+
+<!-- Final CTA -->
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+    <h2 class="text-5xl font-bold text-white mb-6">Ready to 10x your views?</h2>
+    <p class="text-xl text-gray-400 mb-8">Start generating viral content in the next 60 seconds.</p>
+    <a href="{% url "account_signup" %}" class="inline-block bg-red-600 hover:bg-red-700 text-white text-xl font-bold px-12 py-5 rounded-xl transition glow-button">
+        Get Started Free
+    </a>
+</div>
+{% endblock %}

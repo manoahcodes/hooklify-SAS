@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"python.terminal.activateEnvInCurrentTerminal": true,
+    	"python.defaultInterpreterPath": "C:/Users/HP/Documents/SaaS/hooklify/env/Scripts/python.exe",
+	}
+}

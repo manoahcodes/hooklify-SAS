@@ -1,0 +1,218 @@
+{% extends 'base.html' %} 
+{% block title %}Pricing - Hooklify{% endblock %} 
+{% block content %}
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+  <div class="text-center mb-16">
+    <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-4">
+      Simple, Transparent Pricing
+    </h1>
+    <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+      Start free or upgrade when you're ready to scale your content empire
+    </p>
+  </div>
+
+  {% if show_toggle %}
+    <div class="flex justify-center mb-8">
+        <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500">
+        <li class="me-2">
+            <a
+            href="{{ mo_url }}"
+            class="{% if active == 'monthly' %}inline-block px-4 py-3 text-white bg-red-600 rounded-lg{% else %}inline-block px-4 py-3 rounded-lg hover:text-gray-900 hover:bg-gray-200{% endif %}"
+            >
+            Monthly
+            </a>
+        </li>
+        <li class="me-2">
+            <a
+            href="{{ yr_url }}"
+            class="{% if active == 'yearly' %}inline-block px-4 py-3 text-white bg-red-600 rounded-lg{% else %}inline-block px-4 py-3 rounded-lg hover:text-gray-900 hover:bg-gray-200{% endif %}"
+            >
+            Yearly
+            </a>
+        </li>
+        </ul>
+    </div>
+  {% endif %}
+
+  <div class="grid md:grid-cols-2 gap-10 max-w-4xl items-start mx-auto">
+    {% for price_obj in plans_list %} 
+        {% include "subscriptions/snippets/pricing-cards.html" with object=price_obj %} 
+    {% empty %}
+        <p class="text-center col-span-full text-gray-500">
+        No plans available right now.
+        </p>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-10 px-4 mb-20 bg-gray-900">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-bold text-white text-center mb-2">
+        Frequently Asked Questions
+      </h2>
+      <p class="text-lg max-w-2xl mx-auto">
+        Have questions? We've got answers.
+      </p>
+    </div>
+
+    <div class="space-y-4" x-data="{ open: null }">
+      <div class="bg-gray-800 rounded-xl">
+        <button
+          @click="open = open === 1 ? null : 1"
+          class="w-full flex justify-between items-center text-left p-6"
+        >
+          <h3 class="text-lg font-semibold text-white">
+            What's the difference between the plans?
+          </h3>
+          <span
+            :class="{'rotate-90': open === 1}"
+            class="material-symbols-outlined text-red-600 transition-transform duration-300"
+          >
+            <svg
+              class="w-5 h-5 text-gray-400 transform transition-transform"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </span>
+        </button>
+        <div class="px-6 pb-6" x-collapse="" x-show="open === 1">
+          <p class="text-white">
+            The Free plan is great for getting started with basic features.
+            <b>The Creator plan</b> offers unlimited generations, advanced
+            customization and more tools to help with your content ideas, ideal
+            for dedicated students.
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-gray-800 rounded-xl">
+        <button
+          @click="open = open === 2 ? null : 2"
+          class="w-full flex justify-between items-center text-left p-6"
+        >
+          <h3 class="text-lg font-semibold text-white">
+            Can I cancel my subscription at any time?
+          </h3>
+          <span
+            :class="{'rotate-90': open === 2}"
+            class="material-symbols-outlined text-red-600 transition-transform duration-300"
+          >
+            <svg
+              class="w-5 h-5 text-gray-400 transform transition-transform"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </span>
+        </button>
+        <div class="px-6 pb-6" x-collapse="" x-show="open === 2">
+          <p class="text-white">
+            Yes, you can cancel your subscription at any time from your account
+            settings. Your plan will remain active until the end of the current
+            billing cycle, and you won't be charged again.
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-gray-800 rounded-xl">
+        <button
+          @click="open = open === 3 ? null : 3"
+          class="w-full flex justify-between items-center text-left p-6"
+        >
+          <h3 class="text-lg font-semibold text-white">
+            Do you offer refunds?
+          </h3>
+          <span
+            :class="{'rotate-90': open === 3}"
+            class="material-symbols-outlined text-red-600 transition-transform duration-300"
+          >
+            <svg
+              class="w-5 h-5 text-gray-400 transform transition-transform"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </span>
+        </button>
+        <div class="px-6 pb-6" x-collapse="" x-show="open === 3">
+          <p class="text-white">
+            Yes, We offer a 7-day money-back guarantee. If you're not satisfied,
+            we'll refund you in full.
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-gray-800 rounded-xl">
+        <button
+          @click="open = open === 4 ? null : 4"
+          class="w-full flex justify-between items-center text-left p-6"
+        >
+          <h3 class="text-lg font-semibold text-white">
+            What payment methods do you accept?
+          </h3>
+          <span
+            :class="{'rotate-90': open === 4}"
+            class="material-symbols-outlined text-red-600 transition-transform duration-300"
+          >
+            <svg
+              class="w-5 h-5 text-gray-400 transform transition-transform"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </span>
+        </button>
+        <div class="px-6 pb-6" x-collapse="" x-show="open === 4">
+          <p class="text-white">
+            We accept all major credit cards and payment gateways through
+            Paddle.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/javascript">
+  // Initialize Paddle with your vendor ID
+  Paddle.Environment.set("sandbox");
+  Paddle.Initialize({
+    token: "test_ebcb60d2823e5ef33ecd3f50b7e",
+
+    // prints events to console for debugging
+    // eventCallback: function (data) {
+    //  console.log(data);
+    // },
+  });
+</script>
+{% endblock %}

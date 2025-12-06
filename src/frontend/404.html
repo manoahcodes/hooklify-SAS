@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Page Not Found - Hooklify{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div class="text-center">
+        <!-- 404 Icon -->
+        <div class="mb-8">
+            <span class="text-9xl font-extrabold gradient-text">404</span>
+        </div>
+
+        <h1 class="text-4xl font-bold text-white mb-4">Page Not Found</h1>
+        <p class="text-xl text-gray-400 mb-8">
+            Looks like this page went viral and disappeared!
+        </p>
+
+        <!-- Illustration -->
+        <div class="mb-12">
+            <svg class="w-64 h-64 mx-auto text-gray-700" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" opacity="0.3"/>
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                <circle cx="15.5" cy="9.5" r="1.5"/>
+                <circle cx="8.5" cy="9.5" r="1.5"/>
+                <path d="M12 14c-2.33 0-4.32 1.45-5.12 3.5h1.67c.69-1.19 1.97-2 3.45-2s2.75.81 3.45 2h1.67c-.8-2.05-2.79-3.5-5.12-3.5z"/>
+            </svg>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="{% url 'home' %}" class="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-4 rounded-lg transition text-lg">
+                Go Home
+            </a>
+            <a href="{% url 'generate' %}" class="bg-gray-700 hover:bg-gray-600 text-white font-medium px-8 py-4 rounded-lg transition text-lg">
+                Generate Content
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
