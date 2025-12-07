@@ -1,0 +1,31 @@
+{% load allauth socialaccount %}
+{% load allauth_ui %}
+{% get_providers as socialaccount_providers %}
+
+{% if socialaccount_providers %}
+<div class="space-y-4">
+    {% for provider in socialaccount_providers %}
+
+        {% if provider.id == "openid" %}
+            {% for brand in provider.get_brands %}
+                {% provider_login_url provider openid=brand.openid_url process=process as href %}
+
+                <!-- OpenID Brand Button -->
+                <a href="{{ href }}" title="{{ brand.name }}"
+                   class="flex w-full items-center justify-center gap-3 overflow-hidden rounded-lg h-12 px-6 border border-gray-700 bg-gray-800 hover:bg-gray-700 text-gray-200 text-base font-semibold transition shadow-lg">
+                    {{ brand.name }}
+                </a>
+            {% endfor %}
+        {% endif %}
+
+        {% provider_login_url provider process=process scope=scope auth_params=auth_params as href %}
+
+        <!-- Standard Provider Button -->
+        <a href="{{ href }}" title="{{ provider.name }}"
+           class="flex w-full items-center justify-center gap-3 overflow-hidden rounded-lg h-12 px-6 border border-gray-700 bg-gray-600 hover:bg-gray-700 text-gray-200 text-base font-semibold transition shadow-lg">
+            <span class="text-lg font-bold text-white">{{ provider.name }}</span>
+        </a>
+
+    {% endfor %}
+</div>
+{% endif %}

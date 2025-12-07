@@ -1,0 +1,83 @@
+{% extends "allauth/layouts/base.html" %}
+{% block title %}Signup - {{ block.super }}{% endblock title %}
+{% load i18n %}
+
+{% block content %}
+<div class="w-full max-w-md bg-gray-800 shadow-xl rounded-2xl p-8 border border-gray-700">
+    <div class="text-center mb-8">
+        <a href="{% url "home" %}" class="text-4xl font-extrabold gradient-text">Hooklify</a>
+        <p class="text-gray-400 mt-2 text-sm">Create your account and start growing.</p>
+    </div>
+
+        {% if not SOCIALACCOUNT_ONLY %}
+
+        {% if SOCIALACCOUNT_ENABLED %}
+            {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+        {% endif %}
+
+        <form class="space-y-6" method="post" action="{% url 'account_signup' %}">
+            {% csrf_token %}
+            {{ redirect_field }}
+            {{ form.non_field_errors }}
+
+            <div class="grid grid-cols-2 gap-4">
+
+            <div>
+                <label for="{{ form.login.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-1">First Name</label>
+                <input type="text" name="first_name" id="id_first_name" class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg p-3 focus:ring-red-500 focus:border-red-500" required>
+            </div>
+            <div>
+                <label for="{{ form.login.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-1">Last Name</label>
+                <input type="text" name="last_name" id="id_last_name" class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg p-3 focus:ring-red-500 focus:border-red-500" required>
+            </div>
+            </div>
+
+            <div>
+                <label for="{{ form.login.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-1">Username</label>
+                <input type="text" name="username" id="id_username" placeholder="e.g niksila" class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg p-3 focus:ring-red-500 focus:border-red-500" required>
+            </div>
+
+            <div>
+                <label for="{{ form.login.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                <input type="email" name="email" id="id_email" placeholder="e.g nikolatesla@something.com" class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg p-3 focus:ring-red-500 focus:border-red-500" required>
+            </div>
+
+
+            <div>
+                <label for="{{ form.login.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-1">Password</label>
+                <input type="password" name="password1" id="id_password1" class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg p-3 focus:ring-red-500 focus:border-red-500" required>
+            </div>
+
+
+            <div>
+                <label for="{{ form.login.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-1">Confirm Password</label>
+                <input type="password" name="password2" id="id_password2" class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg p-3 focus:ring-red-500 focus:border-red-500" required>
+            </div>
+
+            <div class="flex items-start">
+                <div class="flex items-center h-5">
+                    <input id="terms" aria-describedby="terms" type="checkbox"
+                    class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                    required />
+                </div>
+                <div class="ml-3 text-sm">
+                <label for="terms" class="text-center text-sm text-white">I accept the <a
+                    class="font-semibold text-[var(--primary-700)] hover:text-[var(--primary-800)] transition-colors"
+                    href="#">Terms and
+                    Conditions</a></label>
+                </div>
+            </div>
+
+            <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-bold text-lg transition glow-button">
+                Create Account
+            </button>
+        </form>
+
+        {% endif %}
+        <p class="mt-6 text-center text-sm text-gray-400">
+            Already have an account?
+            <a href="{% url "account_login" %}" class="text-red-400 hover:text-red-300 font-medium">Log in</a>
+        </p>
+</div>
+
+{% endblock content %}

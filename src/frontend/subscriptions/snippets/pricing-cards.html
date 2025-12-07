@@ -46,7 +46,7 @@
             <div class="mb-8">
                 <h3 class="text-2xl font-bold text-white mb-2">{{ object.subscription.name }}</h3>
                 <div class="flex items-baseline mb-1">
-                    <span class="text-5xl font-extrabold text-white">${{ object.price }}</span>
+                    <span class="text-5xl font-extrabold text-white">${{ object.display_price|default:object.price }}</span>
                     <span class="text-white/80 ml-2">/{{ object.interval }}</span>
                 </div>
 
@@ -73,24 +73,22 @@
                 </button>
             {% else %}
                 {% if user.is_authenticated %}
-                <!-- Logged-in user sees real Paddle button -->
                 <button
                     class="paddle_button block w-full text-center rounded-full bg-white text-red-600 hover:bg-gray-100 font-bold py-3 transition glow-button"
                     data-display-mode="overlay"
                     data-locale="en"
-                    data-success-url="http://127.0.0.1{% url "subscription_verify" %}"
+                    data-success-url="{{ request.build_absolute_uri }}"
                     data-variant="one-page"
                     data-allow-logout="false"
                     data-items='[{"priceId": "{{ object.paddle_id }}", "quantity": 1}]'
-                    data-customer-email="{{ user.email|default:'' }}">
+                    data-customer-id="{{ customer_paddle_id|default:'' }}">
                     Upgrade Now
                 </button>
 
                 {% else %}
-                    <!-- Not logged in = send them to login page -->
-                    <a href="{% url 'login' %}"
+                    <a href="{% url 'account_login' %}"
                     class="block w-full text-center rounded-full bg-white text-red-600 hover:bg-gray-100 font-bold py-3 transition cursor-pointer">
-                        Login to Upgrade
+                        Upgrade
                     </a>
                 {% endif %}
             {% endif %}

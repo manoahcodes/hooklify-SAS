@@ -1,0 +1,21 @@
+{% load i18n %}
+{% load allauth %}
+{% load socialaccount %}
+{% get_providers as socialaccount_providers %}
+
+{% if socialaccount_providers %}
+    {# Social provider buttons #}
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+    {% include "socialaccount/snippets/login_extra.html" %}
+
+    {% if not SOCIALACCOUNT_ONLY %}
+        <div class="relative mt-8">
+            <div aria-hidden="true" class="absolute inset-0 flex items-center">
+                <div class="w-full border-t border-gray-700"></div>
+            </div>
+            <div class="relative flex justify-center text-sm">
+                <span class="bg-gray-800 px-3 text-gray-400">Or</span>
+            </div>
+        </div>
+    {% endif %}
+{% endif %}

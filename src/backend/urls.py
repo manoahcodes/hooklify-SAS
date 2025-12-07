@@ -26,6 +26,7 @@ urlpatterns = [
     path('generate/', TemplateView.as_view(template_name='dashboard/generate.html'), name='generate'),
     path('webhook/', include('apps.webhook.urls')),
     path('pricing/', include('apps.subscriptions.urls')),
+    path('dashboard/', include('apps.dashboard.urls')),
 ]
 
 # Custom Error Handlers

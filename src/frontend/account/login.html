@@ -1,0 +1,75 @@
+{% extends "allauth/layouts/base.html" %}
+{% block title %}Login - {{ block.super }}{% endblock title %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="w-full max-w-md bg-gray-800 shadow-xl rounded-2xl p-8 border border-gray-700">
+        <div class="text-center mb-8">
+            <a href="/" class="text-4xl font-extrabold gradient-text">Hooklify</a>
+            <p class="text-gray-400 mt-2 text-sm">Welcome back—let's grow your audience.</p>
+        </div>
+
+        {% if not SOCIALACCOUNT_ONLY %}
+
+            {% if SOCIALACCOUNT_ENABLED %}
+                {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+            {% endif %}
+
+            {% if LOGIN_BY_CODE_ENABLED %}
+                <button class="flex w-full cursor-pointer items-center justify-center gap-3 mt-3 overflow-hidden rounded-full h-12 px-6 border border-zinc-300 bg-white hover:bg-zinc-100 text-zinc-700 text-base font-semibold leading-normal shadow-sm transition-colors">
+                    <a href="{{ request_login_code_url }}" 
+                    class="flex w-full min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-4 bg-red-500 text-white text-base font-bold leading-normal tracking-wide hover:bg-red-600 transition-colors shadow-md hover:shadow-lg">{% trans "Mail me a sign-in code" %}</a>
+                </button>
+            {% endif %}
+
+        <form method="post" action="{% url 'account_login' %}" class="space-y-6">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div>
+                <label class="block text-sm font-medium text-gray-300 mb-1" for="{{ form.login.id_for_label }}">Username or Email</label>
+                <input type="text" id="id_login" name="login" class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg p-3 focus:ring-red-500 focus:border-red-500" required>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-300 mb-1" for="{{ form.password.id_for_label }}">Password</label>
+                <input type="password" id="id_password" name="password" class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg p-3 focus:ring-red-500 focus:border-red-500" required>
+            </div>
+
+            {% if form.remember %}
+            <div class="flex">
+                <div class="flex items-center h-5">
+                    <input 
+                    id="id_remember" 
+                    aria-describedby="terms" 
+                    type="checkbox"
+                    class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                    />
+                </div>
+                <div class="text-sm">
+                    <label for="terms" class="text-center text-sm text-white">
+                        <span class="ml-2 label-text">Remember me</span>
+                    </label>
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="flex justify-start">
+                <a href="{% url "account_reset_password" %}" class="text-sm text-red-400 hover:text-red-300">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-bold text-lg transition glow-button">
+                Log In
+            </button>
+        </form>
+
+        {% endif %}
+
+        <p class="mt-6 text-center text-sm text-gray-400">
+            Don't have an account?
+            <a href="{% url 'account_signup' %}" class="text-red-400 hover:text-red-300 font-medium">
+                Sign up
+            </a>
+        </p>
+    </div>
+{% endblock content %}

@@ -166,7 +166,11 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "[Hooklify] "
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_LOGIN_METHODS = ["email", "username"]
-ACCOUNT_SIGNUP_FIELDS = ["email*", "username*", "password1*", "password2*"]
+ACCOUNT_SIGNUP_FIELDS = ["first_name*", "last_name*", "email*", "username*", "password1*", "password2*"]
+
+ACCOUNT_FORMS = {
+    "signup": "apps.subscriptions.forms.CustomSignupForm",
+}
 
 SOCIALACCOUNT_PROVIDERS = {
     "google": {

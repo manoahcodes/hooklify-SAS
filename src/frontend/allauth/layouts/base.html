@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Hooklify{% endblock %}</title>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#fef2f2',
+                            100: '#fee2e2',
+                            200: '#fecaca',
+                            300: '#fca5a5',
+                            400: '#f87171',
+                            500: '#ef4444',
+                            600: '#dc2626',
+                            700: '#b91c1c',
+                            800: '#991b1b',
+                            900: '#7f1d1d'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(239, 68, 68, 0.6); }
+        }
+        .glow-button {
+            animation: glow 2s ease-in-out infinite;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #ef4444, #f97316, #ef4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 items-center justify-center min-h-screen flex">
+    {% block content %}
+    {% endblock content %}
+</body>
+</html>

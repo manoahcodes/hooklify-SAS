@@ -1,0 +1,102 @@
+{% extends "account/email.html" %}
+{% load i18n %}
+{% load allauth_ui %}
+
+{% block content %}
+    {% trans "Email Addresses" as heading %}
+    {% #container heading=heading %}
+
+    {% if emailaddresses %}
+        <div class="text-gray-300">
+            {% trans 'The following email addresses are associated with your account:' %}
+        </div>
+
+        {% url 'account_email' as action_url %}
+        {% #form url=action_url use_default_button="false" %}
+        {{ redirect_field }}
+        {% csrf_token %}
+
+        <div class="grid gap-3 py-4">
+            {% for radio in emailaddress_radios %}
+            {% with emailaddress=radio.emailaddress %}
+                <label for="{{ radio.id }}" class="flex items-start justify-between gap-4 p-4 border border-gray-700 rounded-lg bg-gray-800 hover:bg-gray-750 hover:shadow transition-colors">
+                    <div class="min-w-0">
+                        <div class="text-sm font-medium text-gray-100 truncate">
+                            {{ emailaddress.email }}
+                        </div>
+
+                        <div class="mt-2 flex flex-wrap gap-2">
+                            {% if emailaddress.verified %}
+                                <span class="inline-flex items-center text-xs bg-green-900 text-green-300 px-2 py-0.5 rounded-full">
+                                    {% trans "verified" %}
+                                </span>
+                            {% endif %}
+
+                            {% if emailaddress.primary %}
+                                <span class="inline-flex items-center text-xs bg-blue-900 text-blue-300 px-2 py-0.5 rounded-full">
+                                    {% trans "primary" %}
+                                </span>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="flex-shrink-0">
+                        <input type="radio"
+                            name="email"
+                            value="{{ emailaddress.email }}"
+                            id="{{ radio.id }}"
+                            class="h-4 w-4 accent-red-500 focus:ring-red-600"
+                            {% if radio.checked %}checked{% endif %}>
+                    </div>
+                </label>
+            {% endwith %}
+            {% endfor %}
+        </div>
+
+        <div class="flex flex-col mt-4 gap-2">
+            <button name="action_primary" type="submit" class="bg-red-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-red-700 transition">
+                {% trans "Make Primary" %}
+            </button>
+
+            <button name="action_send" type="submit" class="bg-green-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-green-700 transition">
+                {% trans "Re-send verification" %}
+            </button>
+
+            <button name="action_remove" type="submit" class="bg-gray-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-gray-700 transition">
+                {% trans "Remove" %}
+            </button>
+        </div>
+
+        {% /form %}
+
+    {% else %}
+        {% include "account/snippets/warn_no_email.html" %}
+    {% endif %}
+
+    {% if can_add_email %}
+        <div class="relative my-8">
+            <div aria-hidden="true" class="absolute inset-0 flex items-center">
+                <div class="w-full border-t border-gray-700"></div>
+            </div>
+            <div class="relative flex justify-center text-sm">
+                <span class="bg-gray-900 px-3 text-gray-400">
+                    {% trans "Or" %}
+                </span>
+            </div>
+        </div>
+
+        <h2 class="py-3 text-lg font-bold text-gray-100">{% trans "Add Email Address" %}</h2>
+
+        {% trans "Add Email" as button_text %}
+        {% #form form=form url=action_url button_text=button_text use_default_button="false" %}
+        {% csrf_token %}
+
+        <button type="submit" name="action_add" class="bg-red-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-red-700 transition">
+            {{ button_text }}
+        </button>
+
+        {% /form %}
+    {% endif %}
+
+    {% /container %}
+{% endblock content %}

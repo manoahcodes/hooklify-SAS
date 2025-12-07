@@ -1,7 +1,54 @@
-<footer class="bg-gray-800 border-t border-gray-700">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="text-center text-gray-400 text-sm">
-            <p>&copy; 2025 ThumbHook. Built for creators who want 10x views.</p>
+<footer class="bg-gray-800 border-t border-gray-800">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-14">
+        
+        <div class="grid gap-12 md:grid-cols-3">
+
+            <!-- Column 1: Logo + tagline + CTA -->
+            <div class="space-y-5">
+                <a href="{% url "home" %}" class="flex items-center space-x-2">
+                    <span class="text-2xl font-bold gradient-text">Hooklify</span>
+                </a>
+
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    The all-in-one AI tool to grow your audience and maximize your reach.
+                </p>
+
+                <a href="{% url "account_signup" %}" class="inline-block">
+                    <div class="px-5 py-2 bg-red-600 hover:bg-red-500 text-white rounded-lg text-sm font-medium transition">
+                        Try it for free
+                    </div>
+                </a>
+            </div>
+
+            <!-- Column 2: Free Resources -->
+            <div>
+                <h4 class="text-gray-200 font-semibold text-base mb-4">Resources</h4>
+
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="#" class="hover:text-gray-200 transition">About</a></li>
+                    <li><a href="#" class="hover:text-gray-200 transition">Contact Us</a></li>
+                    <li><a href="#" class="hover:text-gray-200 transition">FAQ</a></li>
+                    <li><a href="#" class="hover:text-gray-200 transition">Features</a></li>
+                    <li><a href="{% url "plans" %}" class="hover:text-gray-200 transition">Pricing</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Free Tools -->
+            <div>
+                <h4 class="text-gray-200 font-semibold text-base mb-4">Legal</h4>
+
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="#" class="hover:text-gray-200 transition">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-gray-200 transition">Terms of Service</a></li>
+                    <li><a href="#" class="hover:text-gray-200 transition">Refund Policy</a></li>
+                </ul>
+            </div>
+
         </div>
+
+        <div class="mt-12 text-center text-sm text-gray-500">
+            <span x-data="{ year: new Date().getFullYear() }">Copyright &copy; <span x-text="year"></span> Hooklify. All rights reserved.</span>
+        </div>
+
     </div>
 </footer>

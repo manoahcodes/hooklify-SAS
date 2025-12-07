@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.urls import reverse
-from django.contrib.auth.decorators import login_required
 
 from apps.subscriptions.models import Price, Subscriber, Customer
 
@@ -11,7 +10,7 @@ def plans_view(request, interval="monthly"):
         featured=True,
     ).select_related('subscription').order_by(
         'subscription__order', 'order'
-    )
+    )   
 
     monthly = Price.IntervalChoices.MONTHLY
     yearly = Price.IntervalChoices.YEARLY
@@ -44,6 +43,12 @@ def plans_view(request, interval="monthly"):
     free_plans = subpri_qs.filter(interval=free)
     object_list = (object_list | free_plans).distinct()
 
+    # Grab customer paddle ID
+    ctm_id = None
+    if request.user.is_authenticated:
+        customer = Customer.objects.filter(user=request.user).first()
+        ctm_id = customer.paddle_id if customer else None
+
     # Grab active user subscription
     user_subscription = None
     if request.user.is_authenticated:
@@ -65,4 +70,5 @@ def plans_view(request, interval="monthly"):
         "user_subscription": user_subscription,
         "active": active,
         "show_toggle": show_toggle,
+        "customer_paddle_id": ctm_id,
     })
