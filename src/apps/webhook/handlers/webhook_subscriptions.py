@@ -34,8 +34,8 @@ def handle_subscription_created(data):
         first_item = items[0]
         paddle_product_id = first_item.get("product", {}).get("id")
         paddle_price_id = first_item.get("price", {}).get("id")
-        starts_at = current_billing_period.get("starts_at")
-        ends_at = current_billing_period.get("ends_at")
+        starts_at = current_billing_period.get("starts_at") if current_billing_period else None
+        ends_at = current_billing_period.get("ends_at") if current_billing_period else None
     except (IndexError, AttributeError) as e:
         raise WebhookProcessingError("Invalid 'items' structure in payload.") from e
 
@@ -88,7 +88,7 @@ def handle_subscription_created(data):
 
 
 @transaction.atomic
-def handle_subscription_cancelled(data):
+def handle_subscription_canceled(data):
     """
     Hardened Paddle cancellation handler that tolerates:
     - out-of-order events
@@ -105,7 +105,7 @@ def handle_subscription_cancelled(data):
     paddle_customer_id = data.get("customer_id")
     subscription_id = data.get("id")
 
-    if not paddle_customer_id or not event_subscription_id:
+    if not paddle_customer_id or not subscription_id:
         raise WebhookProcessingError("Invalid webhook payload.")
 
     # -------------------------------------------------------------------------
@@ -158,7 +158,7 @@ def handle_subscription_cancelled(data):
     if not subscriber.paddle_subscriptions_id:
         logger.error(
             f"CANCEL: User {user} has no recorded Paddle subscription. "
-            f"Event {event_subscription_id} ignored."
+            f"Event {subscription_id} ignored."
         )
         return
 
@@ -219,41 +219,43 @@ def handle_subscription_cancelled(data):
 @transaction.atomic
 def handle_subscription_updated(data):
     """
-    A hardened handler for `subscription.updated` events.
+    Hardened handler for `subscription.updated` events.
 
-    This MUST correctly handle:
-    - plan upgrades/downgrades
+    Correctly handles:
+    - plan upgrades / downgrades
     - price changes
     - billing period updates
-    - retry/out-of-order Paddle events
+    - retry / out-of-order Paddle events
     - partial payloads
-    - updates belonging to an OLD subscription (must ignore)
+    - old / irrelevant subscription IDs
+    - all Paddle states (active, trialing, past_due, paused, canceled)
     """
 
     subscription_id = data.get("id")
     paddle_customer_id = data.get("customer_id")
     items = data.get("items")
     current_billing_period = data.get("current_billing_period", {})
+    paddle_status = data.get("status")
 
     if not (subscription_id and paddle_customer_id and items):
         raise WebhookProcessingError("Invalid payload: missing subscription data.")
 
-    # Extract item details
+    # Extract first item
     try:
         item = items[0]
         paddle_product_id = item.get("product", {}).get("id")
         paddle_price_id = item.get("price", {}).get("id")
-        starts_at = current_billing_period.get("starts_at")
-        ends_at = current_billing_period.get("ends_at")
+        starts_at = current_billing_period.get("starts_at") if current_billing_period else None
+        ends_at = current_billing_period.get("ends_at") if current_billing_period else None
     except Exception:
         raise WebhookProcessingError("Invalid 'items' structure.")
 
     if not (paddle_product_id and paddle_price_id):
         raise WebhookProcessingError("Missing product or price info.")
 
-    # -------------------------------------------------------------------------
-    # Load models safely
-    # -------------------------------------------------------------------------
+    # -------------------------------------
+    # Load DB models
+    # -------------------------------------
     try:
         customer = Customer.objects.get(paddle_id=paddle_customer_id)
         user = customer.user
@@ -261,25 +263,25 @@ def handle_subscription_updated(data):
         price = Price.objects.get(paddle_id=paddle_price_id)
     except Customer.DoesNotExist:
         logger.error(f"UPDATE: Unknown paddle customer {paddle_customer_id}")
-        return  # ghost customer → ignore
+        return
     except (Product.DoesNotExist, Price.DoesNotExist):
         logger.error(
-            f"UPDATE: Payload references unknown product={paddle_product_id}, "
-            f"price={paddle_price_id}. Cannot sync."
+            f"UPDATE: Unknown product={paddle_product_id}, price={paddle_price_id}. Cannot sync."
         )
         raise SubscriptionSyncError("Mismatched Paddle product or price.")
     except Exception as e:
         raise SubscriptionSyncError(f"Unexpected model retrieval error: {e}") from e
-    
+
+    # Free plan fallback
     try:
         free_product, free_price = get_free_plan_details()
     except Exception as e:
         logger.critical("CANCEL: Free plan configuration missing.", exc_info=True)
         raise SubscriptionSyncError("Missing free plan configuration.") from e
 
-    # -------------------------------------------------------------------------
-    # Fetch subscriber or create new free fallback if nonexistent
-    # -------------------------------------------------------------------------
+    # -------------------------------------
+    # Load subscriber record
+    # -------------------------------------
     try:
         subscriber = Subscriber.objects.select_for_update().get(user=user)
     except Subscriber.DoesNotExist:
@@ -298,11 +300,10 @@ def handle_subscription_updated(data):
             subscription_ends_at=None,
         )
 
-    # -------------------------------------------------------------------------
-    # Only update if this webhook corresponds to the CURRENT subscription
-    # -------------------------------------------------------------------------
+    # -------------------------------------
+    # Verify subscription ID matches active one
+    # -------------------------------------
     db_subscription_id = subscriber.paddle_subscriptions_id
-
     if not db_subscription_id:
         logger.error(f"UPDATE IGNORED: User {user} has no stored subscription ID.")
         return
@@ -314,126 +315,88 @@ def handle_subscription_updated(data):
         )
         return
 
-    # -------------------------------------------------------------------------
-    # Update changes safely
-    # -------------------------------------------------------------------------
-    previous_product = subscriber.subscription
-    previous_price = subscriber.price
+    # -------------------------------------
+    # Map Paddle → internal status
+    # -------------------------------------
+    if not paddle_status:
+        raise WebhookProcessingError("Missing Paddle subscription status.")
 
-    # Detect plan change (upgrade/downgrade)
+    STATUS_MAP = {
+        "active": Subscriber.StatusChoices.ACTIVE,
+        "trialing": Subscriber.StatusChoices.TRIALING,
+        "paused": Subscriber.StatusChoices.PAUSED,
+        "past_due": Subscriber.StatusChoices.PASTDUE,
+        "canceled": Subscriber.StatusChoices.CANCELED,
+    }
+
+    internal_status = STATUS_MAP.get(paddle_status)
+    if not internal_status:
+        logger.error(f"Unknown Paddle status '{paddle_status}' — ignoring update.")
+        return
+
+    # -------------------------------------
+    # Detect plan changes
+    # -------------------------------------
     plan_changed = (
-        previous_product.paddle_id != paddle_product_id
-        or previous_price.paddle_id != paddle_price_id
+        subscriber.subscription.paddle_id != paddle_product_id
+        or subscriber.price.paddle_id != paddle_price_id
     )
 
     if plan_changed:
         logger.info(
             f"UPDATE: {user.username} changed plan from "
-            f"{previous_product.name}/{previous_price.paddle_id} → "
+            f"{subscriber.subscription.name}/{subscriber.price.paddle_id} → "
             f"{product.name}/{price.paddle_id}"
         )
+        subscriber.subscription = product
+        subscriber.price = price
 
-    # Update record
-    subscriber.subscription = product
-    subscriber.price = price
-    subscriber.subscription_starts_at = starts_at
-    subscriber.subscription_ends_at = ends_at
+    # -------------------------------------
+    # Update billing period if available
+    # -------------------------------------
+    if starts_at:
+        subscriber.subscription_starts_at = starts_at
 
-    subscriber.status = Subscriber.StatusChoices.ACTIVE
-    subscriber.is_subscription_active = True
-    subscriber.is_subscription_cancelled = False
+    if ends_at:
+        subscriber.subscription_ends_at = ends_at
+
+    # -------------------------------------
+    # Apply status rules
+    # -------------------------------------
+    subscriber.status = internal_status
+
+    if paddle_status in ("active", "trialing"):
+        subscriber.paddle_subscriptions_id = subscription_id
+        subscriber.paddle_price_id = paddle_price_id
+        subscriber.paddle_user_id = paddle_customer_id
+        subscriber.is_subscription_active = True
+        subscriber.is_subscription_cancelled = False
+        subscriber.is_free_active = False
+
+    elif paddle_status in "canceled":
+        subscriber.subscription = free_product
+        subscriber.price = free_price
+        subscriber.is_subscription_active = False
+        subscriber.is_subscription_cancelled = True
+        subscriber.is_free_active = True
+        subscriber.subscription_starts_at = None
+        subscriber.subscription_ends_at = None
+
+    elif paddle_status == "paused":
+        subscriber.is_subscription_active = False
+        subscriber.is_subscription_cancelled = False
+        subscriber.is_free_active = False
+
+    elif paddle_status == "past_due":
+        subscriber.is_subscription_active = False
+        subscriber.is_subscription_cancelled = False
+        subscriber.is_free_active = True
+        subscriber.subscription_starts_at = None
+        subscriber.subscription_ends_at = None
 
     subscriber.save()
 
     logger.info(
-        f"UPDATE SUCCESS: Synced subscription {subscription_id} for user {user.username}."
+        f"UPDATE SUCCESS: Synced subscription {subscription_id} for user {user.username} "
+        f"({paddle_status})."
     )
-
-@transaction.atomic
-def handle_subscription_status_changed(data):
-    """
-    Handles state-only changes from Paddle, covering:
-        - subscription.activated
-        - subscription.past_due
-        - subscription.paused
-        - subscription.resumed
-        - subscription.trialing
-
-    These events NEVER modify product/price.
-    They ONLY affect status and access flags.
-    """
-
-    subscription_id = data.get("id")
-    paddle_customer_id = data.get("customer_id")
-    current_billing_period = data.get("current_billing_period", {})
-    event_type = data.get("event_type")  # You should pass this in from the router.
-
-    if not subscription_id or not paddle_customer_id:
-        raise WebhookProcessingError("Status webhook missing required fields.")
-
-    # -------------------------------------------------------------------------
-    # Load customer & subscriber
-    # -------------------------------------------------------------------------
-    try:
-        customer = Customer.objects.get(paddle_id=paddle_customer_id)
-        starts_at = current_billing_period.get("starts_at")
-        ends_at = current_billing_period.get("ends_at")
-        user = customer.user
-    except Customer.DoesNotExist:
-        logger.error(f"STATUS: Unknown user for customer {paddle_customer_id}")
-        return
-
-    try:
-        subscriber = Subscriber.objects.select_for_update().get(user=user)
-    except Subscriber.DoesNotExist:
-        logger.error(f"STATUS: No subscriber for event {event_type} → ignoring.")
-        return
-
-    # Ignore stale events
-    if subscriber.paddle_subscriptions_id != subscription_id:
-        logger.info(
-            f"STATUS IGNORED: Event {event_type} for {subscription_id} "
-            f"does not match active subscription {subscriber.paddle_subscriptions_id}"
-        )
-        return
-
-    # -------------------------------------------------------------------------
-    # Apply status logic
-    # -------------------------------------------------------------------------
-    if event_type == "subscription.activated":
-        subscriber.status = Subscriber.StatusChoices.ACTIVE
-        subscriber.is_subscription_active = True
-        subscriber.is_subscription_cancelled = False
-
-    elif event_type == "subscription.past_due":
-        # DO NOT cancel the sub. Just restrict features.
-        subscriber.status = Subscriber.StatusChoices.PASTDUE
-        subscriber.is_subscription_active = False  # Access restricted
-        subscriber.is_subscription_cancelled = False
-        subscriber.subscription_starts_at = None
-        subscriber.subscription_ends_at = None
-
-    elif event_type == "subscription.paused":
-        subscriber.status = Subscriber.StatusChoices.PAUSED
-        subscriber.is_subscription_active = False
-        subscriber.is_subscription_paused = True
-
-    elif event_type == "subscription.resumed":
-        subscriber.status = Subscriber.StatusChoices.ACTIVE
-        subscriber.is_subscription_active = True
-        subscriber.is_subscription_cancelled = False
-
-    elif event_type == "subscription.trialing":
-        subscriber.status = Subscriber.StatusChoices.TRIALING
-        subscriber.paddle_subscriptions_id = subscription_id
-        subscriber.is_subscription_active = False
-        subscriber.is_subscription_trialing = True
-        subscriber.subscription_starts_at = starts_at
-        subscriber.subscription_ends_at = ends_at
-
-    else:
-        logger.error(f"STATUS: Unknown subscription status event: {event_type}")
-        return
-
-    subscriber.save()
-    logger.info(f"STATUS UPDATED: {user.username} → {subscriber.status}")

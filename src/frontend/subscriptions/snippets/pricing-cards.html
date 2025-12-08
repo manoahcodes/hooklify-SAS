@@ -23,7 +23,7 @@
                 </ul>
                 
                 {% if user.is_authenticated and user_subscription and user_subscription.price.id == object.id %}
-                    <a href="{% url 'home' %}" class="w-full flex items-center justify-center rounded-full h-12 px-8 bg-gray-100 text-gray-800 text-base font-bold hover:bg-gray-200 transition-colors">
+                    <a href="{% url 'dashboard' %}" class="w-full flex items-center justify-center rounded-full h-12 px-8 bg-gray-100 text-gray-800 text-base font-bold hover:bg-gray-200 transition-colors">
                         Go to Dashboard
                     </a>
                 {% else %}
@@ -76,7 +76,7 @@
 
         {% if user.is_authenticated and user_subscription and user_subscription.price.id == object.id %}
                 <!-- Already subscribed -->
-            <a href="{% url 'home' %}" class="block w-full text-center rounded-full bg-white text-red-600 hover:bg-gray-100 font-bold py-3 transition cursor-pointer">
+            <a href="{% url 'dashboard' %}" class="block w-full text-center rounded-full bg-white text-red-600 hover:bg-gray-100 font-bold py-3 transition cursor-pointer">
                 Go to Dashboard
             </a>
         {% else %}

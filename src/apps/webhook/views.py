@@ -10,8 +10,7 @@ from paddle_billing.Notifications import Secret, Verifier
 
 from .handlers.webhook_subscriptions import (
     handle_subscription_created, handle_subscription_updated, 
-    handle_subscription_cancelled, handle_subscription_status_changed, 
-    WebhookProcessingError
+    handle_subscription_canceled, WebhookProcessingError
     )
 
 logger = logging.getLogger(__name__)
@@ -59,10 +58,7 @@ def paddle_subscription_webhook(request):
             handle_subscription_updated(data)
             
         elif event_type == "subscription.canceled":
-            handle_subscription_cancelled(data)
-
-        elif event_type in {"subscription.activated", "subscription.paused", "subscription.past_due", "subscription.resumed", "subscription.trialing"}:
-            handle_subscription_status_changed({**data, "event_type": event_type})
+            handle_subscription_canceled(data)
             
         else:
             # We don't handle this event, but it's not an error.

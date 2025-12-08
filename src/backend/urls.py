@@ -22,8 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', TemplateView.as_view(template_name='landing.html'), name='home'),
-    # path('pricing/', TemplateView.as_view(template_name='pricing.html'), name='pricing'),
-    path('generate/', TemplateView.as_view(template_name='dashboard/generate.html'), name='generate'),
     path('webhook/', include('apps.webhook.urls')),
     path('pricing/', include('apps.subscriptions.urls')),
     path('dashboard/', include('apps.dashboard.urls')),

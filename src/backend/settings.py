@@ -158,7 +158,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 # AllAuth Settings
-# LOGIN_REDIRECT_URL = "/dashboard/"
+LOGIN_REDIRECT_URL = "/dashboard/"
 
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
