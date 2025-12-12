@@ -14,3 +14,11 @@ django-allauth[socialaccount]
 django-allauth-ui==1.5.3
 paddle-python-sdk
 django-htmx
+youtube-transcript-api
+django-rq
+google-genai
+replicate
+redis
+Pillow
+rq
+psycopg2-binary

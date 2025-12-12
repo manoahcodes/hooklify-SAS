@@ -5,9 +5,9 @@ from .models import Product, Subscriber, Price, Customer
 class SubscriberAdmin(admin.ModelAdmin):
     readonly_fields = (
         'user', 
-        # 'subscription',
-        # 'price',
-        # 'status',
+        'subscription',
+        'price',
+        'status',
         'paddle_subscriptions_id', 
         'paddle_price_id', 
         'paddle_user_id',

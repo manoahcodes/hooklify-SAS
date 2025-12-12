@@ -1,17 +1,17 @@
 {% load widget_tweaks %}
 
-<label class="label" for="{{ field.id_for_label }}">
-    <span class="label-text text-gray-300">{{ field.label }}</span>
+<label class="label block text-sm font-medium text-gray-300 mb-1" for="{{ field.id_for_label }}">
+    {{ field.label }}
 </label>
 
 {% if field.errors %}
-    {% render_field field placeholder="" class="w-full rounded-xl bg-gray-800 border border-gray-700 text-gray-100 placeholder-gray-500 focus:border-red-500 focus:ring-red-500 input-error" %}
+    {% render_field field placeholder="" class="w-full bg-[#271b1b] border border-[#3a2727] text-gray-200 rounded-xl p-3 focus:ring-primary focus:border-primary transition" %}
 {% else %}
-    {% render_field field placeholder="" class="w-full rounded-xl bg-gray-800 border border-gray-700 text-gray-100 placeholder-gray-500 focus:border-red-500 focus:ring-red-500" %}
+    {% render_field field placeholder="" class="w-full bg-[#271b1b] border border-[#3a2727] text-gray-200 rounded-xl p-3 focus:ring-primary focus:border-primary transition" %}
 {% endif %}
 
 {% for error in field.errors %}
-    <span class="flex items-center max-w-xs mt-1 ml-1 text-xs font-medium tracking-wide text-red-400">
+    <span class="flex items-center mt-1 ml-1 text-xs font-medium tracking-wide text-white">
         {{ error }}
     </span>
 {% endfor %}

@@ -1,125 +1,331 @@
-{% extends 'base.html' %}
-
+{% extends 'base.html' %} 
 {% block content %}
-<!-- Hero Section -->
-<div class="relative overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div class="text-center">
-            <!-- Badge -->
-            <div class="inline-flex items-center px-4 py-2 bg-red-500/10 border border-red-500/20 rounded-full mb-8">
-                <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse mr-2"></span>
-                <span class="text-red-400 text-sm font-medium">Used by 2.7K+ creators</span>
+<main class="flex-1 flex flex-col">
+  <!-- Hero Section -->
+  <div class="px-6 lg:px-40 flex flex-1 justify-center py-12 lg:py-20">
+    <div class="flex flex-col max-w-[1280px] flex-1">
+      <div class="@container">
+        <div class="flex flex-col gap-12 lg:gap-16 lg:flex-row items-center">
+          <!-- Left Content -->
+          <div class="flex flex-col gap-8 lg:w-1/2 lg:pr-10">
+            <div class="flex flex-col gap-4 text-left">
+              <div
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 w-fit"
+              >
+                <span class="material-symbols-outlined text-primary text-sm"
+                  >auto_awesome</span
+                >
+                <span
+                  class="text-primary text-xs font-bold uppercase tracking-wider"
+                  >AI-Powered Growth</span
+                >
+              </div>
+              <h1
+                class="text-5xl lg:text-7xl font-black leading-[1.1] tracking-[-0.033em] font-display text-glow"
+              >
+                The only AI
+                <span class="text-primary">hook &amp; thumbnail</span> tool for
+                faceless channels.
+              </h1>
+              <h2
+                class="text-lg font-normal leading-relaxed text-gray-400 max-w-[600px]"
+              >
+                Works for YouTube, Instagram Reels AND TikTok. Stop guessing.
+                Start going viral. Generate high-CTR assets in seconds.
+              </h2>
             </div>
-            
-            <!-- Main Headline -->
-            <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6">
-                The only AI thumbnail + hook tool that works for
-                <span class="gradient-text">both YouTube AND TikTok</span>
-                faceless channels
-            </h1>
-            
-            <!-- Subheadline -->
-            <p class="text-xl text-gray-400 max-w-3xl mx-auto mb-12">
-                Generate viral thumbnails, titles, and hooks in seconds. No design skills needed. 
-                Just paste your video URL or script, and watch the magic happen.
+            <div class="flex flex-col sm:flex-row gap-4">
+              <button
+                class="flex h-14 cursor-pointer items-center justify-center rounded-xl bg-primary px-8 text-white text-base font-bold tracking-wide shadow-glow hover:shadow-glow-hover hover:bg-red-600 transition-all transform hover:-translate-y-1 w-full sm:w-auto"
+              >
+                <span class="truncate uppercase">Generate Viral Hooks Now</span>
+                <span class="material-symbols-outlined ml-2"
+                  >arrow_forward</span
+                >
+              </button>
+              <button
+                class="flex h-14 cursor-pointer items-center justify-center rounded-xl bg-[#3a2727]/50 border border-[#3a2727] hover:border-white px-8 text-white text-base font-bold tracking-wide transition-all w-full sm:w-auto"
+              >
+                <span class="truncate">Watch Demo</span>
+                <span class="material-symbols-outlined ml-2">play_circle</span>
+              </button>
+            </div>
+            <div
+              class="flex items-center gap-4 text-sm text-gray-500 font-medium"
+            >
+              <div class="flex -space-x-3">
+                <div
+                  class="w-8 h-8 rounded-full border-2 border-background-dark bg-gray-600 bg-cover"
+                  style="
+                    background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuB3t4WggRsGFktNHsuCX2FM4r9-vTMMuoicoZa20v_9JzMcSZirBqUlHBwjVo0S_siAOqhKyszZAaB297dQAkIYBG5CDqMqx_kAFXuO-jFqYF8EgmTjMJO1V1jrWRBdqSvPH5Jsic0DKLAcRFDuIaNmtVDrsYNQ92cRUcS64tbI0DUR9utw2gVDH7TvpP1yx1tHVBdORFkVWAPVTWVgCoWzXbw7cuI4XQC-I7vN4yjJf_y4ftelFwWGwc_mt8hEO7wFDG4Xv5H4-FI&quot;);
+                  "
+                ></div>
+                <div
+                  class="w-8 h-8 rounded-full border-2 border-background-dark bg-gray-500 bg-cover"
+                  style="
+                    background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuB3t4WggRsGFktNHsuCX2FM4r9-vTMMuoicoZa20v_9JzMcSZirBqUlHBwjVo0S_siAOqhKyszZAaB297dQAkIYBG5CDqMqx_kAFXuO-jFqYF8EgmTjMJO1V1jrWRBdqSvPH5Jsic0DKLAcRFDuIaNmtVDrsYNQ92cRUcS64tbI0DUR9utw2gVDH7TvpP1yx1tHVBdORFkVWAPVTWVgCoWzXbw7cuI4XQC-I7vN4yjJf_y4ftelFwWGwc_mt8hEO7wFDG4Xv5H4-FI&quot;);
+                  "
+                ></div>
+                <div
+                  class="w-8 h-8 rounded-full border-2 border-background-dark bg-gray-400 bg-cover"
+                  style="
+                    background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuB3t4WggRsGFktNHsuCX2FM4r9-vTMMuoicoZa20v_9JzMcSZirBqUlHBwjVo0S_siAOqhKyszZAaB297dQAkIYBG5CDqMqx_kAFXuO-jFqYF8EgmTjMJO1V1jrWRBdqSvPH5Jsic0DKLAcRFDuIaNmtVDrsYNQ92cRUcS64tbI0DUR9utw2gVDH7TvpP1yx1tHVBdORFkVWAPVTWVgCoWzXbw7cuI4XQC-I7vN4yjJf_y4ftelFwWGwc_mt8hEO7wFDG4Xv5H4-FI&quot;);
+                  "
+                ></div>
+              </div>
+              <p>Used by 10,000+ creators</p>
+            </div>
+          </div>
+          <!-- Right Content (Video/Visual) -->
+          <div class="w-full lg:w-1/2 relative group">
+            <!-- Glow Effect Behind -->
+            <div
+              class="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"
+            ></div>
+            <!-- Main Visual Container -->
+            <div
+              class="relative w-full aspect-video bg-[#1a1111] border border-[#3a2727] rounded-xl overflow-hidden shadow-2xl flex items-center justify-center group/video cursor-pointer"
+            >
+              <!-- Background Image (Simulated Video Thumbnail) -->
+              <div
+                class="absolute inset-0 bg-cover bg-center opacity-60 group-hover/video:scale-105 transition-transform duration-700"
+                data-alt="Hooklify dashboard interface preview"
+                style="
+                  background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDZjQ06RSchi2_Ih-OXwTu_Wc3Uj3GbkzvAYXKdgT118R4h6QcfttW9NQYMZZLzLhALkY-cMZelrJ_U5gyI8AZ8LhqMpeYdDdAcO9puL1fgeRizpk1vmh0o5cRZkZyyII1QJX5xO7QBvCw6VOIsharxAI0ii-z5d2zLJ-K5pS1KUuuEEGTFXK65VcQqPm7zESSCSLmJTxexKDki3xJnQmObl03hl7ah41Oi1KzJAkEnqwmQM_5O4L6bPFbq9h12JMgazZ4XZU27lVc&quot;);
+                "
+              ></div>
+              <!-- Play Button -->
+              <div
+                class="relative z-10 size-20 bg-primary/90 rounded-full flex items-center justify-center backdrop-blur-sm shadow-glow group-hover/video:scale-110 transition-transform"
+              >
+                <span class="material-symbols-outlined text-4xl text-white ml-1"
+                  >play_arrow</span
+                >
+              </div>
+              <!-- Overlay Badge -->
+              <div
+                class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-lg flex items-center gap-2"
+              >
+                <div class="size-2 rounded-full bg-red-500 animate-pulse"></div>
+                <span
+                  class="text-xs font-bold text-white uppercase tracking-wider"
+                  >Live Demo</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Social Proof Ticker -->
+  <div
+    class="w-full border-y border-[#3a2727] bg-[#181111]/50 py-8 overflow-hidden"
+  >
+    <div class="px-6 lg:px-40 max-w-[1280px] mx-auto">
+      <p
+        class="text-center text-gray-500 text-sm font-bold uppercase tracking-[0.2em] mb-6"
+      >
+        Trusted by creators on
+      </p>
+      <div
+        class="flex flex-wrap justify-center gap-12 lg:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-500"
+      >
+        <!-- YouTube -->
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-4xl">play_circle</span>
+          <span class="text-xl font-bold font-display">YouTube</span>
+        </div>
+        <!-- TikTok (Simulated with text/icon) -->
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-4xl">music_note</span>
+          <span class="text-xl font-bold font-display">TikTok</span>
+        </div>
+        <!-- Instagram -->
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-4xl">photo_camera</span>
+          <span class="text-xl font-bold font-display">Instagram</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Features Section -->
+  <div class="px-6 lg:px-40 py-20 bg-[#1f1515]">
+    <div class="max-w-[1280px] mx-auto flex flex-col gap-16">
+      <div class="flex flex-col gap-4 text-center items-center">
+        <h2
+          class="text-3xl md:text-5xl font-black font-display tracking-tight text-white max-w-[800px]"
+        >
+          Dominate the Algorithm with
+          <span class="text-primary">Unfair Advantages</span>
+        </h2>
+        <p class="text-gray-400 text-lg max-w-[600px]">
+          Our AI is trained on millions of viral videos to analyze what works
+          and generate assets that convert.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Card 1 -->
+        <div
+          class="group p-8 rounded-2xl bg-[#271b1b] border border-[#3a2727] hover:border-primary/50 transition-all hover:-translate-y-2 hover:shadow-glow flex flex-col gap-6"
+        >
+          <div
+            class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors"
+          >
+            <span class="material-symbols-outlined text-3xl"
+              >auto_fix_high</span
+            >
+          </div>
+          <div class="flex flex-col gap-3">
+            <h3 class="text-xl font-bold font-display text-white">
+              AI Thumbnails
+            </h3>
+            <p class="text-[#bb9b9b] leading-relaxed">
+              Click-through rates that explode with neon-accented, high-contrast
+              designs generated in seconds.
             </p>
-            
-            <!-- CTA Button -->
-            <a href="{% url "account_signup" %}" class="inline-block bg-red-600 hover:bg-red-700 text-white text-xl font-bold px-12 py-5 rounded-xl transition glow-button mb-4">
-                Start creating now
-            </a>
-            <p class="text-sm text-gray-500">No credit card required • 3 free generations</p>
+          </div>
         </div>
-        
-        <!-- Demo Video Section -->
-        {% comment %} <div class="mt-20 max-w-5xl mx-auto">
-            <div class="relative rounded-2xl overflow-hidden border-4 border-red-500/20 shadow-2xl">
-                <div class="aspect-video bg-gray-800 flex items-center justify-center">
-                    <!-- Placeholder for Loom video -->
-                    <div class="text-center">
-                        <svg class="w-24 h-24 text-red-500 mx-auto mb-4" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
-                        </svg>
-                        <p class="text-gray-400 text-lg">Watch how ThumbHook 10x'd my faceless channel</p>
-                        <p class="text-gray-500 text-sm mt-2">Demo video coming soon</p>
-                    </div>
-                </div>
+        <!-- Card 2 -->
+        <div
+          class="group p-8 rounded-2xl bg-[#271b1b] border border-[#3a2727] hover:border-primary/50 transition-all hover:-translate-y-2 hover:shadow-glow flex flex-col gap-6"
+        >
+          <div
+            class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors"
+          >
+            <span class="material-symbols-outlined text-3xl">psychology</span>
+          </div>
+          <div class="flex flex-col gap-3">
+            <h3 class="text-xl font-bold font-display text-white">
+              Killer Hooks
+            </h3>
+            <p class="text-[#bb9b9b] leading-relaxed">
+              Grab attention in the first 3 seconds with psychology-backed
+              scripts tailored to your niche.
+            </p>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div
+          class="group p-8 rounded-2xl bg-[#271b1b] border border-[#3a2727] hover:border-primary/50 transition-all hover:-translate-y-2 hover:shadow-glow flex flex-col gap-6"
+        >
+          <div
+            class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors"
+          >
+            <span class="material-symbols-outlined text-3xl">smart_toy</span>
+          </div>
+          <div class="flex flex-col gap-3">
+            <h3 class="text-xl font-bold font-display text-white">
+              Faceless Ready
+            </h3>
+            <p class="text-[#bb9b9b] leading-relaxed">
+              No camera? No problem. Perfect for automation channels scaling
+              across multiple platforms.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Results Gallery Section -->
+  <div class="px-6 lg:px-40 py-20">
+    <div class="max-w-[1280px] mx-auto flex flex-col gap-10">
+      <div class="flex justify-between items-end">
+        <h3 class="text-2xl font-bold font-display text-white">
+          Recent Viral Results
+        </h3>
+        <a
+          class="text-primary font-bold hover:text-white transition-colors flex items-center gap-1"
+          href="#"
+        >
+          View all case studies
+          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 h-[500px] md:h-[400px]">
+        <!-- Main Large Image -->
+        <div class="md:col-span-2 relative rounded-xl overflow-hidden group">
+          <div
+            class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+            data-alt="High contrast youtube thumbnail example with bright red arrow"
+            style="
+              background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBkLHgUNQwHd9VTPDdA7LGIfpPAkJsSSknIsseE-yHJCSdvtzH9RydmNPHD3HHQ9GtU9nPZAOePyOfDGGa31iTmwhvo2qxy8NSTQ3FUx7a6PVRUIniL5nTIIsOeQWW_mXpUadXcx_Vx6w0ffj8IoG7uKgBNYkHvvJ8VGn6XI5F2jO_RiOkSWc4RANkLMM3YvdqypyfoQO2QdwPBv_XQuqP342-ioLkyLUfGz8l9ktD9xJZuTwnR7SOFMw-h_uy6DYal9D9SWAudFs8&quot;);
+            "
+          ></div>
+          <div
+            class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/90 to-transparent"
+          >
+            <span
+              class="text-primary font-bold text-sm uppercase tracking-wider mb-1 block"
+              >Case Study</span
+            >
+            <h4 class="text-white text-xl font-bold">
+              From 1k to 100k views in 48 hours
+            </h4>
+          </div>
+        </div>
+        <!-- Side Images -->
+        <div class="flex flex-col gap-4">
+          <div class="flex-1 relative rounded-xl overflow-hidden group">
+            <div
+              class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+              data-alt="Tiktok script interface showing viral hook structure"
+              style="
+                background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBaKKJ9H6Vq5U1hzYEE8LwiU3fznTLP30rEe4w0gQSiPQWlDMbqJt8xAcVMl3yP4XyYblTxb7Hny-sU9u2Sc_tTKXUslZUNhuFU7DG5kOd2joKzGDxr4Z0v_HBkNCpwQWCQtY388ufJdDBaRhUOe-FOJ08QuCkz6m83mLo23uGZhRXOGWM5Vz_s9XuQ8dBZELByFg7HDGlGSGD2Kql8dEr1QQiyablKdgegu3fg6ByU3WCDYWI3E1FuA0XGiSGd0182Y8xgPUA1AKM&quot;);
+              "
+            ></div>
+            <div class="absolute bottom-4 left-4">
+              <span
+                class="bg-black/50 backdrop-blur text-white text-xs font-bold px-2 py-1 rounded"
+                >TikTok Script</span
+              >
             </div>
-        </div> {% endcomment %}
-    </div>
-    
-    <!-- Background Effects -->
-    <div class="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
-        <div class="absolute top-1/4 -left-48 w-96 h-96 bg-red-500/10 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-1/4 -right-48 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl"></div>
-    </div>
-</div>
-
-<!-- Features Section -->
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-    <div class="grid md:grid-cols-3 gap-8">
-        <!-- Feature 1 -->
-        <div class="bg-gray-800 rounded-xl p-8 border border-gray-700 hover:border-red-500/50 transition">
-            <div class="w-12 h-12 bg-red-500/10 rounded-lg flex items-center justify-center mb-4">
-                <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                </svg>
+          </div>
+          <div class="flex-1 relative rounded-xl overflow-hidden group">
+            <div
+              class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+              data-alt="Instagram analytics graph going up"
+              style="
+                background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDTc7_qH0pFkH0Cs7gTm4J0avVFBGoeZw5u0Nr9zZfK-9Gk9xJRPqcTg6xIA-wrIM9036ZFX7duL6CYEUmvvd24ong57WFY3JjdzIEQ8VB1sUFCn-pUyk184qezkJzfhZT2zFbl1G68nIugxrDhTo83OXy2hM4yoCf7o8VaaYS4RoAfetTqT4A2VkSrMAYo4R8LlPxWe90hOZ3BJ25Patc61hzmqrFhtfA8WwFcl-sawAYNbz9jo7vZZLAJGYB4qNvIt397xU2meN8&quot;);
+              "
+            ></div>
+            <div class="absolute bottom-4 left-4">
+              <span
+                class="bg-black/50 backdrop-blur text-white text-xs font-bold px-2 py-1 rounded"
+                >+450% Engagement</span
+              >
             </div>
-            <h3 class="text-xl font-bold text-white mb-2">AI-Powered Titles</h3>
-            <p class="text-gray-400">Get 10 viral title options optimized for CTR. Tested on millions of views.</p>
+          </div>
         </div>
-        
-        <!-- Feature 2 -->
-        <div class="bg-gray-800 rounded-xl p-8 border border-gray-700 hover:border-red-500/50 transition">
-            <div class="w-12 h-12 bg-red-500/10 rounded-lg flex items-center justify-center mb-4">
-                <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                </svg>
-            </div>
-            <h3 class="text-xl font-bold text-white mb-2">8 Thumbnail Concepts</h3>
-            <p class="text-gray-400">Detailed prompts for DALL-E or Midjourney. Download all as a ZIP.</p>
-        </div>
-        
-        <!-- Feature 3 -->
-        <div class="bg-gray-800 rounded-xl p-8 border border-gray-700 hover:border-red-500/50 transition">
-            <div class="w-12 h-12 bg-red-500/10 rounded-lg flex items-center justify-center mb-4">
-                <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
-                </svg>
-            </div>
-            <h3 class="text-xl font-bold text-white mb-2">Viral Hooks</h3>
-            <p class="text-gray-400">First 3 seconds that stop the scroll. For both YouTube shorts & TikTok.</p>
-        </div>
+      </div>
     </div>
-</div>
-
-<!-- Social Proof -->
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-    <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold text-white mb-4">Join the creators getting millions of views</h2>
+  </div>
+  <!-- Bottom CTA -->
+  <div
+    class="px-6 lg:px-40 py-20 bg-gradient-to-b from-background-dark to-black"
+  >
+    <div
+      class="max-w-[800px] mx-auto text-center flex flex-col gap-8 items-center border border-[#3a2727] bg-[#1a1111] p-12 rounded-3xl relative overflow-hidden"
+    >
+      <!-- Decorative Glow -->
+      <div
+        class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-1/2 bg-primary/20 blur-[100px] rounded-full pointer-events-none"
+      ></div>
+      <h2
+        class="text-4xl md:text-5xl font-black font-display text-white relative z-10"
+      >
+        Ready to go viral?
+      </h2>
+      <p class="text-lg text-gray-400 max-w-[500px] relative z-10">
+        Join 10,000+ creators using Hooklify to dominate social media
+        algorithms.
+      </p>
+      <button
+        class="relative z-10 flex min-w-[200px] cursor-pointer items-center justify-center rounded-xl h-14 px-8 bg-primary hover:bg-red-600 shadow-glow hover:shadow-glow-hover text-white text-lg font-bold tracking-wide transition-all transform hover:scale-105"
+      >
+        Start For Free
+      </button>
     </div>
-    <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
-            <p class="text-gray-300 mb-4">"ThumbHook gave me 5 thumbnail ideas I never would've thought of. My CTR jumped from 3% to 12%."</p>
-            <p class="text-sm text-gray-500">- Alex, 250K subs</p>
-        </div>
-        <div class="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
-            <p class="text-gray-300 mb-4">"I was spending hours on Canva. Now I generate 8 concepts in 30 seconds and pick the best one."</p>
-            <p class="text-sm text-gray-500">- Sarah, TikTok Creator</p>
-        </div>
-        <div class="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
-            <p class="text-gray-300 mb-4">"The hooks are insane. My average view duration went from 20% to 45%. This is a game changer."</p>
-            <p class="text-sm text-gray-500">- Marcus, 500K followers</p>
-        </div>
-    </div>
-</div>
-
-<!-- Final CTA -->
-<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-    <h2 class="text-5xl font-bold text-white mb-6">Ready to 10x your views?</h2>
-    <p class="text-xl text-gray-400 mb-8">Start generating viral content in the next 60 seconds.</p>
-    <a href="{% url "account_signup" %}" class="inline-block bg-red-600 hover:bg-red-700 text-white text-xl font-bold px-12 py-5 rounded-xl transition glow-button">
-        Get Started Free
-    </a>
-</div>
+  </div>
+</main>
 {% endblock %}

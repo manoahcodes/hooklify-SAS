@@ -4,10 +4,10 @@
 {% var render_fields=render_fields|default:"true" %}
 {% var use_default_button=use_default_button|default:"true" %}
 
-<form class="py-4 space-y-4" method="post" action="{{ url }}">
+<form class="py-6 space-y-6" method="post" action="{{ url }}">
 
     {% for error in form.non_field_errors %}
-        <span class="flex items-center text-sm font-medium text-red-400 bg-red-950/40 border border-red-800 px-3 py-2 rounded-lg shadow-sm">
+        <span class="flex items-center text-sm font-medium text-red-400 bg-red-900/40 border border-red-700 px-4 py-2 rounded-lg shadow-sm">
             {{ error }}
         </span>
     {% endfor %}
@@ -15,7 +15,7 @@
     {% if render_fields == "true" %}
         {% for field in form.visible_fields %}
             {% if field.name != "remember" %}
-                <div class="block">
+                <div class="block space-y-1">
                     {% #form_field field=field %}
                     {% /form_field %}
                 </div>
@@ -28,9 +28,9 @@
     </div>
 
     {% if use_default_button == "true" %}
-        <button 
+        <button
             type="submit"
-            class="w-full h-12 rounded-xl font-semibold text-white bg-red-600 hover:bg-red-700 transition-all shadow-md hover:shadow-lg active:scale-[0.98]">
+            class="w-full h-12 rounded-lg font-bold text-white bg-red-600 hover:bg-red-700 transition shadow-md hover:shadow-red-800/20 active:scale-[0.98]">
             {{ button_text }}
         </button>
     {% endif %}

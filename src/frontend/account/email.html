@@ -6,10 +6,13 @@
 
 {% trans "Email Addresses" as heading %}
 
-<div class="w-full mx-auto px-4 space-y-8">
+<div class="w-full mx-auto px-4 space-y-10">
 
-    <div class="rounded-2xl bg-gray-850 p-8 shadow-xl">
+    <!-- Main Panel -->
+    <div class="rounded-2xl p-8 shadow-xl">
+
         {% #container heading=heading %}
+
         {% if emailaddresses %}
 
             <p class="text-gray-300 mb-6 leading-relaxed">
@@ -22,35 +25,38 @@
             {% csrf_token %}
 
             <!-- Email list -->
-            <div class="grid gap-3">
+            <div class="space-y-3">
 
                 {% for radio in emailaddress_radios %}
                 {% with emailaddress=radio.emailaddress %}
+
                     <label for="{{ radio.id }}"
-                           class="flex items-start justify-between gap-4 p-4 border border-gray-700 rounded-xl
-                                  bg-gray-900 hover:bg-gray-800 hover:border-gray-600
-                                  transition-all cursor-pointer">
+                        class="flex items-start justify-between gap-4 p-4 rounded-xl border border-[#3a2727]
+                               bg-[#1a1111] hover:bg-red-400 hover:border-gray-600
+                               transition cursor-pointer">
 
                         <div class="min-w-0">
-                            <div class="text-sm font-medium text-gray-100 truncate">
+
+                            <div class="text-sm font-semibold text-gray-100 truncate">
                                 {{ emailaddress.email }}
                             </div>
 
                             <div class="mt-2 flex flex-wrap gap-2">
 
                                 {% if emailaddress.verified %}
-                                    <span class="inline-flex items-center text-xs bg-green-900 text-green-300 px-2 py-0.5 rounded-full">
+                                    <span class="inline-flex items-center text-xs bg-green-900/50 text-green-300 px-2 py-0.5 rounded-full">
                                         {% trans "verified" %}
                                     </span>
                                 {% endif %}
 
                                 {% if emailaddress.primary %}
-                                    <span class="inline-flex items-center text-xs bg-blue-900 text-blue-300 px-2 py-0.5 rounded-full">
+                                    <span class="inline-flex items-center text-xs bg-blue-900/50 text-blue-300 px-2 py-0.5 rounded-full">
                                         {% trans "primary" %}
                                     </span>
                                 {% endif %}
 
                             </div>
+
                         </div>
 
                         <div class="flex-shrink-0 pt-1">
@@ -59,31 +65,36 @@
                                 name="email"
                                 value="{{ emailaddress.email }}"
                                 id="{{ radio.id }}"
-                                class="h-4 w-4 accent-red-500 focus:ring-red-600"
+                                class="h-4 w-4 accent-red-600 focus:ring-red-600"
                                 {% if radio.checked %}checked{% endif %}
                             >
                         </div>
+
                     </label>
+
                 {% endwith %}
                 {% endfor %}
 
             </div>
 
-            <!-- Action buttons -->
+            <!-- Action Buttons -->
             <div class="flex flex-col mt-6 gap-3">
 
                 <button name="action_primary" type="submit"
-                    class="h-11 rounded-lg bg-red-600 text-white font-semibold hover:bg-red-700 transition shadow-sm hover:shadow-md">
+                    class="h-11 rounded-lg bg-red-600 text-white font-semibold hover:bg-red-700
+                           transition shadow-sm hover:shadow-md active:scale-[0.98]">
                     {% trans "Make Primary" %}
                 </button>
 
                 <button name="action_send" type="submit"
-                    class="h-11 rounded-lg bg-green-600 text-white font-semibold hover:bg-green-700 transition shadow-sm hover:shadow-md">
+                    class="h-11 rounded-lg bg-green-700 text-white font-semibold hover:bg-green-600
+                           transition shadow-sm hover:shadow-md active:scale-[0.98]">
                     {% trans "Re-send verification" %}
                 </button>
 
                 <button name="action_remove" type="submit"
-                    class="h-11 rounded-lg bg-gray-600 text-white font-semibold hover:bg-gray-700 transition shadow-sm hover:shadow-md">
+                    class="h-11 rounded-lg bg-gray-700 text-white font-semibold hover:bg-gray-600
+                           transition shadow-sm hover:shadow-md active:scale-[0.98]">
                     {% trans "Remove" %}
                 </button>
 
@@ -103,13 +114,13 @@
                     <div class="w-full border-t border-gray-700"></div>
                 </div>
                 <div class="relative flex justify-center text-sm">
-                    <span class="bg-gray-800 px-3 text-gray-400">
+                    <span class="bg-gray-900 px-3 text-gray-400">
                         {% trans "Or" %}
                     </span>
                 </div>
             </div>
 
-            <!-- Add Email -->
+            <!-- Add Email Section -->
             <h2 class="py-3 text-lg font-bold text-gray-100">
                 {% trans "Add Email Address" %}
             </h2>
@@ -119,7 +130,8 @@
             {% csrf_token %}
 
             <button type="submit" name="action_add"
-                class="w-full h-11 rounded-lg bg-red-600 text-white font-semibold hover:bg-red-700 transition shadow-sm hover:shadow-md">
+                class="w-full h-11 rounded-lg bg-red-600 text-white font-semibold hover:bg-red-700
+                       transition shadow-sm hover:shadow-md active:scale-[0.98]">
                 {{ button_text }}
             </button>
 
@@ -130,6 +142,7 @@
         {% /container %}
 
     </div>
+
 </div>
 
 {% endblock content %}

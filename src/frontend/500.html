@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Internal Server Error - Hooklify{% endblock %}
+
+{% block content %}
+<div class="px-6 lg:px-40 py-28 bg-[#120c0c] min-h-[70vh]">
+
+    <div class="max-w-[700px] mx-auto text-center flex flex-col items-center gap-10">
+
+        <!-- Icon -->
+        <div class="flex flex-col items-center gap-4">
+            <div class="size-14 flex items-center justify-center rounded bg-primary text-white shadow-md shadow-primary/20">
+                <span class="material-symbols-outlined text-3xl font-bold">bolt</span>
+            </div>
+
+            <span class="text-6xl md:text-7xl font-extrabold text-white tracking-tight">
+                500
+            </span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="text-3xl md:text-4xl font-bold text-white">
+            Something Went Wrong
+        </h1>
+
+        <!-- Subtext -->
+        <p class="text-gray-400 text-lg max-w-[480px]">
+            Our servers hit a snag. It’s not you — it’s us.  
+            We’re already on it.
+        </p>
+
+        <!-- Illustration (same style as 404 for consistency) -->
+        <div class="opacity-60">
+            <svg class="w-52 h-52 mx-auto text-gray-700" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" opacity="0.3"/>
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                <circle cx="15.5" cy="9.5" r="1.5"/>
+                <circle cx="8.5" cy="9.5" r="1.5"/>
+                <path d="M12 14c-2.33 0-4.32 1.45-5.12 3.5h1.67c.69-1.19 1.97-2 3.45-2s2.75.81 3.45 2h1.67c-.8-2.05-2.79-3.5-5.12-3.5z"/>
+            </svg>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex flex-col sm:flex-row gap-5 w-full justify-center pt-4">
+
+            <a href="{% url 'home' %}"
+               class="px-8 py-4 rounded-lg bg-primary text-white font-bold text-lg shadow-md shadow-primary/20 hover:opacity-90 transition">
+                Go Home
+            </a>
+
+            <a href="#"
+               class="px-8 py-4 rounded-lg bg-[#1c1414] text-white text-lg border border-[#3a2727] hover:border-primary hover:text-primary transition">
+                Contact Support
+            </a>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

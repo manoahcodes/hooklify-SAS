@@ -29,3 +29,4 @@ urlpatterns = [
 
 # Custom Error Handlers
 handler404 = 'backend.views.custom_404_view'
+handler500 = 'backend.views.custom_500_view'

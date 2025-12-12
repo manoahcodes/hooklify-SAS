@@ -3,73 +3,93 @@
 {% load i18n %}
 
 {% block content %}
+<div class="min-h-screen flex items-center justify-center px-6 py-16 bg-background-light dark:bg-background-dark">
 
-<div class="w-full max-w-md bg-gray-800 shadow-xl rounded-2xl p-8 border border-gray-700">
-        <div class="text-center mb-8">
-            <a href="/" class="text-4xl font-extrabold gradient-text">Hooklify</a>
-            <p class="text-gray-400 mt-2 text-sm">Welcome back—let's grow your audience.</p>
+    <div class="w-full max-w-md rounded-2xl bg-[#1a1111] border border-[#3a2727] shadow-glow p-10">
+
+        <!-- Logo -->
+        <div class="text-center mb-10">
+            <a href="/" class="flex items-center justify-center gap-3 cursor-pointer group">
+                <div class="size-8 flex items-center justify-center rounded-lg bg-primary text-white shadow-glow">
+                    <span class="material-symbols-outlined text-[20px] font-bold">bolt</span>
+                </div>
+                <h2 class="text-3xl font-bold font-display text-white group-hover:text-primary transition-colors">
+                    Hooklify
+                </h2>
+            </a>
+            <p class="text-gray-400 mt-3 text-sm">Welcome back — let’s grow your audience.</p>
         </div>
 
         {% if not SOCIALACCOUNT_ONLY %}
-
             {% if SOCIALACCOUNT_ENABLED %}
                 {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
             {% endif %}
 
             {% if LOGIN_BY_CODE_ENABLED %}
-                <button class="flex w-full cursor-pointer items-center justify-center gap-3 mt-3 overflow-hidden rounded-full h-12 px-6 border border-zinc-300 bg-white hover:bg-zinc-100 text-zinc-700 text-base font-semibold leading-normal shadow-sm transition-colors">
-                    <a href="{{ request_login_code_url }}" 
-                    class="flex w-full min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-4 bg-red-500 text-white text-base font-bold leading-normal tracking-wide hover:bg-red-600 transition-colors shadow-md hover:shadow-lg">{% trans "Mail me a sign-in code" %}</a>
+                <a href="{{ request_login_code_url }}"
+                   class="block w-full rounded-xl h-12 px-6 text-center bg-primary hover:bg-red-600 text-white font-bold text-base tracking-wide shadow-glow hover:shadow-glow-hover transition transform hover:scale-105">
+                    {% trans "Mail me a sign-in code" %}
+                </a>
+            {% endif %}
+
+            <form method="post" action="{% url 'account_login' %}" class="space-y-6 mt-6">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+
+                <!-- Username -->
+                <div class="flex flex-col gap-1">
+                    <label for="id_login" class="text-sm font-medium text-gray-300">Username or Email</label>
+                    <input type="text"
+                           id="id_login"
+                           name="login"
+                           required
+                           class="w-full bg-[#271b1b] border border-[#3a2727] text-gray-200 rounded-xl p-3 
+                           focus:ring-primary focus:border-primary transition" />
+                </div>
+
+                <!-- Password -->
+                <div class="flex flex-col gap-1">
+                    <label for="id_password" class="text-sm font-medium text-gray-300">Password</label>
+                    <input type="password"
+                           id="id_password"
+                           name="password"
+                           required
+                           class="w-full bg-[#271b1b] border border-[#3a2727] text-gray-200 rounded-xl p-3 
+                           focus:ring-primary focus:border-primary transition" />
+                </div>
+
+                {% if form.remember %}
+                <div class="flex items-center gap-2">
+                    <input id="id_remember" type="checkbox"
+                           class="w-4 h-4 rounded bg-[#1a1111] border-[#3a2727] focus:ring-primary">
+                    <label for="id_remember" class="text-sm text-gray-300">Remember me</label>
+                </div>
+                {% endif %}
+
+                <div class="flex justify-start">
+                    <a href="{% url 'account_reset_password' %}"
+                       class="text-sm text-primary hover:text-red-300 transition">
+                        Forgot password?
+                    </a>
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit"
+                        class="w-full h-12 rounded-xl bg-primary hover:bg-red-600 text-white font-bold text-base 
+                        tracking-wide shadow-glow hover:shadow-glow-hover transition-all transform hover:scale-105">
+                    Log In
                 </button>
-            {% endif %}
-
-        <form method="post" action="{% url 'account_login' %}" class="space-y-6">
-            {% csrf_token %}
-            {{ form.non_field_errors }}
-            <div>
-                <label class="block text-sm font-medium text-gray-300 mb-1" for="{{ form.login.id_for_label }}">Username or Email</label>
-                <input type="text" id="id_login" name="login" class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg p-3 focus:ring-red-500 focus:border-red-500" required>
-            </div>
-
-            <div>
-                <label class="block text-sm font-medium text-gray-300 mb-1" for="{{ form.password.id_for_label }}">Password</label>
-                <input type="password" id="id_password" name="password" class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg p-3 focus:ring-red-500 focus:border-red-500" required>
-            </div>
-
-            {% if form.remember %}
-            <div class="flex">
-                <div class="flex items-center h-5">
-                    <input 
-                    id="id_remember" 
-                    aria-describedby="terms" 
-                    type="checkbox"
-                    class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                    />
-                </div>
-                <div class="text-sm">
-                    <label for="terms" class="text-center text-sm text-white">
-                        <span class="ml-2 label-text">Remember me</span>
-                    </label>
-                </div>
-            </div>
-            {% endif %}
-
-            <div class="flex justify-start">
-                <a href="{% url "account_reset_password" %}" class="text-sm text-red-400 hover:text-red-300">Forgot password?</a>
-            </div>
-
-            <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-bold text-lg transition glow-button">
-                Log In
-            </button>
-        </form>
-
+            </form>
         {% endif %}
 
-        <p class="mt-6 text-center text-sm text-gray-400">
+        <p class="mt-8 text-center text-sm text-gray-400">
             Don't have an account?
-            <a href="{% url 'account_signup' %}" class="text-red-400 hover:text-red-300 font-medium">
+            <a href="{% url 'account_signup' %}"
+               class="text-primary hover:text-red-300 transition font-medium">
                 Sign up
             </a>
         </p>
     </div>
+
+</div>
 {% endblock content %}
