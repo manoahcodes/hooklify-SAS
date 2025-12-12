@@ -25,7 +25,7 @@
     </ul>
 
     {% if user.is_authenticated and user_subscription and user_subscription.price.id == object.id %}
-        <a href="{% url 'dashboard' %}"
+        <a href="#"
            class="w-full flex items-center justify-center rounded-full h-12 px-8 bg-white text-[#120c0c] text-base font-bold hover:bg-gray-200 transition-colors">
            Go to Dashboard
         </a>
@@ -74,7 +74,7 @@
 
     {% if user.is_authenticated and user_subscription and user_subscription.price.id == object.id %}
 
-        <a href="{% url 'dashboard' %}"
+        <a href="#"
            class="block w-full text-center rounded-full bg-white text-[#120c0c] hover:bg-gray-100 font-bold py-3 transition">
             Go to Dashboard
         </a>

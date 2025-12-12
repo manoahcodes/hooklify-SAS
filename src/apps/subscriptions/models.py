@@ -13,7 +13,7 @@ from allauth.socialaccount.signals import social_account_added
 # Create your models here.
 ALLOW_CUSTOM_SUBSCRIPTIONS = True
 SUBSCRIPTION_PERMS = [
-    ("creatorplus", "Creator Plus Permission"),  # to distinguish tutor users, subscription.tutor
+    ("influencer", "Influencer Permission"),  # to distinguish tutor users, subscription.tutor
     ("creator", "Creator Permission"),  # to distinguish creator users, subscription.creator
     ("free", "Free Permission")  # to distinguish free users, subscription.free
 ]
