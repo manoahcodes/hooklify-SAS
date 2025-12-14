@@ -17,11 +17,11 @@
 
         <!-- Nav links -->
         <div class="flex flex-wrap justify-center gap-8 text-sm text-gray-400">
-            <a class="hover:text-primary transition-colors" href="#">About</a>
-            <a class="hover:text-primary transition-colors" href="#">Contact</a>
-            <a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
-            <a class="hover:text-primary transition-colors" href="#">Refunds Policy</a>
-            <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+            <a class="hover:text-primary transition-colors" href="{% url "about_us" %}">About</a>
+            <a class="hover:text-primary transition-colors" href="{% url "contact" %}">Contact</a>
+            <a class="hover:text-primary transition-colors" href="{% url "terms" %}">Terms of Service</a>
+            <a class="hover:text-primary transition-colors" href="{% url "refunds" %}">Refunds Policy</a>
+            <a class="hover:text-primary transition-colors" href="{% url "privacy" %}">Privacy Policy</a>
         </div>
 
     </div>

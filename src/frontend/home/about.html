@@ -1,0 +1,277 @@
+{% extends "base.html" %} 
+{% block title %}About Us - {{ block.super }}{%endblock %}
+{% block content %}
+<main class="flex flex-1 justify-center py-5">
+  <div class="layout-content-container flex flex-col max-w-[1120px] flex-1 w-full">
+    
+
+    <div class="px-4 md:px-10 mb-12">
+      <div class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat rounded-xl items-center justify-center p-8 relative overflow-hidden border border-border-dark group"
+        data-alt="Dark abstract geometric pattern representing digital data flow"
+        style="background-image:linear-gradient(rgba(24, 17, 17, 0.8) 0%, rgba(24, 17, 17, 0.9) 100%), url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuA9Gsr_rFwDyYNVP-r0ZzOoPURslofyCTHSYt90B8S_VodMEhvhXePAIVUob7MES7idGZBdjIR5RyKGrSq3xGNUHjuMMs6uaz9TWUB7cJ9J_69ZDj1e4er90GQqUMe_HxgLXcQ40VWcy1WkX_DAjfK0trqgW5qgz5qWYzq3LOiNhp0cZjrHLEMus_izVgBjaPZ7bDUKnv2zWkS1zAZTJ7dGswubIN_YLhZo9e6hKN995XRVkniaDl2OoUFpy66fXE3Q63m_IrXn2o8&quot;);">
+
+        
+
+        <div class="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent opacity-50"></div>
+        <div class="flex flex-col gap-4 text-center z-10 max-w-[800px]">
+          <div class="inline-flex items-center justify-center gap-2 px-3 py-1 rounded-full bg-border-dark/50 border border-primary/30 w-fit mx-auto backdrop-blur-sm">
+            <span class="size-2 rounded-full bg-primary animate-pulse"></span>
+            <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Mission: Domination</span>
+          </div>
+          <h1 class="text-white text-5xl md:text-7xl font-black leading-tight tracking-[-0.033em] text-glow">
+            We Don't Just Make Tools. We
+            <span class="text-primary">Manufacture Virality.</span>
+          </h1>
+          <h2 class="text-gray-300 text-lg md:text-xl font-normal leading-normal max-w-[600px] mx-auto">
+            Hooklify isn't a helper. It's an unfair advantage for YouTube,
+            Reels, and TikTok. Stop hoping. Start calculating.
+          </h2>
+        </div>
+
+        <div class="flex gap-4 z-10 flex-col sm:flex-row w-full justify-center mt-4">
+          <a href="{% url "account_signup" %}" class="flex items-center justify-center overflow-hidden rounded-xl h-12 px-8 bg-primary hover:bg-red-600 transition-all hover:scale-105 text-white text-base font-bold leading-normal tracking-[0.015em] shadow-[0_0_20px_rgba(249,31,31,0.5)]">
+            <span class="truncate">Start Dominating Now</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="flex flex-col gap-6 px-4 md:px-10 mb-16">
+      <div class="flex flex-col gap-2">
+        <h3 class="text-white text-2xl font-bold">
+          The Reality of Content Creation
+        </h3>
+        <p class="text-gray-400">
+          Most creators are playing a losing game. Here is what happens without
+          Hooklify.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+        <div class="flex flex-1 flex-col gap-2 rounded-xl p-6 border border-border-dark bg-card-dark relative overflow-hidden group hover:border-red-900 transition-colors">
+          <div class="absolute -right-4 -top-4 text-border-dark/30 group-hover:text-red-900/20 transition-colors">
+            <span class="material-symbols-outlined text-[120px] font-thin">timer</span>
+          </div>
+          <p class="text-gray-400 text-sm font-medium uppercase tracking-wider">
+            Avg View Duration
+          </p>
+          <p class="text-white tracking-light text-4xl font-bold leading-tight">
+            &lt; 30s
+          </p>
+          <div
+            class="flex items-center gap-1 text-primary text-base font-medium">
+            <span class="material-symbols-outlined text-sm">trending_down</span>
+            <span>-10% Dropoff</span>
+          </div>
+          <p class="text-gray-500 text-xs mt-2">
+            Without optimized hooks, viewers leave instantly.
+          </p>
+        </div>
+
+        
+
+        <div class="flex flex-1 flex-col gap-2 rounded-xl p-6 border border-border-dark bg-card-dark relative overflow-hidden group hover:border-red-900 transition-colors">
+          <div class="absolute -right-4 -top-4 text-border-dark/30 group-hover:text-red-900/20 transition-colors">
+            <span class="material-symbols-outlined text-[120px] font-thin">touch_app</span>
+          </div>
+          <p class="text-gray-400 text-sm font-medium uppercase tracking-wider">
+            Click Through Rate
+          </p>
+          <p class="text-white tracking-light text-4xl font-bold leading-tight">
+            &lt; 2%
+          </p>
+          <div class="flex items-center gap-1 text-primary text-base font-medium">
+            <span class="material-symbols-outlined text-sm">trending_down</span>
+            <span>Dead on Arrival</span>
+          </div>
+          <p class="text-gray-500 text-xs mt-2">
+            Boring thumbnails kill videos before they start.
+          </p>
+        </div>
+
+        
+
+        <div class="flex flex-1 flex-col gap-2 rounded-xl p-6 border border-border-dark bg-card-dark relative overflow-hidden group hover:border-red-900 transition-colors">
+          <div class="absolute -right-4 -top-4 text-border-dark/30 group-hover:text-red-900/20 transition-colors">
+            <span class="material-symbols-outlined text-[120px] font-thin">sentiment_dissatisfied</span>
+          </div>
+          <p class="text-gray-400 text-sm font-medium uppercase tracking-wider">
+            Viral Probability
+          </p>
+          <p class="text-white tracking-light text-4xl font-bold leading-tight">
+            0%
+          </p>
+          <div class="flex items-center gap-1 text-gray-400 text-base font-medium">
+            <span class="material-symbols-outlined text-sm">block</span>
+            <span>Invisible</span>
+          </div>
+          <p class="text-gray-500 text-xs mt-2">
+            The algorithm ignores average content.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    
+
+    <div class="flex flex-col gap-10 px-4 md:px-10 py-10 mb-8 border-y border-border-dark bg-gradient-to-b from-transparent to-card-dark/30">
+      <div class="flex flex-col md:flex-row gap-10 items-start md:items-center">
+        <div class="flex flex-col gap-6 flex-1">
+
+          <div class="flex flex-col gap-4">
+            <h2 class="text-white tracking-light text-3xl md:text-5xl font-bold leading-tight max-w-[720px]">
+              The Algorithm is a <span class="text-primary">Math Problem</span>.
+              We Solved It.
+            </h2>
+            <p class="text-gray-300 text-lg font-normal leading-normal max-w-[600px]">
+              Stop guessing what works. Our AI analyzes millions of viral videos
+              to give you the exact hooks, colors, and pacing that stop the
+              scroll. We turned creativity into a science.
+            </p>
+          </div>
+
+          <a href="{% url "account_signup" %}" class="flex items-center justify-center overflow-hidden rounded-xl h-12 px-6 bg-white hover:bg-gray-200 text-black text-base font-bold leading-normal tracking-[0.015em] w-fit transition-colors">
+            <span class="truncate">Try it yourself</span>
+          </a>
+        </div>
+
+        
+
+        <div class="flex-1 w-full h-[300px] rounded-xl bg-card-dark border border-border-dark flex items-center justify-center relative overflow-hidden">
+          <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80')] bg-cover bg-center opacity-20"
+            data-alt="Abstract digital network connections"></div>
+          <div class="relative z-10 flex flex-col items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-6xl animate-pulse">auto_awesome</span>
+            <span class="text-white font-bold text-xl tracking-widest uppercase">AI Engine Active</span>
+          </div>
+        </div>
+
+      </div>
+
+      
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+        <div class="flex flex-1 gap-4 rounded-lg border border-border-dark bg-[#271b1b] p-6 flex-col hover:-translate-y-1 transition-transform duration-300">
+          <div class="size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-2">
+            <span class="material-symbols-outlined">bolt</span>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h2 class="text-white text-xl font-bold leading-tight">
+              Extreme Speed
+            </h2>
+            <p class="text-[#bb9b9b] text-sm font-normal leading-normal">
+              Generate high-retention hooks in seconds. Move faster than your
+              competition.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-1 gap-4 rounded-lg border border-border-dark bg-[#271b1b] p-6 flex-col hover:-translate-y-1 transition-transform duration-300">
+          <div class="size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-2">
+            <span class="material-symbols-outlined">psychology</span>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h2 class="text-white text-xl font-bold leading-tight">
+              Viewer Psychology
+            </h2>
+            <p class="text-[#bb9b9b] text-sm font-normal leading-normal">
+              AI trained on dopamine triggers. We know exactly why people click
+              and watch.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-1 gap-4 rounded-lg border border-border-dark bg-[#271b1b] p-6 flex-col hover:-translate-y-1 transition-transform duration-300">
+          <div class="size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-2">
+            <span class="material-symbols-outlined">trophy</span>
+          </div>
+          
+          <div class="flex flex-col gap-2">
+            <h2 class="text-white text-xl font-bold leading-tight">
+              Total Dominance
+            </h2>
+            <p class="text-[#bb9b9b] text-sm font-normal leading-normal">
+              Content creation is a zero-sum game. We help you take all the
+              views.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="flex flex-col px-4 md:px-10 py-10">
+      <div class="bg-card-dark border border-border-dark rounded-2xl p-8 md:p-12 flex flex-col items-center text-center relative overflow-hidden">
+        
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+        <div class="absolute -left-20 top-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+        <div class="absolute -right-20 bottom-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+        <h3 class="text-primary text-sm font-bold tracking-widest uppercase mb-4">
+          The Origin
+        </h3>
+        <h2 class="text-3xl md:text-4xl font-black text-white mb-6">
+          Built by Creators Who Hated Getting 0 Views
+        </h2>
+        <p class="text-gray-300 max-w-2xl text-lg mb-8 leading-relaxed">
+          We spent years analyzing why some videos blow up and others die. We
+          realized it wasn't luck. It was a formula. We built Hooklify to
+          automate that formula so you never have to post a flop again.
+        </p>
+
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 w-full max-w-3xl border-t border-border-dark pt-8">
+          <div class="flex flex-col gap-1">
+            <span class="text-3xl font-bold text-white">10M+</span>
+            <span class="text-xs text-gray-500 uppercase tracking-wider">Views Analyzed</span>
+          </div>
+          <div class="flex flex-col gap-1">
+            <span class="text-3xl font-bold text-white">50k+</span>
+            <span class="text-xs text-gray-500 uppercase tracking-wider">Viral Hooks</span>
+          </div>
+          <div class="flex flex-col gap-1">
+            <span class="text-3xl font-bold text-white">10x</span>
+            <span class="text-xs text-gray-500 uppercase tracking-wider">Growth Rate</span>
+          </div>
+          <div class="flex flex-col gap-1">
+            <span class="text-3xl font-bold text-white">24/7</span>
+            <span class="text-xs text-gray-500 uppercase tracking-wider">Uptime</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="flex flex-col justify-end gap-6 px-4 md:px-10 py-20 mt-8 relative">
+      <div class="flex flex-col gap-4 text-center z-10">
+        <h1 class="text-white tracking-light text-4xl md:text-6xl font-black leading-tight">
+          Ready to
+          <span class="text-primary decoration-4 underline decoration-primary/30">10x Your Views?</span>
+        </h1>
+
+        <p
+          class="text-gray-300 text-lg font-normal leading-normal max-w-2xl mx-auto">
+          Join the creators who stopped struggling and started trending. The
+          algorithm is waiting for you to feed it what it wants.
+        </p>
+
+      </div>
+
+      <div class="flex flex-1 justify-center mt-6 z-10">
+        <a
+          href="{% url "account_signup" %}"
+          class="flex min-w-[200px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 px-8 bg-primary hover:bg-red-600 transition-all hover:scale-105 text-white text-lg font-bold leading-normal tracking-[0.015em] shadow-[0_0_30px_rgba(249,31,31,0.6)]">
+          <span class="truncate">Get Hooklify Free</span>
+          <span class="material-symbols-outlined ml-2">rocket_launch</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</main>
+{% endblock content %}

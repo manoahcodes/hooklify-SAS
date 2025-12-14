@@ -23,10 +23,15 @@ from backend import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('', views.index, name='home'),
     path('webhook/', include('apps.webhook.urls')),
     path('pricing/', include('apps.subscriptions.urls')),
     path('dashboard/', include('apps.dashboard.urls')),
+    path('', views.index, name='home'),
+    path('about/', views.about_us_view, name='about_us'),
+    path('tos/', views.terms_of_service_view, name='terms'),
+    path('privacy/', views.privacy_view, name='privacy'),
+    path('refunds/', views.refunds_view, name='refunds'),
+    path('contact/', views.contact_view, name='contact'),
 ]
 
 # Custom Error Handlers
