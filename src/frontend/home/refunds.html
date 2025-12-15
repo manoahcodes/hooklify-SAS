@@ -1,1 +1,162 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
+{% block title %}Refund Policy - {{ block.super }} {% endblock %} 
+{% block content %}
+<main class="flex-1 flex flex-col items-center w-full">
+  <div class="w-full max-w-5xl px-4 md:px-8 py-8 flex flex-col gap-10">
+
+    <div class="flex flex-col gap-6 md:text-center items-start md:items-center animate-fade-in-up">
+      <h1 class="text-white text-5xl md:text-7xl font-black leading-none tracking-tighter uppercase drop-shadow-xl">
+        NO BS <span class="text-primary">REFUND POLICY</span>
+      </h1>
+
+      <p class="text-gray-400 text-lg md:text-xl font-normal max-w-2xl leading-relaxed">
+        Transparent terms. No hidden clauses. Just the facts.
+        <br class="hidden md:block" />
+        We stand by our tools. If Hooklify doesn't help you crush the algorithm,
+        we don't want your money.
+      </p>
+    </div>
+
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+      
+      <div class="group flex flex-col gap-4 rounded-xl border border-[#3a2727] bg-card-dark p-6 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+        <div class="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+          <span class="material-symbols-outlined">calendar_month</span>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <h3 class="text-white text-lg font-bold uppercase tracking-tight">
+            7-Day Money Back
+          </h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Try it risk-free. If it sucks, get your money back within 7 days of
+            purchase. No hard feelings.
+          </p>
+        </div>
+
+      </div>
+      
+      
+      <div class="group flex flex-col gap-4 rounded-xl border border-[#3a2727] bg-card-dark p-6 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+        <div class="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+          <span class="material-symbols-outlined">verified_user</span>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <h3 class="text-white text-lg font-bold uppercase tracking-tight">
+            Eligibility
+          </h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Must be a first-time subscriber. Creating multiple accounts to abuse
+            this will result in a permanent ban.
+          </p>
+        </div>
+      </div>
+
+      
+      <div class="group flex flex-col gap-4 rounded-xl border border-[#3a2727] bg-card-dark p-6 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+        <div class="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+          <span class="material-symbols-outlined">schedule</span>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <h3 class="text-white text-lg font-bold uppercase tracking-tight">
+            Processing Time
+          </h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Refunds typically hit your bank account in 5-10 business days
+            depending on your bank's speed.
+          </p>
+        </div>
+
+      </div>
+      
+
+      <div class="group flex flex-col gap-4 rounded-xl border border-[#3a2727] bg-card-dark p-6 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+        <div class="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+          <span class="material-symbols-outlined">sentiment_satisfied</span>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <h3 class="text-white text-lg font-bold uppercase tracking-tight">
+            No Questions
+          </h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            We won't grill you on why you're leaving. Just tell us you want out,
+            and you are out. Simple.
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="flex flex-col lg:flex-row gap-8 mt-12">
+      
+      <div class="flex-1 flex flex-col gap-8">
+        <div>
+          <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">gavel</span>
+            EXCEPTIONS
+          </h2>
+
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3 bg-card-dark p-4 rounded-lg border border-[#3a2727]">
+              <span class="material-symbols-outlined text-red-500 mt-0.5 shrink-0">close</span>
+              <span class="text-gray-300 text-sm">
+                <strong class="text-white block mb-1">Lifetime Deals</strong>
+                Purchases made via lifetime deal promotions are final sale and
+                cannot be refunded due to the high discount nature.
+              </span>
+            </li>
+
+            <li class="flex items-start gap-3 bg-card-dark p-4 rounded-lg border border-[#3a2727]">
+              <span class="material-symbols-outlined text-red-500 mt-0.5 shrink-0">close</span>
+              <span class="text-gray-300 text-sm">
+                <strong class="text-white block mb-1">API Overage</strong>
+                Any additional API usage credits purchased beyond the
+                subscription plan are non-refundable once used.
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+      <div class="flex-1 flex flex-col gap-6">
+        <div class="bg-gradient-to-br from-card-dark to-[#2a1010] p-8 rounded-xl border border-primary/30 relative overflow-hidden">
+          <div class="absolute -right-10 -top-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+          <h2 class="text-2xl font-bold text-white mb-2 uppercase italic">
+            Ready to request?
+          </h2>
+          <p class="text-gray-400 text-sm mb-6">
+            If you are within the 7-day window and want your money back, just
+            shoot an email to our support team. Include your account email and
+            order ID.
+          </p>
+          <div class="flex flex-col gap-3">
+            <div class="flex items-center gap-3 text-sm text-gray-300">
+              <span class="material-symbols-outlined text-primary">mail</span>
+              <span>support@hooklify.com</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm text-gray-300">
+              <span class="material-symbols-outlined text-primary"
+                >schedule</span
+              >
+              <span>Response time: &lt; 24 Hours</span>
+            </div>
+          </div>
+
+          <div class="mt-8">
+            <a class="inline-flex items-center justify-center w-full bg-primary hover:bg-red-600 text-white font-bold uppercase tracking-wider py-4 rounded-lg transition-all shadow-neon hover:shadow-neon-hover group"
+              href="#">
+              Request Refund
+              <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %}

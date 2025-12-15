@@ -1,1 +1,219 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
+{% block title %}Terms of Service - {{ block.super}}{% endblock %} 
+{% block content %}
+<main class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-10 max-w-[1120px]">
+  
+  <div class="flex flex-col gap-2 mb-12 border-b border-[#3a2727] pb-8">
+    <h1 class="text-4xl md:text-6xl font-black tracking-tighter text-white uppercase">Terms of Service</h1>
+
+    <p class="text-gray-400 text-lg max-w-2xl mt-2">
+      Read carefully. This defines the rules of engagement for using Hooklify's
+      high-octane AI tools.
+    </p>
+
+    <div class="flex items-center gap-2 mt-4 text-sm text-gray-500">
+      <span class="material-symbols-outlined text-[16px]">schedule</span>
+      <span>Last Updated: December 1, 2025</span>
+    </div>
+  </div>
+
+  <div class="flex flex-col lg:flex-row gap-12 relative">
+
+    <div class="flex-1 min-w-0">
+
+      <div class="mb-12 scroll-mt-28">
+        <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+          <span class="text-primary/50 text-lg">01.</span> Introduction
+        </h2>
+        <div class="prose prose-invert prose-lg text-gray-300 max-w-none">
+          <p class="leading-relaxed mb-4">
+            Welcome to <strong>Hooklify</strong>. By accessing our website and
+            using our AI-powered thumbnail and hook generation tools, you agree
+            to be bound by these Terms of Service. If you do not agree with any
+            part of these terms, you are prohibited from using or accessing this
+            site.
+          </p>
+          <p class="leading-relaxed">
+            These terms apply to all visitors, users, and others who access or
+            use the Service. We reserve the right to update these terms at any
+            time without prior notice, though we will make reasonable efforts to
+            notify active subscribers of significant changes.
+          </p>
+        </div>
+      </div>
+
+
+      <div class="mb-12 scroll-mt-28 p-6 rounded-2xl bg-surface-dark/30 border border-[#3a2727]/50">
+        <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+          <span class="text-primary/50 text-lg">02.</span> Account Terms</h2>
+
+        <ul class="space-y-4 text-gray-300">
+          <li class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+            <span>You must be at least 13 years of age to use this Service. If you are under 13, you must have parental consent.</span>
+          </li>
+
+          <li class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+
+            <span>
+                You are responsible for maintaining the security of your account
+              and password. Hooklify cannot and will not be liable for any loss
+              or damage from your failure to comply with this security
+              obligation.
+            </span>
+
+          </li>
+
+          <li class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+            <span>
+            You are responsible for all content posted and activity that
+            occurs under your account.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="mb-12 scroll-mt-28">
+
+        <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+          <span class="text-primary/50 text-lg">03.</span> Subscription &amp;
+          Payments
+        </h2>
+
+        <div class="text-gray-300 space-y-4 leading-relaxed">
+          <p>
+            The Service is billed on a subscription basis ("Subscription(s)").
+            You will be billed in advance on a recurring and periodic basis
+            ("Billing Cycle"). Billing cycles are set either on a monthly or
+            annual basis, depending on the type of subscription plan you select
+            when purchasing a Subscription.
+          </p>
+
+          <div class="bg-primary/5 border-l-4 border-primary p-4 rounded-r-lg my-6">
+            <p class="text-white font-medium mb-1">Refund Policy</p>
+            <p class="text-sm text-gray-400">
+              We offer a 7-day money-back guarantee for first-time subscribers.
+              If you are not satisfied with the quality of the hooks or
+              thumbnails generated, contact support within 7 days for a full
+              refund.
+            </p>
+          </div>
+          <p>
+            At the end of each Billing Cycle, your Subscription will
+            automatically renew under the exact same conditions unless you
+            cancel it or Hooklify cancels it. You may cancel your Subscription
+            renewal either through your online account management page or by
+            contacting Hooklify customer support team.
+          </p>
+        </div>
+      </div>
+
+      <div class="mb-12 scroll-mt-28">
+        <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+          <span class="text-primary/50 text-lg">04.</span> Acceptable Use
+        </h2>
+        <p class="text-gray-300 mb-6 leading-relaxed">
+          Hooklify uses advanced AI models to generate content. You agree not to
+          use the Service to generate content that:
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-4 rounded-lg bg-surface-dark border border-[#3a2727] hover:border-red-500/50 transition-colors group">
+            <div class="flex items-center gap-3 mb-2 text-white font-bold group-hover:text-primary transition-colors">
+              <span class="material-symbols-outlined">block</span>
+              <span>Hate Speech</span>
+            </div>
+
+            <p class="text-sm text-gray-400">
+              Promotes violence, discrimination, or hatred against individuals
+              or groups.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-lg bg-surface-dark border border-[#3a2727] hover:border-red-500/50 transition-colors group">
+            
+            <div class="flex items-center gap-3 mb-2 text-white font-bold group-hover:text-primary transition-colors">
+              <span class="material-symbols-outlined">warning</span>
+              <span>Illegal Acts</span>
+            </div>
+
+            <p class="text-sm text-gray-400">
+              Promotes illegal activities or violates the rights of others.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-lg bg-surface-dark border border-[#3a2727] hover:border-red-500/50 transition-colors group">
+            <div class="flex items-center gap-3 mb-2 text-white font-bold group-hover:text-primary transition-colors">
+              <span class="material-symbols-outlined">person_off</span>
+              <span>Deceptive Content</span>
+            </div>
+
+            <p class="text-sm text-gray-400">
+              Creates "deepfakes" intended to deceive or mislead the public.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-lg bg-surface-dark border border-[#3a2727] hover:border-red-500/50 transition-colors group">
+            <div class="flex items-center gap-3 mb-2 text-white font-bold group-hover:text-primary transition-colors">
+              <span class="material-symbols-outlined">bug_report</span>
+              <span>System Abuse</span>
+            </div>
+
+            <p class="text-sm text-gray-400">
+              Attempts to reverse engineer the AI models or scrape our data.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="mb-12 scroll-mt-28">
+        <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+          <span class="text-primary/50 text-lg">05.</span> Intellectual Property
+        </h2>
+
+        <div class="text-gray-300 space-y-4 leading-relaxed">
+          <p>
+            <strong>Your Content:</strong> You retain ownership of any inputs
+            you provide to the Service.
+          </p>
+          <p>
+            <strong>Generated Content:</strong> Subject to your compliance with
+            these Terms, Hooklify hereby assigns to you all its right, title,
+            and interest in and to the output generated by the Service for you.
+            This means you own the thumbnails and hooks you create, and can use
+            them for commercial purposes on YouTube, Instagram, TikTok, etc.
+          </p>
+        </div>
+      </div>
+
+
+      <div class="scroll-mt-28 mb-12">
+        <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+          <span class="text-primary/50 text-lg">06.</span> Disclaimers
+        </h2>
+        <div class="p-6 rounded-2xl bg-surface-dark border border-[#3a2727] text-gray-400 text-sm leading-relaxed">
+          <p class="mb-4 uppercase font-bold text-gray-500 tracking-wider">
+            Limitation of Liability
+          </p>
+          <p>
+            IN NO EVENT SHALL HOOKLIFY, NOR ITS DIRECTORS, EMPLOYEES, PARTNERS,
+            AGENTS, SUPPLIERS, OR AFFILIATES, BE LIABLE FOR ANY INDIRECT,
+            INCIDENTAL, SPECIAL, CONSEQUENTIAL OR PUNITIVE DAMAGES, INCLUDING
+            WITHOUT LIMITATION, LOSS OF PROFITS, DATA, USE, GOODWILL, OR OTHER
+            INTANGIBLE LOSSES, RESULTING FROM (I) YOUR ACCESS TO OR USE OF OR
+            INABILITY TO ACCESS OR USE THE SERVICE; (II) ANY CONDUCT OR CONTENT
+            OF ANY THIRD PARTY ON THE SERVICE; (III) ANY CONTENT OBTAINED FROM
+            THE SERVICE; AND (IV) UNAUTHORIZED ACCESS, USE OR ALTERATION OF YOUR
+            TRANSMISSIONS OR CONTENT, WHETHER BASED ON WARRANTY, CONTRACT, TORT
+            (INCLUDING NEGLIGENCE) OR ANY OTHER LEGAL THEORY, WHETHER OR NOT WE
+            HAVE BEEN INFORMED OF THE POSSIBILITY OF SUCH DAMAGE.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content%}
