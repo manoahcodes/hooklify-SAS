@@ -1,16 +1,39 @@
 <!DOCTYPE html>
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{% block title %}Hooklify{% endblock %}</title>
+
+<meta name="description" content="{% block meta_description %}Hooklify helps creators create scroll-stopping hooks, captions, thumbnails and more with AI and algorithm built for modern creators and influencers.{% endblock %}">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Hooklify">
+
+<link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Hooklify">
+<meta property="og:title" content="{% block og_title %}Hooklify – The best AI and Algorithm content tool for you to grow your audience and maximize your reach.{% endblock %}">
+<meta property="og:description" content="{% block og_description %}Hooklify helps creators create scroll-stopping hooks, captions, thumbnails and more with AI and algorithm built for modern creators and influencers.{% endblock %}">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hooklify – The best AI and Algorithm content tool for you to grow your audience and maximize your reach.">
+<meta name="twitter:description" content="Create scroll-stopping hooks, captions, thumbnails and more with our AI and algorithm built for modern creators and influencers.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+{% load static %}
+<link href="{% static "fontawesome/css/all.min.css" %}" rel="stylesheet">
+<link href="{% static "main.css" %}" rel="stylesheet">
 
 <script id="tailwind-config">
       tailwind.config = {
@@ -36,17 +59,21 @@
           },
         },
       }
-    </script>
+</script>
 
-    <style>
-        .text-glow {
-            text-shadow: 0 0 10px rgba(249, 31, 31, 0.3);
-        }
-    </style>
+<style>
+  .text-glow {
+      text-shadow: 0 0 10px rgba(249, 31, 31, 0.3);
+  }
+</style>
 </head>
+
 <body class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark text-[#111418] dark:text-white font-body overflow-x-hidden selection:bg-primary selection:text-white">
     {% include "components/header.html" %}
     {% block content %}{% endblock %}
     {% include "components/footer.html" %}
 </body>
+
+{% load static %}
+<script href="{% static "fontawesome/js/all.min.js" %}" ></script>
 </html>

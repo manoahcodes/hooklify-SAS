@@ -19,7 +19,7 @@
                     Hooklify
                 </span>
             </a>
-            <p class="text-gray-400 mt-3 text-sm">Create your account and start you creator empire.</p>
+            <p class="text-gray-400 mt-3 text-sm">Begin your journey to virality.</p>
         </div>
 
         {% if not SOCIALACCOUNT_ONLY %}
@@ -83,14 +83,23 @@
 
                 <!-- Terms Checkbox -->
                 <div class="flex items-start">
-                    <input id="terms" type="checkbox"
-                        class="mt-1 w-4 h-4 bg-[#271b1b] border border-[#3a2727] rounded focus:ring-red-500"
-                        required>
+                    <input
+                    class="w-4 h-4 border border-border-dark rounded bg-background-dark focus:ring-3 focus:ring-primary/50 checked:bg-primary"
+                    id="tos"
+                    name="tos"
+                    type="checkbox"
+                    value="1"
+                    required
+                    />
 
                     <label for="terms" class="ml-3 text-sm text-gray-300">
                         I accept the
-                        <a href="#" class="text-primary font-semibold hover:text-red-400 transition-colors">
-                            Terms and Conditions
+                        <a href="{% url "terms" %}" class="text-primary font-semibold hover:text-red-400 transition-colors">
+                            Terms of Service
+                        </a>
+                        and 
+                        <a href="{% url "privacy" %}" class="text-primary font-semibold hover:text-red-400 transition-colors">
+                            Privacy Policy
                         </a>
                     </label>
                 </div>

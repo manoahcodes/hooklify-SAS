@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     "apps.webhook",
     "apps.dashboard",
     "apps.generator",
+    "apps.profiles",
+    "apps.api",
 
     # 3RD PARTY APPS
     "allauth_ui",

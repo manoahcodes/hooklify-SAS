@@ -20,8 +20,5 @@ def privacy_view(request):
 def refunds_view(request):
     return render(request, 'home/refunds.html')
 
-def contact_view(request):
-    return render(request, 'home/contact.html')
-
 def terms_of_service_view(request):
     return render(request, 'home/tos.html')

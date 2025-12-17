@@ -26,12 +26,13 @@ urlpatterns = [
     path('webhook/', include('apps.webhook.urls')),
     path('pricing/', include('apps.subscriptions.urls')),
     path('dashboard/', include('apps.dashboard.urls')),
+    path('contact/', include('apps.profiles.urls')),
+    path('api/', include('apps.api.urls')),
     path('', views.index, name='home'),
     path('about/', views.about_us_view, name='about_us'),
-    path('tos/', views.terms_of_service_view, name='terms'),
-    path('privacy/', views.privacy_view, name='privacy'),
-    path('refunds/', views.refunds_view, name='refunds'),
-    path('contact/', views.contact_view, name='contact'),
+    path('terms-of-service/', views.terms_of_service_view, name='terms'),
+    path('privacy-policy/', views.privacy_view, name='privacy'),
+    path('refunds-policy/', views.refunds_view, name='refunds'),
 ]
 
 # Custom Error Handlers
