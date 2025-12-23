@@ -1,6 +1,8 @@
 {% extends "base.html" %} 
 {% block title %}About Us - {{ block.super }}{%endblock %}
 {% block content %}
+
+{% load static %}
 <main class="flex flex-1 justify-center py-5">
   <div class="layout-content-container flex flex-col max-w-[1120px] flex-1 w-full">
     
@@ -8,7 +10,7 @@
     <div class="px-4 md:px-10 mb-12">
       <div class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat rounded-xl items-center justify-center p-8 relative overflow-hidden border border-border-dark group"
         data-alt="Dark abstract geometric pattern representing digital data flow"
-        style="background-image:linear-gradient(rgba(24, 17, 17, 0.8) 0%, rgba(24, 17, 17, 0.9) 100%), url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuA9Gsr_rFwDyYNVP-r0ZzOoPURslofyCTHSYt90B8S_VodMEhvhXePAIVUob7MES7idGZBdjIR5RyKGrSq3xGNUHjuMMs6uaz9TWUB7cJ9J_69ZDj1e4er90GQqUMe_HxgLXcQ40VWcy1WkX_DAjfK0trqgW5qgz5qWYzq3LOiNhp0cZjrHLEMus_izVgBjaPZ7bDUKnv2zWkS1zAZTJ7dGswubIN_YLhZo9e6hKN995XRVkniaDl2OoUFpy66fXE3Q63m_IrXn2o8&quot;);">
+        style="background-image:linear-gradient(rgba(24, 17, 17, 0.8) 0%, rgba(24, 17, 17, 0.9) 100%), url(&quot;{% static "images/about_us.png" %}&quot;);">
 
         
 
@@ -23,8 +25,8 @@
             <span class="text-primary">Manufacture Virality.</span>
           </h1>
           <h2 class="text-gray-300 text-lg md:text-xl font-normal leading-normal max-w-[600px] mx-auto">
-            Hooklify isn't a helper. It's an unfair advantage for YouTube,
-            Reels, and TikTok. Stop hoping. Start calculating.
+            Hooklify isn't just helper. It's an unfair advantage for YouTube Shorts,
+            Instagram Reels and TikTok. So join our 5,000 + creators using Hooklify so that you can hope less trend more.
           </h2>
         </div>
 
@@ -125,10 +127,10 @@
           <div class="flex flex-col gap-4">
             <h2 class="text-white tracking-light text-3xl md:text-5xl font-bold leading-tight max-w-[720px]">
               The Algorithm is a <span class="text-primary">Math Problem</span>.
-              We Solved It.
+              And We've Solved It.
             </h2>
             <p class="text-gray-300 text-lg font-normal leading-normal max-w-[600px]">
-              Stop guessing what works. Our AI analyzes millions of viral videos
+              Stop guessing what works. Our AI and algorithm team up to analyzes millions of viral videos
               to give you the exact hooks, colors, and pacing that stop the
               scroll. We turned creativity into a science.
             </p>
@@ -142,11 +144,11 @@
         
 
         <div class="flex-1 w-full h-[300px] rounded-xl bg-card-dark border border-border-dark flex items-center justify-center relative overflow-hidden">
-          <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80')] bg-cover bg-center opacity-20"
+          <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url({% static "images/ai_engine.jpg" %})"
             data-alt="Abstract digital network connections"></div>
           <div class="relative z-10 flex flex-col items-center gap-2">
             <span class="material-symbols-outlined text-primary text-6xl animate-pulse">auto_awesome</span>
-            <span class="text-white font-bold text-xl tracking-widest uppercase">AI Engine Active</span>
+            <span class="text-white font-bold text-xl tracking-widest uppercase">AI + Algorithm Engine Active</span>
           </div>
         </div>
 
@@ -179,8 +181,8 @@
               Viewer Psychology
             </h2>
             <p class="text-[#bb9b9b] text-sm font-normal leading-normal">
-              AI trained on dopamine triggers. We know exactly why people click
-              and watch.
+              AI trained on dopamine triggers. We know exactly why people click,
+              watch and stay.
             </p>
           </div>
         </div>
@@ -215,10 +217,10 @@
           The Origin
         </h3>
         <h2 class="text-3xl md:text-4xl font-black text-white mb-6">
-          Built by Creators Who Hated Getting 0 Views
+          Built by Creators Who Hated Getting 300 Views
         </h2>
         <p class="text-gray-300 max-w-2xl text-lg mb-8 leading-relaxed">
-          We spent years analyzing why some videos blow up and others die. We
+          We've spent time analyzing why some videos blow up and others die. We
           realized it wasn't luck. It was a formula. We built Hooklify to
           automate that formula so you never have to post a flop again.
         </p>
@@ -226,11 +228,11 @@
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 w-full max-w-3xl border-t border-border-dark pt-8">
           <div class="flex flex-col gap-1">
-            <span class="text-3xl font-bold text-white">10M+</span>
+            <span class="text-3xl font-bold text-white">1M+</span>
             <span class="text-xs text-gray-500 uppercase tracking-wider">Views Analyzed</span>
           </div>
           <div class="flex flex-col gap-1">
-            <span class="text-3xl font-bold text-white">50k+</span>
+            <span class="text-3xl font-bold text-white">10k+</span>
             <span class="text-xs text-gray-500 uppercase tracking-wider">Viral Hooks</span>
           </div>
           <div class="flex flex-col gap-1">
@@ -256,8 +258,8 @@
 
         <p
           class="text-gray-300 text-lg font-normal leading-normal max-w-2xl mx-auto">
-          Join the creators who stopped struggling and started trending. The
-          algorithm is waiting for you to feed it what it wants.
+          Join the creators who stopped hoping and started trending. The
+          algorithm is waiting for you take what's yours and take some more.
         </p>
 
       </div>

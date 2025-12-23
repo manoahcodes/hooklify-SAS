@@ -27,45 +27,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+{% comment %} <script src="https://cdn.tailwindcss.com"></script> {% endcomment %}
+ {% load static %}
+<link href="{% static "main.css" %}" rel="stylesheet">
+<link href="{% static "fontawesome/css/all.min.css" %}" rel="stylesheet">
 <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
-{% load static %}
-<link href="{% static "fontawesome/css/all.min.css" %}" rel="stylesheet">
-<link href="{% static "main.css" %}" rel="stylesheet">
-
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              "primary": "#f91f1f",
-              "background-light": "#f8f5f5",
-              "background-dark": "#230f0f",
-              "card-dark": "#231515",
-              "border-dark": "#3a2727"
-            },
-            fontFamily: {
-              "display": ["Space Grotesk", "sans-serif"],
-              "body": ["Noto Sans", "sans-serif"],
-            },
-            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
-            boxShadow: {
-                "glow": "0 0 20px rgba(249, 31, 31, 0.5)",
-                "glow-hover": "0 0 30px rgba(249, 31, 31, 0.7)",
-            }
-          },
-        },
-      }
-</script>
-
-<style>
-  .text-glow {
-      text-shadow: 0 0 10px rgba(249, 31, 31, 0.3);
-  }
-</style>
 </head>
 
 <body class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark text-[#111418] dark:text-white font-body overflow-x-hidden selection:bg-primary selection:text-white">

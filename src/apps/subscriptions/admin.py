@@ -48,7 +48,7 @@ admin.site.register(Price, PriceAdmin)
 
 
 class CustomerAdmin(admin.ModelAdmin):
-    readonly_fields = ('user', 'paddle_id',)
+    readonly_fields = ('user', 'paddle_id', 'has_user_agreed_tos')
     list_display = ('user', 'paddle_id')
     # list_filter = ('user__username',)
 

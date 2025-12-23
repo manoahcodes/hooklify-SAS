@@ -22,3 +22,6 @@ def refunds_view(request):
 
 def terms_of_service_view(request):
     return render(request, 'home/tos.html')
+
+def features_view(request):
+    return render(request, 'home/features.html')

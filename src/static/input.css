@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/container-queries";
+
+@theme {
+  --color-primary: #f91f1f;
+  --color-background-light: #f8f5f5;
+  --color-background-dark: #230f0f;
+  --color-card-dark: #231515;
+  --color-border-dark: #3a2727;
+
+  --font-display: "Space Grotesk", "sans-serif";
+  --font-body: "Noto Sans", "sans-serif";
+
+  --radius-DEFAULT: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  --shadow-glow: 0 0 20px rgba(249, 31, 31, 0.5);
+  --shadow-glow-hover: 0 0 30px rgba(249, 31, 31, 0.7);
+
+  --text-glow: 0 0 10px rgba(249, 31, 31, 0.3);
+  --text-glow-sm: 0 0 10px rgba(249, 31, 31, 0.4);
+  --shadow-neon: 0 0 10px rgba(249, 31, 31, 0.5), 0 0 20px rgba(249, 31, 31, 0.3);
+  --shadow-neon-strong: 0 0 15px rgba(249, 31, 31, 0.7), 0 0 30px rgba(249, 31, 31, 0.4);
+}

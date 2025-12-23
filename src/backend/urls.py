@@ -33,6 +33,7 @@ urlpatterns = [
     path('terms-of-service/', views.terms_of_service_view, name='terms'),
     path('privacy-policy/', views.privacy_view, name='privacy'),
     path('refunds-policy/', views.refunds_view, name='refunds'),
+    path('features/', views.features_view, name='features'),
 ]
 
 # Custom Error Handlers
