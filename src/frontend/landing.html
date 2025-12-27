@@ -2,12 +2,11 @@
 {% block title %}{{ block.super }} - The best AI and Algorithm Content Tool for Creators.{% endblock %}
 {% block content %}
 <main class="flex-1 flex flex-col">
-  <!-- Hero Section -->
   <div class="px-6 lg:px-40 flex flex-1 justify-center py-12 lg:py-20">
     <div class="flex flex-col max-w-[1280px] flex-1">
       <div class="@container">
         <div class="flex flex-col gap-12 lg:gap-16 lg:flex-row items-center">
-          <!-- Left Content -->
+          
           <div class="flex flex-col gap-8 lg:w-1/2 lg:pr-10">
             <div class="flex flex-col gap-4 text-left">
 
@@ -27,8 +26,8 @@
                 Works for YouTube Shorts, Instagram Reels and TikTok. Stop guessing.
                 Start going viral. Generate high-CTR assets in seconds.
               </h2>
-
             </div>
+
             <div class="flex flex-col sm:flex-row gap-4">
               <a
                 href="{% url "account_signup" %}"
@@ -63,27 +62,67 @@
           </div>
 
           <!-- Right Content (Video/Visual) -->
-          <div class="w-full lg:w-1/2 relative group">
-
-            <div class="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
-            <div class="relative w-full aspect-video bg-[#1a1111] border border-[#3a2727] rounded-xl overflow-hidden shadow-2xl flex items-center justify-center group/video cursor-pointer">
-              
-              <div
-                class="absolute inset-0 bg-cover bg-center opacity-60 group-hover/video:scale-105 transition-transform duration-700"
-                data-alt="Hooklify dashboard interface preview"
-                style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDZjQ06RSchi2_Ih-OXwTu_Wc3Uj3GbkzvAYXKdgT118R4h6QcfttW9NQYMZZLzLhALkY-cMZelrJ_U5gyI8AZ8LhqMpeYdDdAcO9puL1fgeRizpk1vmh0o5cRZkZyyII1QJX5xO7QBvCw6VOIsharxAI0ii-z5d2zLJ-K5pS1KUuuEEGTFXK65VcQqPm7zESSCSLmJTxexKDki3xJnQmObl03hl7ah41Oi1KzJAkEnqwmQM_5O4L6bPFbq9h12JMgazZ4XZU27lVc&quot;);"></div>
-              
-
-              <div class="relative z-10 size-20 bg-primary/90 rounded-full flex items-center justify-center backdrop-blur-sm shadow-glow group-hover/video:scale-110 transition-transform">
-                <span class="material-symbols-outlined text-4xl text-white ml-1">play_arrow</span>
-              </div>
-
-              
-              <div class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-lg flex items-center gap-2">
-                <div class="size-2 rounded-full bg-red-500 animate-pulse"></div>
-                <span class="text-xs font-bold text-white uppercase tracking-wider">Live Demo</span>
-              </div>
-            </div>
+          <div class="w-full lg:w-1/2 relative flex items-center justify-center h-[500px] lg:h-[600px] mt-8 lg:mt-0 perspective-1000">
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] bg-primary/20 blur-[120px] rounded-full pointer-events-none"></div>
+          <div class="absolute left-0 lg:left-0 top-1/2 -translate-y-1/2 -rotate-12 lg:-rotate-6 scale-90 lg:scale-95 z-10 transition-all duration-500 hover:z-30 hover:scale-105 hover:rotate-0 cursor-pointer hidden sm:block hover:shadow-glow">
+          <div class="w-[240px] h-[480px] lg:w-[260px] lg:h-[540px] rounded-[2.5rem] border-[8px] border-[#2a2a2a] bg-black overflow-hidden relative shadow-2xl ring-1 ring-white/10">
+          <div class="absolute top-0 inset-x-0 mx-auto w-32 h-6 bg-[#2a2a2a] rounded-b-xl z-20"></div>
+          <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDZjQ06RSchi2_Ih-OXwTu_Wc3Uj3GbkzvAYXKdgT118R4h6QcfttW9NQYMZZLzLhALkY-cMZelrJ_U5gyI8AZ8LhqMpeYdDdAcO9puL1fgeRizpk1vmh0o5cRZkZyyII1QJX5xO7QBvCw6VOIsharxAI0ii-z5d2zLJ-K5pS1KUuuEEGTFXK65VcQqPm7zESSCSLmJTxexKDki3xJnQmObl03hl7ah41Oi1KzJAkEnqwmQM_5O4L6bPFbq9h12JMgazZ4XZU27lVc');">
+          <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80"></div>
+          <div class="absolute right-2 bottom-20 flex flex-col gap-4 items-center z-10">
+          <div class="bg-black/40 p-2 rounded-full backdrop-blur-sm"><span class="material-symbols-outlined text-white text-2xl">favorite</span></div>
+          <span class="text-white text-xs font-bold drop-shadow-md">842K</span>
+          <div class="bg-black/40 p-2 rounded-full backdrop-blur-sm"><span class="material-symbols-outlined text-white text-2xl">chat_bubble</span></div>
+          <span class="text-white text-xs font-bold drop-shadow-md">2.3K</span>
+          <div class="bg-black/40 p-2 rounded-full backdrop-blur-sm"><span class="material-symbols-outlined text-white text-2xl">share</span></div>
+          </div>
+          <div class="absolute left-4 bottom-8 right-16 text-white z-10">
+          <div class="font-bold mb-1 shadow-black drop-shadow-md">@viralhooks</div>
+          <p class="text-xs opacity-90 leading-snug drop-shadow-md">This AI tool is actually insane 🤯 #ai #growth</p>
+          </div>
+          </div>
+          </div>
+          </div>
+          <div class="relative z-20 scale-100 lg:scale-105 shadow-glow-hover transition-transform duration-500 hover:scale-[1.07] cursor-pointer">
+          <div class="absolute -right-6 top-16 z-30 bg-primary text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg rotate-6 animate-pulse border border-white/20">+1.2M Views</div>
+          <div class="w-[250px] h-[500px] lg:w-[270px] lg:h-[560px] rounded-[2.5rem] border-[8px] border-[#2a2a2a] bg-black overflow-hidden relative shadow-2xl ring-1 ring-primary/40">
+          <div class="absolute top-0 inset-x-0 mx-auto w-32 h-6 bg-[#2a2a2a] rounded-b-xl z-20"></div>
+          <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBkLHgUNQwHd9VTPDdA7LGIfpPAkJsSSknIsseE-yHJCSdvtzH9RydmNPHD3HHQ9GtU9nPZAOePyOfDGGa31iTmwhvo2qxy8NSTQ3FUx7a6PVRUIniL5nTIIsOeQWW_mXpUadXcx_Vx6w0ffj8IoG7uKgBNYkHvvJ8VGn6XI5F2jO_RiOkSWc4RANkLMM3YvdqypyfoQO2QdwPBv_XQuqP342-ioLkyLUfGz8l9ktD9xJZuTwnR7SOFMw-h_uy6DYal9D9SWAudFs8');">
+          <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80"></div>
+         
+          <div class="absolute right-2 bottom-20 flex flex-col gap-4 items-center z-10">
+          <div class="bg-black/40 p-2 rounded-full backdrop-blur-sm"><span class="material-symbols-outlined text-red-500 text-2xl font-bold">favorite</span></div>
+          <span class="text-white text-xs font-bold drop-shadow-md">1.2M</span>
+          <div class="bg-black/40 p-2 rounded-full backdrop-blur-sm"><span class="material-symbols-outlined text-white text-2xl">comment</span></div>
+          <span class="text-white text-xs font-bold drop-shadow-md">14K</span>
+          </div>
+          <div class="absolute left-4 bottom-8 right-16 text-white z-10">
+          <div class="flex items-center gap-2 mb-2">
+          <div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-[10px] font-bold">H</div>
+          <span class="font-bold text-sm shadow-black drop-shadow-md">Hooklify AI</span>
+          </div>
+          <p class="text-xs opacity-90 leading-snug drop-shadow-md">How to go viral in 2024 using AI hooks... <span class="text-gray-300">more</span></p>
+          </div>
+          </div>
+          </div>
+          </div>
+          <div class="absolute right-0 lg:right-0 top-1/2 -translate-y-1/2 rotate-12 lg:rotate-6 scale-90 lg:scale-95 z-10 transition-all duration-500 hover:z-30 hover:scale-105 hover:rotate-0 cursor-pointer hidden sm:block hover:shadow-glow">
+          <div class="w-[240px] h-[480px] lg:w-[260px] lg:h-[540px] rounded-[2.5rem] border-[8px] border-[#2a2a2a] bg-black overflow-hidden relative shadow-2xl ring-1 ring-white/10">
+          <div class="absolute top-0 inset-x-0 mx-auto w-32 h-6 bg-[#2a2a2a] rounded-b-xl z-20"></div>
+          <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDZjQ06RSchi2_Ih-OXwTu_Wc3Uj3GbkzvAYXKdgT118R4h6QcfttW9NQYMZZLzLhALkY-cMZelrJ_U5gyI8AZ8LhqMpeYdDdAcO9puL1fgeRizpk1vmh0o5cRZkZyyII1QJX5xO7QBvCw6VOIsharxAI0ii-z5d2zLJ-K5pS1KUuuEEGTFXK65VcQqPm7zESSCSLmJTxexKDki3xJnQmObl03hl7ah41Oi1KzJAkEnqwmQM_5O4L6bPFbq9h12JMgazZ4XZU27lVc'); background-position: 80% center;">
+          <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80"></div>
+          <div class="absolute right-2 bottom-20 flex flex-col gap-4 items-center z-10">
+          <div class="bg-black/40 p-2 rounded-full backdrop-blur-sm"><span class="material-symbols-outlined text-white text-2xl">thumb_up</span></div>
+          <span class="text-white text-xs font-bold drop-shadow-md">45K</span>
+          <div class="bg-black/40 p-2 rounded-full backdrop-blur-sm"><span class="material-symbols-outlined text-white text-2xl">chat</span></div>
+          </div>
+          <div class="absolute left-4 bottom-8 right-16 text-white z-10">
+          <div class="font-bold mb-1 shadow-black drop-shadow-md">@faceless_money</div>
+          <p class="text-xs opacity-90 leading-snug drop-shadow-md">Stop scrolling! Use this hook template 🛑</p>
+          </div>
+          </div>
+          </div>
+          </div>
           </div>
         </div>
       </div>
@@ -190,96 +229,15 @@
       </div>
     </div>
   </div>
-  
-  <!-- Results Gallery Section -->
-  {% comment %} <div class="px-6 lg:px-40 py-20">
-    <div class="max-w-[1280px] mx-auto flex flex-col gap-10">
-      <div class="flex justify-between items-end">
-        <h3 class="text-2xl font-bold font-display text-white">
-          Recent Viral Results
-        </h3>
-        <a
-          class="text-primary font-bold hover:text-white transition-colors flex items-center gap-1"
-          href="#"
-        >
-          View all case studies
-          <span class="material-symbols-outlined text-sm">arrow_forward</span>
-        </a>
-      </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 h-[500px] md:h-[400px]">
-        <!-- Main Large Image -->
-        <div class="md:col-span-2 relative rounded-xl overflow-hidden group">
-          <div
-            class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-            data-alt="High contrast youtube thumbnail example with bright red arrow"
-            style="
-              background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBkLHgUNQwHd9VTPDdA7LGIfpPAkJsSSknIsseE-yHJCSdvtzH9RydmNPHD3HHQ9GtU9nPZAOePyOfDGGa31iTmwhvo2qxy8NSTQ3FUx7a6PVRUIniL5nTIIsOeQWW_mXpUadXcx_Vx6w0ffj8IoG7uKgBNYkHvvJ8VGn6XI5F2jO_RiOkSWc4RANkLMM3YvdqypyfoQO2QdwPBv_XQuqP342-ioLkyLUfGz8l9ktD9xJZuTwnR7SOFMw-h_uy6DYal9D9SWAudFs8&quot;);
-            "
-          ></div>
-          <div
-            class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/90 to-transparent"
-          >
-            <span
-              class="text-primary font-bold text-sm uppercase tracking-wider mb-1 block"
-              >Case Study</span
-            >
-            <h4 class="text-white text-xl font-bold">
-              From 1k to 100k views in 48 hours
-            </h4>
-          </div>
-        </div>
-        <!-- Side Images -->
-        <div class="flex flex-col gap-4">
-          <div class="flex-1 relative rounded-xl overflow-hidden group">
-            <div
-              class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-              data-alt="Tiktok script interface showing viral hook structure"
-              style="
-                background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBaKKJ9H6Vq5U1hzYEE8LwiU3fznTLP30rEe4w0gQSiPQWlDMbqJt8xAcVMl3yP4XyYblTxb7Hny-sU9u2Sc_tTKXUslZUNhuFU7DG5kOd2joKzGDxr4Z0v_HBkNCpwQWCQtY388ufJdDBaRhUOe-FOJ08QuCkz6m83mLo23uGZhRXOGWM5Vz_s9XuQ8dBZELByFg7HDGlGSGD2Kql8dEr1QQiyablKdgegu3fg6ByU3WCDYWI3E1FuA0XGiSGd0182Y8xgPUA1AKM&quot;);
-              "
-            ></div>
-            <div class="absolute bottom-4 left-4">
-              <span
-                class="bg-black/50 backdrop-blur text-white text-xs font-bold px-2 py-1 rounded"
-                >TikTok Script</span
-              >
-            </div>
-          </div>
-          <div class="flex-1 relative rounded-xl overflow-hidden group">
-            <div
-              class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-              data-alt="Instagram analytics graph going up"
-              style="
-                background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDTc7_qH0pFkH0Cs7gTm4J0avVFBGoeZw5u0Nr9zZfK-9Gk9xJRPqcTg6xIA-wrIM9036ZFX7duL6CYEUmvvd24ong57WFY3JjdzIEQ8VB1sUFCn-pUyk184qezkJzfhZT2zFbl1G68nIugxrDhTo83OXy2hM4yoCf7o8VaaYS4RoAfetTqT4A2VkSrMAYo4R8LlPxWe90hOZ3BJ25Patc61hzmqrFhtfA8WwFcl-sawAYNbz9jo7vZZLAJGYB4qNvIt397xU2meN8&quot;);
-              "
-            ></div>
-            <div class="absolute bottom-4 left-4">
-              <span
-                class="bg-black/50 backdrop-blur text-white text-xs font-bold px-2 py-1 rounded"
-                >+450% Engagement</span
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> {% endcomment %}
+
 
   <!-- Bottom CTA -->
-  <div
-    class="px-6 lg:px-40 py-20 bg-gradient-to-b from-background-dark to-black"
-  >
-    <div
-      class="max-w-[800px] mx-auto text-center flex flex-col gap-8 items-center border border-[#3a2727] bg-[#1a1111] p-12 rounded-3xl relative overflow-hidden"
-    >
+  <div class="px-6 lg:px-40 py-20 bg-gradient-to-b from-background-dark to-black">
+    <div class="max-w-[800px] mx-auto text-center flex flex-col gap-8 items-center border border-[#3a2727] bg-[#1a1111] p-12 rounded-3xl relative overflow-hidden">
       <!-- Decorative Glow -->
-      <div
-        class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-1/2 bg-primary/20 blur-[100px] rounded-full pointer-events-none"
-      ></div>
-      <h2
-        class="text-4xl md:text-5xl font-black font-display text-white relative z-10"
-      >
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-1/2 bg-primary/20 blur-[100px] rounded-full pointer-events-none"></div>
+      <h2 class="text-4xl md:text-5xl font-black font-display text-white relative z-10">
         Ready to go viral?
       </h2>
       <p class="text-lg text-gray-400 max-w-500 relative z-10">
@@ -290,5 +248,6 @@
       </a>
     </div>
   </div>
+
 </main>
 {% endblock %}
