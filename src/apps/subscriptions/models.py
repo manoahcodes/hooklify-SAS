@@ -345,8 +345,9 @@ post_save.connect(user_subscription_post_save, sender=Subscriber)
 
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="customer_profile")
-    paddle_id = models.CharField(max_length=255, blank=True, null=True)
-    has_user_agreed_tos = models.BooleanField(default=False, blank=False)
+    paddle_id = models.CharField(max_length=255, blank=True, null=True, unique=True)
+    has_user_agreed_tos_and_privacy = models.BooleanField(default=False, blank=False)
+    created_at = models.DateField(auto_now=True)
 
     def __str__(self):
         return f"{self.user.username}"

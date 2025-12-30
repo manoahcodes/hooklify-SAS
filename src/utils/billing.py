@@ -1,5 +1,5 @@
 from paddle_billing import Client, Environment, Options
-from paddle_billing.Resources.Customers.Operations import CreateCustomer, UpdateCustomer
+from paddle_billing.Resources.Customers.Operations import CreateCustomer, UpdateCustomer, ListCustomers
 from paddle_billing.Resources.Products.Operations import CreateProduct, UpdateProduct
 from paddle_billing.Resources.Prices.Operations import CreatePrice, UpdatePrice
 from paddle_billing.Resources.Subscriptions.Operations import UpdateSubscription, ListSubscriptions, CancelSubscription
@@ -44,6 +44,11 @@ def update_customer(customer_id="", name="", email="", metadata=None, raw=False)
         customer_id=customer_id,
         operation=UpdateCustomer(name=name, email=email, custom_data=metadata),
     )
+    return response if raw else response.id
+
+
+def get_customer(ctm_id, raw=True):
+    response = paddle.customers.get(customer_id=ctm_id)
     return response if raw else response.id
 
 

@@ -16,7 +16,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.views.generic import TemplateView
 
 from backend import views
 
@@ -28,6 +27,7 @@ urlpatterns = [
     path('dashboard/', include('apps.dashboard.urls')),
     path('contact/', include('apps.profiles.urls')),
     path('api/', include('apps.api.urls')),
+
     path('', views.index, name='home'),
     path('about/', views.about_us_view, name='about_us'),
     path('terms-of-service/', views.terms_of_service_view, name='terms'),
