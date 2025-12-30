@@ -12,7 +12,7 @@ class SubscriberAdmin(admin.ModelAdmin):
         'paddle_price_id', 
         'paddle_user_id',
         'is_free_active',
-        'is_subscription_active', 
+        'is_subscription_active',
         'is_subscription_cancelled', 
         'subscription_starts_at', 
         'subscription_ends_at', 
