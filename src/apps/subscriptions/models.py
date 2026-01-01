@@ -160,7 +160,8 @@ class Price(models.Model):
         verbose_name_plural = _("Prices")
 
     def __str__(self):
-        return f"{self.subscription.name} - {self.price} {self.paddle_currency} / {self.interval}"
+        subscription_name = self.subscription.name if self.subscription else "Plan"
+        return f"{subscription_name} - {self.price} {self.paddle_currency} / {self.interval}"
 
     @property
     def display_features_list(self):
@@ -196,7 +197,7 @@ class Price(models.Model):
     @property
     def is_free(self):
         """Check if this is a free plan."""
-        return self.interval == self.IntervalChoices.FREE or self.price == Decimal('0.00')
+        return self.interval == self.IntervalChoices.FREE or self.price == '0.00'
 
     @property
     def display_description(self):
@@ -238,7 +239,7 @@ class Price(models.Model):
                 
             price_id = create_price(
                 raw=False,
-                product_id=product_id,
+                product_id=str(product_id),
                 amount=str(self.paddle_price),
                 currency_code=self.paddle_currency,
                 interval=self.interval,

@@ -388,7 +388,7 @@ def handle_subscription_updated(data: dict):
         "active": Subscriber.StatusChoices.ACTIVE,
         "trialing": Subscriber.StatusChoices.TRIALING,
         "paused": Subscriber.StatusChoices.PAUSED,
-        "past_due": Subscriber.StatusChoices.PASTDUE,
+        "past_due": Subscriber.StatusChoices.PAST_DUE,
         "canceled": Subscriber.StatusChoices.CANCELED,
     }
 
@@ -407,7 +407,7 @@ def handle_subscription_updated(data: dict):
 
     if plan_changed:
         logger.info(
-            f"[UPDATE] {user.username} plan changed "
+            f"[UPDATE] {user.username} plan changed"
             f"{subscriber.subscription.paddle_id}/{subscriber.price.paddle_id} → "
             f"{product_id}/{price_id}"
         )
@@ -434,12 +434,7 @@ def handle_subscription_updated(data: dict):
     # This is always TRUE for letters like 'a', 'c', etc. Completely wrong.
     # Below is the correct implementation.
 
-    if paddle_status == "active":
-        subscriber.is_subscription_active = True
-        subscriber.is_subscription_cancelled = False
-        subscriber.is_free_active = False
-
-    elif paddle_status == "trialing":
+    if paddle_status == ("active", "trialing"):
         subscriber.is_subscription_active = True
         subscriber.is_subscription_cancelled = False
         subscriber.is_free_active = False
@@ -453,15 +448,6 @@ def handle_subscription_updated(data: dict):
         subscriber.is_subscription_active = False
         subscriber.is_subscription_cancelled = False
         subscriber.is_free_active = False
-
-    elif paddle_status == "canceled":
-        subscriber.paddle_subscriptions_id = None
-        subscriber.paddle_price_id = None
-        subscriber.is_subscription_active = False
-        subscriber.is_subscription_cancelled = True
-        subscriber.is_free_active = False
-        subscriber.subscription_starts_at = None
-        subscriber.subscription_ends_at = None
 
     subscriber.save(update_fields=[
         "subscription",

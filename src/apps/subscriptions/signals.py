@@ -1,48 +1,42 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.contrib.auth.models import User
 from django.db import transaction
+from django.contrib.auth.models import User
 
+# Allauth signals
 from allauth.account.signals import user_signed_up, email_confirmed
 from allauth.socialaccount.signals import social_account_added
 
 from .models import Product, Price, Subscriber, Customer
 
-
 # Constants
 ALLOW_CUSTOM_SUBSCRIPTIONS = True
 
+# -----------------------------------------------------------------------------
+# Core Business Logic Signals (Product/Price/Subscriber)
+# -----------------------------------------------------------------------------
 
 @receiver(post_save, sender=Product)
 def product_post_save(sender, instance, created, **kwargs):
-    """Signal handler to create Paddle subscription when product is created."""
+    """Create Paddle subscription when product is created."""
     if created:
         instance.create_paddle_subscription()
 
 
 @receiver(post_save, sender=Price)
 def subscription_price_post_save(sender, instance, created, **kwargs):
-    """Signal handler to create Paddle subscription price when price is created."""
+    """Create Paddle subscription price when price is created."""
     if created:
         instance.create_paddle_subscription_price()
 
 
 @receiver(post_save, sender=Subscriber)
 def user_subscription_post_save(sender, instance, created, **kwargs):
-    """
-    Signal handler to update user groups when user subscription changes.
-    
-    Args:
-        sender: The model class that sent the signal
-        instance: The actual Subscriber instance being saved
-        created: Boolean indicating if this is a new instance
-        **kwargs: Additional keyword arguments
-    """
+    """Sync user groups when user subscription changes."""
     user_subscription = instance
     user = user_subscription.user
     subscription = user_subscription.subscription
 
-    # Validate required relationships
     if not user:
         return
 
@@ -55,10 +49,13 @@ def user_subscription_post_save(sender, instance, created, **kwargs):
                 .distinct()
             )
             user.groups.remove(*subscription_groups)
-        elif not getattr(ALLOW_CUSTOM_SUBSCRIPTIONS, "value", False):
+            
+        # FIX: Removed the '.value' access on the boolean constant
+        elif not ALLOW_CUSTOM_SUBSCRIPTIONS:
             # Simple mode: set exact subscription groups
             subscription_groups = subscription.groups.all()
             user.groups.set(subscription_groups)
+            
         else:
             # Custom mode: preserve custom groups while avoiding conflicts
             current_subscription_groups = set(
@@ -78,54 +75,48 @@ def user_subscription_post_save(sender, instance, created, **kwargs):
             final_groups = current_user_groups | current_subscription_groups
             user.groups.set(final_groups)
 
-@receiver(post_save, sender=Customer)
-def customer_signed_up(sender, instance, created, **kwargs):
-    """Handle user sign up to create or update customer profile."""
-    if created:
-        customer, created = Customer.objects.get_or_create(user=instance.user)
-        if instance.user.email and instance.user.emailaddress_set.filter(email=instance.user.email, verified=True).exists():
-            customer.create_or_update_paddle_customer()
 
-@receiver(post_save, sender=Customer)
-def customer_email_confirmed(sender, instance, created, **kwargs):
-    """Handle email confirmation to create or update customer profile."""
-    if created:
-        user = instance.user
-        customer, created = Customer.objects.get_or_create(user=user)
-        if customer and not customer.paddle_id:
-            customer.create_or_update_paddle_customer()
+# -----------------------------------------------------------------------------
+# Auth & Customer Lifecycle Signals (Allauth)
+# -----------------------------------------------------------------------------
 
-
-# Handle user signed up signal from allauth
-def handle_user_signed_up_signal(request, user, **kwargs):
-    """Handle user sign up to create or update customer profile."""
-    # Create customer profile for the user
+@receiver(user_signed_up, sender=Customer)
+def handle_user_signed_up(request, user, **kwargs):
+    """
+    Handle user sign up: Create Customer profile and sync to Paddle 
+    if the email is already verified (rare, but possible).
+    """
     customer, created = Customer.objects.get_or_create(user=user)
-    # If user has a verified email, create/update Paddle customer
+    
+    # Check if email is verified immediately upon signup
     if user.email and user.emailaddress_set.filter(email=user.email, verified=True).exists():
         customer.create_or_update_paddle_customer()
 
-# Handle social account added signal
-def handle_social_account_added_signal(request, sociallogin, **kwargs):
-    """Handle social account added to create or update customer profile."""
+
+@receiver(social_account_added, sender=Customer)
+def handle_social_account_added(request, sociallogin, **kwargs):
+    """
+    Handle social account connection: Ensure Customer profile exists 
+    and sync to Paddle since social accounts often provide verified emails.
+    """
     user = sociallogin.user
-    # Create customer profile for the user
     customer, created = Customer.objects.get_or_create(user=user)
-    # If user has an email, create/update Paddle customer
+    
     if user.email:
+        customer.has_user_agreed_tos_and_privacy = True
+        customer.save()
         customer.create_or_update_paddle_customer()
 
-# Handle email confirmed signal
-def handle_email_confirmed_signal(email_address, **kwargs):
-    """Handle email confirmation to create or update customer profile."""
+
+@receiver(email_confirmed, sender=Customer)
+def handle_email_confirmed(request, email_address, **kwargs):
+    """
+    Handle email confirmation: This is the primary trigger for 
+    creating the Paddle customer for standard email/password users.
+    """
     user = email_address.user
-    # Get or create customer profile for the user
     customer, created = Customer.objects.get_or_create(user=user)
-    # If customer doesn't have a Paddle ID, create one
+    
+    # If customer doesn't have a Paddle ID yet, create one now that email is verified
     if customer and not customer.paddle_id:
         customer.create_or_update_paddle_customer()
-
-# Connect signals
-user_signed_up.connect(handle_user_signed_up_signal)
-social_account_added.connect(handle_social_account_added_signal)
-email_confirmed.connect(handle_email_confirmed_signal)
