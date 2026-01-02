@@ -13,4 +13,4 @@ def _render_page(request, full_template, partial_template, context=None):
 
 
 def dashboard(request):
-    pass
+    return render(request, 'dashboard/dashboard.html')

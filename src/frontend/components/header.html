@@ -44,7 +44,7 @@
         {% endif %}
 
         {% if user.is_authenticated %}
-            <a href="{% url 'home' %}">
+            <a href="{% url 'dashboard' %}">
                 {% csrf_token %}
                 <button
                     class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-6 bg-primary hover:bg-red-600 shadow-glow hover:shadow-glow-hover text-white text-sm font-bold leading-normal tracking-[0.015em] transition-all transform hover:scale-105">
