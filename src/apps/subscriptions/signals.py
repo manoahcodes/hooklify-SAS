@@ -1,7 +1,6 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.db import transaction
-from django.contrib.auth.models import User
 
 # Allauth signals
 from allauth.account.signals import user_signed_up, email_confirmed
