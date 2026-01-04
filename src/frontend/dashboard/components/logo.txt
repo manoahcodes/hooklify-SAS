@@ -1,0 +1,11 @@
+<div class="flex items-center gap-3 text-[#111418] dark:text-white group cursor-pointer">
+        <div class="size-8 flex items-center justify-center rounded-lg bg-primary text-white shadow-glow">
+            <span class="material-symbols-outlined text-[20px] font-bold">bolt</span>
+        </div>
+
+        <a href="{% url 'dashboard' %}">
+            <h2 class="text-lg font-bold leading-tight tracking-[-0.015em] font-display group-hover:text-primary transition-colors">
+                Hooklify
+            </h2>
+        </a>
+</div>

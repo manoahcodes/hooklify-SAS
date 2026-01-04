@@ -1,13 +1,15 @@
 import uuid
 from decimal import Decimal
+import logging
 
 from django.db import models
 from django.contrib.auth.models import Group, Permission
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 
-from utils.billing import create_product, create_price, create_customer, update_customer
+from utils.billing import create_product, create_price, create_customer, update_customer, update_price
 
+logger = logging.getLogger(__name__)
 
 # Constants
 SUBSCRIPTION_PERMISSIONS = [
@@ -97,14 +99,10 @@ class Product(models.Model):
             self.save(update_fields=["paddle_id"])
             
             # Using Django's logging instead of print
-            import logging
-            logger = logging.getLogger(__name__)
             logger.info(f"Paddle product created for {self.name}: {product_id}")
             
             return product_id
         except Exception as e:
-            import logging
-            logger = logging.getLogger(__name__)
             logger.error(f"Failed to create Paddle subscription: {e}")
             return None
 
@@ -213,15 +211,17 @@ class Price(models.Model):
         Returns:
             str: Paddle price ID or None if failed
         """
+
         # Handle free plans
         if self.is_free:
             if not self.paddle_id:
+                self.interval = Price.IntervalChoices.FREE
                 self.paddle_id = "FREE_PLAN"
                 self.save(update_fields=["paddle_id"])
                 
+                subscription_name = self.subscription.name if self.subscription else "Unknown"
                 import logging
                 logger = logging.getLogger(__name__)
-                subscription_name = self.subscription.name if self.subscription else "Unknown"
                 logger.info(f"Free plan '{subscription_name}' created locally (no Paddle ID required).")
             return self.paddle_id
 
@@ -233,10 +233,12 @@ class Price(models.Model):
             if not self.subscription:
                 raise ValueError("Subscription is required to create Paddle price")
             
+            
             product_id = self.product_paddle_id or ""
             if self.subscription and hasattr(self.subscription, 'paddle_id'):
                 product_id = self.subscription.paddle_id or ""
-                
+            
+
             price_id = create_price(
                 raw=False,
                 product_id=str(product_id),
@@ -333,7 +335,6 @@ class Subscriber(models.Model):
     original_period_start = models.DateTimeField(blank=True, null=True)
     subscription_starts_at = models.DateTimeField(blank=True, null=True, default=None)
     subscription_ends_at = models.DateTimeField(blank=True, null=True, default=None)
-    created_at = models.DateTimeField(auto_now=True, blank=True, null=True)
 
     def __str__(self):
         return f"{self.user.username} - {self.status}"

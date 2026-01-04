@@ -36,10 +36,9 @@
 <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>
 
 </head>
-<body class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark text-[#111418] dark:text-white font-body overflow-x-hidden selection:bg-primary selection:text-white">
-    {% include "components/header.html" %}
+<body class="flex h-screen w-full flex-row bg-background-light dark:bg-background-dark font-display text-white overflow-hidden">
+    {% include "dashboard/components/sidebar.html" %}
     {% block content %}{% endblock %}
-    {% include "components/footer.html" %}
 </body>
 
 {% load static %}

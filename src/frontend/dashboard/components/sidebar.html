@@ -1,0 +1,120 @@
+<aside class="hidden md:flex flex-col w-[300px] shrink-0 border-r border-border-dark bg-[#130d0d] h-full relative group/sidebar z-40">
+    <div class="absolute right-0 top-0 bottom-0 w-[4px] cursor-col-resize hover:bg-primary transition-colors flex items-center justify-center group/resize z-50">
+        <div class="h-8 w-1 rounded-full bg-border-dark group-hover/resize:bg-white transition-colors"></div>
+    </div>
+
+    <div class="px-8 py-6 flex items-center gap-3">
+        <div class="size-8 flex items-center justify-center rounded-lg bg-primary text-white shadow-glow">
+            <span class="material-symbols-outlined text-4xl">bolt</span>
+        </div>
+        <h2 class="text-white text-2xl font-bold leading-tight tracking-[-0.015em]">Hooklify</h2>
+    </div>
+
+    <div class="flex-1 overflow-y-auto custom-scrollbar px-4 pb-4 space-y-6">
+        <nav class="space-y-1">
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white bg-surface-dark border border-border-dark font-medium transition-all group">
+                <span class="material-symbols-outlined text-[20px] text-primary">dashboard</span>
+                Dashboard
+            </a>
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all group">
+                <span class="material-symbols-outlined text-[20px] text-primary">dashboard</span>
+                Templates
+            </a>
+            {% comment %} <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all group">
+                <span class="material-symbols-outlined text-[20px] text-primary">dashboard</span>
+                Dashboard
+            </a> {% endcomment %}
+        </nav>
+
+        <nav class="space-y-1">
+            <p class="px-3 text-[10px] font-bold text-[#553a3a] uppercase tracking-widest mb-2">Tools</p>
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 border border-primary/20 text-white font-medium shadow-[0_0_10px_rgba(249,31,31,0.1)] mb-1 group relative overflow-hidden">
+                <span></span>
+                Create
+            </a>
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all group">
+                <span></span>
+                Create
+            </a>
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all group">
+                <span></span>
+                Create
+            </a>
+        </nav>
+
+        <nav class="space-y-1">
+            <p class="px-3 text-[10px] font-bold text-[#553a3a] uppercase tracking-widest mb-2 mt-2">Library</p>
+            <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all">
+                <span class="material-symbols-outlined text-[20px]">folder_open</span>
+                My Projects
+            </a>
+            <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all">
+                <span class="material-symbols-outlined text-[20px]">style</span>
+                Saved Templates
+            </a>
+            <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all">
+                <span class="material-symbols-outlined text-[20px]">history</span>
+                Generation History
+            </a>
+        </nav>
+    </div>
+
+    <div class="p-4 mt-auto border-t border-border-dark bg-[#130d0d] z-20 space-y-2">
+        <div class="relative group cursor-pointer">
+            <button class="w-full flex items-center gap-3 p-3 rounded-xl bg-surface-dark border border-border-dark hover:border-primary/50 transition-all shadow-lg overflow-hidden group-hover:bg-[#2a1a1a]">
+                <div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div class="relative size-10 rounded-full bg-gradient-to-b from-[#333] to-black border border-[#444] flex items-center justify-center shrink-0 shadow-inner">
+                    <span class="material-symbols-outlined text-white text-xl">person</span>
+                </div>
+
+                <div class="flex-1 min-w-0 text-left relative z-10">
+                    <p class="text-white text-sm font-bold truncate leading-tight">Manoah</p>
+                    <p class="text-[#bb9b9b] text-[10px] uppercase font-bold tracking-wider truncate">Free Tier</p>
+                </div>
+
+                <span class="material-symbols-outlined text-[#bb9b9b] group-hover:text-primary transition-colors relative z-10">expand_less</span>
+            </button>
+
+            <div class="absolute bottom-full left-0 w-full mb-2 bg-[#1a1111] border border-border-dark rounded-xl shadow-2xl p-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 transform translate-y-2 group-hover:translate-y-0 backdrop-blur-sm">
+                <div class="px-3 py-2 text-xs text-[#553a3a] font-bold uppercase tracking-wider">Account</div>
+                <a class="flex items-center gap-2 px-3 py-2 rounded-lg text-[#bb9b9b] hover:text-white hover:bg-surface-dark transition-colors text-sm">
+                    <span class="material-symbols-outlined text-[18px]">person</span>
+                    Profile
+                </a>
+                <a class="flex items-center gap-2 px-3 py-2 rounded-lg text-[#bb9b9b] hover:text-white hover:bg-surface-dark transition-colors text-sm">
+                    <span class="material-symbols-outlined text-[18px]">credit_card</span>
+                    Billing
+                </a>
+                <a class="flex items-center gap-2 px-3 py-2 rounded-lg text-[#bb9b9b] hover:text-white hover:bg-surface-dark transition-colors text-sm">
+                    <span class="material-symbols-outlined text-[18px]">settings</span>
+                    Settings
+                </a>
+                <div class="h-px bg-border-dark my-1"></div>
+                <a class="flex items-center gap-2 px-3 py-2 rounded-lg text-[#bb9b9b] hover:text-white hover:bg-surface-dark transition-colors text-sm">
+                    <span class="material-symbols-outlined text-[18px]">logout</span>
+                    Logout
+                </a>
+            </div>
+        </div>
+
+        <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-[#221010] to-[#160a0a] border border-primary/40 p-5 group/banner shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+            <div class="absolute -right-2 -top-2 p-3 opacity-20 group-hover/banner:opacity-40 transition-opacity transform rotate-12">
+                <span class="material-symbols-outlined text-primary text-6xl">bolt</span>
+            </div>
+
+            <div class="absolute inset-0 bg-primary/5 opacity-0 group-hover/banner:opacity-100 transition-opacity animate-pulse pointer-events-none"></div>
+
+            <h4 class="relative z-10 text-white font-bold text-lg mb-1 leading-tight tracking-tight">
+                Unlock <span class="text-primary italic">Creator</span> Plan
+            </h4>
+
+            <p class="relative z-10 text-[#bb9b9b] text-xs mb-4 font-medium leading-relaxed">Get 4K thumbnails, GPT-4 scripts & competitor analysis.</p>
+
+            <a href="{% url "plans" %}" class="relative z-10 w-full py-2.5 rounded-lg bg-primary text-white text-xs font-bold uppercase tracking-widest hover:bg-red-600 hover:shadow-[0_0_15px_rgba(249,31,31,0.4)] transition-all flex items-center justify-center gap-2 group/btn">
+                <span>Upgrade Now</span>
+                <span class="material-symbols-outlined text-[16px] group-hover/btn:translate-x-1 transition-transform">arrow_forward<span>
+            </a>
+        </div>
+
+    </div>
+</aside>

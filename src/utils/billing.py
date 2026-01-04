@@ -1,5 +1,5 @@
 from paddle_billing import Client, Environment, Options
-from paddle_billing.Resources.Customers.Operations import CreateCustomer, UpdateCustomer, ListCustomers
+from paddle_billing.Resources.Customers.Operations import CreateCustomer, UpdateCustomer
 from paddle_billing.Resources.Products.Operations import CreateProduct, UpdateProduct
 from paddle_billing.Resources.Prices.Operations import CreatePrice, UpdatePrice
 from paddle_billing.Resources.Subscriptions.Operations import UpdateSubscription, ListSubscriptions, CancelSubscription
@@ -108,16 +108,7 @@ def create_price(
 
 
 
-def update_price(
-    price_id="",
-    name="",
-    desc="",
-    amount="",
-    currency_code="",
-    interval="month",
-    metadata=None,
-    raw=False,
-):
+def update_price(price_id="", name="", desc="", amount="", currency_code="", interval="month", metadata=None, raw=False):
     metadata = metadata or {}
     response = paddle.prices.update(
         price_id=price_id,

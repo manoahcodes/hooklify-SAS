@@ -16,8 +16,7 @@ class SubscriberAdmin(admin.ModelAdmin):
         'is_subscription_cancelled', 
         'subscription_starts_at', 
         'subscription_ends_at', 
-        'original_period_start', 
-        'created_at',
+        'original_period_start',
         )
     list_display = ('user', 'subscription', 'price', 'status', 'is_subscription_active')
     list_filter = ('subscription', 'status')
