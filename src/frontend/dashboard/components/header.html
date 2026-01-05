@@ -1,0 +1,29 @@
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 py-4">
+    
+    <div class="flex items-start gap-3 text-[#111418] dark:text-white group cursor-pointer">
+        <h2 class="text-lg font-bold leading-tight tracking-[-0.015em] font-display group-hover:text-primary transition-colors">
+            Dashboard
+        </h2>
+    </div>
+
+    <div class="absolute start-0 flex flex-col items-center gap-2 lg:start-1/2 ltr:-translate-x-1/2 rtl:translate-x-1/2">
+        <div class="hidden lg:block">
+            <div class="flex items-center gap-1 rounded-full text-sm font-medium bg-primary text-primary">
+                <a href="{% url "plans" %}" class="flex items-center rounded-full text-sm gap-1 bg-transparent text-white ps-2.5 text-current focus:outline-none py-2 pe-3">
+                    Upgrade Now
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex gap-3 items-center justify-center overflow-x-hidden">
+        {% comment %} <button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-6 bg-transparent border border-[#3a2727] hover:border-white text-sm font-bold leading-normal tracking-[0.015em] transition-all">
+                <span class="truncate">Logout</span>
+        </button> {% endcomment %}
+
+        <button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-6 bg-primary hover:bg-red-600 text-white text-sm font-bold leading-normal tracking-[0.015em] transition-all transform">
+            <span class="material-symbols-outlined">notifications</span>
+        </button>
+    </div>
+
+</header>
