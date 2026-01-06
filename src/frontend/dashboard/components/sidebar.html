@@ -1,5 +1,7 @@
-<aside class="hidden md:flex flex-col w-[300px] shrink-0 border-r border-border-dark bg-[#130d0d] h-full relative group/sidebar z-40">
-    {% comment %} <div class="absolute right-0 top-0 bottom-0 w-[4px] cursor-col-resize hover:bg-primary transition-colors flex items-center justify-center group/resize z-50">
+<aside
+    class="hidden md:flex flex-col w-[285px] shrink-0 border-r border-border-dark bg-[#130d0d] h-full relative group/sidebar z-40">
+    {% comment %} <div
+        class="absolute right-0 top-0 bottom-0 w-[4px] cursor-col-resize hover:bg-primary transition-colors flex items-center justify-center group/resize z-50">
         <div class="h-8 w-1 rounded-full bg-border-dark group-hover/resize:bg-white transition-colors"></div>
     </div> {% endcomment %}
 
@@ -12,31 +14,55 @@
 
     <div class="flex-1 overflow-y-auto custom-scrollbar px-4 pb-4 space-y-6">
         <nav class="space-y-1">
-            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white bg-surface-dark border border-border-dark font-medium transition-all group">
-                <span class="material-symbols-outlined text-[20px] text-primary">dashboard</span>
+            <a href="#"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white bg-surface-dark border border-border-dark font-medium transition-all group">
+                <span class="text-[20px]">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960"
+                        fill="#f91f1f">
+                        <path
+                            d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z" />
+                    </svg>
+                </span>
                 Dashboard
             </a>
-            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all group">
-                <span class="material-symbols-outlined text-[20px] text-primary">dashboard</span>
+            <a href="#"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all group">
+                <span class="text-[20px]">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 0 512 512"
+                        fill="#f91f1f">
+                        <path
+                            d="M232.5 5.2c14.9-6.9 32.1-6.9 47 0l218.6 101c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L13.9 149.8C5.4 145.8 0 137.3 0 128s5.4-17.9 13.9-21.8L232.5 5.2zM48.1 218.4l164.3 75.9c27.7 12.8 59.6 12.8 87.3 0l164.3-75.9 34.1 15.8c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L13.9 277.8C5.4 273.8 0 265.3 0 256s5.4-17.9 13.9-21.8l34.1-15.8zM13.9 362.2l34.1-15.8 164.3 75.9c27.7 12.8 59.6 12.8 87.3 0l164.3-75.9 34.1 15.8c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L13.9 405.8C5.4 401.8 0 393.3 0 384s5.4-17.9 13.9-21.8z" />
+                    </svg>
+                </span>
                 Templates
             </a>
-            {% comment %} <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all group">
-                <span class="material-symbols-outlined text-[20px] text-primary">dashboard</span>
-                Dashboard
-            </a> {% endcomment %}
+            <a href="#"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all group">
+                <span class="text-[20px] text-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960"
+                        fill="#f91f1f">
+                        <path
+                            d="m176-120-56-56 301-302-181-45 198-123-17-234 179 151 216-88-87 217 151 178-234-16-124 198-45-181-301 301Zm24-520-80-80 80-80 80 80-80 80Zm355 197 48-79 93 7-60-71 35-86-86 35-71-59 7 92-79 49 90 22 23 90Zm165 323-80-80 80-80 80 80-80 80ZM569-570Z" />
+                    </svg>
+                </span>
+                Create
+            </a>
         </nav>
 
         <nav class="space-y-1">
             <p class="px-3 text-[10px] font-bold text-[#553a3a] uppercase tracking-widest mb-2">Tools</p>
-            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 border border-primary/20 text-white font-medium shadow-[0_0_10px_rgba(249,31,31,0.1)] mb-1 group relative overflow-hidden">
+            <a href="#"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 border border-primary/20 text-white font-medium shadow-[0_0_10px_rgba(249,31,31,0.1)] mb-1 group relative overflow-hidden">
                 <span></span>
                 Create
             </a>
-            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all group">
+            <a href="#"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all group">
                 <span></span>
                 Create
             </a>
-            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all group">
+            <a href="#"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all group">
                 <span></span>
                 Create
             </a>
@@ -44,56 +70,119 @@
 
         <nav class="space-y-1">
             <p class="px-3 text-[10px] font-bold text-[#553a3a] uppercase tracking-widest mb-2 mt-2">Library</p>
-            <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all">
-                <span class="material-symbols-outlined text-[20px]">folder_open</span>
+            <a
+                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all">
+                <span class="text-[20px]">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960"
+                        fill="#bb9b9b">
+                        <path
+                            d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640H447l-80-80H160v480l96-320h684L837-217q-8 26-29.5 41.5T760-160H160Zm84-80h516l72-240H316l-72 240Zm0 0 72-240-72 240Zm-84-400v-80 80Z" />
+                    </svg>
+                </span>
                 My Projects
             </a>
-            <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all">
-                <span class="material-symbols-outlined text-[20px]">style</span>
+            <a
+                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all">
+                <span class="text-[20px]">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960"
+                        fill="#bb9b9b">
+                        <path
+                            d="m159-168-34-14q-31-13-41.5-45t3.5-63l72-156v278Zm160 88q-33 0-56.5-23.5T239-160v-240l106 294q3 7 6 13.5t8 12.5h-40Zm206-4q-32 12-62-3t-42-47L243-622q-12-32 2-62.5t46-41.5l302-110q32-12 62 3t42 47l178 488q12 32-2 62.5T827-194L525-84Zm-86-476q17 0 28.5-11.5T479-600q0-17-11.5-28.5T439-640q-17 0-28.5 11.5T399-600q0 17 11.5 28.5T439-560Zm58 400 302-110-178-490-302 110 178 490ZM319-650l302-110-302 110Z" />
+                    </svg>
+                </span>
                 Saved Templates
             </a>
-            <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all">
-                <span class="material-symbols-outlined text-[20px]">history</span>
+            <a
+                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all">
+                <span class="text-[20px]">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960"
+                        fill="#bb9b9b">
+                        <path
+                            d="M480-120q-138 0-240.5-91.5T122-440h82q14 104 92.5 172T480-200q117 0 198.5-81.5T760-480q0-117-81.5-198.5T480-760q-69 0-129 32t-101 88h110v80H120v-240h80v94q51-64 124.5-99T480-840q75 0 140.5 28.5t114 77q48.5 48.5 77 114T840-480q0 75-28.5 140.5t-77 114q-48.5 48.5-114 77T480-120Zm112-192L440-464v-216h80v184l128 128-56 56Z" />
+                    </svg>
+                </span>
                 Generation History
             </a>
         </nav>
     </div>
 
     <div class="p-4 mt-auto border-t border-border-dark bg-[#130d0d] z-20 space-y-2">
-        <div class="relative group cursor-pointer">
-            <button class="w-full flex items-center gap-3 p-3 rounded-xl bg-surface-dark border border-border-dark hover:border-primary/50 transition-all shadow-lg overflow-hidden group-hover:bg-[#2a1a1a]">
-                <div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div class="relative size-10 rounded-full bg-gradient-to-b from-[#333] to-black border border-[#444] flex items-center justify-center shrink-0 shadow-inner">
-                    <span class="material-symbols-outlined text-white text-xl">person</span>
+        <div class="relative group">
+            <button
+                class="w-full cursor-pointer flex items-center gap-3 p-3 rounded-xl bg-surface-dark border border-border-dark hover:border-primary/50 transition-all shadow-lg overflow-hidden group-hover:bg-[#2a1a1a]">
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                </div>
+                <div
+                    class="relative size-10 rounded-full bg-gradient-to-b from-[#333] to-black border border-[#444] flex items-center justify-center shrink-0 shadow-inner">
+                    <span class="text-white text-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960"
+                            fill="#fff">
+                            <path
+                                d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z" />
+                        </svg>
+                    </span>
                 </div>
 
                 <div class="flex-1 min-w-0 text-left relative z-10">
                     <p class="text-white text-sm font-bold truncate leading-tight">Manoah</p>
-                    <p class="text-[#bb9b9b] text-[10px] uppercase font-bold tracking-wider truncate">Free Tier</p>
+                    <p class="text-[#bb9b9b] text-[10px] uppercase font-bold tracking-wider truncate">Free</p>
                 </div>
 
-                <span class="material-symbols-outlined text-[#bb9b9b] group-hover:text-primary transition-colors relative z-10">expand_less</span>
+                {% comment %} <span
+                    class="material-symbols-outlined text-[#bb9b9b] group-hover:text-primary transition-colors relative z-10">expand_less</span>
+                {% endcomment %}
             </button>
 
-            <div class="absolute bottom-full left-0 w-full mb-2 bg-[#1a1111] border border-border-dark rounded-xl shadow-2xl p-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 transform translate-y-2 group-hover:translate-y-0 backdrop-blur-sm">
+            <div
+                class="absolute bottom-full left-0 w-full mb-2 bg-[#1a1111] border border-border-dark rounded-xl shadow-2xl p-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 transform translate-y-2 group-hover:translate-y-0 backdrop-blur-sm">
                 <div class="px-3 py-2 text-xs text-[#553a3a] font-bold uppercase tracking-wider">Account</div>
-                <a class="flex items-center gap-2 px-3 py-2 rounded-lg text-[#bb9b9b] hover:text-white hover:bg-surface-dark transition-colors text-sm">
-                    <span class="material-symbols-outlined text-[18px]">person</span>
+                <a
+                    class="flex w-full items-center gap-2 px-3 py-2 rounded-lg text-[#bb9b9b] hover:text-white hover:bg-[#2a1a1a] hover:bg-surface-dark transition-colors text-sm">
+                    <span class="material-symbols-outlined text-[18px]">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960"
+                            fill="#bb9b9b">
+                            <path
+                                d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z" />
+                        </svg>
+                    </span>
                     Profile
                 </a>
-                <a class="flex items-center gap-2 px-3 py-2 rounded-lg text-[#bb9b9b] hover:text-white hover:bg-surface-dark transition-colors text-sm">
-                    <span class="material-symbols-outlined text-[18px]">credit_card</span>
+                <a
+                    class="flex w-full items-center gap-2 px-3 py-2 rounded-lg text-[#bb9b9b] hover:text-white hover:bg-[#2a1a1a] hover:bg-surface-dark transition-colors text-sm">
+                    <span class="text-[18px]">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960"
+                            fill="#bb9b9b">
+                            <path
+                                d="M880-720v480q0 33-23.5 56.5T800-160H160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720Zm-720 80h640v-80H160v80Zm0 160v240h640v-240H160Zm0 240v-480 480Z" />
+                        </svg>
+                    </span>
                     Billing
                 </a>
-                <a class="flex items-center gap-2 px-3 py-2 rounded-lg text-[#bb9b9b] hover:text-white hover:bg-surface-dark transition-colors text-sm">
-                    <span class="material-symbols-outlined text-[18px]">settings</span>
+                <a
+                    class="flex w-full items-center gap-2 px-3 py-2 rounded-lg text-[#bb9b9b] hover:text-white hover:bg-[#2a1a1a] hover:bg-surface-dark transition-colors text-sm">
+                    <span class="text-[18px]">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960"
+                            fill="#bb9b9b">
+                            <path
+                                d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm70-80h79l14-106q31-8 57.5-23.5T639-327l99 41 39-68-86-65q5-14 7-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q22 23 48.5 38.5T427-266l13 106Zm42-180q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Zm-2-140Z" />
+                        </svg>
+                    </span>
                     Settings
                 </a>
                 <div class="h-px bg-border-dark my-1"></div>
-                <a class="flex items-center gap-2 px-3 py-2 rounded-lg text-[#bb9b9b] hover:text-white hover:bg-surface-dark transition-colors text-sm">
-                    <span class="material-symbols-outlined text-[18px]">logout</span>
-                    Logout
-                </a>
+                <form method="post" action="{% url "account_logout" %}" class="w-full">
+                    {% csrf_token %}
+                    <button type="submit"
+                        class="flex w-full items-center gap-2 px-3 py-2 rounded-lg text-[#bb9b9b] hover:text-white hover:bg-[#2a1a1a] hover:bg-surface-dark transition-colors text-sm cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960"
+                            fill="#bb9b9b">
+                            <path
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
+                        </svg>
+                        <span>Logout</span>
+                    </button>
+                </form>
             </div>
         </div>
     </div>
