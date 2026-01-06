@@ -17,13 +17,22 @@
     </div>
 
     <div class="flex gap-3 items-center justify-center overflow-x-hidden">
-        {% comment %} <button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-6 bg-transparent border border-[#3a2727] hover:border-white text-sm font-bold leading-normal tracking-[0.015em] transition-all">
-                <span class="truncate">Logout</span>
-        </button> {% endcomment %}
+        <div class="shrink-0"></div>
 
-        <button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-6 bg-primary hover:bg-red-600 text-white text-sm font-bold leading-normal tracking-[0.015em] transition-all transform">
-            <span class="material-symbols-outlined">notifications</span>
-        </button>
+        <div class="flex items-center justify-end gap-2 overflow-x-hidden">
+            <div class="flex items-center">
+                {% comment %} <button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-6 bg-transparent border border-[#3a2727] hover:border-white text-sm font-bold leading-normal tracking-[0.015em] transition-all">
+                <span class="truncate">Logout</span>
+                </button> {% endcomment %}
+
+            <button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-6 hover:bg-red-600 text-white text-sm font-bold leading-normal tracking-[0.015em] transition-all transform">
+                <span>
+                    <i class="fa-solid fa-bell"></i>
+                </span>
+            </button>
+            </div>
+        </div>
+
     </div>
 
 </header>
