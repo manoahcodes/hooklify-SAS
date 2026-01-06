@@ -26,3 +26,30 @@
   --shadow-neon: 0 0 10px rgba(249, 31, 31, 0.5), 0 0 20px rgba(249, 31, 31, 0.3);
   --shadow-neon-strong: 0 0 15px rgba(249, 31, 31, 0.7), 0 0 30px rgba(249, 31, 31, 0.4);
 }
+
+@layer utilities {
+  /* Hides scrollbar but allows scrolling */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+
+  /* Custom thin scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 7px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    /* Using your theme variable for consistency */
+    background: var(--color-border-dark); 
+    border-radius: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #553a3a;
+  }
+}
