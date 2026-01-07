@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from apps.profiles.models import ContactMessage, ContactChoices
 
@@ -25,3 +26,10 @@ def contact_info(request):
 
         messages.success(request, "Your message has been sent successfully!")
         return redirect("contact")
+    
+@login_required
+def profile_view(request):
+    context = {
+
+    }
+    return render(request, 'account/profile/profile.html', context)

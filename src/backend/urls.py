@@ -25,7 +25,7 @@ urlpatterns = [
     path('webhook/', include('apps.webhook.urls')),
     path('pricing/', include('apps.subscriptions.urls')),
     path('dashboard/', include('apps.dashboard.urls')),
-    path('contact/', include('apps.profiles.urls')),
+    path('accounts/', include('apps.profiles.urls')),
     path('api/', include('apps.api.urls')),
 
     path('', views.index, name='home'),

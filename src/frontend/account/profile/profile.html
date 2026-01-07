@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+{% block title %}Profile - {{ block.super }}{%endblock %}
+{% block content %}
+
+{% if user%}
+<main class="flex-1 flex flex-col bg-[#120c0c] relative">
+    <div
+        class="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-[#1a1111] via-[#160e0e] to-[#120c0c] z-0 pointer-events-none">
+    </div>
+    <div
+        class="absolute top-20 right-0 lg:right-40 w-96 h-96 bg-primary/5 blur-[120px] rounded-full pointer-events-none z-0">
+    </div>
+    <div
+        class="absolute bottom-0 left-0 lg:left-20 w-64 h-64 bg-primary/5 blur-[100px] rounded-full pointer-events-none z-0">
+    </div>
+    <div class="container mx-auto px-6 py-12 lg:py-20 relative z-10 max-w-5xl">
+        <div
+            class="mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6 border-b border-[#3a2727]/50 pb-8">
+            <div>
+                <h1 class="text-4xl md:text-5xl font-black font-display text-white mb-3 text-glow">Profile Settings</h1>
+                <p class="text-gray-400 text-lg">Manage your identity and public profile appearance.</p>
+            </div>
+        </div>
+        <div
+            class="w-full bg-[#1f1515] border border-[#3a2727] rounded-2xl p-6 md:p-10 shadow-2xl shadow-black/50 relative overflow-hidden group">
+            <div class="mb-10 border-b border-[#3a2727] pb-8">
+                <h3 class="text-xs font-bold uppercase tracking-widest text-primary mb-3">Identity</h3>
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-black font-display text-white tracking-tight uppercase">
+                            Alex Rivera</h2>
+                        <p class="text-gray-400 font-mono text-base mt-2 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm">mail</span>
+                            alex.rivera@hooklify.com
+                        </p>
+                    </div>
+                    <div
+                        class="px-4 py-1.5 bg-primary/10 border border-primary/20 rounded-full text-primary text-xs font-bold uppercase tracking-wider flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                        Active Account
+                    </div>
+                </div>
+            </div>
+            <form class="flex flex-col gap-10">
+                <div class="space-y-6">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="material-symbols-outlined text-primary text-xl">person</span>
+                        <h3 class="text-xl font-bold text-white font-display">Personal Information</h3>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="flex flex-col gap-2 group/input">
+                            <label
+                                class="text-xs font-bold uppercase tracking-wider text-gray-500 group-focus-within/input:text-primary transition-colors">First
+                                Name</label>
+                            <div class="relative">
+                                <input
+                                    class="bg-[#120c0c] border border-[#3a2727] text-white text-sm rounded-xl focus:ring-1 focus:ring-primary focus:border-primary block w-full p-3.5 font-medium placeholder-gray-600 shadow-inner transition-all"
+                                    placeholder="Enter first name" type="text" value="Alex">
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2 group/input">
+                            <label
+                                class="text-xs font-bold uppercase tracking-wider text-gray-500 group-focus-within/input:text-primary transition-colors">Last
+                                Name</label>
+                            <div class="relative">
+                                <input
+                                    class="bg-[#120c0c] border border-[#3a2727] text-white text-sm rounded-xl focus:ring-1 focus:ring-primary focus:border-primary block w-full p-3.5 font-medium placeholder-gray-600 shadow-inner transition-all"
+                                    placeholder="Enter last name" type="text" value="Rivera">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full h-px bg-[#3a2727]"></div>
+                <div class="space-y-6">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="material-symbols-outlined text-primary text-xl">public</span>
+                        <h3 class="text-xl font-bold text-white font-display">Public Profile</h3>
+                    </div>
+                    <div class="w-full">
+                        <div class="flex flex-col gap-2 group/input w-full">
+                            <label
+                                class="text-xs font-bold uppercase tracking-wider text-gray-500 group-focus-within/input:text-primary transition-colors">Username</label>
+                            <div class="relative w-full">
+                                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                    <span
+                                        class="text-gray-500 font-bold group-focus-within/input:text-primary transition-colors">@</span>
+                                </div>
+                                <input
+                                    class="bg-[#120c0c] border border-[#3a2727] text-white text-sm rounded-xl focus:ring-1 focus:ring-primary focus:border-primary block w-full ps-10 p-3.5 font-medium placeholder-gray-600 shadow-inner transition-all"
+                                    placeholder="username" type="text" value="arivera_creative">
+                                <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                                    <span class="material-symbols-outlined text-green-500 text-lg"
+                                        title="Username available">check_circle</span>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-600 mt-1">hooklify.com/@arivera_creative</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full h-px bg-[#3a2727]"></div>
+                <div class="space-y-6">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="material-symbols-outlined text-primary text-xl">alternate_email</span>
+                        <h3 class="text-xl font-bold text-white font-display">Edit Email</h3>
+                    </div>
+                    <div class="flex flex-col md:flex-row gap-6 items-end">
+                        <div class="flex-1 w-full flex flex-col gap-2 group/input">
+                            <label
+                                class="text-xs font-bold uppercase tracking-wider text-gray-500 group-focus-within/input:text-primary transition-colors">New
+                                Email Address</label>
+                            <input
+                                class="bg-[#120c0c] border border-[#3a2727] text-white text-sm rounded-xl focus:ring-1 focus:ring-primary focus:border-primary block w-full p-3.5 font-medium placeholder-gray-600 shadow-inner transition-all"
+                                placeholder="Enter new email address" type="email">
+                        </div>
+                        <button
+                            class="px-8 py-3.5 bg-[#2a1a1a] hover:bg-white hover:text-black border border-[#3a2727] text-white rounded-xl font-bold text-sm uppercase tracking-wide transition-all whitespace-nowrap w-full md:w-auto"
+                            type="button">
+                            Save
+                        </button>
+                    </div>
+                </div>
+                <div class="w-full h-px bg-[#3a2727]"></div>
+                <div class="space-y-6">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="material-symbols-outlined text-primary text-xl">lock_reset</span>
+                        <h3 class="text-xl font-bold text-white font-display">Password Update</h3>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="flex flex-col gap-2 group/input">
+                            <label
+                                class="text-xs font-bold uppercase tracking-wider text-gray-500 group-focus-within/input:text-primary transition-colors">Current
+                                Password</label>
+                            <input
+                                class="bg-[#120c0c] border border-[#3a2727] text-white text-sm rounded-xl focus:ring-1 focus:ring-primary focus:border-primary block w-full p-3.5 font-medium placeholder-gray-600 shadow-inner transition-all"
+                                placeholder="••••••••" type="password">
+                        </div>
+                        <div class="flex flex-col gap-2 group/input">
+                            <label
+                                class="text-xs font-bold uppercase tracking-wider text-gray-500 group-focus-within/input:text-primary transition-colors">New
+                                Password</label>
+                            <input
+                                class="bg-[#120c0c] border border-[#3a2727] text-white text-sm rounded-xl focus:ring-1 focus:ring-primary focus:border-primary block w-full p-3.5 font-medium placeholder-gray-600 shadow-inner transition-all"
+                                placeholder="New password" type="password">
+                        </div>
+                        <div class="flex flex-col gap-2 group/input">
+                            <label
+                                class="text-xs font-bold uppercase tracking-wider text-gray-500 group-focus-within/input:text-primary transition-colors">Confirm
+                                New Password</label>
+                            <input
+                                class="bg-[#120c0c] border border-[#3a2727] text-white text-sm rounded-xl focus:ring-1 focus:ring-primary focus:border-primary block w-full p-3.5 font-medium placeholder-gray-600 shadow-inner transition-all"
+                                placeholder="Confirm password" type="password">
+                        </div>
+                    </div>
+                    <div class="flex justify-end">
+                        <button
+                            class="px-8 py-3 bg-[#3a2727] hover:bg-primary text-white rounded-xl font-bold text-sm uppercase tracking-wide transition-colors border border-transparent shadow-lg w-full md:w-auto"
+                            type="button">
+                            Change Password
+                        </button>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col sm:flex-row items-center justify-between gap-6 mt-6 pt-8 border-t border-[#3a2727]">
+                    <button
+                        class="text-gray-500 hover:text-red-500 text-sm font-bold transition-colors flex items-center gap-2 group"
+                        type="button">
+                        <span class="material-symbols-outlined text-lg group-hover:animate-pulse">delete</span>
+                        Deactivate Account
+                    </button>
+                    <div class="flex items-center gap-4 w-full sm:w-auto">
+                        <button
+                            class="px-6 py-3 bg-transparent border border-[#3a2727] hover:border-gray-500 text-gray-300 hover:text-white rounded-xl font-bold text-sm transition-all w-full sm:w-auto"
+                            type="button">
+                            Cancel
+                        </button>
+                        <button
+                            class="px-10 py-3 bg-primary hover:bg-red-600 text-white rounded-xl font-bold text-sm shadow-glow hover:shadow-glow-hover transition-all transform hover:scale-105 flex items-center justify-center gap-2 w-full sm:w-auto"
+                            type="button">
+                            <span>Save Changes</span>
+                            <span class="material-symbols-outlined text-sm">check</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock content %}

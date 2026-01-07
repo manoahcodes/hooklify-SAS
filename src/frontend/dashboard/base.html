@@ -38,6 +38,7 @@
 
 </head>
 <body class="flex h-screen w-full flex-row bg-background-light dark:bg-background-dark font-display text-white overflow-hidden">
+    {% if user.is_authenticated %}
     {% include "dashboard/components/sidebar.html" %}
     <div class="@container/main relative flex min-w-0 flex-1 flex-col -translate-y-[calc(env(safe-area-inset-bottom,0px)/2)] pt-[calc(env(safe-area-inset-bottom,0px)/2)]">
         {% include "dashboard/components/header.html" %}
@@ -45,6 +46,7 @@
             {% block content %}{% endblock %}
         </main>
     </div>
+    {% endif %}
 
 <script href="{% static "dashboard/flowbite.min.js" %}"></script>
 <script href="{% static "dashboard/main.js" %}"></script>
