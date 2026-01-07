@@ -1,9 +1,5 @@
 <aside
     class="hidden md:flex flex-col w-[285px] shrink-0 border-r border-border-dark bg-[#130d0d] h-full relative group/sidebar z-40">
-    {% comment %} <div
-        class="absolute right-0 top-0 bottom-0 w-[4px] cursor-col-resize hover:bg-primary transition-colors flex items-center justify-center group/resize z-50">
-        <div class="h-8 w-1 rounded-full bg-border-dark group-hover/resize:bg-white transition-colors"></div>
-    </div> {% endcomment %}
 
     <div class="px-8 py-6 flex items-center gap-3">
         <div class="size-8 flex items-center justify-center rounded-lg bg-primary text-white shadow-glow">
@@ -15,7 +11,7 @@
     <div class="flex-1 overflow-y-auto custom-scrollbar px-4 pb-4 space-y-6">
         <nav class="space-y-1">
             <a href="#"
-                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white bg-surface-dark border border-border-dark font-medium transition-all group">
+                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white bg-surface-dark bg-primary/10 border border-primary/20 shadow-[0_0_10px_rgba(249,31,31,0.1)] mb-1 font-medium transition-all group">
                 <span class="text-[20px]">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960"
                         fill="#f91f1f">
@@ -52,19 +48,16 @@
         <nav class="space-y-1">
             <p class="px-3 text-[10px] font-bold text-[#553a3a] uppercase tracking-widest mb-2">Tools</p>
             <a href="#"
-                class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 border border-primary/20 text-white font-medium shadow-[0_0_10px_rgba(249,31,31,0.1)] mb-1 group relative overflow-hidden">
-                <span></span>
-                Create
+                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all group">
+                <span></span> Create
             </a>
             <a href="#"
                 class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all group">
-                <span></span>
-                Create
+                <span></span> Create
             </a>
             <a href="#"
                 class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all group">
-                <span></span>
-                Create
+                <span></span> Create
             </a>
         </nav>
 
@@ -84,10 +77,10 @@
             <a href="#"
                 class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all">
                 <span class="text-[20px]">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960"
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 0 512 512"
                         fill="#bb9b9b">
                         <path
-                            d="m159-168-34-14q-31-13-41.5-45t3.5-63l72-156v278Zm160 88q-33 0-56.5-23.5T239-160v-240l106 294q3 7 6 13.5t8 12.5h-40Zm206-4q-32 12-62-3t-42-47L243-622q-12-32 2-62.5t46-41.5l302-110q32-12 62 3t42 47l178 488q12 32-2 62.5T827-194L525-84Zm-86-476q17 0 28.5-11.5T479-600q0-17-11.5-28.5T439-640q-17 0-28.5 11.5T399-600q0 17 11.5 28.5T439-560Zm58 400 302-110-178-490-302 110 178 490ZM319-650l302-110-302 110Z" />
+                            d="M232.5 5.2c14.9-6.9 32.1-6.9 47 0l218.6 101c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L13.9 149.8C5.4 145.8 0 137.3 0 128s5.4-17.9 13.9-21.8L232.5 5.2zM48.1 218.4l164.3 75.9c27.7 12.8 59.6 12.8 87.3 0l164.3-75.9 34.1 15.8c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L13.9 277.8C5.4 273.8 0 265.3 0 256s5.4-17.9 13.9-21.8l34.1-15.8zM13.9 362.2l34.1-15.8 164.3 75.9c27.7 12.8 59.6 12.8 87.3 0l164.3-75.9 34.1 15.8c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L13.9 405.8C5.4 401.8 0 393.3 0 384s5.4-17.9 13.9-21.8z" />
                     </svg>
                 </span>
                 Saved Templates
@@ -108,37 +101,38 @@
 
     <div class="p-4 mt-auto border-t border-border-dark bg-[#130d0d] z-20 space-y-2">
         <div class="relative group">
-            <button
-                class="w-full cursor-pointer flex items-center gap-3 p-3 rounded-xl bg-surface-dark border border-border-dark hover:border-primary/50 transition-all shadow-lg overflow-hidden group-hover:bg-[#2a1a1a]">
-                <div
-                    class="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                </div>
-                <div
-                    class="relative size-10 rounded-full bg-gradient-to-b from-[#333] to-black border border-[#444] flex items-center justify-center shrink-0 shadow-inner">
-                    <span class="text-white text-xl">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960"
-                            fill="#fff">
-                            <path
-                                d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z" />
-                        </svg>
-                    </span>
-                </div>
 
-                <div class="flex-1 min-w-0 text-left relative z-10">
-                    <p class="text-white text-sm font-bold truncate leading-tight">Manoah</p>
-                    <p class="text-[#bb9b9b] text-[10px] uppercase font-bold tracking-wider truncate">Free</p>
+            <div class="w-full flex items-center rounded-xl bg-surface-dark border border-border-dark shadow-lg relative group hover:bg-[#2a1a1a] hover:border-primary/50 transition-all">
+                <div class="flex-1 flex items-center gap-3 p-3 text-left cursor-pointer outline-none rounded-l-xl">
+                    <div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none rounded-l-xl"></div>
+
+                    <div class="relative size-10 rounded-full bg-gradient-to-b from-[#333] to-black border border-[#444] flex items-center justify-center shrink-0 shadow-inner z-10">
+                        <span class="text-white text-xl">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960" fill="#fff">
+                                <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z" />
+                            </svg>
+                        </span>
+                    </div>
+
+                    <div class="min-w-0 z-10">
+                        <div class="text-white text-sm font-bold truncate leading-tight">Manoah</div>
+                        <div class="text-[#bb9b9b] text-[10px] uppercase font-bold tracking-wider truncate">Free</div>
+                    </div>
                 </div>
 
-                {% comment %} <span
-                    class="material-symbols-outlined text-[#bb9b9b] group-hover:text-primary transition-colors relative z-10">expand_less</span>
-                {% endcomment %}
-            </button>
+                <div class="pr-3 pl-1 z-20">
+                    <a href="{% url "plans" %}"
+                        class="cursor-pointer px-3 py-1.5 text-[10px] uppercase font-bold tracking-wider text-white bg-primary border border-red-500 rounded-lg hover:bg-red-600 hover:border-red-600 transition-all shadow-sm whitespace-nowrap">
+                        Upgrade
+                    </a>
+                </div>
 
-            <div
-                class="absolute bottom-full left-0 w-full mb-2 bg-[#1a1111] border border-border-dark rounded-xl shadow-2xl p-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 transform translate-y-2 group-hover:translate-y-0 backdrop-blur-sm">
+            </div>
+
+            <div class="absolute bottom-full left-0 w-full mb-2 bg-[#1a1111] border border-border-dark rounded-xl shadow-2xl p-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 transform translate-y-2 group-hover:translate-y-0 backdrop-blur-sm">
                 <div class="px-3 py-2 text-xs text-[#553a3a] font-bold uppercase tracking-wider">Account</div>
-                <a
-                    class="flex w-full items-center gap-2 px-3 py-2 rounded-lg text-[#bb9b9b] hover:text-white hover:bg-[#2a1a1a] hover:bg-surface-dark transition-colors text-sm">
+
+                <a class="flex w-full items-center gap-2 px-3 py-2 rounded-lg text-[#bb9b9b] hover:text-white hover:bg-[#2a1a1a] hover:bg-surface-dark transition-colors text-sm cursor-pointer">
                     <span class="material-symbols-outlined text-[18px]">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960"
                             fill="#bb9b9b">
@@ -148,8 +142,8 @@
                     </span>
                     Profile
                 </a>
-                <a
-                    class="flex w-full items-center gap-2 px-3 py-2 rounded-lg text-[#bb9b9b] hover:text-white hover:bg-[#2a1a1a] hover:bg-surface-dark transition-colors text-sm">
+
+                <a class="flex w-full items-center gap-2 px-3 py-2 rounded-lg text-[#bb9b9b] hover:text-white hover:bg-[#2a1a1a] hover:bg-surface-dark transition-colors text-sm cursor-pointer">
                     <span class="text-[18px]">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960"
                             fill="#bb9b9b">
@@ -159,8 +153,8 @@
                     </span>
                     Billing
                 </a>
-                <a
-                    class="flex w-full items-center gap-2 px-3 py-2 rounded-lg text-[#bb9b9b] hover:text-white hover:bg-[#2a1a1a] hover:bg-surface-dark transition-colors text-sm">
+
+                <a class="flex w-full items-center gap-2 px-3 py-2 rounded-lg text-[#bb9b9b] hover:text-white hover:bg-[#2a1a1a] hover:bg-surface-dark transition-colors text-sm cursor-pointer">
                     <span class="text-[18px]">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960"
                             fill="#bb9b9b">
@@ -170,6 +164,7 @@
                     </span>
                     Settings
                 </a>
+
                 <div class="h-px bg-border-dark my-1"></div>
                 <form method="post" action="{% url "account_logout" %}" class="w-full">
                     {% csrf_token %}
