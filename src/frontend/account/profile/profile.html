@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Profile - {{ block.super }}{%endblock %}
+{% block title %}Profile - {{ block.super }}{% endblock %}
 {% block content %}
 
 {% if user.is_authenticated %}
@@ -28,6 +28,12 @@
                             <span class="material-symbols-outlined text-sm">mail</span>
                             {{ user.email }}
                         </p>
+
+                        {% if has_social %}
+                        <p class="text-xs text-gray-500 mt-2 font-mono">
+                            Signed in with {{ providers|join:", " }}
+                        </p>
+                        {% endif %}
                     </div>
 
                     <div class="px-4 py-1.5 bg-primary/10 border border-primary/20 rounded-full text-primary text-xs font-bold uppercase tracking-wider flex items-center gap-2">
@@ -38,7 +44,9 @@
 
             </div>
 
-            <form class="flex flex-col gap-10">
+            <form class="flex flex-col gap-10" method="post" action="{% url "profile" %}">
+                {% csrf_token %}
+
                 <div class="space-y-6">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="material-symbols-outlined text-primary text-xl">person</span>
@@ -47,132 +55,66 @@
 
                     <div class="grid md:grid-cols-2 gap-8">
                         <div class="flex flex-col gap-2 group/input">
-                            <label
-                                class="text-xs font-bold uppercase tracking-wider text-gray-500 group-focus-within/input:text-primary transition-colors">First
-                                Name</label>
-                            <div class="relative">
-                                <input
-                                    class="bg-[#120c0c] border border-[#3a2727] text-white text-sm rounded-xl focus:ring-1 focus:ring-primary focus:border-primary block w-full p-3.5 font-medium placeholder-gray-600 shadow-inner transition-all"
-                                    placeholder="Enter first name" type="text" value="{{ user.first_name }}">
-                            </div>
+                            <label class="text-xs font-bold uppercase tracking-wider text-gray-500">First Name</label>
+                            <input class="bg-[#120c0c] border border-[#3a2727] text-white text-sm rounded-xl p-3.5"
+                                   name="first_name" value="{{ user.first_name }}">
                         </div>
                         <div class="flex flex-col gap-2 group/input">
-                            <label
-                                class="text-xs font-bold uppercase tracking-wider text-gray-500 group-focus-within/input:text-primary transition-colors">Last
-                                Name</label>
-                            <div class="relative">
-                                <input
-                                    class="bg-[#120c0c] border border-[#3a2727] text-white text-sm rounded-xl focus:ring-1 focus:ring-primary focus:border-primary block w-full p-3.5 font-medium placeholder-gray-600 shadow-inner transition-all"
-                                    placeholder="Enter last name" type="text" value="{{ user.last_name }}">
-                            </div>
+                            <label class="text-xs font-bold uppercase tracking-wider text-gray-500">Last Name</label>
+                            <input class="bg-[#120c0c] border border-[#3a2727] text-white text-sm rounded-xl p-3.5"
+                                   name="last_name" value="{{ user.last_name }}">
                         </div>
                     </div>
                 </div>
-                <div class="w-full h-px bg-[#3a2727]"></div>
+
                 <div class="space-y-6">
-                    <div class="flex items-center gap-3 mb-2">
-                        <span class="material-symbols-outlined text-primary text-xl">public</span>
-                        <h3 class="text-xl font-bold text-white font-display">Public Profile</h3>
-                    </div>
-                    <div class="w-full">
-                        <div class="flex flex-col gap-2 group/input w-full">
-                            <label
-                                class="text-xs font-bold uppercase tracking-wider text-gray-500 group-focus-within/input:text-primary transition-colors">Username</label>
-                            <div class="relative w-full">
-                                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                    <span
-                                        class="text-gray-500 font-bold group-focus-within/input:text-primary transition-colors">@</span>
-                                </div>
-                                <input
-                                    class="bg-[#120c0c] border border-[#3a2727] text-white text-sm rounded-xl focus:ring-1 focus:ring-primary focus:border-primary block w-full ps-10 p-3.5 font-medium placeholder-gray-600 shadow-inner transition-all"
-                                    placeholder="{{ user.username }}" type="text" value="{{ user.username }}">
-                                <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-                                    <span class="material-symbols-outlined text-green-500 text-lg"
-                                        title="Username available">check_circle</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <label class="text-xs font-bold uppercase tracking-wider text-gray-500">Username</label>
+                    <input class="bg-[#120c0c] border border-[#3a2727] text-white text-sm rounded-xl p-3.5 w-full"
+                           name="username" value="{{ user.username }}">
                 </div>
+
                 <div class="w-full h-px bg-[#3a2727]"></div>
+
                 <div class="space-y-6">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="material-symbols-outlined text-primary text-xl">alternate_email</span>
                         <h3 class="text-xl font-bold text-white font-display">Edit Email</h3>
                     </div>
-                    <div class="flex flex-col md:flex-row gap-6 items-end">
-                        <div class="flex-1 w-full flex flex-col gap-2 group/input">
-                            <label
-                                class="text-xs font-bold uppercase tracking-wider text-gray-500 group-focus-within/input:text-primary transition-colors">New
-                                Email Address</label>
-                            <input
-                                class="bg-[#120c0c] border border-[#3a2727] text-white text-sm rounded-xl focus:ring-1 focus:ring-primary focus:border-primary block w-full p-3.5 font-medium placeholder-gray-600 shadow-inner transition-all"
-                                placeholder="Enter new email address" type="email">
-                        </div>
-                        <button
-                            class="px-8 py-3.5 bg-[#2a1a1a] hover:bg-white hover:text-black border border-[#3a2727] text-white rounded-xl font-bold text-sm uppercase tracking-wide transition-all whitespace-nowrap w-full md:w-auto"
-                            type="button">
-                            Save
-                        </button>
-                    </div>
+
+                    <a href="{% url 'account_email' %}"
+                       class="px-8 py-3.5 bg-[#2a1a1a] hover:bg-white hover:text-black border border-[#3a2727] text-white rounded-xl font-bold text-sm uppercase tracking-wide transition-all inline-block">
+                        Manage Email
+                    </a>
                 </div>
+
                 <div class="w-full h-px bg-[#3a2727]"></div>
+
                 <div class="space-y-6">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="material-symbols-outlined text-primary text-xl">lock_reset</span>
                         <h3 class="text-xl font-bold text-white font-display">Password Update</h3>
                     </div>
-                    <div class="grid md:grid-cols-3 gap-6">
-                        <div class="flex flex-col gap-2 group/input">
-                            <label
-                                class="text-xs font-bold uppercase tracking-wider text-gray-500 group-focus-within/input:text-primary transition-colors">Current
-                                Password</label>
-                            <input
-                                class="bg-[#120c0c] border border-[#3a2727] text-white text-sm rounded-xl focus:ring-1 focus:ring-primary focus:border-primary block w-full p-3.5 font-medium placeholder-gray-600 shadow-inner transition-all"
-                                placeholder="••••••••" type="password">
-                        </div>
-                        <div class="flex flex-col gap-2 group/input">
-                            <label
-                                class="text-xs font-bold uppercase tracking-wider text-gray-500 group-focus-within/input:text-primary transition-colors">New
-                                Password</label>
-                            <input
-                                class="bg-[#120c0c] border border-[#3a2727] text-white text-sm rounded-xl focus:ring-1 focus:ring-primary focus:border-primary block w-full p-3.5 font-medium placeholder-gray-600 shadow-inner transition-all"
-                                placeholder="New password" type="password">
-                        </div>
-                        <div class="flex flex-col gap-2 group/input">
-                            <label
-                                class="text-xs font-bold uppercase tracking-wider text-gray-500 group-focus-within/input:text-primary transition-colors">Confirm
-                                New Password</label>
-                            <input
-                                class="bg-[#120c0c] border border-[#3a2727] text-white text-sm rounded-xl focus:ring-1 focus:ring-primary focus:border-primary block w-full p-3.5 font-medium placeholder-gray-600 shadow-inner transition-all"
-                                placeholder="Confirm password" type="password">
-                        </div>
-                    </div>
-                    <div class="flex justify-end">
-                        <button
-                            class="px-8 py-3 bg-[#3a2727] hover:bg-primary text-white rounded-xl font-bold text-sm uppercase tracking-wide transition-colors border border-transparent shadow-lg w-full md:w-auto"
-                            type="button">
+
+                    {% if has_password %}
+                        <a href="{% url 'account_change_password' %}"
+                           class="px-8 py-3 bg-[#3a2727] hover:bg-primary text-white rounded-xl font-bold text-sm uppercase tracking-wide transition-colors inline-block">
                             Change Password
-                        </button>
-                    </div>
+                        </a>
+                    {% else %}
+                        <p class="text-gray-500 text-sm">
+                            This account uses social login{% if providers %} ({{ providers|join:", " }}){% endif %}.
+                        </p>
+                        <a href="{% url 'account_set_password' %}"
+                           class="px-8 py-3 bg-[#3a2727] hover:bg-primary text-white rounded-xl font-bold text-sm uppercase tracking-wide transition-colors inline-block">
+                            Set Password
+                        </a>
+                    {% endif %}
                 </div>
 
-                <div class="flex flex-col sm:flex-row items-center justify-between gap-6 mt-6 pt-8 border-t border-[#3a2727]">
-                    <button class="text-gray-500 hover:text-red-500 text-sm font-bold transition-colors flex items-center gap-2 group" type="button">
-                        <span class="material-symbols-outlined text-lg group-hover:animate-pulse">delete</span>
-                        Deactivate Account
+                <div class="flex justify-end pt-6">
+                    <button class="px-10 py-3 bg-primary hover:bg-red-600 text-white rounded-xl font-bold text-sm shadow-glow transition-all">
+                        Save Changes
                     </button>
-
-                    <div class="flex items-center gap-4 w-full sm:w-auto">
-                        <button class="px-6 py-3 bg-transparent border border-[#3a2727] hover:border-gray-500 text-gray-300 hover:text-white rounded-xl font-bold text-sm transition-all w-full sm:w-auto" type="button">
-                            Cancel
-                        </button>
-
-                        <button class="px-10 py-3 bg-primary hover:bg-red-600 text-white rounded-xl font-bold text-sm shadow-glow hover:shadow-glow-hover transition-all transform hover:scale-105 flex items-center justify-center gap-2 w-full sm:w-auto" type="button">
-                            <span>Save Changes</span>
-                            <span class="material-symbols-outlined text-sm">check</span>
-                        </button>
-                    </div>
                 </div>
 
             </form>
