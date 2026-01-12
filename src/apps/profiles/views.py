@@ -36,6 +36,14 @@ def profile_view(request):
     has_social = social_accounts.exists()
     has_password = user.has_usable_password()
 
+    if request.method == "POST":
+        user.first_name = request.POST.get('first_name', '')
+        user.last_name = request.POST.get('last_name', '')
+        user.username = request.POST.get('username', '')
+        user.save()
+
+        return redirect("profile")
+
     context = {
         "has_social": has_social,
         "has_password": has_password,
@@ -44,14 +52,4 @@ def profile_view(request):
 
     return render(request, 'account/profile/profile.html', context)
 
-
-def profile_view_update(request):
-    user = request.user
-
-    if request.method == "POST":
-        user.first_name = request.POST.get('first_name', '')
-        user.last_name = request.POST.get('last_name', '')
-        user.username = request.POST.get('username', '')
-        user.save()
-
-        return redirect("profile")
+    
