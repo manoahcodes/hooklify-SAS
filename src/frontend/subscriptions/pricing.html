@@ -58,9 +58,10 @@
       {% include "subscriptions/snippets/pricing-cards.html" with object=price_obj %}
     {% empty %}
       <div class="col-span-full py-20 text-center border border-dashed border-[#3a2727] rounded-2xl bg-[#1c1414]/50">
-        <p class="text-gray-500 font-mono uppercase tracking-widest">Enrollment Closed Temporarily</p>
+        <p class="text-gray-500 font-mono uppercase tracking-widest">Their currently no plans avaliable</p>
       </div>
     {% endfor %}
+    
   </div>
 
 </main>
