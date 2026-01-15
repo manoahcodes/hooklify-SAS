@@ -52,4 +52,7 @@ def profile_view(request):
 
     return render(request, 'account/profile/profile.html', context)
 
-    
+
+@login_required
+def profile_settings_view(request):
+    return render(request, 'account/profile/settings.html')

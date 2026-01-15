@@ -1,10 +1,59 @@
 <header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 py-4">
     
-    <div class="flex items-start gap-3 text-[#111418] dark:text-white group cursor-pointer">
-        <h2 class="text-lg font-bold leading-tight tracking-[-0.015em] font-display group-hover:text-primary transition-colors">
-            TikTok
-        </h2>
+    <form hx-post="#" hx-swap="none" class="relative z-50">
+    {% csrf_token %}
+    
+    <div class="relative group cursor-pointer py-2">
+        
+        <div class="flex items-center gap-3">
+            <h2 id="platform-label" class="text-lg font-bold leading-tight tracking-[-0.015em] font-display text-[#111418] dark:text-white group-hover:text-primary transition-colors">
+                {% if request.session.selected_platform == 'instagram_reels' %}
+                    Instagram Reels
+                {% elif request.session.selected_platform == 'youtube_shorts' %}
+                    YouTube Shorts
+                {% else %}
+                    TikTok
+                {% endif %}
+            </h2>
+            <i class="fa-solid fa-chevron-down text-xs text-[#111418] dark:text-white group-hover:text-primary transition-transform duration-300 group-hover:-rotate-180"></i>
+        </div>
+
+        <div class="absolute top-full left-0 w-[260px] pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform -translate-y-2 group-hover:translate-y-0 origin-top-left">
+            
+            <div class="bg-[#1a1111] border border-[#444] rounded-xl shadow-2xl p-2 backdrop-blur-md">
+                <div class="px-2 py-1.5 text-xs text-[#553a3a] font-bold uppercase tracking-wider mb-1">Select Platform</div>
+
+                <button type="submit" name="platform" value="tiktok" onclick="document.getElementById('platform-label').innerText='TikTok'" class="w-full cursor-pointer flex items-center gap-3 px-3 py-2 rounded-lg group/item hover:bg-red-600 transition-colors duration-200 text-left mb-1">
+                    <div class="relative size-8 rounded-full flex items-center justify-center shrink-0 shadow-inner overflow-hidden border border-transparent group-hover/item:border-primary/50 transition-colors bg-[#222]">
+                        <span class="text-white text-sm"><i class="fa-brands fa-tiktok"></i></span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-[#bb9b9b] text-sm font-bold truncate hover:text-white group-hover/item:text-white transition-colors">TikTok</p>
+                    </div>
+                </button>
+
+                <button type="submit" name="platform" value="instagram_reels" onclick="document.getElementById('platform-label').innerText='Instagram Reels'" class="w-full cursor-pointer flex items-center gap-3 px-3 py-2 rounded-lg group/item hover:bg-red-600 transition-colors duration-200 text-left mb-1">
+                    <div class="relative size-8 rounded-full flex items-center justify-center shrink-0 shadow-inner overflow-hidden border border-transparent group-hover/item:border-primary/50 transition-colors bg-[#222]">
+                        <span class="text-white text-sm"><i class="fa-brands fa-instagram"></i></span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-[#bb9b9b] text-sm font-bold truncate hover:text-white group-hover/item:text-white transition-colors">Instagram Reels</p>
+                    </div>
+                </button>
+
+                <button type="submit" name="platform" value="youtube_shorts" onclick="document.getElementById('platform-label').innerText='YouTube Shorts'" class="w-full cursor-pointer flex items-center gap-3 px-3 py-2 rounded-lg group/item hover:bg-red-600 transition-colors duration-200 text-left">
+                    <div class="relative size-8 rounded-full flex items-center justify-center shrink-0 shadow-inner overflow-hidden border border-transparent group-hover/item:border-primary/50 transition-colors bg-[#222]">
+                        <span class="text-white text-sm"><i class="fa-brands fa-youtube"></i></span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-[#bb9b9b] text-sm font-bold truncate hover:text-white group-hover/item:text-white transition-colors">YouTube Shorts</p>
+                    </div>
+                </button>
+            </div>
+        </div>
     </div>
+</form>
+
 
     <div class="absolute start-0 flex flex-col items-center gap-2 lg:start-1/2 ltr:-translate-x-1/2 rtl:translate-x-1/2">
         <div class="hidden lg:block">
@@ -22,10 +71,8 @@
         <div class="flex items-center justify-end gap-2 overflow-x-hidden">
             <div class="flex items-center">
 
-                <button class="flex cursor-pointer items-center justify-center rounded-full overflow-hidden h-9 w-9 px-6 hover:text-red-500 text-white">
-                    <span>
-                        <i class="fa-regular fa-bell"></i>
-                    </span>
+                <button class="flex cursor-pointer items-center justify-center rounded-xl overflow-hidden h-9 w-9 px-6 hover:text-red-500 text-white">
+                    <span><i class="fa-regular fa-bell"></i></span>
                 </button>
 
                 <button class="flex cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-6 bg-primary text-sm font-bold leading-normal tracking-[0.015em] transition-all">

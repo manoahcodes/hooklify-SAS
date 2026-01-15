@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 
 # Create your models here.
 class ContactChoices(models.TextChoices):
@@ -17,3 +19,15 @@ class ContactMessage(models.Model):
 
     def __str__(self):
         return f"{self.email} - {self.topic}"
+    
+
+class ProfileSettings(models.Model):
+     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="account_settings")
+     email_notifications = models.BooleanField(default=True)
+     push_notifications = models.BooleanField(default=True)
+     generation_notifications = models.BooleanField(default=True)
+     viral_alert_notifications = models.BooleanField(default=True)
+     low_credits_notifications = models.BooleanField(default=True)
+
+     def __str__(self):
+          return f"{self.user}"
