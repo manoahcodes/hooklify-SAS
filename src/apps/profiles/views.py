@@ -1,20 +1,14 @@
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+
 from allauth.socialaccount.models import SocialAccount
 
-from apps.profiles.models import ContactMessage, ContactChoices
+from apps.profiles.models import ContactMessage, ProfileSettings
 
 # Create your views here.
-def contact_view(request):
-    topic = ContactChoices.choices
-    context = {
-        'form': topic
-    }
-    return render(request, 'home/contact.html', context)
-
 def contact_info(request):
-    topic = ContactChoices.choices
     contact = ContactMessage.objects.create()
 
     if request.method == "POST":
@@ -55,4 +49,18 @@ def profile_view(request):
 
 @login_required
 def profile_settings_view(request):
-    return render(request, 'account/profile/settings.html')
+    user = request.user
+    settings_obj, _ = ProfileSettings.objects.get_or_create(user=user)
+
+    if request.method == "POST":
+        settings_obj.email_notifications = "email_notifications" in request.POST
+        settings_obj.generation_notifications = "generation_notifications" in request.POST
+        settings_obj.viral_alert_notifications = "viral_alert_notifications" in request.POST
+        settings_obj.low_credits_notifications = "low_credits_notifications" in request.POST
+
+        settings_obj.save()  # ← THIS IS NON-NEGOTIABLE
+
+        messages.success(request, "Settings updated successfully.")
+        return redirect("profile_settings")  # PRG pattern
+
+    return render(request, "account/profile/settings.html", {"settings": settings_obj})

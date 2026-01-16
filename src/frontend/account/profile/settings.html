@@ -3,6 +3,9 @@
 {% block content %}
 <main class="flex-1 w-full bg-[#120c0c]">
   <div class="max-w-[1024px] mx-auto px-6 py-12">
+    <form id="settings-form" method="post">
+      {% csrf_token %}
+
     <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#3a2727]/30 pb-8">
       <div>
         <h1 class="text-4xl md:text-5xl font-black font-display text-white mb-2 tracking-tight text-glow">
@@ -45,13 +48,17 @@
                   Generation Complete
                 </h3>
                 <p class="text-xs text-gray-500 hidden sm:block">
-                  Get notified immediately when your AI assets are ready.
+                  Get notified immediately when your content assets are ready.
                 </p>
               </div>
             </div>
 
             <label class="relative inline-flex items-center cursor-pointer shrink-0">
-              <input checked="" class="sr-only peer" type="checkbox" />
+              <input class="sr-only peer" 
+              type="checkbox" 
+              name="generation_notifications" 
+              value="1" 
+              {% if settings.generation_notifications %}checked{% endif %} />
               <div class="w-11 h-6 bg-[#2a1a1a] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-gray-500 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary peer-checked:after:bg-white peer-checked:after:border-white shadow-glow-sm"></div>
             </label>
           </div>
@@ -71,12 +78,16 @@
             </div>
 
             <label class="relative inline-flex items-center cursor-pointer shrink-0">
-              <input checked="" class="sr-only peer" type="checkbox" />
+              <input class="sr-only peer" 
+              type="checkbox" 
+              name="viral_alert_notifications" 
+              value="1" 
+              {% if settings.viral_alert_notifications %}checked{% endif %} />
               <div class="w-11 h-6 bg-[#2a1a1a] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-gray-500 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary peer-checked:after:bg-white peer-checked:after:border-white shadow-glow-sm"></div>
             </label>
           </div>
 
-          <div class="flex flex-row items-center justify-between p-5 bg-[#230f0f]/30 border border-[#3a2727] rounded-xl hover:bg-[#230f0f]/60 transition-colors gap-4">
+          {% comment %} <div class="flex flex-row items-center justify-between p-5 bg-[#230f0f]/30 border border-[#3a2727] rounded-xl hover:bg-[#230f0f]/60 transition-colors gap-4">
             <div class="flex items-center gap-4">
               <div class="size-10 rounded-full bg-[#2a1a1a] flex items-center justify-center text-gray-400 shrink-0">
                 <span class="material-symbols-outlined">battery_alert</span>
@@ -86,15 +97,19 @@
                   Low Credits Warning
                 </h3>
                 <p class="text-xs text-gray-500 hidden sm:block">
-                  Notify me when I have less than 10 credits left.
+                  Notify me when I have less than 25 credits left.
                 </p>
               </div>
             </div>
             <label class="relative inline-flex items-center cursor-pointer shrink-0">
-              <input class="sr-only peer" type="checkbox" />
+              <input class="sr-only peer" 
+              type="checkbox" 
+              name="low_credits_notifications" 
+              value="1" 
+              {% if settings.low_credits_notifications %}checked{% endif %} />
               <div class="w-11 h-6 bg-[#2a1a1a] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-gray-500 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary peer-checked:after:bg-white peer-checked:after:border-white shadow-glow-sm"></div>
             </label>
-          </div>
+          </div> {% endcomment %}
 
           <div class="flex flex-row items-center justify-between p-5 bg-[#230f0f]/30 border border-[#3a2727] rounded-xl hover:bg-[#230f0f]/60 transition-colors gap-4">
             <div class="flex items-center gap-4">
@@ -110,7 +125,11 @@
             </div>
 
             <label class="relative inline-flex items-center cursor-pointer shrink-0">
-              <input checked="" class="sr-only peer" type="checkbox" />
+              <input class="sr-only peer" 
+              type="checkbox" 
+              name="email_notifications" 
+              value="1" 
+              {% if settings.email_notifications %}checked{% endif %} />
               <div class="w-11 h-6 bg-[#2a1a1a] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-gray-500 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary peer-checked:after:bg-white peer-checked:after:border-white shadow-glow-sm"></div>
             </label>
           </div>
@@ -179,6 +198,7 @@
         </div>
       </div>
     </div>
+  </form>
   </div>
 </main>
 {% endblock content %}

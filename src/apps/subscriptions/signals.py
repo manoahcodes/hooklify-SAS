@@ -6,7 +6,7 @@ from django.db import transaction
 from allauth.account.signals import user_signed_up, email_confirmed
 from allauth.socialaccount.signals import social_account_added
 
-from .models import Product, Price, Subscriber, Customer
+from apps.subscriptions.models import Product, Price, Subscriber, Customer
 
 # Constants
 ALLOW_CUSTOM_SUBSCRIPTIONS = True

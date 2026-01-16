@@ -211,6 +211,9 @@ if all([ADMIN_USER_NAME, ADMIN_USER_EMAIL]):
 ACCOUNT_ADAPTER = "apps.subscriptions.adapter.AllAuthAccountAdapter"
 SOCIALACCOUNT_ADAPTER = "apps.subscriptions.adapter.AllAuthSocialAccountAdapter"
 
+PROFILE_ADAPTER = "apps.profiles.adapter.AllAuthProfileSettingsAdapter"
+SOCIALACCOUNT_PROFILE_ADAPTER = "apps.profiles.adapter.AllAuthSocialProfileSettingsAdapter"
+
 # DJANGO SUBSCRIPTION DEFAULTS
 FREE_PRODUCT_DB_ID = config("FREE_PRODUCT_DB_ID", cast=int)
 FREE_PRICE_DB_ID = config("FREE_PRICE_DB_ID", cast=int)

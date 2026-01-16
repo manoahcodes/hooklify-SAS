@@ -27,7 +27,7 @@ class ProfileSettings(models.Model):
      push_notifications = models.BooleanField(default=True)
      generation_notifications = models.BooleanField(default=True)
      viral_alert_notifications = models.BooleanField(default=True)
-     low_credits_notifications = models.BooleanField(default=True)
+     low_credits_notifications = models.BooleanField(default=False)
 
      def __str__(self):
           return f"{self.user}"

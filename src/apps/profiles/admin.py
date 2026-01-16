@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ContactMessage
+from .models import ContactMessage, ProfileSettings
 
 # Register your models here.
 class ContactMessageAdmin(admin.ModelAdmin):
@@ -13,3 +13,8 @@ class ContactMessageAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'topic', 'status')
     list_filter = ('status', 'topic')
 admin.site.register(ContactMessage, ContactMessageAdmin)
+
+class ProfileSettingsAdmin(admin.ModelAdmin):
+    # readonly_fields = ('user',)
+    list_display = ('user', 'email', 'topic', 'status')
+admin.site.register(ProfileSettings)
