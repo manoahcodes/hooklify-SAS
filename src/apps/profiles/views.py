@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 from allauth.socialaccount.models import SocialAccount
 
-from apps.profiles.models import ContactMessage, ProfileSettings
+from apps.profiles.models import ContactMessage, ProfileSetting
 
 # Create your views here.
 def contact_info(request):
@@ -50,13 +50,12 @@ def profile_view(request):
 @login_required
 def profile_settings_view(request):
     user = request.user
-    settings_obj, _ = ProfileSettings.objects.get_or_create(user=user)
+    settings_obj, _ = ProfileSetting.objects.get_or_create(user=user)
 
     if request.method == "POST":
         settings_obj.email_notifications = "email_notifications" in request.POST
         settings_obj.generation_notifications = "generation_notifications" in request.POST
         settings_obj.viral_alert_notifications = "viral_alert_notifications" in request.POST
-        settings_obj.low_credits_notifications = "low_credits_notifications" in request.POST
 
         settings_obj.save()  # ← THIS IS NON-NEGOTIABLE
 

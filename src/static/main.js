@@ -65,3 +65,4 @@ function startCountdown(seconds, timerId, redirectUrl) {
         }
     }, 1000);
 }
+

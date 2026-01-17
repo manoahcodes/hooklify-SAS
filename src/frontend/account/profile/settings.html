@@ -3,19 +3,19 @@
 {% block content %}
 <main class="flex-1 w-full bg-[#120c0c]">
   <div class="max-w-[1024px] mx-auto px-6 py-12">
-    <form id="settings-form" method="post">
+    <form method="post">
       {% csrf_token %}
 
-    <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#3a2727]/30 pb-8">
-      <div>
-        <h1 class="text-4xl md:text-5xl font-black font-display text-white mb-2 tracking-tight text-glow">
-          Settings
-        </h1>
-        <p class="text-gray-400 max-w-2xl">
-          Manage your notification preferences and security settings in one place.
-        </p>
+      <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#3a2727]/30 pb-8">
+        <div>
+          <h1 class="text-4xl md:text-5xl font-black font-display text-white mb-2 tracking-tight text-glow">
+            Settings
+          </h1>
+          <p class="text-gray-400 max-w-2xl">
+            Manage your notification preferences and security settings in one place.
+          </p>
+        </div>
       </div>
-    </div>
 
     <div class="flex flex-col gap-10">
       <div class="rounded-2xl border border-[#3a2727] bg-[#181111] p-6 md:p-10 hover:border-[#4a3232] transition-colors relative overflow-hidden">
@@ -37,6 +37,7 @@
         </div>
 
         <div class="flex flex-col gap-4 relative z-10">
+
           <div class="flex flex-row items-center justify-between p-5 bg-[#230f0f]/30 border border-[#3a2727] rounded-xl hover:bg-[#230f0f]/60 transition-colors gap-4">
             <div class="flex items-center gap-4">
               <div class="size-10 rounded-full bg-[#2a1a1a] flex items-center justify-center text-gray-400 shrink-0">
@@ -54,7 +55,7 @@
             </div>
 
             <label class="relative inline-flex items-center cursor-pointer shrink-0">
-              <input class="sr-only peer" 
+              <input class="sr-only peer"
               type="checkbox" 
               name="generation_notifications" 
               value="1" 
@@ -87,30 +88,6 @@
             </label>
           </div>
 
-          {% comment %} <div class="flex flex-row items-center justify-between p-5 bg-[#230f0f]/30 border border-[#3a2727] rounded-xl hover:bg-[#230f0f]/60 transition-colors gap-4">
-            <div class="flex items-center gap-4">
-              <div class="size-10 rounded-full bg-[#2a1a1a] flex items-center justify-center text-gray-400 shrink-0">
-                <span class="material-symbols-outlined">battery_alert</span>
-              </div>
-              <div>
-                <h3 class="font-bold text-white text-base">
-                  Low Credits Warning
-                </h3>
-                <p class="text-xs text-gray-500 hidden sm:block">
-                  Notify me when I have less than 25 credits left.
-                </p>
-              </div>
-            </div>
-            <label class="relative inline-flex items-center cursor-pointer shrink-0">
-              <input class="sr-only peer" 
-              type="checkbox" 
-              name="low_credits_notifications" 
-              value="1" 
-              {% if settings.low_credits_notifications %}checked{% endif %} />
-              <div class="w-11 h-6 bg-[#2a1a1a] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-gray-500 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary peer-checked:after:bg-white peer-checked:after:border-white shadow-glow-sm"></div>
-            </label>
-          </div> {% endcomment %}
-
           <div class="flex flex-row items-center justify-between p-5 bg-[#230f0f]/30 border border-[#3a2727] rounded-xl hover:bg-[#230f0f]/60 transition-colors gap-4">
             <div class="flex items-center gap-4">
               <div class="size-10 rounded-full bg-[#2a1a1a] flex items-center justify-center text-gray-400 shrink-0">
@@ -133,68 +110,13 @@
               <div class="w-11 h-6 bg-[#2a1a1a] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-gray-500 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary peer-checked:after:bg-white peer-checked:after:border-white shadow-glow-sm"></div>
             </label>
           </div>
-        </div>
-      </div>
 
-      <div class="rounded-2xl border border-[#3a2727] bg-[#181111] p-6 md:p-10 hover:border-[#4a3232] transition-colors relative overflow-hidden">
-        <div class="flex flex-col md:flex-row md:items-start gap-6 mb-8 relative z-10">
-          <div class="p-3 rounded-xl bg-[#2a1a1a] border border-[#3a2727] text-primary shadow-lg self-start">
-            <span class="material-symbols-outlined text-2xl">shield_lock</span>
-          </div>
-          <div class="flex-1">
-            <h2 class="text-2xl font-bold text-white font-display mb-1">
-              Security
-            </h2>
-            <p class="text-sm text-gray-400">
-              Protect your account and assets.
-            </p>
-          </div>
-        </div>
-
-        <div class="relative z-10 bg-[#230f0f]/50 rounded-xl border border-[#3a2727] p-6">
-          <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            <div class="flex items-start gap-4">
-              <div class="p-2 rounded-lg bg-[#2a1a1a] text-primary hidden md:block">
-                <span class="material-symbols-outlined">phonelink_lock</span>
-              </div>
-              <div>
-                <h3 class="font-bold text-white text-base uppercase tracking-wide mb-1">
-                  Two-Factor Authentication
-                </h3>
-                <p class="text-xs text-gray-500 leading-relaxed max-w-xl">
-                  Secure your account with two-factor authentication. We highly
-                  recommend this for pro accounts.
-                </p>
-              </div>
-            </div>
-
-            <button class="w-full md:w-auto px-6 py-3 rounded-lg border border-[#3a2727] bg-[#1a1111] text-gray-300 hover:text-white hover:border-primary/50 text-xs font-bold transition-all uppercase tracking-wide flex items-center justify-center gap-2 whitespace-nowrap" type="button">
-              Enable 2FA
-              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          <div class="flex justify-end pt-6">
+            <button type="submit" class="px-10 py-3 cursor-pointer bg-primary hover:bg-red-600 text-white rounded-xl font-bold text-sm shadow-glow transition-all">
+              Save Changes
             </button>
           </div>
-        </div>
 
-      </div>
-      <div class="rounded-2xl border border-red-900/20 bg-red-950/5 p-6 md:p-8">
-        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div class="flex items-start gap-4">
-            <div class="p-3 rounded-xl bg-red-950/20 border border-red-900/20 text-red-500 hidden sm:block">
-              <span class="material-symbols-outlined">warning</span>
-            </div>
-
-            <div>
-              <h3 class="font-bold text-red-500 text-lg mb-1">Danger Zone</h3>
-              <p class="text-sm text-gray-500">
-                Permanently remove your account, subscriptions, and all
-                generated assets. This action is irreversible.
-              </p>
-            </div>
-          </div>
-
-          <button class="w-full md:w-auto text-red-500 hover:text-white hover:bg-red-600 bg-red-900/10 px-6 py-3 rounded-xl border border-red-900/20 hover:border-red-600 text-sm font-bold transition-all uppercase tracking-wide whitespace-nowrap">
-            Delete Account
-          </button>
         </div>
       </div>
     </div>

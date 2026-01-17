@@ -21,13 +21,11 @@ class ContactMessage(models.Model):
         return f"{self.email} - {self.topic}"
     
 
-class ProfileSettings(models.Model):
+class ProfileSetting(models.Model):
      user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="account_settings")
      email_notifications = models.BooleanField(default=True)
-     push_notifications = models.BooleanField(default=True)
      generation_notifications = models.BooleanField(default=True)
      viral_alert_notifications = models.BooleanField(default=True)
-     low_credits_notifications = models.BooleanField(default=False)
 
      def __str__(self):
-          return f"{self.user}"
+          return f"{self.user}'s Profile Settings"
