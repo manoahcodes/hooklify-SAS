@@ -158,8 +158,7 @@ class Price(models.Model):
         verbose_name_plural = _("Prices")
 
     def __str__(self):
-        subscription_name = self.subscription.name if self.subscription else "Plan"
-        return f"{subscription_name} - {self.price} {self.paddle_currency} / {self.interval}"
+        return f"{self.price} {self.paddle_currency} / {self.interval}"
 
     @property
     def display_features_list(self):

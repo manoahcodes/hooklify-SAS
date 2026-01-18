@@ -1,7 +1,7 @@
 from typing import Any
 from django.core.management.base import BaseCommand
 
-from subscriptions.utils import utils as sub_utils
+from apps.subscriptions.utils import utils as sub_utils
 
 class Command(BaseCommand):
     def add_arguments(self, parser):

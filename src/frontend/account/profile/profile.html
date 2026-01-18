@@ -3,20 +3,16 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<main class="flex-1 flex flex-col bg-[#120c0c] relative">
-    <div class="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-[#1a1111] via-[#160e0e] to-[#120c0c] z-0 pointer-events-none">
-    </div>
-    <div class="absolute top-20 right-0 lg:right-40 w-96 h-96 bg-primary/5 blur-[120px] rounded-full pointer-events-none z-0">
-    </div>
-    <div class="absolute bottom-0 left-0 lg:left-20 w-64 h-64 bg-primary/5 blur-[100px] rounded-full pointer-events-none z-0">
-    </div>
+<main class="flex-1 flex flex-col relative">
     <div class="container mx-auto px-6 py-12 lg:py-20 relative z-10 max-w-5xl">
+        
         <div class="mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6 border-b border-[#3a2727]/50 pb-8">
             <div>
                 <h1 class="text-4xl md:text-5xl font-black font-display text-white mb-3 text-glow">Profile Settings</h1>
                 <p class="text-gray-400 text-lg">Manage your identity and public profile appearance.</p>
             </div>
         </div>
+        
         <div class="w-full bg-[#1f1515] border border-[#3a2727] rounded-2xl p-6 md:p-10 shadow-2xl shadow-black/50 relative overflow-hidden group">
             <div class="mb-10 border-b border-[#3a2727] pb-8">
                 
@@ -56,12 +52,12 @@
                     <div class="grid md:grid-cols-2 gap-8">
                         <div class="flex flex-col gap-2 group/input">
                             <label class="text-xs font-bold uppercase tracking-wider text-gray-500">First Name</label>
-                            <input class="bg-[#120c0c] border border-[#3a2727] text-white text-sm rounded-xl p-3.5"
+                            <input class="bg-[#120c0c] border border-[#3a2727] text-white text-sm rounded-xl focus:ring-1 focus:ring-primary focus:border-primary block w-full p-3.5 font-medium placeholder-gray-600 shadow-inner transition-all"
                                    name="first_name" value="{{ user.first_name }}">
                         </div>
                         <div class="flex flex-col gap-2 group/input">
                             <label class="text-xs font-bold uppercase tracking-wider text-gray-500">Last Name</label>
-                            <input class="bg-[#120c0c] border border-[#3a2727] text-white text-sm rounded-xl p-3.5"
+                            <input class="bg-[#120c0c] border border-[#3a2727] text-white text-sm rounded-xl focus:ring-1 focus:ring-primary focus:border-primary block w-full p-3.5 font-medium placeholder-gray-600 shadow-inner transition-all"
                                    name="last_name" value="{{ user.last_name }}">
                         </div>
                     </div>
@@ -69,7 +65,7 @@
 
                 <div class="space-y-6">
                     <label class="text-xs font-bold uppercase tracking-wider text-gray-500">Username</label>
-                    <input class="bg-[#120c0c] border border-[#3a2727] text-white text-sm rounded-xl p-3.5 w-full"
+                    <input class="bg-[#120c0c] border border-[#3a2727] text-white text-sm rounded-xl focus:ring-1 focus:ring-primary focus:border-primary block w-full p-3.5 font-medium placeholder-gray-600 shadow-inner transition-all"
                            name="username" value="{{ user.username }}">
                 </div>
 

@@ -5,7 +5,7 @@ from paddle_billing.Entities.Subscriptions import (
     SubscriptionEffectiveFrom,
 )
 
-from subscriptions.models import Subscriber, Customer
+from apps.subscriptions.models import Subscriber, Customer
 from utils.billing import (
     get_customer_subscription_plans,
     cancel_subscription,
