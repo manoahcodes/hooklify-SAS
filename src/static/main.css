@@ -1379,6 +1379,9 @@
   .border-\[\#444\] {
     border-color: #444;
   }
+  .border-\[\#f91f1f\] {
+    border-color: #f91f1f;
+  }
   .border-background-dark {
     border-color: var(--color-background-dark);
   }
@@ -1449,6 +1452,12 @@
     border-color: color-mix(in srgb, #fff 30%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       border-color: color-mix(in oklab, var(--color-white) 30%, transparent);
+    }
+  }
+  .border-white\/60 {
+    border-color: color-mix(in srgb, #fff 60%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-white) 60%, transparent);
     }
   }
   .border-yellow-500\/20 {
@@ -3069,6 +3078,13 @@
     &:hover {
       @media (hover: hover) {
         color: #FF0050;
+      }
+    }
+  }
+  .hover\:text-\[\#f91f1f\] {
+    &:hover {
+      @media (hover: hover) {
+        color: #f91f1f;
       }
     }
   }

@@ -3,7 +3,7 @@ from django.core.management.base import BaseCommand
 from django.db import transaction
 from django.db.models import Prefetch
 
-from subscriptions.models import Product
+from apps.subscriptions.models import Product
 
 class Command(BaseCommand):
     help = 'Sync subscription permissions to associated groups'
