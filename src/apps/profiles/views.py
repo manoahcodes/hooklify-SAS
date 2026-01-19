@@ -152,25 +152,44 @@ def billing_view(request):
     user = request.user
     sub_obj = (Subscriber.objects.select_related("subscription", "price").filter(user=user).first())
 
+    # ---- NO SUBSCRIPTION → FREE PLAN ----
     if not sub_obj:
-        return render(request, "account/profile/billing.html",
+        return render(
+            request,
+            "account/profile/billing.html",
             {
                 "subscription": "Free Plan",
                 "status": "FREE",
                 "is_active_subscription": False,
-            },
+                "is_past_due": False,
+                "is_paused": False,
+                "is_inactive": True,
+            }
         )
-    
-    ctm_params = get_subscription_plan(sub_id=sub_obj.paddle_subscriptions_id)
-    url = ctm_params.management_urls.update_payment_method
 
-    status = sub_obj.status
+    status = sub_obj.status.upper()
 
-    is_active_subscription = status in {"active", "trialing"}
-    is_past_due = status == "past_due"
-    is_paused = status in "paused"
-    is_canceled = status == "canceled"
-    is_free = status == "free"
+    # ---- STATUS FLAGS ----
+    is_active_subscription = status in {"ACTIVE", "TRIALING"}
+    is_past_due = status == "PAST_DUE"
+    is_paused = status == "PAUSED"
+    inactive = status in {"FREE", "CANCELED"}
+
+    paddle_url = None
+
+    # ---- ONLY HIT PADDLE IF SUB IS MANAGEABLE ----
+    if sub_obj.paddle_subscriptions_id and not inactive:
+        try:
+            ctm_params = get_subscription_plan(
+                sub_id=sub_obj.paddle_subscriptions_id
+            )
+            paddle_url = ctm_params.management_urls.update_payment_method
+        except Exception:
+            paddle_url = None
+            messages.warning(
+                request,
+                "We couldn't load your subscription management link. Please try again later."
+            )
 
     context = {
         "subscription": f"{sub_obj.subscription.name} Plan",
@@ -178,13 +197,11 @@ def billing_view(request):
         "renewal": sub_obj.price.interval,
         "price": sub_obj.price.price,
         "status": status,
-        "paddle_url": url,
-
+        "paddle_url": paddle_url,
         "is_active_subscription": is_active_subscription,
         "is_past_due": is_past_due,
         "is_paused": is_paused,
-        "is_canceled": is_canceled,
-        "is_free_plan": is_free
+        "inactive": inactive,
     }
 
     return render(request, "account/profile/billing.html", context)

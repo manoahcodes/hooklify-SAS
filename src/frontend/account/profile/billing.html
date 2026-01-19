@@ -17,33 +17,34 @@
             <div class="relative z-10 p-6 md:p-10 flex flex-col gap-8">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
 
+                    <!-- PLAN INFO -->
                     <div class="flex flex-col gap-2">
                         <div class="flex items-center gap-3">
                             <h3 class="text-2xl font-bold font-display text-white">
                                 {{ subscription }}
                             </h3>
 
-                            {% if not is_free_plan %}
-                            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold uppercase 
+                            {% if inactive %}
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold uppercase
                                 {% if is_active_subscription %}
-                                    tracking-wider bg-green-500/10 text-green-500 border border-green-500/20 animate-pulse
+                                    tracking-wider size-1.5 bg-green-500/10 text-green-500 border border-green-500/20 animate-pulse
                                 {% elif is_past_due %}
-                                    tracking-wider bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 animate-pulse
-                                {% elif is_canceled %}
-                                    tracking-wider bg-red-500/10 text-red-500 border border-red-500/20
-                                {% else %}
-                                    tracking-wider bg-gray-500/10 text-gray-400 border border-gray-500/20
-                                {% endif %}
-                            ">
+                                    tracking-wider size-1.5 bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 animate-pulse
+                                {% endif %}">
+
                                 {% if is_active_subscription %}
                                 <span class="size-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                                    {% endif %}
+
+                                    {% if is_active_subscription %}
+                                        {{ status }}
+                                    {% endif %}
+
+                                </span>
                                 {% endif %}
-                                {{ status }}
-                            </span>
-                            {% endif %}
                         </div>
 
-                        {% if not is_free_plan %}
+                        {% if not inactive %}
                         <div class="flex items-baseline gap-2">
                             <span class="text-4xl font-black text-white tracking-tight">
                                 ${{ price|floatformat:0 }}
@@ -54,40 +55,48 @@
                         </div>
                         {% endif %}
 
-                        {% if status == "trialing" %}
+                        {% if status == "TRIALING" %}
                         <p class="text-sm text-yellow-400 font-semibold">
                             Your trial is active. Upgrade now to avoid interruption when it ends.
                         </p>
                         {% endif %}
                     </div>
 
-                    {% if is_free_plan and is_canceled %}
+                    <!-- ACTIONS -->
+                    {% if inactive %}
                     <div class="flex w-full md:w-auto">
                         <a href="{% url 'plans' %}"
-                           class="group cursor-pointer flex items-center justify-center gap-2 px-6 py-3 rounded-xl 
-                                  bg-primary text-white font-bold text-sm shadow-glow 
-                                  hover:bg-red-600 hover:shadow-glow-hover transition-all 
+                           class="group cursor-pointer flex items-center justify-center gap-2 px-6 py-3 rounded-xl
+                                  bg-primary text-white font-bold text-sm shadow-glow
+                                  hover:bg-red-600 hover:shadow-glow-hover transition-all
                                   transform hover:-translate-y-0.5 focus:ring-4 focus:ring-red-900/50">
                             <span>Upgrade Plan</span>
                         </a>
                     </div>
                     {% else %}
                     <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
-                        <a href="{{ paddle_url }}" class="group cursor-pointer flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-surface-dark border border-surface-border hover:border-white/40 text-white font-bold text-sm transition-all focus:ring-4 focus:ring-gray-700">
+                        <a href="{{ paddle_url }}"
+                           class="group cursor-pointer flex items-center justify-center gap-2 px-5 py-3 rounded-xl
+                                  bg-surface-dark border border-surface-border hover:border-white/40
+                                  text-white font-bold text-sm transition-all focus:ring-4 focus:ring-gray-700">
                             <span>Manage Subscription</span>
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#99a1af">
                                 <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"/>
                             </svg>
                         </a>
 
-                        <a href="{% url "profile_cancel_subscription" %}" class="group cursor-pointer flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-primary text-white font-bold text-sm shadow-glow hover:bg-red-600 hover:shadow-glow-hover transition-all transform hover:-translate-y-0.5 focus:ring-4 focus:ring-red-900/50">
+                        <a href="{% url 'profile_cancel_subscription' %}"
+                            class="group cursor-pointer flex items-center justify-center gap-2 px-5 py-3 rounded-xl
+                                    bg-primary text-white font-bold text-sm shadow-glow
+                                    hover:bg-red-600 hover:shadow-glow-hover transition-all
+                                    transform hover:-translate-y-0.5 focus:ring-4 focus:ring-red-900/50">
                             <span>Cancel Subscription</span>
                         </a>
                     </div>
                     {% endif %}
                 </div>
 
-                {% if not is_free_plan and is_canceled %}
+                {% if not inactive %}
                 <div class="h-px w-full bg-surface-border/50"></div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -97,7 +106,7 @@
                         </span>
                         <div class="flex items-center gap-2 h-8">
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#99a1af">
-                                <path d="M320-400q-17 0-28.5-11.5T280-440q0-17 11.5-28.5T320-480q17 0 28.5 11.5T360-440q0 17-11.5 28.5T320-400Zm160 0q-17 0-28.5-11.5T440-440q0-17 11.5-28.5T480-480q17 0 28.5 11.5T520-440q0 17-11.5 28.5T480-400Zm160 0q-17 0-28.5-11.5T600-440q0-17 11.5-28.5T640-480q17 0 28.5 11.5T680-440q0 17-11.5 28.5T640-400ZM200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Z"/>
+                                <path d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Z"/>
                             </svg>
                             <span class="text-gray-300 font-medium">
                                 {{ next_bill|date:"F d Y" }}
@@ -106,6 +115,7 @@
                     </div>
                 </div>
                 {% endif %}
+
             </div>
         </div>
 
