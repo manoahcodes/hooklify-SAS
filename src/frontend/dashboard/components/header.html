@@ -1,7 +1,7 @@
-<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 py-4">
+<header class="sticky top-0 z-50 flex items-center justify-between border-b border-solid border-[#3a2727]/30 whitespace-nowrap bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 py-4">
     
     <form hx-post="#" hx-swap="none" class="relative z-50">
-    {% csrf_token %}
+        {% csrf_token %}
     
     <div class="relative group cursor-pointer py-2">
         
@@ -54,23 +54,24 @@
     </div>
 </form>
 
-
-    <div class="absolute start-0 flex flex-col items-center gap-2 lg:start-1/2 ltr:-translate-x-1/2 rtl:translate-x-1/2">
-        <div class="hidden lg:block">
-            <div class="flex items-center gap-1 rounded-full text-sm font-medium bg-primary text-primary">
-                <a href="{% url "plans" %}" class="flex items-center rounded-full text-sm gap-1 bg-transparent hover:bg-red-600 text-white ps-2.5 text-current focus:outline-none py-2 pe-3">
-                    Upgrade to Creator
-                </a>
+    {% if subscriber.is_inactive %}
+        <div class="absolute start-0 flex flex-col items-center gap-2 lg:start-1/2 ltr:-translate-x-1/2 rtl:translate-x-1/2">
+            <div class="hidden lg:block">
+                <div class="flex items-center gap-1 rounded-full text-sm font-medium bg-primary text-primary">
+                    <a href="{% url "plans" %}" class="flex items-center rounded-full text-sm gap-1 bg-transparent hover:bg-red-600 text-white ps-2.5 text-current focus:outline-none py-2 pe-3">
+                        Upgrade Now
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
+    {% endif %}
 
     <div class="flex gap-3 items-center justify-center overflow-x-hidden">
         <div class="shrink-0"></div>
 
         <div class="flex items-center justify-end gap-2 overflow-x-hidden">
             <div class="flex items-center">
-                <button class="relative w-10 h-10 flex cursor-pointer items-center justify-center rounded-xl bg-surface-dark text-white/60 hover:text-[#f91f1f] transition-all group-hover:bg-[#1a1111] group-hover:text-primary">
+                <button class="relative w-10 h-10 flex cursor-pointer items-center justify-center rounded-xl hover:bg-surface-dark text-white/60 hover:text-[#f91f1f] transition-all group-hover:bg-[#1a1111] group-hover:text-primary">
                     <span><i class="fa-regular fa-bell"></i></span>
                     <span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full animate-pulse border border-[#f91f1f]"></span>
                 </button>

@@ -24,27 +24,27 @@
                                 {{ subscription }}
                             </h3>
 
-                            {% if inactive %}
+                            {% if is_active_subscription or is_paused %}
                             <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold uppercase
                                 {% if is_active_subscription %}
-                                    tracking-wider size-1.5 bg-green-500/10 text-green-500 border border-green-500/20 animate-pulse
+                                    tracking-wider bg-green-500/10 text-green-500 border border-green-500/20
                                 {% elif is_past_due %}
-                                    tracking-wider size-1.5 bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 animate-pulse
-                                {% endif %}">
-
-                                {% if is_active_subscription %}
-                                <span class="size-1.5 rounded-full bg-green-500 animate-pulse"></span>
-                                    {% endif %}
-
-                                    {% if is_active_subscription %}
-                                        {{ status }}
-                                    {% endif %}
-
-                                </span>
+                                    tracking-wider bg-yellow-500/10 text-yellow-500 border border-yellow-500/20
+                                {% elif is_canceled %}
+                                    tracking-wider bg-red-500/10 text-red-500 border border-red-500/20
+                                {% else %}
+                                    tracking-wider bg-gray-500/10 text-gray-400 border border-gray-500/20
                                 {% endif %}
+                            ">
+                                {% if is_active_subscription or is_paused %}
+                                <span class="size-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                                {% endif %}
+                                {{ status }}
+                            </span>
+                            {% endif %}
                         </div>
 
-                        {% if not inactive %}
+                        {% if is_active_subscription or is_paused %}
                         <div class="flex items-baseline gap-2">
                             <span class="text-4xl font-black text-white tracking-tight">
                                 ${{ price|floatformat:0 }}
@@ -55,7 +55,7 @@
                         </div>
                         {% endif %}
 
-                        {% if status == "TRIALING" %}
+                        {% if status == "trialing" %}
                         <p class="text-sm text-yellow-400 font-semibold">
                             Your trial is active. Upgrade now to avoid interruption when it ends.
                         </p>
@@ -63,43 +63,51 @@
                     </div>
 
                     <!-- ACTIONS -->
-                    {% if inactive %}
-                    <div class="flex w-full md:w-auto">
-                        <a href="{% url 'plans' %}"
-                           class="group cursor-pointer flex items-center justify-center gap-2 px-6 py-3 rounded-xl
-                                  bg-primary text-white font-bold text-sm shadow-glow
-                                  hover:bg-red-600 hover:shadow-glow-hover transition-all
-                                  transform hover:-translate-y-0.5 focus:ring-4 focus:ring-red-900/50">
-                            <span>Upgrade Plan</span>
-                        </a>
-                    </div>
-                    {% else %}
-                    <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
-                        <a href="{{ paddle_url }}"
-                           class="group cursor-pointer flex items-center justify-center gap-2 px-5 py-3 rounded-xl
-                                  bg-surface-dark border border-surface-border hover:border-white/40
-                                  text-white font-bold text-sm transition-all focus:ring-4 focus:ring-gray-700">
-                            <span>Manage Subscription</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#99a1af">
-                                <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"/>
-                            </svg>
-                        </a>
-
-                        <a href="{% url 'profile_cancel_subscription' %}"
+                    {% if is_active_subscription or is_paused %}
+                        <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+                            <a href="{{ paddle_url }}"
                             class="group cursor-pointer flex items-center justify-center gap-2 px-5 py-3 rounded-xl
-                                    bg-primary text-white font-bold text-sm shadow-glow
-                                    hover:bg-red-600 hover:shadow-glow-hover transition-all
-                                    transform hover:-translate-y-0.5 focus:ring-4 focus:ring-red-900/50">
-                            <span>Cancel Subscription</span>
-                        </a>
-                    </div>
+                                    bg-surface-dark border border-surface-border hover:border-white/40
+                                    text-white font-bold text-sm transition-all focus:ring-4 focus:ring-gray-700">
+                                <span>Update Payment Method</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#99a1af">
+                                    <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"/>
+                                </svg>
+                            </a>
+
+                            <a href="{% url 'profile_cancel_subscription' %}"
+                                class="group cursor-pointer flex items-center justify-center gap-2 px-5 py-3 rounded-xl
+                                        bg-primary text-white font-bold text-sm shadow-glow
+                                        hover:bg-red-600 hover:shadow-glow-hover transition-all
+                                        transform hover:-translate-y-0.5 focus:ring-4 focus:ring-red-900/50">
+                                <span>Cancel Subscription</span>
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="flex w-full md:w-auto">
+                                <a href="{% url 'plans' %}"
+                                class="group cursor-pointer flex items-center justify-center gap-2 px-6 py-3 rounded-xl
+                                        bg-primary text-white font-bold text-sm shadow-glow
+                                        hover:bg-red-600 hover:shadow-glow-hover transition-all
+                                        transform hover:-translate-y-0.5 focus:ring-4 focus:ring-red-900/50">
+                                    <span>Upgrade Plan</span>
+                                </a>
+                        </div>
                     {% endif %}
                 </div>
 
-                {% if not inactive %}
+                {% if is_active_subscription or is_paused %}
                 <div class="h-px w-full bg-surface-border/50"></div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="flex flex-col gap-2">
+                        <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Plan Renewal</span>
+                        <div class="flex items-center gap-2 h-8">
+                            <span class="material-symbols-outlined text-gray-400">autorenew</span>
+                            <span class="text-gray-300 font-medium">{{ subscriber.price.get_interval_display }}</span>
+                        </div>
+                    </div>
+
                     <div class="flex flex-col gap-2">
                         <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">
                             Next billing date
@@ -113,6 +121,7 @@
                             </span>
                         </div>
                     </div>
+                    
                 </div>
                 {% endif %}
 

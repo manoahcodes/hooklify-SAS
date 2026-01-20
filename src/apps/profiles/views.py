@@ -45,7 +45,7 @@ def cancel_sub(request):
         # Cancel at end of billing period
         cancel_subscription(
             sub_id=sub_obj.paddle_subscriptions_id,
-            effective_from=SubscriptionEffectiveFrom.NextBillingPeriod,
+            effective_from=SubscriptionEffectiveFrom.Immediately,
             raw=False
         )
 

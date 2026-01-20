@@ -24,6 +24,10 @@
                             <span class="material-symbols-outlined text-sm">mail</span>
                             {{ user.email }}
                         </p>
+                        <p class="text-gray-400 font-mono text-base mt-2 flex items-center gap-2">
+                            <span class="text-sm">Transcation ID:</span>
+                            {{ subscriber.paddle_transactions_id }}
+                        </p>
 
                         {% if has_social %}
                         <p class="text-xs text-gray-500 mt-2 font-mono">

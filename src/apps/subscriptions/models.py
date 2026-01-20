@@ -312,6 +312,7 @@ class Subscriber(models.Model):
         related_name="subscribers"
     )
     paddle_subscriptions_id = models.CharField(max_length=255, null=True, blank=True)
+    paddle_transactions_id = models.CharField(max_length=255, null=True, blank=True)
     paddle_user_id = models.CharField(max_length=255, null=True, blank=True)
     paddle_price_id = models.CharField(max_length=255, null=True, blank=True)
     is_free_active = models.BooleanField(
@@ -322,10 +323,6 @@ class Subscriber(models.Model):
         default=False,
         help_text=_("To determine when the user has activated their subscription")
     )
-    is_subscription_cancelled = models.BooleanField(
-        default=False,
-        help_text=_("To determine when the user cancels their subscription")
-    )
     status = models.CharField(
         max_length=20,
         default=StatusChoices.FREE,
@@ -335,6 +332,17 @@ class Subscriber(models.Model):
     subscription_starts_at = models.DateTimeField(blank=True, null=True, default=None)
     subscription_ends_at = models.DateTimeField(blank=True, null=True, default=None)
 
+    def clean(self):
+        if self.status == self.StatusChoices.FREE or self.status == self.StatusChoices.CANCELED:
+            self.status = self.StatusChoices.FREE
+            self.paddle_subscriptions_id = None
+            self.paddle_transactions_id = None
+            self.paddle_price_id = None
+            self.is_subscription_active = False
+            self.is_free_active = True
+            self.subscription_starts_at = None
+            self.subscription_ends_at = None
+
     def __str__(self):
         return f"{self.user.username} - {self.status}"
 
@@ -343,6 +351,14 @@ class Subscriber(models.Model):
         if self.original_period_start is None and self.subscription_starts_at is not None:
             self.original_period_start = self.subscription_starts_at
         super().save(*args, **kwargs)
+
+    @property
+    def is_inactive(self):
+        return self.status in {
+            self.StatusChoices.FREE,
+            self.StatusChoices.PAST_DUE,
+            self.StatusChoices.CANCELED,
+        }
 
 
 class Customer(models.Model):

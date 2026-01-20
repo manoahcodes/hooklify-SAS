@@ -1,11 +1,12 @@
 import logging
 from django.db.models import Q
+from django.conf import settings
 from paddle_billing.Entities.Subscriptions import (
     SubscriptionStatus,
     SubscriptionEffectiveFrom,
 )
 
-from apps.subscriptions.models import Subscriber, Customer
+from apps.subscriptions.models import Subscriber, Customer, Product, Price
 from utils.billing import (
     get_customer_subscription_plans,
     cancel_subscription,
@@ -101,7 +102,7 @@ def clear_inactive_subscriptions():
             try:
                 cancel_subscription(
                     sub_id=sub_id,
-                    effective_from=SubscriptionEffectiveFrom.NextBillingPeriod,
+                    effective_from=SubscriptionEffectiveFrom.Immediately,
                     raw=False,
                 )
             except Exception as e:
@@ -110,3 +111,68 @@ def clear_inactive_subscriptions():
                     exc_info=True,
                 )
                 continue
+
+
+
+def normalize_canceled_subscribers():
+    """
+    Normalize all canceled subscriptions into FREE accounts.
+
+    Why:
+    - Prevent UI confusion
+    - Avoid leaking historical billing states
+    - Keep a single source of truth: FREE == no subscription
+
+    This is SAFE to run daily.
+    """
+    product_id = getattr(settings, "FREE_PRODUCT_DB_ID", None)
+    price_id = getattr(settings, "FREE_PRICE_DB_ID", None)
+
+    product = Product.objects.get(pk=product_id)
+    price = Price.objects.get(pk=price_id)
+
+    canceled_qs = Subscriber.objects.filter(
+        Q(status=Subscriber.StatusChoices.CANCELED)
+    )
+
+    count = canceled_qs.count()
+
+    if count == 0:
+        logger.info("[normalize-canceled] No canceled subscriptions found.")
+        return
+
+    logger.info(
+        f"[normalize-canceled] Normalizing {count} canceled subscriptions to FREE."
+    )
+
+    for sub in canceled_qs:
+        logger.info(
+            f"[normalize-canceled] User={sub.user} "
+            f"sub_id={sub.paddle_subscriptions_id} → FREE"
+        )
+
+        sub.subscription = product
+        sub.price = price
+        sub.status = Subscriber.StatusChoices.FREE
+        sub.paddle_subscriptions_id = None
+        sub.paddle_transactions_id = None
+        sub.paddle_price_id = None
+        sub.is_subscription_active = False
+        sub.is_free_active = True
+        sub.subscription_starts_at = None
+        sub.subscription_ends_at = None
+
+        sub.save(
+            update_fields=[
+                "subscription",
+                "price",
+                "status",
+                "paddle_subscriptions_id",
+                "paddle_transactions_id",
+                "paddle_price_id",
+                "is_subscription_active",
+                "is_free_active",
+                "subscription_starts_at",
+                "subscription_ends_at",
+            ]
+        )

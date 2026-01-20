@@ -1,4 +1,4 @@
-from .models import Subscriber
+from apps.subscriptions.models import Subscriber
 
 def subscriber(request):
     if not request.user.is_authenticated:
