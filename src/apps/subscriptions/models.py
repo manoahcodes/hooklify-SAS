@@ -315,6 +315,7 @@ class Subscriber(models.Model):
     paddle_transactions_id = models.CharField(max_length=255, null=True, blank=True)
     paddle_user_id = models.CharField(max_length=255, null=True, blank=True)
     paddle_price_id = models.CharField(max_length=255, null=True, blank=True)
+    has_paid = models.BooleanField(default=False)
     is_free_active = models.BooleanField(
         default=True,
         help_text=_("To determine when the user has an active free package")

@@ -51,7 +51,7 @@ def cancel_sub(request):
 
         messages.success(
             request,
-            "Your subscription will remain active until the end of the current billing period."
+            "Your subscription has been canceled successfull."
         )
 
     except Exception as e:

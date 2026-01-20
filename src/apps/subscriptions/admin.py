@@ -14,6 +14,7 @@ class SubscriberAdmin(admin.ModelAdmin):
         'paddle_user_id',
         'is_free_active',
         'is_subscription_active',
+        'has_paid',
         'subscription_starts_at', 
         'subscription_ends_at', 
         'original_period_start',

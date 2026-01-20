@@ -1,4 +1,5 @@
 import logging
+import datetime
 
 from django.db import transaction
 
@@ -181,7 +182,8 @@ def handle_subscription_canceled(data: dict):
 @transaction.atomic
 def handle_subscription_updated(data: dict):
     """
-    Paddle subscription.updated handler.
+    Paddle subscription.updated webhook.
+    Paddle is the source of truth.
     """
 
     subscription_id = data.get("id")
@@ -191,55 +193,47 @@ def handle_subscription_updated(data: dict):
     items = data.get("items") or []
     billing = data.get("current_billing_period") or {}
 
-    if not subscription_id or not paddle_customer_id or not items or not paddle_status:
-        raise WebhookProcessingError("Invalid subscription.updated payload.")
+    if not all([subscription_id, paddle_customer_id, paddle_status, items]):
+        raise WebhookProcessingError("Invalid subscription.updated payload")
 
-    try:
-        item = items[0]
-        product_id = (item.get("product") or {}).get("id")
-        price_id = (item.get("price") or {}).get("id")
-        starts_at = billing.get("starts_at")
-        ends_at = billing.get("ends_at")
+    item = items[0]
+    product_id = (item.get("product") or {}).get("id")
+    price_id = (item.get("price") or {}).get("id")
 
-        if not product_id or not price_id:
-            raise ValueError
-    except Exception:
-        raise WebhookProcessingError("Invalid items structure.")
+    if not product_id or not price_id:
+        raise WebhookProcessingError("Invalid subscription item structure")
 
-    try:
-        customer = Customer.objects.select_related("user").get(
-            paddle_id=paddle_customer_id
-        )
-        user = customer.user
-        product = Product.objects.get(paddle_id=product_id)
-        price = Price.objects.get(paddle_id=price_id)
-    except Exception as e:
-        raise SubscriptionSyncError(f"Model resolution failed: {e}") from e
+    starts_at = billing.get("starts_at")
+    ends_at = billing.get("ends_at")
+
+    customer = Customer.objects.select_related("user").get(
+        paddle_id=paddle_customer_id
+    )
+    user = customer.user
+
+    product = Product.objects.get(paddle_id=product_id)
+    price = Price.objects.get(paddle_id=price_id)
 
     free_product, free_price = get_free_plan_details()
 
-    try:
-        subscriber = Subscriber.objects.select_for_update().get(user=user)
-    except Subscriber.DoesNotExist:
-        Subscriber.objects.create(
-            user=user,
-            subscription=free_product,
-            price=free_price,
-            status=Subscriber.StatusChoices.FREE,
-            paddle_subscriptions_id = None,
-            paddle_transactions_id = None,
-            paddle_user_id = paddle_customer_id,
-            paddle_price_id = None,
-            is_free_active=True,
-            is_subscription_active=False,
-            subscription_starts_at = None,
-            subscription_ends_at = None
-        )
-        return
+    subscriber, _ = Subscriber.objects.select_for_update().get_or_create(
+        user=user,
+        defaults={
+            "subscription": free_product,
+            "price": free_price,
+            "status": Subscriber.StatusChoices.FREE,
+            "is_free_active": True,
+            "is_subscription_active": False,
+        },
+    )
 
-    if subscriber.paddle_subscriptions_id != subscription_id:
+    # Ignore updates for a different subscription
+    if (
+        subscriber.paddle_subscriptions_id
+        and subscriber.paddle_subscriptions_id != subscription_id
+    ):
         logger.info(
-            f"[UPDATE IGNORED] {subscription_id} != {subscriber.paddle_subscriptions_id}"
+            f"[SUB UPDATE IGNORED] {subscription_id} != {subscriber.paddle_subscriptions_id}"
         )
         return
 
@@ -253,13 +247,19 @@ def handle_subscription_updated(data: dict):
 
     internal_status = STATUS_MAP.get(paddle_status)
     if not internal_status:
-        logger.error(f"[UPDATE] Unknown status {paddle_status}")
+        logger.warning(f"[SUB UPDATE] Unknown status: {paddle_status}")
         return
 
+    # Always sync identifiers
+    subscriber.paddle_subscriptions_id = subscription_id
+    subscriber.paddle_transactions_id = txn_id
+    subscriber.paddle_user_id = paddle_customer_id
+    subscriber.paddle_price_id = price_id
+
+    # Sync plan if changed
     if (
-        not subscriber.subscription
-        or subscriber.subscription.paddle_id != product_id
-        or subscriber.price.paddle_id != price_id
+        subscriber.subscription != product
+        or subscriber.price != price
     ):
         subscriber.subscription = product
         subscriber.price = price
@@ -268,34 +268,71 @@ def handle_subscription_updated(data: dict):
         subscriber.subscription_starts_at = starts_at
 
     if ends_at:
-        if not subscriber.subscription_ends_at or ends_at >= subscriber.subscription_ends_at:
-            subscriber.subscription_ends_at = ends_at
+        subscriber.subscription_ends_at = ends_at
 
     subscriber.status = internal_status
-    subscriber.paddle_transactions_id = txn_id
-    subscriber.paddle_price_id = price_id
 
-    if paddle_status in ("active", "trialing", "paused"):
+    # ------------------------
+    # ACCESS CONTROL LOGIC
+    # ------------------------
+    if paddle_status in ("active", "trialing"):
         subscriber.is_subscription_active = True
         subscriber.is_free_active = False
-    else:
-        subscriber.is_subscription_active = False
-        subscriber.is_free_active = paddle_status == "canceled"
 
-    subscriber.save(update_fields=[
-        "subscription",
-        "price",
-        "status",
-        "paddle_subscriptions_id"
-        "paddle_transactions_id",
-        "paddle_user_id",
-        "paddle_price_id",
-        "is_free_active",
-        "is_subscription_active",
-        "subscription_starts_at",
-        "subscription_ends_at",
-    ])
+    elif paddle_status == "past_due":
+        subscriber.is_subscription_active = True  # grace period
+        subscriber.is_free_active = False
+
+    elif paddle_status == "paused":
+        subscriber.is_subscription_active = False
+        subscriber.is_free_active = False
+
+    elif paddle_status == "canceled":
+        # Still paid until period ends
+        if ends_at and ends_at > timezone.now():
+            subscriber.is_subscription_active = True
+            subscriber.is_free_active = False
+        else:
+            # Hard downgrade
+            subscriber.subscription = free_product
+            subscriber.price = free_price
+            subscriber.status = Subscriber.StatusChoices.FREE
+            subscriber.is_subscription_active = False
+            subscriber.is_free_active = True
+            subscriber.paddle_subscriptions_id = None
+            subscriber.paddle_price_id = None
+
+    subscriber.save()
 
     logger.info(
-        f"[UPDATE SUCCESS] {subscription_id} synced for {user.username} ({paddle_status})"
+        f"[SUB UPDATE SUCCESS] {subscription_id} → {subscriber.status} for user={user.id}"
     )
+
+
+
+@transaction.atomic
+def handle_transaction_completed(data: dict):
+    sub_id = data.get("subscription_id")
+    txn_id = data.get("id")
+    status = data.get("status")
+
+    if status != "completed" or not sub_id:
+        return
+
+    try:
+        subscriber = Subscriber.objects.select_for_update().get(
+            paddle_subscriptions_id=sub_id
+        )
+    except Subscriber.DoesNotExist:
+        return
+
+    subscriber.has_paid = True
+    subscriber.paddle_transactions_id = txn_id
+
+    # If trial just converted
+    if subscriber.status == Subscriber.StatusChoices.TRIALING:
+        subscriber.status = Subscriber.StatusChoices.ACTIVE
+        subscriber.is_subscription_active = True
+        subscriber.is_free_active = False
+
+    subscriber.save()
