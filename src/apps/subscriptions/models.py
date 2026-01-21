@@ -360,6 +360,10 @@ class Subscriber(models.Model):
             self.StatusChoices.PAST_DUE,
             self.StatusChoices.CANCELED,
         }
+    
+    @property
+    def has_user_paid(self):
+        return self.has_paid == True
 
 
 class Customer(models.Model):

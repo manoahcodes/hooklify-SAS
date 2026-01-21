@@ -1,7 +1,8 @@
 import logging
-import datetime
 
 from django.db import transaction
+from django.utils import timezone
+
 
 from apps.subscriptions.models import Price, Subscriber, Product, Customer
 from .webhook_helper_functions import (
@@ -158,6 +159,7 @@ def handle_subscription_canceled(data: dict):
     subscriber.is_free_active = True
     subscriber.subscription_starts_at = None
     subscriber.subscription_ends_at = None
+    subscriber.has_paid = False
 
     subscriber.save(update_fields=[
         "subscription",
@@ -169,6 +171,7 @@ def handle_subscription_canceled(data: dict):
         "paddle_price_id",
         "is_free_active",
         "is_subscription_active",
+        "has_paid",
         "subscription_starts_at",
         "subscription_ends_at",
     ])
@@ -282,6 +285,7 @@ def handle_subscription_updated(data: dict):
     elif paddle_status == "past_due":
         subscriber.is_subscription_active = True  # grace period
         subscriber.is_free_active = False
+        subscriber.has_paid = False
 
     elif paddle_status == "paused":
         subscriber.is_subscription_active = False
@@ -301,6 +305,7 @@ def handle_subscription_updated(data: dict):
             subscriber.is_free_active = True
             subscriber.paddle_subscriptions_id = None
             subscriber.paddle_price_id = None
+            subscriber.has_paid = False
 
     subscriber.save()
 
