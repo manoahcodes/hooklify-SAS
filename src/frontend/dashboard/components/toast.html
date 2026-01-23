@@ -1,0 +1,95 @@
+{% if messages %}
+  {% for m in messages %}
+    {% if forloop.last %}
+      {% with level=m.tags %}
+      <div class="fixed bottom-8 right-8 z-50 w-96 pointer-events-none">
+        <div
+          class="toast pointer-events-auto relative rounded-xl overflow-hidden group hover:scale-[1.02] transition-transform
+          {% if 'error' in level %}
+            bg-[#1a0f0f] border border-red-500/40
+          {% elif 'success' in level %}
+            bg-[#0f1a0f] border border-green-500/40
+          {% elif 'warning' in level %}
+            bg-[#1a160f] border border-yellow-500/40
+          {% else %}
+            bg-[#0f131a] border border-blue-500/40
+          {% endif %}
+          "
+        >
+          <div class="p-4 flex items-start gap-3">
+            <div class="p-2 rounded-lg shrink-0
+              {% if 'error' in level %}
+                bg-red-500/10 text-red-500
+              {% elif 'success' in level %}
+                bg-green-500/10 text-green-500
+              {% elif 'warning' in level %}
+                bg-yellow-500/10 text-yellow-500
+              {% else %}
+                bg-blue-500/10 text-blue-500
+              {% endif %}
+              "
+            >
+              <span class="material-symbols-outlined">
+                {% if 'error' in level %}
+                  warning
+                {% elif 'success' in level %}
+                  check_circle
+                {% elif 'warning' in level %}
+                  info
+                {% else %}
+                  info
+                {% endif %}
+              </span>
+            </div>
+
+            <div class="flex-1 pt-1">
+              <h4 class="text-sm font-bold text-white leading-none mb-1 capitalize">
+                {{ m.level_tag }}
+              </h4>
+              <p class="text-xs text-white/60 font-medium">
+                {{ m }}
+              </p>
+            </div>
+
+            <button type="button" class="toast-close text-white/20 hover:text-white transition-colors">
+              <span class="material-symbols-outlined text-lg">close</span>
+            </button>
+          </div>
+
+          <div class="absolute bottom-0 left-0 w-full h-1 bg-white/5">
+            <div
+              class="h-full w-full
+              {% if 'error' in level %}
+                bg-red-500
+              {% elif 'success' in level %}
+                bg-green-500
+              {% elif 'warning' in level %}
+                bg-yellow-500
+              {% else %}
+                bg-blue-500
+              {% endif %}
+              "
+            ></div>
+          </div>
+        </div>
+      </div>
+      {% endwith %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const toast = document.querySelector('.toast');
+  if (!toast) return;
+
+  toast.querySelector('.toast-close')?.addEventListener('click', () => {
+    toast.remove();
+  });
+
+  setTimeout(() => {
+    toast.remove();
+  }, 6000);
+});
+</script>

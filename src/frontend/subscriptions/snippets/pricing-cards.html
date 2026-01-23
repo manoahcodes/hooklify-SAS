@@ -86,10 +86,10 @@
                 class="paddle_button block w-full text-center rounded-full bg-primary text-white hover:opacity-90 font-bold py-3 transition cursor-pointer"
                 data-display-mode="overlay"
                 data-locale="en"
-                {% comment %} data-success-url="{{ request.build_absolute_uri }}{% url 'dashboard' %}" {% endcomment %}
+                data-success-url="{{ request.build_absolute_uri }}"
                 data-variant="one-page"
                 data-allow-logout="false"
-                data-items='[{"priceId": "{{ object.paddle_id }}", "quantity": 1}]'
+                data-items='[{"priceId": "{{ object.paddle_id }}"}]'
                 data-customer-id="{{ customer_paddle_id|default:'' }}">
                 Upgrade Now
             </button>

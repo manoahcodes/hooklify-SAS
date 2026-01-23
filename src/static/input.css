@@ -35,6 +35,7 @@
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
+
   .no-scrollbar::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
   }
@@ -43,15 +44,61 @@
   .custom-scrollbar::-webkit-scrollbar {
     width: 7px;
   }
+
   .custom-scrollbar::-webkit-scrollbar-track {
     background: transparent;
   }
+
   .custom-scrollbar::-webkit-scrollbar-thumb {
     /* Using your theme variable for consistency */
     background: var(--color-border-dark); 
     border-radius: 10px;
   }
+
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: #553a3a;
+  }
+
+  .sidebar-collapsed {
+    width: 75px !important;
+  }
+
+  .sidebar-collapsed .sidebar-label {
+    display: none;
+  }
+
+  .sidebar-collapsed nav a {
+    justify-content: center;
+  }
+
+  .sidebar-collapsed nav a span + * {
+    display: none;
+  }
+
+  .icon-logo,
+  .icon-collapsed {
+    display: none;
+  }
+
+  .icon-expanded {
+    display: inline-flex;
+  }
+
+  /* Collapsed sidebar */
+  .sidebar-collapsed .icon-expanded {
+    display: none;
+  }
+
+  .sidebar-collapsed .icon-logo {
+    display: inline-flex;
+  }
+
+  /* Collapsed + hover → show expand icon */
+  .sidebar-collapsed .sidebar-toggle:hover .icon-logo {
+    display: none;
+  }
+
+  .sidebar-collapsed .sidebar-toggle:hover .icon-collapsed {
+    display: inline-flex;
   }
 }
