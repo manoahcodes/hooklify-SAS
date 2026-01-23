@@ -1,11 +1,27 @@
-<aside class="hidden md:flex flex-col w-[285px] shrink-0 border-r border-border-dark bg-[#130d0d] h-full relative group/sidebar z-40">
+<aside class="hidden md:flex flex-col w-[285px] shrink-0 border-r border-border-dark bg-[#130d0d] h-full relative group/sidebar z-40 
+        transition-all duration-300 ease-in-out sidebar-expanded">
 
-    <a href="{% url "dashboard" %}" class="px-8 py-6 flex items-center gap-3">
-        <div class="size-8 flex items-center justify-center rounded-lg bg-primary text-white shadow-glow">
-            <span class="material-symbols-outlined text-4xl">bolt</span>
-        </div>
-        <h2 class="text-white text-2xl font-bold leading-tight tracking-[-0.015em]">Hooklify</h2>
-    </a>
+    <div class="px-6 py-6 flex items-center justify-between">
+        <a href="{% url "dashboard" %}" class="flex items-center gap-3 overflow-hidden">
+            <div class="size-8 flex items-center justify-center rounded-lg bg-primary text-white shadow-glow shrink-0">
+                <span class="material-symbols-outlined text-4xl">bolt</span>
+            </div>
+            <h2 class="sidebar-text text-white text-2xl font-bold leading-tight tracking-[-0.015em] whitespace-nowrap">
+                Hooklify
+            </h2>
+        </a>
+
+        <!-- Toggle button -->
+        <button id="sidebar-toggle"
+            class="size-8 flex items-center justify-center rounded-lg text-[#bb9b9b] cursor-ew-resize hover:text-white hover:bg-surface-dark transition-all shrink-0"
+            title="Collapse Sidebar">
+            <span>
+                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#f91f1f">
+                    <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm280-80h280v-560H480v560Z"/>
+                </svg>
+            </span>
+        </button>
+    </div>
 
     <div class="flex-1 overflow-y-auto custom-scrollbar px-4 pb-4 space-y-6">
         <nav class="space-y-1">
@@ -17,14 +33,16 @@
                 </span>
                 Dashboard
             </a>
+
             <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all group">
                 <span class="text-[20px]">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 0 512 512" fill="#f91f1f">
-                        <path d="M232.5 5.2c14.9-6.9 32.1-6.9 47 0l218.6 101c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L13.9 149.8C5.4 145.8 0 137.3 0 128s5.4-17.9 13.9-21.8L232.5 5.2zM48.1 218.4l164.3 75.9c27.7 12.8 59.6 12.8 87.3 0l164.3-75.9 34.1 15.8c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L13.9 277.8C5.4 273.8 0 265.3 0 256s5.4-17.9 13.9-21.8l34.1-15.8zM13.9 362.2l34.1-15.8 164.3 75.9c27.7 12.8 59.6 12.8 87.3 0l164.3-75.9 34.1 15.8c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L13.9 405.8C5.4 401.8 0 393.3 0 384s5.4-17.9 13.9-21.8z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960" fill="#f91f1f">
+                        <path d="M400-240q-33 0-56.5-23.5T320-320v-50q-57-39-88.5-100T200-600q0-117 81.5-198.5T480-880q117 0 198.5 81.5T760-600q0 69-31.5 129.5T640-370v50q0 33-23.5 56.5T560-240H400Zm0-80h160v-92l34-24q41-28 63.5-71.5T680-600q0-83-58.5-141.5T480-800q-83 0-141.5 58.5T280-600q0 49 22.5 92.5T366-436l34 24v92Zm0 240q-17 0-28.5-11.5T360-120v-40h240v40q0 17-11.5 28.5T560-80H400Zm80-520Z"/>
                     </svg>
                 </span>
-                Templates
+                Ideas
             </a>
+
             <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all group">
                 <span class="text-[20px] text-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960" fill="#f91f1f">
