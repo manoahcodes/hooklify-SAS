@@ -58,7 +58,7 @@ def handle_subscription_created(data: dict):
     # Enforce one active subscription
     sync_and_cancel_old_subscription(
         user=user,
-        new_subscription_id=subscription_id,
+        new_subscription_id=str(subscription_id),
         cancel_immediately=True,
     )
 
@@ -165,7 +165,7 @@ def handle_subscription_canceled(data: dict):
         "subscription",
         "price",
         "status",
-        "paddle_subscriptions_id"
+        "paddle_subscriptions_id",
         "paddle_transactions_id",
         "paddle_user_id",
         "paddle_price_id",
@@ -212,11 +212,10 @@ def handle_subscription_updated(data: dict):
     customer = Customer.objects.select_related("user").get(
         paddle_id=paddle_customer_id
     )
-    user = customer.user
 
+    user = customer.user
     product = Product.objects.get(paddle_id=product_id)
     price = Price.objects.get(paddle_id=price_id)
-
     free_product, free_price = get_free_plan_details()
 
     subscriber, _ = Subscriber.objects.select_for_update().get_or_create(
@@ -229,6 +228,9 @@ def handle_subscription_updated(data: dict):
             "is_subscription_active": False,
         },
     )
+
+    if not subscriber.paddle_subscriptions_id:
+        subscriber.paddle_subscriptions_id = subscription_id
 
     # Ignore updates for a different subscription
     if (
@@ -266,6 +268,16 @@ def handle_subscription_updated(data: dict):
     ):
         subscriber.subscription = product
         subscriber.price = price
+
+    if not subscriber.paddle_subscriptions_id:
+        if subscriber.status in {Subscriber.StatusChoices.FREE, Subscriber.StatusChoices.CANCELED}:
+            return  # perfectly valid state
+
+        logger.warning(
+            f"[sync] User {user.username}: "
+            "Active subscriber missing paddle_subscriptions_id"
+        ) 
+        return
 
     if starts_at:
         subscriber.subscription_starts_at = starts_at
@@ -310,13 +322,18 @@ def handle_subscription_updated(data: dict):
     subscriber.save()
 
     logger.info(
-        f"[SUB UPDATE SUCCESS] {subscription_id} → {subscriber.status} for user={user.id}"
+        f"[SUBSCRIPTION UPDATED SUCCESSFULLY] {subscription_id} → {subscriber.status} for user={user.username}"
     )
 
 
 
 @transaction.atomic
 def handle_transaction_completed(data: dict):
+    """
+    Paddle transaction.completed handler.
+    This indicates a payment attempt is Successful — ACTIVATE plan and features.
+    """
+
     sub_id = data.get("subscription_id")
     txn_id = data.get("id")
     status = data.get("status")
@@ -341,3 +358,78 @@ def handle_transaction_completed(data: dict):
         subscriber.is_free_active = False
 
     subscriber.save()
+
+
+@transaction.atomic
+def handle_transaction_failed(data: dict):
+    """
+    Paddle transaction.failed handler.
+    This indicates a payment attempt failed — NOT a cancellation.
+    """
+
+    transaction_id = data.get("id")
+    subscription_id = data.get("subscription_id")
+    customer_id = data.get("customer_id")
+
+    if not transaction_id or not customer_id:
+        raise WebhookProcessingError("Invalid transaction.failed payload")
+    
+    # -------------------------------
+    # Resolve subscriber
+    # -------------------------------
+    subscriber = None
+
+    if subscription_id:
+        subscriber = (
+            Subscriber.objects.select_for_update()
+            .filter(paddle_subscriptions_id=subscription_id)
+            .first()
+        )
+
+    if not subscriber:
+        try:
+            customer = Customer.objects.select_related("user").get(
+                paddle_id=customer_id
+            )
+            subscriber = Subscriber.objects.select_for_update().get(
+                user=customer.user
+            )
+        except (Customer.DoesNotExist, Subscriber.DoesNotExist):
+            logger.warning(
+                f"[TX FAILED] Subscriber not found for customer {customer_id}"
+            )
+            return
+    
+    # -------------------------------
+    # Idempotency guard
+    # -------------------------------
+    if subscriber.paddle_transactions_id == transaction_id:
+        logger.info(
+            f"[TX FAILED] Duplicate event ignored for {transaction_id}"
+        )
+        return
+    
+    # -------------------------------
+    # Mark payment issue (NOT cancel)
+    # -------------------------------
+    subscriber.paddle_transactions_id = transaction_id
+
+    # Transition to past_due ONLY if currently active/trialing
+    if subscriber.status in (Subscriber.StatusChoices.ACTIVE, Subscriber.StatusChoices.TRIALING):
+        subscriber.status = Subscriber.StatusChoices.PAST_DUE
+
+
+    # Subscription is still considered active (grace period)
+    subscriber.is_subscription_active = False
+    subscriber.is_free_active = True
+
+    subscriber.save(update_fields=[
+        "paddle_transactions_id",
+        "status",
+        "is_subscription_active",
+        "is_free_active",
+    ])
+
+    logger.info(
+        f"[TX FAILED] Payment issue recorded for user {subscriber.user.username}"
+    )

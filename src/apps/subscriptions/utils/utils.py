@@ -132,6 +132,7 @@ def normalize_canceled_subscribers():
     price = Price.objects.get(pk=price_id)
 
     canceled_qs = Subscriber.objects.filter(
+        Q(status=Subscriber.StatusChoices.FREE) or 
         Q(status=Subscriber.StatusChoices.CANCELED)
     )
 
@@ -157,8 +158,9 @@ def normalize_canceled_subscribers():
         sub.paddle_subscriptions_id = None
         sub.paddle_transactions_id = None
         sub.paddle_price_id = None
-        sub.is_subscription_active = False
         sub.is_free_active = True
+        sub.is_subscription_active = False
+        sub.has_paid = False
         sub.subscription_starts_at = None
         sub.subscription_ends_at = None
 

@@ -15,20 +15,25 @@ from apps.webhook.models import WebhookEvents
 from apps.webhook.handlers.webhook_subscriptions import (
     handle_subscription_created, handle_subscription_updated, 
     handle_subscription_canceled, handle_transaction_completed,
-    WebhookProcessingError
+    handle_transaction_failed, WebhookProcessingError
     )
 
 logger = logging.getLogger(__name__)
 
+PADDLE_WEBHOOK_SECRET_SUBSCRIPTION_KEY = config("PADDLE_WEBHOOK_SUBSCRIPTION_SECRET_KEY", cast=str)
+
 # Create your views here.
-PADDLE_WEBHOOK_SECRET_SUBSCRIPTION_KEY = config("PADDLE_WEBHOOK_SUBSCRIPTION_SECRET_KEY", default="", cast=str)
 
 @csrf_exempt
 @require_POST
 def paddle_subscription_webhook(request):
+    """ 
+    Handles all Paddle subscription webhooks. 
+    Delegates business logic to service functions. 
+    """
 
     try:
-        if not Verifier().verify(request, Secret(PADDLE_WEBHOOK_SECRET_SUBSCRIPTION_KEY)):
+        if not Verifier().verify(request, Secret(str(PADDLE_WEBHOOK_SECRET_SUBSCRIPTION_KEY))):
             return HttpResponse("Invalid signature", status=400)
     except Exception:
         return HttpResponse("Signature verification error", status=400)
@@ -38,7 +43,7 @@ def paddle_subscription_webhook(request):
     except json.JSONDecodeError:
         return JsonResponse({"error": "Invalid JSON payload"}, status=400)
 
-    event_id = payload.get("id")
+    event_id = payload.get("event_id")
     event_type = payload.get("event_type")
     data = payload.get("data", {})
 
@@ -69,6 +74,9 @@ def paddle_subscription_webhook(request):
 
         elif event_type == "transaction.completed":
             handle_transaction_completed(data)
+
+        elif event_type == "transaction.payment_failed":
+            handle_transaction_failed(data)
 
         else:
             return JsonResponse({"status": "ignored"}, status=200)
