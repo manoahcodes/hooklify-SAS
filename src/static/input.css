@@ -101,4 +101,12 @@
   .sidebar-collapsed .sidebar-toggle:hover .icon-collapsed {
     display: inline-flex;
   }
+
+  .upgrade-icon {
+    display: none;
+  }
+
+  .sidebar-collapsed .upgrade-icon {
+    display: flex;
+  }
 }

@@ -119,10 +119,21 @@
     </div>
 
     <div class="p-4 mt-auto border-t border-border-dark bg-[#130d0d] z-20">
-        <div class="flex items-center justify-between gap-3">
+        <div class="relative flex items-center justify-between gap-3">
             
             <div class="relative flex-1 min-w-0 group/profile">
-                <button class="w-full flex items-center gap-3 rounded-xl transition-colors hover:bg-surface-dark/50 p-1 -ml-1">
+                {% if subscriber.is_inactive %}
+                    <a href="{% url "plans" %}" title="Upgrade"
+                        class="upgrade-icon mb-3 gap-3 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white shadow-glow hover:bg-red-600 transition cursor-pointer">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20" fill="currentColor">
+                                <path d="m176-120-56-56 301-302-181-45 198-123-17-234 179 151 216-88-87 217 151 178-234-16-124 198-45-181-301 301Z"/>
+                            </svg>
+                        </span>
+                    </a>
+                {% endif %}
+
+                <button title="Profile" class="w-full flex items-center gap-3 rounded-xl transition-colors hover:bg-surface-dark/50 p-1 -ml-1">
                     <div class="relative size-10 rounded-full bg-gradient-to-b from-[#333] to-black border border-[#444] flex items-center justify-center shrink-0 shadow-inner overflow-hidden">
                         <span class="text-white text-xl">
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960" fill="#fff">
@@ -184,7 +195,7 @@
 
             {% if subscriber.is_inactive %}
                 <a href="{% url "plans" %}" 
-                class="sidebar-label flex h-10 items-center justify-center px-5 rounded-lg bg-primary hover:bg-red-600 text-white text-[11px] font-bold uppercase tracking-widest shadow-glow hover:shadow-[0_0_20px_rgba(249,31,31,0.6)] transition-all hover:scale-105 shrink-0">
+                    class="sidebar-label flex h-10 items-center justify-center px-5 rounded-lg bg-primary hover:bg-red-600 text-white text-[11px] font-bold uppercase tracking-widest shadow-glow hover:shadow-[0_0_20px_rgba(249,31,31,0.6)] transition-all hover:scale-105 shrink-0">
                     Upgrade
                 </a>
             {% endif %}
