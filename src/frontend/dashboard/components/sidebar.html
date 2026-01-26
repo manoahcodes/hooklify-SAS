@@ -115,32 +115,36 @@
                 </span>
                 <span class="sidebar-label">Generation History</span>
             </a>
+
+        
         </nav>
     </div>
 
     <div class="p-4 mt-auto border-t border-border-dark bg-[#130d0d] z-20">
-        <div class="relative flex items-center justify-between gap-3">
-            
-            <div class="relative flex-1 min-w-0 group/profile">
-                {% if subscriber.is_inactive %}
+        {% if subscriber.is_inactive %}
+                <div class="upgrade-icon relative sidebar-label">
                     <a href="{% url "plans" %}" title="Upgrade"
-                        class="upgrade-icon mb-3 gap-3 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white shadow-glow hover:bg-red-600 transition cursor-pointer">
-                        <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20" fill="currentColor">
-                                <path d="m176-120-56-56 301-302-181-45 198-123-17-234 179 151 216-88-87 217 151 178-234-16-124 198-45-181-301 301Z"/>
+                        class="size-10 flex gap-3 h-8 w-8 p-1 mb-3 ml-1 items-center justify-center rounded-full bg-primary text-white shadow-glow hover:bg-red-600 transition cursor-pointer">
+                        <span class="text-white text-xl">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff">
+                                <path d="M280-160v-80h400v80H280Zm160-160v-327L336-544l-56-56 200-200 200 200-56 56-104-103v327h-80Z"/>
                             </svg>
                         </span>
                     </a>
-                {% endif %}
+                </div>
+            {% endif %}
 
+        <div class="flex items-center justify-between">
+            <div class="relative flex-1 min-w-0 group/profile">
                 <button title="Profile" class="w-full flex items-center gap-3 rounded-xl transition-colors hover:bg-surface-dark/50 p-1 -ml-1">
-                    <div class="relative size-10 rounded-full bg-gradient-to-b from-[#333] to-black border border-[#444] flex items-center justify-center shrink-0 shadow-inner overflow-hidden">
+                    <div class="size-10 rounded-full bg-gradient-to-b from-[#333] to-black border border-[#444] flex items-center justify-center shrink-0 shadow-inner overflow-hidden">
                         <span class="text-white text-xl">
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960" fill="#fff">
                                 <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z" />
                             </svg>
                         </span>
                     </div>
+
                     <div class="flex-1 min-w-0 text-left">
                         <p class="text-white text-sm font-bold truncate leading-tight group-hover/profile:text-primary transition-colors">{{ user.get_full_name }}</p>
                         <p class="text-[#bb9b9b] text-[10px] uppercase font-bold tracking-wider truncate">{{ subscriber.subscription.name }} Plan</p>
@@ -150,8 +154,8 @@
                 <div class="absolute bottom-full left-0 w-[240px] mb-3 bg-[#1a1111] border border-border-dark rounded-xl shadow-2xl p-2 opacity-0 invisible group-hover/profile:opacity-100 group-hover/profile:visible transition-all z-50 transform translate-y-2 group-hover/profile:translate-y-0 backdrop-blur-md origin-bottom-left">
 
                     <div class="flex-1 min-w-0 text-left py-2 ml-2"> 
-                        <p class="text-white text-[16px] font-bold truncate leading-tight group-hover/profile:text-primary transition-colors">{{ user.get_full_name }}</p>
-                        <p class="text-[#bb9b9b] text-[10px] uppercase font-bold tracking-wider truncate">{{ user.email }}</p>
+                        <p class="text-white text-[16px] font-bold truncate leading-tight group-hover/profile:text-primary transition-colors">{{ subscriber.user.get_full_name }}</p>
+                        <p class="text-[#bb9b9b] text-[10px] uppercase font-bold tracking-wider truncate">{{ subscriber.user.email }}</p>
                         <p class="text-[#bb9b9b] text-[10px] uppercase font-bold tracking-wider truncate">{{ subscriber.subscription.name }} Plan</p>
                     </div>
                     
@@ -200,7 +204,7 @@
                 </a>
             {% endif %}
         </div>
-    </div>
+</div>
 
 <script>
   (function () {
