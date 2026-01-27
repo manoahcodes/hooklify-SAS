@@ -95,6 +95,7 @@ def handle_subscription_created(data: dict):
 def handle_subscription_canceled(data: dict):
     """
     Paddle subscription.canceled handler.
+    Fires when the subscription is FULLY terminated (end of cycle).
     """
 
     paddle_customer_id = data.get("customer_id")
@@ -104,9 +105,7 @@ def handle_subscription_canceled(data: dict):
         raise WebhookProcessingError("Invalid subscription.canceled payload.")
 
     try:
-        customer = Customer.objects.select_related("user").get(
-            paddle_id=paddle_customer_id
-        )
+        customer = Customer.objects.select_related("user").get(paddle_id=paddle_customer_id)
         user = customer.user
     except Customer.DoesNotExist:
         logger.error(f"[CANCEL] Unknown customer {paddle_customer_id}")
@@ -128,12 +127,13 @@ def handle_subscription_canceled(data: dict):
             paddle_price_id = None,
             is_free_active=True,
             is_subscription_active=False,
+            has_paid=False,
             subscription_starts_at = None,
             subscription_ends_at = None
         )
         return
 
-    if subscriber.paddle_subscriptions_id != subscription_id:
+    if subscriber.paddle_subscriptions_id and subscriber.paddle_subscriptions_id != subscription_id:
         logger.info(
             f"[CANCEL IGNORED] Event {subscription_id} "
             f"!= active {subscriber.paddle_subscriptions_id}"
@@ -143,23 +143,14 @@ def handle_subscription_canceled(data: dict):
     if subscriber.status == Subscriber.StatusChoices.CANCELED:
         return
 
-    scheduled = data.get("scheduled_change") or {}
-    ends_at = scheduled.get("effective_at")
-
-    if ends_at:
-        subscriber.subscription_ends_at = ends_at
-        subscriber.save(update_fields=["subscription_ends_at"])
-        logger.info(f"[CANCEL SCHEDULED] {subscription_id} → {ends_at}")
-        return
-
     subscriber.subscription = free_product
     subscriber.price = free_price
     subscriber.status = Subscriber.StatusChoices.CANCELED
     subscriber.is_subscription_active = False
     subscriber.is_free_active = True
+    subscriber.has_paid = False
     subscriber.subscription_starts_at = None
     subscriber.subscription_ends_at = None
-    subscriber.has_paid = False
 
     subscriber.save(update_fields=[
         "subscription",
@@ -186,7 +177,7 @@ def handle_subscription_canceled(data: dict):
 def handle_subscription_updated(data: dict):
     """
     Paddle subscription.updated webhook.
-    Paddle is the source of truth.
+    Handles any updates from paddle to sync with application.
     """
 
     subscription_id = data.get("id")
@@ -295,7 +286,11 @@ def handle_subscription_updated(data: dict):
         subscriber.is_free_active = False
 
     elif paddle_status == "past_due":
-        subscriber.is_subscription_active = True  # grace period
+        if subscriber.has_paid:
+            subscriber.is_subscription_active = True
+        else:
+            subscriber.is_subscription_active = False
+            
         subscriber.is_free_active = False
         subscriber.has_paid = False
 
@@ -304,20 +299,13 @@ def handle_subscription_updated(data: dict):
         subscriber.is_free_active = False
 
     elif paddle_status == "canceled":
-        # Still paid until period ends
-        if ends_at and ends_at > timezone.now():
-            subscriber.is_subscription_active = True
-            subscriber.is_free_active = False
-        else:
-            # Hard downgrade
-            subscriber.subscription = free_product
-            subscriber.price = free_price
-            subscriber.status = Subscriber.StatusChoices.FREE
-            subscriber.is_subscription_active = False
-            subscriber.is_free_active = True
-            subscriber.paddle_subscriptions_id = None
-            subscriber.paddle_price_id = None
-            subscriber.has_paid = False
+        subscriber.subscription = free_product
+        subscriber.price = free_price
+        subscriber.status = Subscriber.StatusChoices.CANCELED
+        subscriber.is_subscription_active = False
+        subscriber.is_free_active = True
+        subscriber.has_paid = False
+        subscriber.paddle_price_id = None
 
     subscriber.save()
 
@@ -346,7 +334,7 @@ def handle_transaction_completed(data: dict):
             paddle_subscriptions_id=sub_id
         )
     except Subscriber.DoesNotExist:
-        return
+        raise WebhookProcessingError("Subscriber not found - forcing retry")
 
     subscriber.has_paid = True
     subscriber.paddle_transactions_id = txn_id
@@ -418,10 +406,17 @@ def handle_transaction_failed(data: dict):
     if subscriber.status in (Subscriber.StatusChoices.ACTIVE, Subscriber.StatusChoices.TRIALING):
         subscriber.status = Subscriber.StatusChoices.PAST_DUE
 
-
-    # Subscription is still considered active (grace period)
-    subscriber.is_subscription_active = False
-    subscriber.is_free_active = True
+    # -------------------------------------------------------
+    # CRITICAL LOGIC: Distinguish New vs Existing Failures
+    # -------------------------------------------------------
+    if subscriber.has_paid:
+        # Existing user (Renewal failed) -> GRACE PERIOD
+        subscriber.is_subscription_active = True
+        logger.info(f"[TX FAILED] Grace period active for {subscriber.user.username}")
+    else:
+        # New user (Signup failed) -> NO ACCESS
+        subscriber.is_subscription_active = False
+        logger.info(f"[TX FAILED] Signup payment failed for {subscriber.user.username}. Access denied.")
 
     subscriber.save(update_fields=[
         "paddle_transactions_id",
