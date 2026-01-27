@@ -12,7 +12,7 @@
 
                 <!-- OpenID Brand Button -->
                 <a href="{{ href }}" title="{{ brand.name }}"
-                   class="flex w-full items-center justify-center gap-3 overflow-hidden rounded-lg h-12 px-6 border border-gray-700 bg-gray-800 hover:bg-gray-700 text-gray-200 text-base font-semibold transition shadow-lg">
+                   class="flex w-full items-center justify-center gap-3 overflow-hidden rounded-lg h-12 px-6 border border-red-600 bg-primary hover:bg-red-600 text-gray-200 text-base font-semibold transition-all shadow-lg">
                     {{ brand.name }}
                 </a>
             {% endfor %}
@@ -22,7 +22,7 @@
 
         <!-- Standard Provider Button -->
         <a href="{{ href }}" title="{{ provider.name }}"
-           class="flex w-full items-center justify-center gap-3 overflow-hidden rounded-lg h-12 px-6 border border-gray-700 bg-gray-600 hover:bg-gray-700 text-gray-200 text-base font-semibold transition shadow-lg">
+           class="flex w-full items-center justify-center gap-3 overflow-hidden rounded-lg h-12 px-6 bg-primary hover:bg-red-600 text-gray-200 text-base font-semibold transition-all shadow-lg">
             <span class="text-lg font-bold text-white">{{ provider.name }}</span>
         </a>
 

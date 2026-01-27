@@ -25,27 +25,32 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 
 
 {% load static %}
-<link href="{% static "dashboard/flowbite.min.css" %}" rel="stylesheet">
-<link href="{% static "main.css" %}" rel="stylesheet">
-<link href="{% static "fontawesome/css/all.min.css" %}" rel="stylesheet">
+<link href="{% static 'dashboard/flowbite.min.css' %}" rel="stylesheet">
+<link href="{% static 'main.css' %}" rel="stylesheet">
+<link href="{% static 'fontawesome/css/all.min.css' %}" rel="stylesheet">
 
-<script src="{% static "htmx.min.js" %}"></script>
+<script src="{% static 'htmx.min.js' %}"></script>
+
+<script>
+    document.body.addEventListener('htmx:configRequest', (event) => {
+        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+    })
+</script>
 
 </head>
 <body class="flex h-screen w-full flex-row bg-background-light custom-scrollbar dark:bg-background-dark font-display text-white overflow-hidden">
     {% if user.is_authenticated %}
-    {% include "dashboard/components/sidebar.html" %}
-    <div class="@container/main relative flex min-w-0 flex-1 flex-col -translate-y-[calc(env(safe-area-inset-bottom,0px)/2)] pt-[calc(env(safe-area-inset-bottom,0px)/2)]">
-        {% include "dashboard/components/header.html" %}
-        <main class="flex-1 flex flex-col items-center h-full overflow-y-auto min-h-0">
-            {% block content %}{% endblock %}
-        </main>
-    {% include "dashboard/components/toast.html" %}
-    </div>
+        {% include "dashboard/components/sidebar.html" %}
+        <div class="@container/main relative flex min-w-0 flex-1 flex-col -translate-y-[calc(env(safe-area-inset-bottom,0px)/2)] pt-[calc(env(safe-area-inset-bottom,0px)/2)]">
+            {% include "dashboard/components/header.html" %}
+            <main class="flex-1 flex flex-col items-center h-full overflow-y-auto min-h-0">
+                {% block content %}{% endblock %}
+            </main>
+            {% include "dashboard/components/toast.html" %}
+        </div>
     {% else %}
         <main class="flex flex-1 items-center justify-center text-center px-6">
             <div class="max-w-md">
@@ -57,7 +62,7 @@
                     Please sign in to continue.
                 </p>
 
-                <a href="{% url 'accounts_login' %}"
+                <a href="{% url 'account_login' %}"
                    class="inline-flex items-center justify-center rounded-lg
                           bg-primary px-6 py-2 text-sm font-medium
                           hover:opacity-90 transition">
@@ -67,8 +72,8 @@
         </main>
     {% endif %}
     
-    <script href="{% static "dashboard/flowbite.min.js" %}"></script>
-    <script href="{% static "fontawesome/js/all.min.js" %}"></script>
-    <script href="{% static "dashboard/main.js" %}" defer></script>
+    <script src="{% static 'dashboard/main.js' %}"></script>
+    <script src="{% static 'dashboard/flowbite.min.js' %}"></script>
+    <script src="{% static 'fontawesome/js/all.min.js' %}"></script>
 </body>
 </html>
