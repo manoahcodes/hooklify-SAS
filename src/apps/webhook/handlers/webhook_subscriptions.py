@@ -1,8 +1,5 @@
 import logging
-
 from django.db import transaction
-from django.utils import timezone
-
 
 from apps.subscriptions.models import Price, Subscriber, Product, Customer
 from .webhook_helper_functions import (
