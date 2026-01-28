@@ -3450,12 +3450,6 @@
       scale: 0.98;
     }
   }
-  .motion-safe\:duration-100 {
-    @media (prefers-reduced-motion: no-preference) {
-      --tw-duration: 100ms;
-      transition-duration: 100ms;
-    }
-  }
   .sm\:block {
     @media (width >= 40rem) {
       display: block;

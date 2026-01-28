@@ -34,12 +34,6 @@
 
 <script src="{% static 'dashboard/htmx.min.js' %}"></script>
 
-<script>
-    document.body.addEventListener('htmx:configRequest', (event) => {
-        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
-    })
-</script>
-
 </head>
 <body class="flex h-screen w-full flex-row bg-background-light custom-scrollbar dark:bg-background-dark font-display text-white overflow-hidden">
     {% if user.is_authenticated %}

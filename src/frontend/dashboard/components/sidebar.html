@@ -1,4 +1,4 @@
-<aside id="sidebar" class="hidden md:flex flex-col w-[285px] shrink-0 border-r border-border-dark bg-[#130d0d] h-full relative group/sidebar z-40 sidebar-expanded transition-all ease-in-out motion-safe:duration-100">
+<aside id="sidebar" class="hidden md:flex flex-col w-[285px] shrink-0 border-r border-border-dark bg-[#130d0d] h-full relative group/sidebar z-40 hover:sidebar-expanded transition-all ease-in-out duration-300">
 
     <div class="px-6 py-6 flex items-center justify-between">
         <a href="{% url 'dashboard' %}" class="flex items-center gap-3 overflow-hidden">
@@ -10,10 +10,7 @@
             </h2>
         </a>
 
-        <button
-            id="sidebar-toggle"
-            class="sidebar-toggle ease-in-out transition-all flex items-center justify-center rounded-lg text-[#bb9b9b] cursor-pointer"
-            aria-label="Toggle Sidebar">
+        <button id="sidebar-toggle" class="sidebar-toggle ease-in-out transition-all flex items-center justify-center rounded-lg text-[#bb9b9b] cursor-pointer" aria-label="Toggle Sidebar">
 
             <div class="icon-logo size-8 flex items-center justify-center rounded-lg bg-primary text-white shadow-glow shrink-0">
                 <span class="material-symbols-outlined text-4xl">bolt</span>
@@ -80,7 +77,9 @@
                 <span class="text-[20px]"></span>
                 <span class="sidebar-label">Scripts</span>
             </a>
-        </nav> <nav class="space-y-1">
+        </nav>
+        
+        <nav class="space-y-1">
             <p class="sidebar-label px-3 text-[10px] font-bold text-[#553a3a] uppercase tracking-widest mb-2">My Library</p>
             <a href="#" title="My Projects" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all">
                 <span class="text-[20px]">
@@ -107,9 +106,11 @@
                 <span class="sidebar-label">Generation History</span>
             </a>
         </nav>
+
     </div>
 
     <div class="p-4 mt-auto border-t border-border-dark bg-[#130d0d] z-20">
+
         {% if subscriber.is_inactive %}
             <div class="upgrade-icon relative">
                 <a href="{% url 'plans' %}" title="Upgrade"
@@ -123,83 +124,8 @@
             </div>
         {% endif %}
 
-        <div class="flex items-center justify-between">
-            <div class="relative flex-1 min-w-0 group/profile">
-                <button title="Profile" class="w-full flex items-center gap-3 rounded-xl transition-colors hover:bg-surface-dark/50 p-1 -ml-1">
-                    <div class="size-10 rounded-full bg-gradient-to-b from-[#333] to-black border border-[#444] flex items-center justify-center shrink-0 shadow-inner overflow-hidden">
-                        <span class="text-white text-xl">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960" fill="#fff">
-                                <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z" />
-                            </svg>
-                        </span>
-                    </div>
+       {% include "dashboard/components/sidebar_footer.html" %}
 
-                    <div class="flex-1 min-w-0 text-left">
-                        <p class="text-white text-sm font-bold truncate leading-tight group-hover/profile:text-primary transition-colors">{{ user.get_full_name }}</p>
-                        <p class="text-[#bb9b9b] text-[10px] uppercase font-bold tracking-wider truncate">{{ subscriber.subscription.name }}</p>
-                    </div>
-                </button>
-
-                <div class="absolute bottom-full left-0 w-[240px] mb-3 bg-[#1a1111] border border-border-dark rounded-xl shadow-2xl p-2 opacity-0 invisible group-hover/profile:opacity-100 group-hover/profile:visible transition-all z-50 transform translate-y-2 group-hover/profile:translate-y-0 backdrop-blur-md origin-bottom-left after:absolute after:w-full after:h-4 after:content-[''] after:top-full after:left-0">
-
-                    <div class="flex-1 min-w-0 text-left py-2 ml-2"> 
-                        <p class="text-white text-[16px] font-bold truncate leading-tight group-hover/profile:text-primary transition-colors">{{ subscriber.user.get_full_name }}</p>
-                        <p class="text-[#bb9b9b] text-[10px] uppercase font-bold tracking-wider truncate">{{ subscriber.user.email }}</p>
-                        <p class="text-[#bb9b9b] text-[10px] uppercase font-bold tracking-wider truncate">{{ subscriber.subscription.name }} Plan</p>
-                    </div>
-                    
-                    <div class="h-px bg-border-dark my-1"></div>
-
-                    <div class="px-2 py-1.5 text-xs text-[#553a3a] font-bold uppercase tracking-wider mb-1">Account</div>
-                    <a href="{% url 'profile' %}" class="flex items-center gap-2 px-3 py-2 rounded-lg text-[#bb9b9b] hover:text-primary hover:bg-surface-dark transition-colors text-sm">
-                        <span class="text-[18px]">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="20px" width="20px" viewBox="0 -960 960 960" fill="currentColor"><path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Z"/></svg>
-                        </span> 
-                        Profile
-                    </a>
-
-                    <a href="{% url 'profile_billing' %}" class="flex items-center gap-2 px-3 py-2 rounded-lg text-[#bb9b9b] hover:text-primary hover:bg-surface-dark transition-colors text-sm">
-                        <span class="text-[18px]">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="20px" width="20px" viewBox="0 -960 960 960" fill="currentColor"><path d="M880-720v480q0 33-23.5 56.5T800-160H160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720Zm-720 80h640v-80H160v80Zm0 160v240h640v-240H160Zm0 240v-480 480Z"/></svg>
-                        </span> 
-                        Billing
-                    </a>
-                    
-                    <a href="{% url 'profile_settings' %}" class="flex items-center gap-2 px-3 py-2 rounded-lg text-[#bb9b9b] hover:text-primary hover:bg-surface-dark transition-colors text-sm">
-                        <span class="text-[18px]">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="20px" width="20px" viewBox="0 -960 960 960" fill="currentColor"><path d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm70-80h79l14-106q31-8 57.5-23.5T639-327l99 41 39-68-86-65q5-14 7-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q22 23 48.5 38.5T427-266l13 106Zm42-180q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Zm-2-140Z"/></svg>
-                        </span> 
-                        Settings
-                    </a>
-
-                    <div class="h-px bg-border-dark my-1"></div>
-
-                    <a href="{% url 'profile_settings' %}" class="flex items-center gap-2 px-3 py-2 rounded-lg text-[#bb9b9b] hover:text-primary hover:bg-surface-dark transition-colors text-sm">
-                        <span class="text-[18px]">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="20px" width="20px" viewBox="0 -960 960 960" fill="currentColor"><path d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm70-80h79l14-106q31-8 57.5-23.5T639-327l99 41 39-68-86-65q5-14 7-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q22 23 48.5 38.5T427-266l13 106Zm42-180q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Zm-2-140Z"/></svg>
-                        </span> 
-                        Help
-                    </a>
-                    
-                    <form method="post" action="{% url 'account_logout' %}" class="w-full">
-                        {% csrf_token %}
-                        <button type="submit" class="flex w-full items-center gap-2 px-3 py-2 rounded-lg text-[#bb9b9b] hover:text-primary hover:bg-surface-dark transition-colors text-sm cursor-pointer">
-                            <span class="text-[18px]">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="20px" width="20px" viewBox="0 -960 960 960" fill="currentColor"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/></svg>
-                            </span> 
-                            Logout
-                        </button>
-                    </form>
-                </div>
-            </div>
-
-            {% if subscriber.is_inactive %}
-                <a href="{% url 'plans' %}" 
-                   class="sidebar-label flex h-10 items-center justify-center px-5 rounded-lg bg-primary hover:bg-red-600 text-white text-[11px] font-bold uppercase tracking-widest shadow-glow hover:shadow-[0_0_20px_rgba(249,31,31,0.6)] transition-all hover:scale-105 shrink-0">
-                    Upgrade
-                </a>
-            {% endif %}
-        </div>
     </div>
 
 </aside>
