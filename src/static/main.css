@@ -221,6 +221,7 @@
     --color-border-dark: #3a2727;
     --color-surface-border: #3a2727;
     --color-surface-dark: #1f1515;
+    --color-dark-tooltip: #1e2939;
     --font-display: "Space Grotesk", "sans-serif";
     --font-body: "Noto Sans", "sans-serif";
     --radius-full: 9999px;
@@ -1626,6 +1627,9 @@
   }
   .bg-card-dark {
     background-color: var(--color-card-dark);
+  }
+  .bg-dark-tooltip {
+    background-color: var(--color-dark-tooltip);
   }
   .bg-gray-100 {
     background-color: var(--color-gray-100);
