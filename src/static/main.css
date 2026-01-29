@@ -221,7 +221,6 @@
     --color-border-dark: #3a2727;
     --color-surface-border: #3a2727;
     --color-surface-dark: #1f1515;
-    --color-dark-tooltip: #1e2939;
     --font-display: "Space Grotesk", "sans-serif";
     --font-body: "Noto Sans", "sans-serif";
     --radius-full: 9999px;
@@ -1307,6 +1306,9 @@
   .rounded-lg {
     border-radius: var(--radius-lg);
   }
+  .rounded-md {
+    border-radius: var(--radius-md);
+  }
   .rounded-xl {
     border-radius: var(--radius-xl);
   }
@@ -1627,9 +1629,6 @@
   }
   .bg-card-dark {
     background-color: var(--color-card-dark);
-  }
-  .bg-dark-tooltip {
-    background-color: var(--color-dark-tooltip);
   }
   .bg-gray-100 {
     background-color: var(--color-gray-100);
@@ -3938,7 +3937,13 @@
   .upgrade-icon {
     display: none;
   }
+  .sidebar-tooltip-e {
+    display: none;
+  }
   .sidebar-collapsed .upgrade-icon {
+    display: flex;
+  }
+  .sidebar-collapsed .sidebar-tooltip-e {
     display: flex;
   }
 }

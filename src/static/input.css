@@ -107,7 +107,15 @@
     display: none;
   }
 
+  .sidebar-tooltip-e {
+    display: none;
+  }
+
   .sidebar-collapsed .upgrade-icon {
+    display: flex;
+  }
+
+  .sidebar-collapsed .sidebar-tooltip-e {
     display: flex;
   }
 }

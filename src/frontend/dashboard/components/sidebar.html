@@ -34,7 +34,7 @@
     <div class="flex-1 overflow-y-auto custom-scrollbar px-4 pb-4 space-y-6">
         <nav class="space-y-1">
 
-            <a href="#" title="Dashboard" data-tooltip-placement="right" data-tooltip-target="tooltip-hover" data-tooltip-trigger="hover" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-surface-dark bg-primary/10 border border-primary/20 shadow-[0_0_10px_rgba(249,31,31,0.1)] mb-1 font-medium transition-all group">
+            <a href="#" data-tooltip-placement="right" data-tooltip-target="tooltip-hover" data-tooltip-trigger="hover" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-surface-dark bg-primary/10 border border-primary/20 shadow-[0_0_10px_rgba(249,31,31,0.1)] mb-1 font-medium transition-all group">
                 <span class="text-[20px] text-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960" fill="currentColor">
                         <path d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z" />
@@ -43,12 +43,12 @@
                 <span class="sidebar-label text-[#bb9b9b]">Dashboard</span>
             </a>
 
-            <div id="tooltip-hover" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-dark-tooltip rounded-base shadow-xs opacity-0 tooltip">
+            <div id="tooltip-hover" role="tooltip" class="sidebar-tooltip-e absolute z-10 invisible rounded-md inline-block px-3 py-2 text-sm font-medium text-white bg-surface-dark rounded-base shadow-xs opacity-0 tooltip">
                 Dashboard
             </div>
 
 
-            <a href="#" title="Ideas" data-tooltip-placement="right" data-tooltip-target="tooltip-hover-2" data-tooltip-trigger="hover" class="flex items-center gap-3 px-3 py-2.5 rounded-lg border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all group">
+            <a href="#" data-tooltip-placement="right" data-tooltip-target="tooltip-hover-2" data-tooltip-trigger="hover" class="flex items-center gap-3 px-3 py-2.5 rounded-lg border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all group">
                 <span class="text-[20px] text-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960" fill="currentColor">
                         <path d="M400-240q-33 0-56.5-23.5T320-320v-50q-57-39-88.5-100T200-600q0-117 81.5-198.5T480-880q117 0 198.5 81.5T760-600q0 69-31.5 129.5T640-370v50q0 33-23.5 56.5T560-240H400Zm0-80h160v-92l34-24q41-28 63.5-71.5T680-600q0-83-58.5-141.5T480-800q-83 0-141.5 58.5T280-600q0 49 22.5 92.5T366-436l34 24v92Zm0 240q-17 0-28.5-11.5T360-120v-40h240v40q0 17-11.5 28.5T560-80H400Zm80-520Z"/>
@@ -57,11 +57,11 @@
                 <span class="sidebar-label text-[#bb9b9b]">Ideas</span>
             </a>
 
-            <div id="tooltip-hover-2" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-dark rounded-base shadow-xs opacity-0 tooltip">
+            <div id="tooltip-hover-2" role="tooltip" class="sidebar-tooltip-e absolute z-10 invisible rounded-md inline-block px-3 py-2 text-sm font-medium text-white bg-surface-dark rounded-base shadow-xs opacity-0 tooltip">
                 Ideas
             </div>
 
-            <a href="#" title="Create" data-tooltip-placement="right" data-tooltip-target="tooltip-hover-3" data-tooltip-trigger="hover" class="flex items-center gap-3 px-3 py-2.5 rounded-lg border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all group">
+            <a href="#" data-tooltip-placement="right" data-tooltip-target="tooltip-hover-3" data-tooltip-trigger="hover" class="flex items-center gap-3 px-3 py-2.5 rounded-lg border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all group">
                 <span class="text-[20px] text-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960" fill="currentColor">
                         <path d="m176-120-56-56 301-302-181-45 198-123-17-234 179 151 216-88-87 217 151 178-234-16-124 198-45-181-301 301Zm24-520-80-80 80-80 80 80-80 80Zm355 197 48-79 93 7-60-71 35-86-86 35-71-59 7 92-79 49 90 22 23 90Zm165 323-80-80 80-80 80 80-80 80ZM569-570Z" />
@@ -70,7 +70,7 @@
                 <span class="sidebar-label text-[#bb9b9b]">Create</span>
             </a>
 
-            <div id="tooltip-hover-3" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-dark rounded-base shadow-xs opacity-0 tooltip">
+            <div id="tooltip-hover-3" role="tooltip" class="sidebar-tooltip-e absolute z-10 invisible rounded-md inline-block px-3 py-2 text-sm font-medium text-white bg-surface-dark rounded-base shadow-xs opacity-0 tooltip">
                 Create
             </div>
 
@@ -96,7 +96,7 @@
         
         <nav class="space-y-1">
             <p class="sidebar-label px-3 text-[10px] font-bold text-[#553a3a] uppercase tracking-widest mb-2">My Library</p>
-            <a href="#" title="My Projects" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all">
+            <a href="#" data-tooltip-placement="right" data-tooltip-target="tooltip-hover-4" data-tooltip-trigger="hover" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all">
                 <span class="text-[20px]">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960" fill="currentColor">
                         <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640H447l-80-80H160v480l96-320h684L837-217q-8 26-29.5 41.5T760-160H160Zm84-80h516l72-240H316l-72 240Zm0 0 72-240-72 240Zm-84-400v-80 80Z" />
@@ -104,7 +104,12 @@
                 </span>
                 <span class="sidebar-label">My Projects</span>
             </a>
-            <a href="#" title="Saved Templates" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all">
+
+            <div id="tooltip-hover-4" role="tooltip" class="sidebar-tooltip-e absolute z-10 invisible rounded-md inline-block px-3 py-2 text-sm font-medium text-white bg-surface-dark rounded-base shadow-xs opacity-0 tooltip">
+                Projects
+            </div>
+
+            <a href="#" data-tooltip-placement="right" data-tooltip-target="tooltip-hover-5" data-tooltip-trigger="hover" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all">
                 <span class="text-[20px]">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 0 512 512" fill="currentColor">
                         <path d="M232.5 5.2c14.9-6.9 32.1-6.9 47 0l218.6 101c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L13.9 149.8C5.4 145.8 0 137.3 0 128s5.4-17.9 13.9-21.8L232.5 5.2zM48.1 218.4l164.3 75.9c27.7 12.8 59.6 12.8 87.3 0l164.3-75.9 34.1 15.8c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L13.9 277.8C5.4 273.8 0 265.3 0 256s5.4-17.9 13.9-21.8l34.1-15.8zM13.9 362.2l34.1-15.8 164.3 75.9c27.7 12.8 59.6 12.8 87.3 0l164.3-75.9 34.1 15.8c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L13.9 405.8C5.4 401.8 0 393.3 0 384s5.4-17.9 13.9-21.8z" />
@@ -112,7 +117,12 @@
                 </span>
                 <span class="sidebar-label">Saved Templates</span>
             </a>
-            <a href="#" title="Generation History" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all">
+            
+            <div id="tooltip-hover-5" role="tooltip" class="sidebar-tooltip-e absolute z-10 invisible rounded-md inline-block px-3 py-2 text-sm font-medium text-white bg-surface-dark rounded-base shadow-xs opacity-0 tooltip">
+                Templates
+            </div>
+
+            <a href="#" data-tooltip-placement="right" data-tooltip-target="tooltip-hover-6" data-tooltip-trigger="hover" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all">
                 <span class="text-[20px]">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960" fill="currentColor">
                         <path d="M480-120q-138 0-240.5-91.5T122-440h82q14 104 92.5 172T480-200q117 0 198.5-81.5T760-480q0-117-81.5-198.5T480-760q-69 0-129 32t-101 88h110v80H120v-240h80v94q51-64 124.5-99T480-840q75 0 140.5 28.5t114 77q48.5 48.5 77 114T840-480q0 75-28.5 140.5t-77 114q-48.5 48.5-114 77T480-120Zm112-192L440-464v-216h80v184l128 128-56 56Z" />
@@ -120,6 +130,10 @@
                 </span>
                 <span class="sidebar-label">Generation History</span>
             </a>
+
+            <div id="tooltip-hover-6" role="tooltip" class="sidebar-tooltip-e absolute z-10 invisible rounded-md inline-block px-3 py-2 text-sm font-medium text-white bg-surface-dark rounded-base shadow-xs opacity-0 tooltip">
+                History
+            </div>
         </nav>
 
     </div>
@@ -128,7 +142,7 @@
 
         {% if subscriber.is_inactive %}
             <div class="upgrade-icon relative">
-                <a href="{% url 'plans' %}" title="Upgrade"
+                <a href="{% url 'plans' %}" data-tooltip-placement="right" data-tooltip-target="tooltip-hover-7" data-tooltip-trigger="hover"
                    class="size-10 flex gap-3 h-8 w-8 p-1 mb-3 ml-1 items-center justify-center rounded-full bg-primary text-white shadow-glow hover:bg-red-600 transition cursor-pointer">
                     <span class="text-white text-xl">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff">
@@ -136,6 +150,10 @@
                         </svg>
                     </span>
                 </a>
+
+                <div id="tooltip-hover-7" role="tooltip" class="sidebar-tooltip-e absolute z-10 invisible rounded-md inline-block px-3 py-2 text-sm font-medium text-white bg-surface-dark rounded-base shadow-xs opacity-0 tooltip">
+                    Upgrade
+                </div>
             </div>
         {% endif %}
 
