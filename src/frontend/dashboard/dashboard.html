@@ -8,108 +8,120 @@
             <h1 class="text-4xl font-black tracking-tighter text-white">
                 Dashboard
             </h1>
-            <p class="text-white/50 text-base">Welcome <span class="text-white font-extrabold">{{ subscriber.user.get_full_name }}</span>. Here’s your growth overview.</p>
+            <p class="text-white/50 text-base">Welcome <span class="text-white font-extrabold">{{ subscriber.user.get_full_name }}</span>. Ready to hijack the algorithm.</p>
         </div>
 
         <div class="flex gap-3">
-            <button
-                class="flex items-center gap-2 px-6 py-3 bg-primary rounded-xl font-bold text-white transition-all hover:scale-105 active:scale-95 glow-red">
-                <span class="material-symbols-outlined">add_circle</span>
+            <button class="flex items-center gap-2 px-6 py-3 bg-primary rounded-xl font-bold text-white transition-all hover:scale-105 active:scale-95 glow-red">
                 Create
+                <span>  
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff">
+                        <path d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/>
+                    </svg>
+                </span>
             </button>
         </div>
 
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-        <div
-            class="md:col-span-3 bg-card-dark p-6 rounded-2xl border border-white/5 flex flex-col justify-between h-32 relative overflow-hidden group">
-            <div class="absolute -right-4 -top-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
-                <span class="material-symbols-outlined text-[80px]">auto_awesome</span>
-            </div>
+
+        <div class="md:col-span-3 bg-card-dark p-6 rounded-2xl border border-white/5 flex flex-col justify-between h-32 relative overflow-hidden group">
             <p class="text-white/40 text-[10px] font-bold uppercase tracking-widest">Total Generations</p>
-            <p class="text-5xl font-black text-white">124</p>
+            <p class="text-5xl font-black text-white">0</p>
         </div>
-        <div
-            class="md:col-span-3 bg-card-dark p-6 rounded-2xl border border-white/5 flex flex-col justify-between h-32 relative overflow-hidden group">
-            <div class="absolute -right-4 -top-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
-                <span class="material-symbols-outlined text-[80px]">trending_up</span>
-            </div>
+
+        <div class="md:col-span-3 bg-card-dark p-6 rounded-2xl border border-white/5 flex flex-col justify-between h-32 relative overflow-hidden group">
             <p class="text-white/40 text-[10px] font-bold uppercase tracking-widest">Viral Score</p>
             <div class="flex items-baseline gap-1">
-                <span class="text-5xl font-black text-white">72</span>
+                <span class="text-5xl font-black text-white">0</span>
                 <span class="text-xl font-bold text-primary">%</span>
             </div>
         </div>
-        <div
-            class="md:col-span-6 bg-card-dark p-6 rounded-2xl border border-white/5 border-l-4 border-l-primary flex flex-col justify-center h-32">
+
+        <div class="md:col-span-6 bg-card-dark p-6 rounded-2xl border border-white/5 border-l-4 border-l-primary flex flex-col justify-center h-32">
             <div class="flex items-center gap-2 mb-2">
-                <span class="material-symbols-outlined text-primary text-sm">auto_graph</span>
+                <span class="text-primary">
+                    <i class="fa-solid fa-chart-area"></i>
+                </span>
                 <span class="uppercase text-[10px] font-bold text-primary tracking-widest">Insight</span>
             </div>
-            <p class="text-lg font-medium text-white/90 leading-tight">Educational hooks are driving <span
-                    class="text-white font-bold border-b-2 border-primary/40">40% more engagement</span> than
-                controversy this week.</p>
+            <p class="text-lg font-medium text-white/90 leading-tight">Educational hooks are driving 40% more engagement than controversy this week.</p>
         </div>
+
     </div>
+
     <div class="space-y-6">
         <h2 class="text-lg font-bold text-white flex items-center gap-2">
-            <span class="material-symbols-outlined text-white/40">arrow_forward</span>
+            <span class="material-symbols-outlined text-white/40"><i class="fa-solid fa-arrow-right-long"></i></span>
             What Should I Do Next?
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div
-                class="bg-surface-dark p-6 rounded-xl border border-white/5 hover:border-white/10 transition-all group cursor-pointer hover:bg-white/[0.02]">
-                <div
-                    class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500 mb-4 group-hover:scale-110 transition-transform">
-                    <span class="material-symbols-outlined">lightbulb</span>
+            <div class="bg-surface-dark p-6 rounded-xl border border-white/5 hover:border-white/10 transition-all group cursor-pointer hover:bg-white/[0.02]">
+                <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500 mb-4 group-hover:scale-110 transition-transform">
+                    <span>
+                        <i class="fa-regular fa-lightbulb"></i>
+                    </span>
                 </div>
+
                 <h3 class="font-bold text-white text-base mb-1">Suggested Idea</h3>
-                <p class="text-sm text-white/50 mb-4 h-10 overflow-hidden">Create a "Day in the Life" video focusing on
-                    your morning routine.</p>
-                <div
-                    class="flex items-center text-xs font-bold text-white/40 uppercase tracking-wider group-hover:text-blue-400 transition-colors">
-                    Start Creating <span class="material-symbols-outlined text-sm ml-1">arrow_right_alt</span>
+                <p class="text-sm text-white/50 mb-4 h-10 overflow-hidden">Create a "Day in the Life" video focusing on your morning routine.</p>
+                <div class="flex items-center text-xs font-bold text-white/40 uppercase tracking-wider group-hover:text-blue-400 transition-colors">
+                    Start Creating
+                    <span class="text-sm ml-1">
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </span>
                 </div>
             </div>
-            <div
-                class="bg-surface-dark p-6 rounded-xl border border-white/5 hover:border-white/10 transition-all group cursor-pointer hover:bg-white/[0.02]">
-                <div
-                    class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
-                    <span class="material-symbols-outlined">rocket_launch</span>
+
+            <div class="bg-surface-dark p-6 rounded-xl border border-white/5 hover:border-white/10 transition-all group cursor-pointer hover:bg-white/[0.02]">
+                <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
+                    <span>              
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px"  width="24px" viewBox="0 -960 960 960" fill="#f91f1f">
+                            <path d="m226-559 78 33q14-28 29-54t33-52l-56-11-84 84Zm142 83 114 113q42-16 90-49t90-75q70-70 109.5-155.5T806-800q-72-5-158 34.5T492-656q-42 42-75 90t-49 90Zm178-65q-23-23-23-56.5t23-56.5q23-23 57-23t57 23q23 23 23 56.5T660-541q-23 23-57 23t-57-23Zm19 321 84-84-11-56q-26 18-52 32.5T532-299l33 79Zm313-653q19 121-23.5 235.5T708-419l20 99q4 20-2 39t-20 33L538-80l-84-197-171-171-197-84 167-168q14-14 33.5-20t39.5-2l99 20q104-104 218-147t235-24ZM157-321q35-35 85.5-35.5T328-322q35 35 34.5 85.5T327-151q-25 25-83.5 43T82-76q14-103 32-161.5t43-83.5Zm57 56q-10 10-20 36.5T180-175q27-4 53.5-13.5T270-208q12-12 13-29t-11-29q-12-12-29-11.5T214-265Z"/>
+                        </svg>
+                    </span>
                 </div>
                 <h3 class="font-bold text-white text-base mb-1">Improvement Tip</h3>
-                <p class="text-sm text-white/50 mb-4 h-10 overflow-hidden">Use a "Negative Hook" (e.g., "Stop doing
-                    this") to increase retention.</p>
-                <div
-                    class="flex items-center text-xs font-bold text-white/40 uppercase tracking-wider group-hover:text-primary transition-colors">
-                    Apply Tip <span class="material-symbols-outlined text-sm ml-1">arrow_right_alt</span>
+                <p class="text-sm text-white/50 mb-4 h-10 overflow-hidden">Use a "Negative Hook" (e.g., "Stop doing this") to increase retention.</p>
+                <div class="flex items-center text-xs font-bold text-white/40 uppercase tracking-wider group-hover:text-primary transition-colors">
+                    Apply Tip 
+                    <span class="text-sm ml-1">
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </span>
                 </div>
             </div>
-            <div
-                class="bg-surface-dark p-6 rounded-xl border border-white/5 hover:border-white/10 transition-all group hover:bg-white/[0.02]">
-                <div
-                    class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-500 mb-4 group-hover:scale-110 transition-transform">
-                    <span class="material-symbols-outlined">format_quote</span>
+
+            <div class="bg-surface-dark p-6 rounded-xl border border-white/5 hover:border-white/10 transition-all group hover:bg-white/[0.02]">
+                <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-500 mb-4 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined">
+                        <i class="fa-solid fa-quote-right"></i>
+                    </span>
                 </div>
-                <h3 class="font-bold text-white text-base mb-1">Creator Motivation</h3>
+                <h3 class="font-bold text-white text-base mb-1">Motivation</h3>
                 <p class="text-sm text-white/70 italic mb-4 h-10 overflow-hidden">"Consistency is the DNA of mastery."
                 </p>
                 <div class="flex items-center text-xs font-bold text-white/20 uppercase tracking-wider">
                     Daily Quote
                 </div>
             </div>
+
         </div>
     </div>
+
     <div class="space-y-6">
+
         <div class="flex items-center justify-between">
             <h2 class="text-lg font-bold text-white flex items-center gap-2">
-                <span class="material-symbols-outlined text-white/40">folder</span>
+                <span class="text-white/40">
+                    <i class="fa-regular fa-folder"></i>
+                </span>
                 Projects
             </h2>
             <a class="text-xs font-bold text-white/40 hover:text-white uppercase tracking-wider transition-colors"
                 href="#">View All</a>
         </div>
+
         <div class="bg-surface-dark rounded-2xl border border-white/5 overflow-hidden">
             <table class="w-full text-left">
                 <thead
@@ -122,63 +134,79 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-white/5">
-                    <tr class="hover:bg-white/[0.02] transition-colors group">
+
+                    <tr class="hover:bg-white/[0.02] cursor-pointer transition-colors group">
+
                         <td class="px-6 py-4">
                             <div class="flex items-center gap-3">
-                                <div class="w-8 h-8 rounded bg-white/5 flex items-center justify-center text-white/20">
-                                    <span class="material-symbols-outlined text-sm">article</span>
+                                <div class="w-8 h-8 rounded bg-white/5 overflow-hidden">
+                                    <div class="w-full h-full bg-gradient-to-br from-primary to-purple-600 opacity-80" data-alt="Abstract gradient representing project cover"></div>
                                 </div>
                                 <span class="text-sm font-medium text-white/90">10 Morning Habits for Founders</span>
                             </div>
                         </td>
+
                         <td class="px-6 py-4">
                             <span class="text-xs text-white/50">TikTok</span>
                         </td>
+
                         <td class="px-6 py-4 text-xs text-white/40">2 hours ago</td>
                         <td class="px-6 py-4 text-right">
                             <button class="text-white/20 hover:text-white transition-colors">
                                 <span class="material-symbols-outlined text-lg">more_horiz</span>
                             </button>
                         </td>
+
                     </tr>
-                    <tr class="hover:bg-white/[0.02] transition-colors group">
+
+                    <tr class="hover:bg-white/[0.02] cursor-pointer transition-colors group">
+
                         <td class="px-6 py-4">
                             <div class="flex items-center gap-3">
-                                <div class="w-8 h-8 rounded bg-white/5 flex items-center justify-center text-white/20">
-                                    <span class="material-symbols-outlined text-sm">article</span>
+                                <div class="w-8 h-8 rounded bg-white/5 overflow-hidden">
+                                    <div class="w-full h-full bg-gradient-to-br from-blue-500 to-cyan-400 opacity-80" data-alt="Abstract gradient representing project cover"></div>
                                 </div>
                                 <span class="text-sm font-medium text-white/90">AI vs Humans: The Truth</span>
                             </div>
                         </td>
+
                         <td class="px-6 py-4">
                             <span class="text-xs text-white/50">Reels</span>
                         </td>
+
                         <td class="px-6 py-4 text-xs text-white/40">5 hours ago</td>
                         <td class="px-6 py-4 text-right">
                             <button class="text-white/20 hover:text-white transition-colors">
                                 <span class="material-symbols-outlined text-lg">more_horiz</span>
                             </button>
                         </td>
+
                     </tr>
-                    <tr class="hover:bg-white/[0.02] transition-colors group">
+
+                    <tr class="hover:bg-white/[0.02] cursor-pointer transition-colors group">
+
                         <td class="px-6 py-4">
                             <div class="flex items-center gap-3">
-                                <div class="w-8 h-8 rounded bg-white/5 flex items-center justify-center text-white/20">
-                                    <span class="material-symbols-outlined text-sm">article</span>
+                                <div class="w-8 h-8 rounded bg-white/5 overflow-hidden">
+                                    <div class="w-full h-full bg-gradient-to-br from-orange-500 to-red-400 opacity-80" data-alt="Abstract gradient representing project cover"></div>
                                 </div>
                                 <span class="text-sm font-medium text-white/90">The MrBeast Script Breakdown</span>
                             </div>
                         </td>
+
                         <td class="px-6 py-4">
                             <span class="text-xs text-white/50">Shorts</span>
                         </td>
+
                         <td class="px-6 py-4 text-xs text-white/40">Yesterday</td>
                         <td class="px-6 py-4 text-right">
                             <button class="text-white/20 hover:text-white transition-colors">
                                 <span class="material-symbols-outlined text-lg">more_horiz</span>
                             </button>
                         </td>
+
                     </tr>
+
                 </tbody>
             </table>
         </div>

@@ -40,7 +40,7 @@
         {% include "dashboard/components/sidebar.html" %}
         <div class="@container/main relative flex min-w-0 flex-1 flex-col -translate-y-[calc(env(safe-area-inset-bottom,0px)/2)] pt-[calc(env(safe-area-inset-bottom,0px)/2)]">
             {% include "dashboard/components/header.html" %}
-            <main class="flex-1 flex flex-col items-center h-full overflow-y-auto min-h-0">
+            <main class="flex-1 flex flex-col items-center h-full overflow-y-auto min-h-0 custom-scrollbar">
                 {% block content %}{% endblock %}
             </main>
             {% include "dashboard/components/toast.html" %}
