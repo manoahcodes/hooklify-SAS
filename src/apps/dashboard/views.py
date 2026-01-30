@@ -14,3 +14,7 @@ def _render_page(request, full_template, partial_template, context=None):
 @login_required
 def dashboard(request):
     return render(request, 'dashboard/dashboard.html')
+
+@login_required
+def ideas(request):
+    return render(request, 'dashboard/ideas.html')

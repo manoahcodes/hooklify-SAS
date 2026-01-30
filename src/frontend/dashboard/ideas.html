@@ -1,0 +1,282 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Ideas - {{ block.super }}{% endblock %}
+{% block content %}
+<div class="p-8 max-w-[1600px] mx-auto w-full">
+    <div class="flex flex-col md:flex-row items-end justify-between gap-6 mb-12">
+
+        <div class="space-y-2">
+            <div class="flex items-center gap-2 text-primary">
+                <i class="fa-solid fa-fire animate-pulse text-lg"></i>
+                <span class="text-xs font-bold uppercase tracking-[0.2em] glow-text">Top Picks for You</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white uppercase italic">
+                Ideas
+            </h1>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all">
+                <i class="fa-solid fa-sliders text-lg"></i>
+            </button>
+            <button
+                class="flex items-center gap-2 px-4 py-2.5 bg-surface-dark border border-primary/30 rounded-full font-bold text-primary transition-all hover:bg-primary hover:text-white hover:border-primary active:scale-95 uppercase tracking-widest text-xs">
+                <i class="fa-solid fa-rotate text-sm"></i>
+                Regenerate
+            </button>
+
+            <button
+                class="flex items-center gap-2 px-4 py-2.5 bg-surface-dark border border-primary/30 rounded-full font-bold text-primary transition-all hover:bg-primary hover:text-white hover:border-primary active:scale-95 uppercase tracking-widest text-xs">
+                <i class="fa-solid fa-sliders text-lg"></i>
+                Filters
+            </button>
+        </div>
+
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-20">
+        <article
+            class="bg-card-dark border border-white/5 rounded-2xl p-8 hover:border-primary/50 transition-all duration-300 group shadow-lg hover:shadow-primary/5 relative flex flex-col gap-6 h-full min-h-[400px]">
+            <div
+                class="absolute inset-0 bg-neon-gradient opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none rounded-2xl">
+            </div>
+            <div class="flex justify-between items-start z-10">
+                <span
+                    class="text-[10px] font-bold text-white/40 tracking-[0.2em] uppercase border border-white/10 px-3 py-1.5 rounded-full bg-white/5">
+                    <i class="fa-solid fa-chart-line mr-1"></i> Growth Hack
+                </span>
+            </div>
+            <h3
+                class="text-3xl font-bold text-white tracking-tight z-10 leading-none mt-2 group-hover:text-primary transition-colors">
+                The $10k Faceless Secret</h3>
+            <div class="z-10 pl-6 border-l-4 border-primary">
+                <p class="text-xl text-white font-medium leading-snug italic">"I spent 100 hours analyzing Faceless
+                    channels so you don't have to."</p>
+            </div>
+            <div class="flex-1 z-10">
+                <p class="text-[10px] text-primary font-bold uppercase tracking-widest mb-2">Script Snippet</p>
+                <p
+                    class="text-sm text-white/60 leading-relaxed font-mono bg-black/40 p-4 rounded-lg border border-white/5">
+                    Most people think you need to show your face to make money online. But I found 3 channels making
+                    $10k/mo with zero camera time...
+                </p>
+            </div>
+            <div class="pt-4 mt-auto z-10 border-t border-white/5 flex justify-end">
+                <button
+                    class="text-xs font-bold text-primary hover:text-white uppercase tracking-widest flex items-center gap-2 transition-colors">
+                    Generate Full Script <i class="fa-solid fa-arrow-right-long"></i>
+                </button>
+            </div>
+        </article>
+        <article
+            class="bg-card-dark border border-white/5 rounded-2xl p-8 hover:border-primary/50 transition-all duration-300 group shadow-lg hover:shadow-primary/5 relative flex flex-col gap-6 h-full min-h-[400px]">
+            <div
+                class="absolute inset-0 bg-neon-gradient opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none rounded-2xl">
+            </div>
+            <div class="flex justify-between items-start z-10">
+                <span
+                    class="text-[10px] font-bold text-white/40 tracking-[0.2em] uppercase border border-white/10 px-3 py-1.5 rounded-full bg-white/5">
+                    <i class="fa-solid fa-gavel mr-1"></i> Controversy
+                </span>
+            </div>
+            <h3
+                class="text-3xl font-bold text-white tracking-tight z-10 leading-none mt-2 group-hover:text-primary transition-colors">
+                The "Passive Income" Lie</h3>
+            <div class="z-10 pl-6 border-l-4 border-primary">
+                <p class="text-xl text-white font-medium leading-snug italic">"Stop trying to build Passive Income. It's
+                    a trap keeping you poor."</p>
+            </div>
+            <div class="flex-1 z-10">
+                <p class="text-[10px] text-primary font-bold uppercase tracking-widest mb-2">Script Snippet</p>
+                <p
+                    class="text-sm text-white/60 leading-relaxed font-mono bg-black/40 p-4 rounded-lg border border-white/5">
+                    Every guru sells you the dream of making money while you sleep. But here is the math they hide. Real
+                    wealth requires active leverage first...
+                </p>
+            </div>
+            <div class="pt-4 mt-auto z-10 border-t border-white/5 flex justify-end">
+                <button
+                    class="text-xs font-bold text-primary hover:text-white uppercase tracking-widest flex items-center gap-2 transition-colors">
+                    Generate Full Script <i class="fa-solid fa-arrow-right-long"></i>
+                </button>
+            </div>
+        </article>
+        <article
+            class="bg-card-dark border border-white/5 rounded-2xl p-8 hover:border-primary/50 transition-all duration-300 group shadow-lg hover:shadow-primary/5 relative flex flex-col gap-6 h-full min-h-[400px]">
+            <div
+                class="absolute inset-0 bg-neon-gradient opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none rounded-2xl">
+            </div>
+            <div class="flex justify-between items-start z-10">
+                <span
+                    class="text-[10px] font-bold text-white/40 tracking-[0.2em] uppercase border border-white/10 px-3 py-1.5 rounded-full bg-white/5">
+                    <i class="fa-solid fa-microchip mr-1"></i> Tutorial
+                </span>
+            </div>
+            <h3
+                class="text-3xl font-bold text-white tracking-tight z-10 leading-none mt-2 group-hover:text-primary transition-colors">
+                AI Tool Replacement</h3>
+            <div class="z-10 pl-6 border-l-4 border-primary">
+                <p class="text-xl text-white font-medium leading-snug italic">"Stop paying $20/month for ChatGPT. Use
+                    this free alternative instead."</p>
+            </div>
+            <div class="flex-1 z-10">
+                <p class="text-[10px] text-primary font-bold uppercase tracking-widest mb-2">Script Snippet</p>
+                <p
+                    class="text-sm text-white/60 leading-relaxed font-mono bg-black/40 p-4 rounded-lg border border-white/5">
+                    I just found a tool that combines GPT-4 with real-time web access, and it's completely free. Watch
+                    me build a website in 30 seconds...
+                </p>
+            </div>
+            <div class="pt-4 mt-auto z-10 border-t border-white/5 flex justify-end">
+                <button
+                    class="text-xs font-bold text-primary hover:text-white uppercase tracking-widest flex items-center gap-2 transition-colors">
+                    Generate Full Script <i class="fa-solid fa-arrow-right-long"></i>
+                </button>
+            </div>
+        </article>
+        <article
+            class="relative bg-card-dark border border-white/5 rounded-2xl p-8 h-full min-h-[400px] flex flex-col gap-6 overflow-hidden">
+            <div class="filter blur-sm opacity-30 select-none pointer-events-none flex flex-col gap-6 h-full">
+                <div class="flex justify-between items-start">
+                    <span
+                        class="text-[10px] font-bold text-white/40 tracking-[0.2em] uppercase border border-white/10 px-3 py-1.5 rounded-full bg-white/5">
+                        Productivity
+                    </span>
+                </div>
+                <h3 class="text-3xl font-bold text-white tracking-tight leading-none mt-2">The 2-Minute Rule</h3>
+                <div class="pl-6 border-l-4 border-primary/50">
+                    <p class="text-xl text-white font-medium leading-snug italic">"If it takes less than 2 minutes, do
+                        it now. Here is why your to-do list..."</p>
+                </div>
+                <div class="flex-1">
+                    <p class="text-[10px] text-primary font-bold uppercase tracking-widest mb-2">Script Snippet</p>
+                    <p
+                        class="text-sm text-white/60 leading-relaxed font-mono bg-black/40 p-4 rounded-lg border border-white/5">
+                        Your brain uses more energy remembering a task than actually doing it. This is called the
+                        Zeigarnik effect...
+                    </p>
+                </div>
+            </div>
+            <div
+                class="absolute inset-0 z-20 backdrop-blur-custom bg-black/60 flex flex-col items-center justify-center p-6 text-center border border-white/10 rounded-2xl">
+                <div
+                    class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-4 border border-primary/50 glow-red">
+                    <i class="fa-solid fa-lock text-primary text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-black text-white uppercase tracking-tight mb-2">Premium Content</h3>
+                <p class="text-white/60 text-sm mb-6 max-w-[200px]">Unlock this idea and hundreds more instantly.</p>
+                <button
+                    class="w-full bg-primary hover:bg-red-600 text-white py-3 px-6 rounded-xl font-bold text-sm mb-6 transition-all shadow-lg glow-red-strong uppercase tracking-wider flex items-center justify-center gap-2">
+                    Unlock All Ideas <i class="fa-solid fa-unlock"></i>
+                </button>
+                <div class="space-y-2 text-left w-full max-w-[220px]">
+                    <div class="flex items-center gap-2 text-xs text-white/80">
+                        <i class="fa-solid fa-check text-primary"></i> <span>100+ Daily Viral Ideas</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs text-white/80">
+                        <i class="fa-solid fa-check text-primary"></i> <span>Higher-Quality AI Models</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs text-white/80">
+                        <i class="fa-solid fa-check text-primary"></i> <span>Trending Hooks Database</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <article
+            class="relative bg-card-dark border border-white/5 rounded-2xl p-8 h-full min-h-[400px] flex flex-col gap-6 overflow-hidden">
+            <div class="filter blur-sm opacity-30 select-none pointer-events-none flex flex-col gap-6 h-full">
+                <div class="flex justify-between items-start">
+                    <span
+                        class="text-[10px] font-bold text-white/40 tracking-[0.2em] uppercase border border-white/10 px-3 py-1.5 rounded-full bg-white/5">
+                        Storytelling
+                    </span>
+                </div>
+                <h3 class="text-3xl font-bold text-white tracking-tight leading-none mt-2">The Authority Framework</h3>
+                <div class="pl-6 border-l-4 border-primary/50">
+                    <p class="text-xl text-white font-medium leading-snug italic">"People don't buy the best products,
+                        they buy the best stories..."</p>
+                </div>
+                <div class="flex-1">
+                    <p class="text-[10px] text-primary font-bold uppercase tracking-widest mb-2">Script Snippet</p>
+                    <p
+                        class="text-sm text-white/60 leading-relaxed font-mono bg-black/40 p-4 rounded-lg border border-white/5">
+                        Look at Liquid Death. It's just water in a can. But they sold a story of 'murdering your
+                        thirst'...
+                    </p>
+                </div>
+            </div>
+            <div
+                class="absolute inset-0 z-20 backdrop-blur-custom bg-black/60 flex flex-col items-center justify-center p-6 text-center border border-white/10 rounded-2xl">
+                <div
+                    class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-4 border border-primary/50 glow-red">
+                    <i class="fa-solid fa-lock text-primary text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-black text-white uppercase tracking-tight mb-2">Premium Content</h3>
+                <p class="text-white/60 text-sm mb-6 max-w-[200px]">Unlock this idea and hundreds more instantly.</p>
+                <button
+                    class="w-full bg-primary hover:bg-red-600 text-white py-3 px-6 rounded-xl font-bold text-sm mb-6 transition-all shadow-lg glow-red-strong uppercase tracking-wider flex items-center justify-center gap-2">
+                    Unlock All Ideas <i class="fa-solid fa-unlock"></i>
+                </button>
+                <div class="space-y-2 text-left w-full max-w-[220px]">
+                    <div class="flex items-center gap-2 text-xs text-white/80">
+                        <i class="fa-solid fa-check text-primary"></i> <span>100+ Daily Viral Ideas</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs text-white/80">
+                        <i class="fa-solid fa-check text-primary"></i> <span>Higher-Quality AI Models</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs text-white/80">
+                        <i class="fa-solid fa-check text-primary"></i> <span>Trending Hooks Database</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <article
+            class="relative bg-card-dark border border-white/5 rounded-2xl p-8 h-full min-h-[400px] flex flex-col gap-6 overflow-hidden">
+            <div class="filter blur-sm opacity-30 select-none pointer-events-none flex flex-col gap-6 h-full">
+                <div class="flex justify-between items-start">
+                    <span
+                        class="text-[10px] font-bold text-white/40 tracking-[0.2em] uppercase border border-white/10 px-3 py-1.5 rounded-full bg-white/5">
+                        Psychology
+                    </span>
+                </div>
+                <h3 class="text-3xl font-bold text-white tracking-tight leading-none mt-2">Fear of Missing Out</h3>
+                <div class="pl-6 border-l-4 border-primary/50">
+                    <p class="text-xl text-white font-medium leading-snug italic">"Scarcity isn't about limited stock,
+                        it's about limited time..."</p>
+                </div>
+                <div class="flex-1">
+                    <p class="text-[10px] text-primary font-bold uppercase tracking-widest mb-2">Script Snippet</p>
+                    <p
+                        class="text-sm text-white/60 leading-relaxed font-mono bg-black/40 p-4 rounded-lg border border-white/5">
+                        When you add a countdown timer, conversions double. Here is the psychological trigger behind
+                        urgency...
+                    </p>
+                </div>
+            </div>
+            <div
+                class="absolute inset-0 z-20 backdrop-blur-custom bg-black/60 flex flex-col items-center justify-center p-6 text-center border border-white/10 rounded-2xl">
+                <div
+                    class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-4 border border-primary/50 glow-red">
+                    <i class="fa-solid fa-lock text-primary text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-black text-white uppercase tracking-tight mb-2">Premium Content</h3>
+                <p class="text-white/60 text-sm mb-6 max-w-[200px]">Unlock this idea and hundreds more instantly.</p>
+                <button
+                    class="w-full bg-primary hover:bg-red-600 text-white py-3 px-6 rounded-xl font-bold text-sm mb-6 transition-all shadow-lg glow-red-strong uppercase tracking-wider flex items-center justify-center gap-2">
+                    Unlock All Ideas <i class="fa-solid fa-unlock"></i>
+                </button>
+                <div class="space-y-2 text-left w-full max-w-[220px]">
+                    <div class="flex items-center gap-2 text-xs text-white/80">
+                        <i class="fa-solid fa-check text-primary"></i> <span>100+ Daily Viral Ideas</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs text-white/80">
+                        <i class="fa-solid fa-check text-primary"></i> <span>Higher-Quality AI Models</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs text-white/80">
+                        <i class="fa-solid fa-check text-primary"></i> <span>Trending Hooks Database</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</div>
+
+{% endblock content %}
