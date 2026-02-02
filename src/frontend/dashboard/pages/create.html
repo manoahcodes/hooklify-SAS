@@ -1,0 +1,298 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Create - {{ block.super }}{% endblock %}
+{% block content %}
+<div class="flex-1 overflow-hidden grid grid-cols-1 lg:grid-cols-12 h-full">
+
+    <!-- Left Section -->
+    <div class="lg:col-span-8 bg-surface-dark overflow-y-auto border-r border-border-subtle flex flex-col custom-scrollbar">
+        <div class="p-8 xl:p-12 max-w-5xl mx-auto w-full flex-1">
+
+            <div class="mb-10">
+                <h2 class="text-4xl font-semibold tracking-tight text-white mb-2">Create Content</h2>
+                <p class="text-white/40 text-sm">Define your parameters for high-conversion video.</p>
+            </div>
+
+            <div class="space-y-8">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Topic</label>
+                        <div class="relative group">
+                            <i class="fa-solid fa-heading absolute left-3 top-3.5 text-white/20 text-xs"></i>
+                            <input
+                                class="w-full bg-[#0f0f0f] border border-border-subtle rounded-lg py-3 pl-9 pr-3 text-sm text-white placeholder-white/20 focus:border-primary/50 focus:ring-0 focus:outline-none transition-all hover:border-white/10"
+                                placeholder="e.g. AI Productivity Tools" type="text">
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Niche</label>
+                        <div class="relative group">
+                            <i class="fa-solid fa-layer-group absolute left-3 top-3.5 text-white/20 text-xs"></i>
+                            <input
+                                class="w-full bg-[#0f0f0f] border border-border-subtle rounded-lg py-3 pl-9 pr-3 text-sm text-white placeholder-white/20 focus:border-primary/50 focus:ring-0 focus:outline-none transition-all hover:border-white/10"
+                                placeholder="e.g. Technology / SaaS" type="text">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="space-y-4">
+                    <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Target Audience</label>
+                    <div class="flex flex-col gap-3">
+                        <div class="flex flex-wrap gap-2">
+                            <input class="hidden chip-radio" id="aud1" name="audience" type="radio">
+                            <label class="px-4 py-2 rounded-full border border-border-subtle bg-[#0f0f0f] text-white/60 text-xs hover:text-white hover:border-white/20 transition-all cursor-pointer" for="aud1">
+                                Entrepreneurs
+                            </label>
+
+                            <input checked="" class="hidden chip-radio" id="aud2" name="audience" type="radio">
+                            <label class="px-4 py-2 rounded-full border border-border-subtle bg-[#0f0f0f] text-white/60 text-xs hover:text-white hover:border-white/20 transition-all cursor-pointer" for="aud2">
+                                Content Creators
+                            </label>
+
+                            <input class="hidden chip-radio" id="aud3" name="audience" type="radio">
+                            <label class="px-4 py-2 rounded-full border border-border-subtle bg-[#0f0f0f] text-white/60 text-xs hover:text-white hover:border-white/20 transition-all cursor-pointer" for="aud3">
+                                Gen Z
+                            </label>
+
+                            <input class="hidden chip-radio" id="aud4" name="audience" type="radio">
+                            <label class="px-4 py-2 rounded-full border border-border-subtle bg-[#0f0f0f] text-white/60 text-xs hover:text-white hover:border-white/20 transition-all cursor-pointer" for="aud4">
+                                Tech Enthusiasts
+                            </label>
+
+                            <input class="hidden chip-radio" id="aud5" name="audience" type="radio">
+                            <label  class="px-4 py-2 rounded-full border border-border-subtle bg-[#0f0f0f] text-white/60 text-xs hover:text-white hover:border-white/20 transition-all cursor-pointer" for="aud5">
+                                Students
+                            </label>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2 border-t border-white/5 pt-3">
+                            <input class="hidden chip-checkbox" id="age1" name="age" type="checkbox">
+                            <label class="px-3 py-1.5 rounded-full border border-border-subtle bg-[#0f0f0f] text-white/60 text-[11px] hover:text-white hover:border-white/20 transition-all cursor-pointer" for="age1">
+                                13-17
+                            </label>
+
+                            <input checked="" class="hidden chip-checkbox" id="age2" name="age" type="checkbox">
+                            <label class="px-3 py-1.5 rounded-full border border-border-subtle bg-[#0f0f0f] text-white/60 text-[11px] hover:text-white hover:border-white/20 transition-all cursor-pointer" for="age2">
+                                18-24
+                            </label>
+
+                            <input class="hidden chip-checkbox" id="age3" name="age" type="checkbox">
+                            <label class="px-3 py-1.5 rounded-full border border-border-subtle bg-[#0f0f0f] text-white/60 text-[11px] hover:text-white hover:border-white/20 transition-all cursor-pointer" for="age3">
+                                25-34
+                            </label>
+
+                            <input class="hidden chip-checkbox" id="age4" name="age" type="checkbox">
+                            <label class="px-3 py-1.5 rounded-full border border-border-subtle bg-[#0f0f0f] text-white/60 text-[11px] hover:text-white hover:border-white/20 transition-all cursor-pointer" for="age4">
+                                35-44
+                            </label>
+
+                            <input class="hidden chip-checkbox" id="age5" name="age" type="checkbox">
+                            <label class="px-3 py-1.5 rounded-full border border-border-subtle bg-[#0f0f0f] text-white/60 text-[11px] hover:text-white hover:border-white/20 transition-all cursor-pointer" for="age5">
+                                45-54
+                            </label>
+
+                            <input class="hidden chip-checkbox" id="age6" name="age" type="checkbox">
+                            <label class="px-3 py-1.5 rounded-full border border-border-subtle bg-[#0f0f0f] text-white/60 text-[11px] hover:text-white hover:border-white/20 transition-all cursor-pointer" for="age6">
+                                55+
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-2">
+                        <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">
+                            Target Region
+                        </label>
+                        
+                        <div class="relative group w-full">
+                            <i class="fa-solid fa-globe absolute left-3 top-3.5 text-white/20 text-xs"></i>
+                            <select class="w-full bg-[#0f0f0f] border border-border-subtle rounded-lg py-3 pl-9 pr-8 text-sm text-white focus:border-primary/50 focus:ring-0 focus:outline-none transition-all hover:border-white/10 appearance-none cursor-pointer">
+                                <option>Multi-Regional Content (Default)</option>
+                                <option>United States</option>
+                                <option>United Kingdom</option>
+                                <option>Canada</option>
+                                <option>Australia</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down absolute right-3 top-4 text-white/20 text-[10px] pointer-events-none"></i>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">
+                            Trending Topics
+                        </label>
+                        
+                        <div class="flex flex-wrap gap-2 pt-1">
+                            <input class="hidden chip-radio" id="trend1" name="trending" type="radio">
+                            <label class="px-3 py-1.5 rounded-full border border-border-subtle bg-[#0f0f0f] text-white/60 text-[11px] font-medium hover:text-white hover:border-white/20 transition-all cursor-pointer flex items-center gap-1.5" for="trend1">
+                                <i class="fa-solid fa-arrow-trend-up text-[10px]"></i> AI Productivity
+                            </label>
+
+                            <input class="hidden chip-radio" id="trend2" name="trending" type="radio">
+                            <label class="px-3 py-1.5 rounded-full border border-border-subtle bg-[#0f0f0f] text-white/60 text-[11px] font-medium hover:text-white hover:border-white/20 transition-all cursor-pointer flex items-center gap-1.5" for="trend2">
+                                <i class="fa-solid fa-arrow-trend-up text-[10px]"></i> SaaS Growth
+                            </label>
+
+                            <input class="hidden chip-radio" id="trend3" name="trending" type="radio">
+                            <label class="px-3 py-1.5 rounded-full border border-border-subtle bg-[#0f0f0f] text-white/60 text-[11px] font-medium hover:text-white hover:border-white/20 transition-all cursor-pointer flex items-center gap-1.5" for="trend3">
+                                <i class="fa-solid fa-arrow-trend-up text-[10px]"></i> Remote Work
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
+
+                    <div class="space-y-3">
+                        <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Tone</label>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="px-3 py-1.5 rounded-full bg-[#0f0f0f] border border-border-subtle text-white/50 text-[11px] font-medium hover:text-white hover:border-white/20 focus:border-primary/50 focus:text-primary transition-all">Witty</button>
+                            <button class="px-3 py-1.5 rounded-full bg-[#0f0f0f] border border-border-subtle text-white/50 text-[11px] font-medium hover:text-white hover:border-white/20 focus:border-primary/50 focus:text-primary transition-all">Urgent</button>
+                            <button class="px-3 py-1.5 rounded-full bg-primary/10 border border-primary/40 text-primary text-[11px] font-medium transition-all">Professional</button>
+                            <button class="px-3 py-1.5 rounded-full bg-[#0f0f0f] border border-border-subtle text-white/50 text-[11px] font-medium hover:text-white hover:border-white/20 focus:border-primary/50 focus:text-primary transition-all">Casual</button>
+                            <button class="px-3 py-1.5 rounded-full bg-[#0f0f0f] border border-border-subtle text-white/50 text-[11px] font-medium hover:text-white hover:border-white/20 focus:border-primary/50 focus:text-primary transition-all">Controversial</button>
+                            <button class="px-3 py-1.5 rounded-full bg-[#0f0f0f] border border-border-subtle text-white/50 text-[11px] font-medium hover:text-white hover:border-white/20 focus:border-primary/50 focus:text-primary transition-all">Empathetic</button>
+                            <button class="px-3 py-1.5 rounded-full bg-[#0f0f0f] border border-border-subtle text-white/50 text-[11px] font-medium hover:text-white hover:border-white/20 focus:border-primary/50 focus:text-primary transition-all">Authoritative</button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Style</label>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="px-3 py-1.5 rounded-full bg-[#0f0f0f] border border-border-subtle text-white/50 text-[11px] font-medium hover:text-white hover:border-white/20 focus:border-primary/50 focus:text-primary transition-all">Fast-Paced</button>
+                            <button class="px-3 py-1.5 rounded-full bg-primary/10 border border-primary/40 text-primary text-[11px] font-medium transition-all">Minimalist</button>
+                            <button class="px-3 py-1.5 rounded-full bg-[#0f0f0f] border border-border-subtle text-white/50 text-[11px] font-medium hover:text-white hover:border-white/20 focus:border-primary/50 focus:text-primary transition-all">Cinematic</button>
+                            <button class="px-3 py-1.5 rounded-full bg-[#0f0f0f] border border-border-subtle text-white/50 text-[11px] font-medium hover:text-white hover:border-white/20 focus:border-primary/50 focus:text-primary transition-all">High-Energy</button>
+                            <button class="px-3 py-1.5 rounded-full bg-[#0f0f0f] border border-border-subtle text-white/50 text-[11px] font-medium hover:text-white hover:border-white/20 focus:border-primary/50 focus:text-primary transition-all">Documentary</button>
+                            <button class="px-3 py-1.5 rounded-full bg-[#0f0f0f] border border-border-subtle text-white/50 text-[11px] font-medium hover:text-white hover:border-white/20 focus:border-primary/50 focus:text-primary transition-all">Vlog</button>
+                            <button class="px-3 py-1.5 rounded-full bg-[#0f0f0f] border border-border-subtle text-white/50 text-[11px] font-medium hover:text-white hover:border-white/20 focus:border-primary/50 focus:text-primary transition-all">Tutorial</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-2 pt-4">
+                    <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Core Concept</label>
+                    <textarea
+                        class="w-full bg-[#0f0f0f] border border-border-subtle rounded-xl p-4 text-sm text-white placeholder-white/20 focus:border-primary/50 focus:ring-0 focus:outline-none transition-all h-32 resize-none hover:border-white/10 leading-relaxed shadow-inner"
+                        placeholder="Describe the video concept in detail. Be specific about the pain point and solution..."></textarea>
+                </div>
+            </div>
+        </div>
+        
+        <div class="border-t border-border-subtle bg-[#111] p-6 sticky bottom-0 z-10 shadow-xl">
+            <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-6">
+                    <label class="flex items-center gap-2 cursor-pointer group">
+                        <div class="relative inline-flex items-center">
+                            <input checked="" class="sr-only peer" type="checkbox">
+                            <div class="w-7 h-4 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-primary">
+                            </div>
+                        </div>
+                        <span class="text-xs text-white/60 group-hover:text-white transition-colors">
+                            Generate Hooks
+                        </span>
+                    </label>
+
+                    <label class="flex items-center gap-2 cursor-pointer group">
+                        <div class="relative inline-flex items-center">
+                            <input checked="" class="sr-only peer" type="checkbox">
+                            <div class="w-7 h-4 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-primary">
+                            </div>
+                        </div>
+                        <span class="text-xs text-white/60 group-hover:text-white transition-colors">Full Script</span>
+                    </label>
+
+                    <label class="flex items-center gap-2 cursor-pointer group">
+                        <div class="relative inline-flex items-center">
+                            <input checked="" class="sr-only peer" type="checkbox">
+                            <div
+                                class="w-7 h-4 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-primary">
+                            </div>
+                        </div>
+
+                        <span class="text-xs text-white/60 group-hover:text-white transition-colors">
+                            Call To Action
+                        </span>
+                    </label>
+                </div>
+
+                <button class="w-full md:w-auto bg-primary hover:bg-red-600 text-white font-semibold tracking-wide text-sm py-3 px-8 rounded-lg shadow-neon transition-all active:scale-[0.98] flex items-center justify-center gap-2 group whitespace-nowrap">
+                    <i class="fa-solid fa-wand-magic-sparkles text-sm group-hover:animate-pulse"></i>
+                    <span>Generate</span>
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Section -->
+    <div class="lg:col-span-4 bg-background-dark overflow-y-auto no-select border-l border-border-subtle flex flex-col custom-scrollbar">
+        <div class="p-6 space-y-8">
+
+            <div class="flex items-center justify-between">
+                <h2 class="text-sm font-semibold uppercase tracking-widest text-white/80 flex items-center gap-2">
+                    <i class="fa-solid fa-eye text-primary text-xs"></i> 
+                    Draft Preview
+                </h2>
+                <span class="text-[10px] text-white/30 bg-white/5 px-2 py-1 rounded border border-white/5">
+                    Read Only
+                </span>
+            </div>
+
+            <div class="space-y-3">
+                <h3 class="text-xs font-medium text-white/40 uppercase tracking-wider">Viral Hook</h3>
+                <div class="bg-card-dark border border-white/5 p-4 rounded-lg relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-12 h-12 bg-gradient-to-bl from-primary/10 to-transparent">
+                    </div>
+                    <p class="text-white text-sm font-light leading-relaxed">"Stop scrolling! This 1 AI tool is <span
+                            class="text-primary font-normal">killing</span> the graphic design industry..."</p>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <h3 class="text-xs font-medium text-white/40 uppercase tracking-wider">Script Snippet</h3>
+                <div class="bg-card-dark border border-white/5 p-5 rounded-lg relative">
+                    <div class="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-card-dark to-transparent z-10">
+                    </div>
+
+                    <div class="font-mono text-xs leading-6 text-white/60 space-y-4">
+                        <div>
+                            <span class="text-primary/70">[SCENE: Fast paced montage]</span>
+                            <p class="mt-1">SPEAKER (Aggressive): Stop scrolling! This one AI tool is killing the
+                                graphic design industry, and nobody is talking about it.</p>
+                        </div>
+                        <div>
+                            <span class="text-primary/70">[SCENE: Screen recording]</span>
+                            <p class="mt-1">SPEAKER: It creates full brand identities in seconds. Look at this logo...
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <h3 class="text-xs font-medium text-white/40 uppercase tracking-wider">Suggested Hashtags</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-xs text-primary bg-primary/5 px-2 py-1 rounded border border-primary/20">#AIRevolution</span>
+                    <span class="text-xs text-white/50 bg-white/5 px-2 py-1 rounded border border-white/5">#DesignHacks</span>
+                    <span class="text-xs text-white/50 bg-white/5 px-2 py-1 rounded border border-white/5">#Productivity</span>
+                    <span class="text-xs text-white/50 bg-white/5 px-2 py-1 rounded border border-white/5">#TechTrends</span>
+                </div>
+            </div>
+
+            <div class="mt-auto pt-10 text-center opacity-50">
+                <i class="fa-solid fa-lock text-white/20 text-2xl mb-3"></i>
+                <p class="text-[10px] text-white/30 max-w-[200px] mx-auto">
+                    Generate the full draft to unlock copying, exporting, and detailed editing.
+                </p>
+            </div>
+
+        </div>
+    </div>
+    
+</div>
+{% endblock content %}

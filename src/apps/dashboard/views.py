@@ -13,8 +13,16 @@ def _render_page(request, full_template, partial_template, context=None):
 
 @login_required
 def dashboard(request):
-    return render(request, 'dashboard/dashboard.html')
+    return render(request, 'dashboard/pages/dashboard.html')
 
 @login_required
 def ideas(request):
-    return render(request, 'dashboard/ideas.html')
+    return render(request, 'dashboard/pages/ideas.html')
+
+@login_required
+def create(request):
+    return render(request, 'dashboard/pages/create.html')
+
+@login_required
+def projects(request):
+    return render(request, 'dashboard/pages/projects.html')
