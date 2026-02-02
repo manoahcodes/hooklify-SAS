@@ -129,10 +129,10 @@
                     My Projects
                 </span>
             </a>
-            
+
             <div id="tooltip-hover-4" role="tooltip" class="sidebar-tooltip-e absolute z-10 invisible rounded-md inline-block px-3 py-2 text-sm font-medium text-white bg-surface-dark rounded-base shadow-xs opacity-0 tooltip">Projects</div>
 
-            <a href="#" data-tooltip-placement="right" data-tooltip-target="tooltip-hover-5" data-tooltip-trigger="hover" 
+            <a href="{% url "templates" %}" data-tooltip-placement="right" data-tooltip-target="tooltip-hover-5" data-tooltip-trigger="hover" 
                class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all group
                {% if request.resolver_match.url_name == 'templates' %}
                    bg-surface-dark bg-primary/10 border border-primary/20 shadow-[0_0_10px_rgba(249,31,31,0.1)] font-medium

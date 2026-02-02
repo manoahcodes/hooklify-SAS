@@ -25,4 +25,8 @@ def create(request):
 
 @login_required
 def projects(request):
-    return render(request, 'dashboard/pages/projects.html')
+    return render(request, 'dashboard/pages/library/projects.html')
+
+@login_required
+def user_templates(request):
+    return render(request, 'dashboard/pages/library/templates.html')

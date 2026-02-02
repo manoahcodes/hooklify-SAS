@@ -813,6 +813,9 @@
   .h-16 {
     height: calc(var(--spacing) * 16);
   }
+  .h-20 {
+    height: calc(var(--spacing) * 20);
+  }
   .h-32 {
     height: calc(var(--spacing) * 32);
   }
@@ -860,6 +863,9 @@
   }
   .min-h-\[240px\] {
     min-height: 240px;
+  }
+  .min-h-\[400px\] {
+    min-height: 400px;
   }
   .min-h-\[480px\] {
     min-height: 480px;
@@ -911,6 +917,9 @@
   }
   .w-16 {
     width: calc(var(--spacing) * 16);
+  }
+  .w-20 {
+    width: calc(var(--spacing) * 20);
   }
   .w-32 {
     width: calc(var(--spacing) * 32);
@@ -1841,6 +1850,12 @@
       background-color: color-mix(in oklab, var(--color-card-dark) 30%, transparent);
     }
   }
+  .bg-card-dark\/50 {
+    background-color: color-mix(in srgb, #231515 50%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-card-dark) 50%, transparent);
+    }
+  }
   .bg-gray-100 {
     background-color: var(--color-gray-100);
   }
@@ -1956,6 +1971,12 @@
     background-color: color-mix(in srgb, #1f1515 30%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       background-color: color-mix(in oklab, var(--color-surface-dark) 30%, transparent);
+    }
+  }
+  .bg-surface-dark\/50 {
+    background-color: color-mix(in srgb, #1f1515 50%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-surface-dark) 50%, transparent);
     }
   }
   .bg-transparent {
@@ -3034,6 +3055,13 @@
       }
     }
   }
+  .group-hover\:rotate-90 {
+    &:is(:where(.group):hover *) {
+      @media (hover: hover) {
+        rotate: 90deg;
+      }
+    }
+  }
   .group-hover\:animate-pulse {
     &:is(:where(.group):hover *) {
       @media (hover: hover) {
@@ -3538,6 +3566,16 @@
       }
     }
   }
+  .hover\:border-primary\/20 {
+    &:hover {
+      @media (hover: hover) {
+        border-color: color-mix(in srgb, #f91f1f 20%, transparent);
+        @supports (color: color-mix(in lab, red, red)) {
+          border-color: color-mix(in oklab, var(--color-primary) 20%, transparent);
+        }
+      }
+    }
+  }
   .hover\:border-primary\/30 {
     &:hover {
       @media (hover: hover) {
@@ -3630,6 +3668,13 @@
     &:hover {
       @media (hover: hover) {
         background-color: color-mix(in oklab, #5865F2 5%, transparent);
+      }
+    }
+  }
+  .hover\:bg-card-dark {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-card-dark);
       }
     }
   }
