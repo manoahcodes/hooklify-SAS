@@ -14,16 +14,23 @@
             <div class="icon-logo size-8 flex items-center justify-center rounded-lg bg-primary text-white shadow-glow shrink-0">
                 <span class="material-symbols-outlined text-4xl">bolt</span>
             </div>
-            <span class="icon-expanded" data-tooltip-placement="right" data-tooltip-target="tooltip-hover-10" data-tooltip-trigger="hover">
+
+            <span class="icon-expanded" data-tooltip-placement="bottom" data-tooltip-target="tooltip-hover-10" data-tooltip-trigger="hover">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#f91f1f">
                     <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm120-80v-560H200v560h120Zm80 0h360v-560H400v560Zm-80 0H200h120Z"/>
                 </svg>
             </span>
+
+            <div id="tooltip-hover-10" role="tooltip" class="sidebar-tooltip-e absolute z-10 invisible rounded-md inline-block px-3 py-2 text-sm font-medium text-white bg-surface-dark rounded-base shadow-xs opacity-0 tooltip">Collapse Sidebar</div>
+
             <span class="icon-collapsed hidden" data-tooltip-placement="right" data-tooltip-target="tooltip-hover-11" data-tooltip-trigger="hover">
                 <svg xmlns="http://www.w3.org/2000/svg" height="30px" width="30px" viewBox="0 -960 960 960" fill="#f91f1f">
                     <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm440-80h120v-560H640v560Zm-80 0v-560H200v560h360Zm80 0h120-120Z"/>
                 </svg>
             </span>
+
+            <div id="tooltip-hover-11" role="tooltip" class="sidebar-tooltip-e absolute z-10 invisible rounded-md inline-block px-3 py-2 text-sm font-medium text-white bg-surface-dark rounded-base shadow-xs opacity-0 tooltip">Expand Sidebar</div>
+            
         </button>
     </div>
 
@@ -151,7 +158,7 @@
             </a>
             <div id="tooltip-hover-5" role="tooltip" class="sidebar-tooltip-e absolute z-10 invisible rounded-md inline-block px-3 py-2 text-sm font-medium text-white bg-surface-dark rounded-base shadow-xs opacity-0 tooltip">Templates</div>
 
-            <a href="#" data-tooltip-placement="right" data-tooltip-target="tooltip-hover-6" data-tooltip-trigger="hover" 
+            <a href="{% url "history" %}" data-tooltip-placement="right" data-tooltip-target="tooltip-hover-6" data-tooltip-trigger="hover" 
                class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all group
                {% if request.resolver_match.url_name == 'history' %}
                    bg-surface-dark bg-primary/10 border border-primary/20 shadow-[0_0_10px_rgba(249,31,31,0.1)] font-medium

@@ -1,0 +1,304 @@
+{% extends "dashboard/base.html" %}
+{% block title %}History - {{ block.super }} {% endblock %}
+{% block content %}
+<div class="p-8 max-w-7xl mx-auto w-full space-y-8">
+
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-white/5">
+        <div class="space-y-2">
+            <div class="flex items-center gap-3">
+                <h1 class="text-4xl font-black tracking-tighter text-white">
+                    Generation History
+                </h1>
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-primary/20 text-primary border border-primary/20 uppercase tracking-wider">Archive</span>
+            </div>
+
+            <p class="text-white/50 text-base max-w-lg">
+                View, restore, or permanently delete your content history.
+            </p>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-4 w-full md:w-auto">
+
+            <div class="relative group">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="fa-solid fa-magnifying-glass text-white/30 group-focus-within:text-primary transition-colors"></i>
+                </div>
+                <input class="bg-surface-dark border border-white/10 text-white text-sm rounded-xl focus:ring-primary focus:border-primary block w-full md:w-64 pl-10 p-2.5 placeholder-white/30 transition-all shadow-sm"
+                    placeholder="Search by keyword..." type="text">
+            </div>
+
+            <div class="bg-surface-dark p-1 rounded-xl border border-white/10 flex items-center">
+                <button class="px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-white/10 flex items-center gap-2 shadow-sm border border-white/5">
+                    All
+                </button>
+
+                <button class="px-3 py-1.5 rounded-lg text-xs font-bold text-white/40 hover:text-white transition-all flex items-center gap-2">
+                    <i class="fa-brands fa-tiktok"></i> 
+                    TikTok
+                </button>
+
+                <button class="px-3 py-1.5 rounded-lg text-xs font-bold text-white/40 hover:text-white transition-all flex items-center gap-2">
+                    <i class="fa-brands fa-instagram"></i> 
+                    Reels
+                </button>
+
+                <button class="px-3 py-1.5 rounded-lg text-xs font-bold text-white/40 hover:text-white transition-all flex items-center gap-2">
+                    <i class="fa-brands fa-youtube"></i> 
+                    Shorts
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-surface-dark rounded-2xl border border-white/5 overflow-hidden shadow-2xl">
+        
+        <div class="overflow-x-auto">
+            
+            <table class="w-full text-left border-collapse">
+                <thead class="bg-card-dark border-b border-white/5 text-[10px] font-bold text-white/30 uppercase tracking-[0.2em]">
+                    <tr>
+                        <th class="px-6 py-5 font-medium w-5/12">Content</th>
+                        <th class="px-6 py-5 font-medium">Type</th>
+                        <th class="px-6 py-5 font-medium">Platform</th>
+                        <th class="px-6 py-5 font-medium">Date</th>
+                        <th class="px-6 py-5 font-medium text-right">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody class="divide-y divide-white/5 text-sm">
+                    <tr class="hover:bg-white/[0.02] transition-colors group">
+                        <td class="px-6 py-4">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-white/5 border border-white/5 flex items-center justify-center text-white/40 group-hover:text-primary group-hover:border-primary/30 transition-all">
+                                    <i class="fa-solid fa-file-lines text-lg"></i>
+                                </div>
+
+                                <div>
+                                    <span
+                                        class="block font-bold text-white text-base mb-1 group-hover:text-primary transition-colors">The
+                                        $10k Secret they don't tell you...</span>
+                                    <span class="block text-xs text-white/40 truncate max-w-[200px]">Start with a close
+                                        up of your bank app...</span>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td class="px-6 py-4">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                                Script
+                            </span>
+                        </td>
+
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-2 text-white/70">
+                                <i class="fa-brands fa-tiktok text-lg"></i>
+                                <span class="text-xs font-medium">TikTok</span>
+                            </div>
+                        </td>
+
+                        <td class="px-6 py-4 text-white/40 text-xs font-mono">
+                            2 hours ago
+                        </td>
+
+                        <td class="px-6 py-4 text-right">
+                            <div class="flex items-center justify-end gap-6">
+                                <a class="text-xs font-bold text-primary hover:text-white transition-colors uppercase tracking-wider glow-text-red"
+                                    href="#">Restore</a>
+                                <button class="text-white/20 hover:text-red-500 transition-colors">
+                                    <i class="fa-solid fa-trash-can text-lg"></i>
+                                </button>
+                            </div>
+                        </td>
+
+                    </tr>
+
+                    <tr class="hover:bg-white/[0.02] transition-colors group">
+                        <td class="px-6 py-4">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-white/5 border border-white/5 flex items-center justify-center text-white/40 group-hover:text-primary group-hover:border-primary/30 transition-all">
+                                    <i class="fa-solid fa-quote-left text-lg"></i>
+                                </div>
+                                <div>
+                                    <span class="block font-bold text-white text-base mb-1 group-hover:text-primary transition-colors">
+                                        Stop doing this if you want to grow...
+                                    </span>
+                                    <span class="block text-xs text-white/40 truncate max-w-[200px]">
+                                        Negative hook variant for increased retention...
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td class="px-6 py-4">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                                Hook
+                            </span>
+                        </td>
+
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-2 text-white/70">
+                                <i class="fa-brands fa-instagram text-lg"></i>
+                                <span class="text-xs font-medium">Reels</span>
+                            </div>
+                        </td>
+
+                        <td class="px-6 py-4 text-white/40 text-xs font-mono">
+                            5 hours ago
+                        </td>
+
+                        <td class="px-6 py-4 text-right">
+                            <div class="flex items-center justify-end gap-6">
+                                <a class="text-xs font-bold text-primary hover:text-white transition-colors uppercase tracking-wider glow-text-red"
+                                    href="#">Restore</a>
+                                <button class="text-white/20 hover:text-red-500 transition-colors">
+                                    <i class="fa-solid fa-trash-can text-lg"></i>
+                                </button>
+                            </div>
+                        </td>
+
+                    </tr>
+
+                    <tr class="hover:bg-white/[0.02] transition-colors group">
+
+                        <td class="px-6 py-4">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-white/5 border border-white/5 flex items-center justify-center text-white/40 group-hover:text-primary group-hover:border-primary/30 transition-all">
+                                    <i class="fa-solid fa-bullhorn text-lg"></i>
+                                </div>
+                                <div>
+                                    <span class="block font-bold text-white text-base mb-1 group-hover:text-primary transition-colors">
+                                        Comment "GUIDE" below for the PDF...</span>
+                                    <span class="block text-xs text-white/40 truncate max-w-[200px]">
+                                        High conversion CTA template...</span>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td class="px-6 py-4">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium bg-green-500/10 text-green-400 border border-green-500/20">
+                                CTA
+                            </span>
+                        </td>
+
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-2 text-white/70">
+                                <i class="fa-brands fa-youtube text-lg"></i>
+                                <span class="text-xs font-medium">Shorts</span>
+                            </div>
+                        </td>
+
+                        <td class="px-6 py-4 text-white/40 text-xs font-mono">
+                            Yesterday
+                        </td>
+
+                        <td class="px-6 py-4 text-right">
+                            <div class="flex items-center justify-end gap-6">
+                                <a class="text-xs font-bold text-primary hover:text-white transition-colors uppercase tracking-wider glow-text-red"
+                                    href="#">Restore</a>
+                                <button class="text-white/20 hover:text-red-500 transition-colors">
+                                    <i class="fa-solid fa-trash-can text-lg"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="hover:bg-white/[0.02] transition-colors group">
+                        <td class="px-6 py-4">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-white/5 border border-white/5 flex items-center justify-center text-white/40 group-hover:text-primary group-hover:border-primary/30 transition-all">
+                                    <i class="fa-solid fa-file-lines text-lg"></i>
+                                </div>
+                                <div>
+                                    <span class="block font-bold text-white text-base mb-1 group-hover:text-primary transition-colors">
+                                        Why AI will replace your job...
+                                    </span>
+                                    <span class="block text-xs text-white/40 truncate max-w-[200px]">
+                                        Controversial topic script #42...
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td class="px-6 py-4">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                                Script
+                            </span>
+                        </td>
+
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-2 text-white/70">
+                                <i class="fa-brands fa-tiktok text-lg"></i>
+                                <span class="text-xs font-medium">TikTok</span>
+                            </div>
+                        </td>
+
+                        <td class="px-6 py-4 text-white/40 text-xs font-mono">
+                            3 days ago
+                        </td>
+
+                        <td class="px-6 py-4 text-right">
+                            <div class="flex items-center justify-end gap-6">
+                                <a class="text-xs font-bold text-primary hover:text-white transition-colors uppercase tracking-wider glow-text-red"
+                                    href="#">Restore</a>
+                                <button class="text-white/20 hover:text-red-500 transition-colors">
+                                    <i class="fa-solid fa-trash-can text-lg"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="hover:bg-white/[0.02] transition-colors group">
+                        <td class="px-6 py-4">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-white/5 border border-white/5 flex items-center justify-center text-white/40 group-hover:text-primary group-hover:border-primary/30 transition-all">
+                                    <i class="fa-solid fa-quote-left text-lg"></i>
+                                </div>
+                                <div>
+                                    <span class="block font-bold text-white text-base mb-1 group-hover:text-primary transition-colors">
+                                        Here is the exact framework...
+                                    </span>
+                                    <span class="block text-xs text-white/40 truncate max-w-[200px]">
+                                        Educational hook for expert positioning...
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td class="px-6 py-4">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                                Hook
+                            </span>
+                        </td>
+
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-2 text-white/70">
+                                <i class="fa-brands fa-youtube text-lg"></i>
+                                <span class="text-xs font-medium">Shorts</span>
+                            </div>
+                        </td>
+
+                        <td class="px-6 py-4 text-white/40 text-xs font-mono">
+                            1 week ago
+                        </td>
+
+                        <td class="px-6 py-4 text-right">
+                            <div class="flex items-center justify-end gap-6">
+                                <a class="text-xs font-bold text-primary hover:text-white transition-colors uppercase tracking-wider glow-text-red"
+                                    href="#">Restore</a>
+                                <button class="text-white/20 hover:text-red-500 transition-colors">
+                                    <i class="fa-solid fa-trash-can text-lg"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="text-center pt-8 pb-4">
+        <p class="text-[10px] text-white/20 uppercase font-bold tracking-[0.2em]">Showing 5 of 124 archived items</p>
+    </div>
+
+</div>
+{% endblock content %}

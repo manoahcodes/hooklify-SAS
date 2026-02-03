@@ -30,3 +30,7 @@ def projects(request):
 @login_required
 def user_templates(request):
     return render(request, 'dashboard/pages/library/templates.html')
+
+@login_required
+def user_generation_history(request):
+    return render(request, 'dashboard/pages/library/history.html')

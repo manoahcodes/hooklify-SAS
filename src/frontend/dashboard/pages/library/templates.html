@@ -1,7 +1,10 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Templates - {{ block.super }} {% endblock %}
+{% block content %}
 <div class="p-8 max-w-7xl mx-auto w-full space-y-8">
     <div class="flex flex-wrap items-end justify-between gap-6">
         <div class="space-y-2">
-            <h1 class="text-5xl font-black tracking-tighter text-white uppercase">
+            <h1 class="text-5xl font-black tracking-tighter text-white">
                 My Templates
             </h1>
             <p class="text-white/50 text-lg">Manage your high-converting viral frameworks.</p>
@@ -402,3 +405,4 @@
         </button>
     </div>
 </div>
+{% endblock content %}
