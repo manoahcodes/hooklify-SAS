@@ -34,3 +34,7 @@ def user_templates(request):
 @login_required
 def user_generation_history(request):
     return render(request, 'dashboard/pages/library/history.html')
+
+@login_required
+def studio(request):
+    return render(request, 'dashboard/pages/studio/index.html')
