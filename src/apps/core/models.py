@@ -1,9 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.validators import MaxValueValidator
-
 
 # Create your models here.
+class Platform(models.Model):
+    name = models.CharField(max_length=100)
+    system_prompt = models.TextField()
+    metadata = models.JSONField(help_text="JSON Context for the AI to understand this Niche.", null=True)
+    description = models.TextField()
+
 class Niche(models.Model):
     """
     Examples: 
@@ -11,6 +15,7 @@ class Niche(models.Model):
     - Description: "This niche handles comedies, skits, and viral entertainment."
     """
     name = models.CharField(max_length=100, unique=True)
+    metadata = models.JSONField(help_text="JSON Context for the AI to understand this Niche.", null=True)
     description = models.TextField(help_text="Context for the AI to understand this niche.")
 
     def __str__(self):
@@ -19,8 +24,8 @@ class Niche(models.Model):
 class SubNiche(models.Model):
     """
     Examples: 
-    - Name: "Entertainment"
-    - Description: "This niche handles comedies, skits, and viral entertainment."
+    - Name: "Comedy"
+    - Description: "This comedy niche handles comedies, and skits."
     """
     name = models.CharField(max_length=100, unique=True)
     description = models.TextField(help_text="Context for the AI to understand this sub niche.")
@@ -30,6 +35,7 @@ class SubNiche(models.Model):
 
 class Tone(models.Model):
     name = models.CharField(max_length=100, unique=True)
+    metadata = models.JSONField(help_text="JSON Context for the AI to understand this Tone.", null=True)
     description = models.TextField(help_text="Context for the AI to understand this Tone.")
     
     def __str__(self):
@@ -37,6 +43,7 @@ class Tone(models.Model):
     
 class Style(models.Model):
     name = models.CharField(max_length=100, unique=True)
+    metadata = models.JSONField(help_text="JSON Context for the AI to understand this style.", null=True)
     description = models.TextField(help_text="Context for the AI to understand this Style.")
 
     def __str__(self):
@@ -58,17 +65,20 @@ class Country(models.Model):
 class AgeGroup(models.Model):
     """Ranges like '18-24', '25-34'"""
     label = models.CharField(max_length=50, unique=True)
-    description = models.TextField(help_text="Context for the AI to understand this Age Group.")
+    range = models.CharField(max_length=6, unique=True, null=True)
+    metadata = models.JSONField(help_text="JSON Context for the AI to understand this Age Group.", null=True)
+    description = models.TextField(help_text="Context for the AI to understand this Age Group.", null=True)
     
     def __str__(self):
-        return self.label
+        return f"{self.label} - {self.range}"
     
     class Meta:
-        ordering = ['label']
+        ordering = ['id']
 
 class Audience(models.Model):
     """Specific segments like 'Entrepreneurs', 'Gen Z', etc."""
     name = models.CharField(max_length=100, unique=True)
+    metadata = models.JSONField(help_text="JSON Context for the AI to understand this Audience.", null=True)
     description = models.TextField(help_text="Context for the AI to understand this Age Group.")
     
     def __str__(self):
@@ -94,12 +104,17 @@ class VideoScriptParams(models.Model):
     # The primary video reference (Visual/Vibe match)
     video_reference_url = models.URLField(
         blank=True, null=True, 
-        help_text="A specific YouTube/TikTok link that captures the visual vibe you want."
+        help_text="A specific Shorts/Reels/TikTok link that captures the visual vibe you want."
     )
 
     # Specific instructions
     core_concept = models.TextField()
     
+    generate_hooks = models.BooleanField(default=True)
+    generate_scripts = models.BooleanField(default=True)
+    generate_cta = models.BooleanField(default=True)
+
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
