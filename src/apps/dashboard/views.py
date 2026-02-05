@@ -37,4 +37,4 @@ def user_generation_history(request):
 
 @login_required
 def studio(request):
-    return render(request, 'dashboard/pages/studio/index.html')
+    return render(request, 'dashboard/studio/index.html')

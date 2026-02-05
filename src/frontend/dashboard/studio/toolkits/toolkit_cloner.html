@@ -1,0 +1,25 @@
+<details class="group border-b border-border-color">
+    <summary class="flex items-center justify-between p-5 cursor-pointer hover:bg-white/[0.02] transition-colors select-none">
+        <div class="flex items-center gap-3">
+            <i class="fa-solid fa-dna text-white/40 text-lg group-open:text-primary transition-colors w-5 text-center"></i>
+            <span class="text-sm font-medium text-white/80 group-open:text-white">Viral DNA Cloner</span>
+        </div>
+        <i class="fa-solid fa-chevron-down text-white/20 text-xs transition-transform duration-200 group-open:rotate-180"></i>
+    </summary>
+    <div class="px-5 pb-6 pt-1">
+        <div class="p-4 rounded-lg bg-bg-panel border border-border-color space-y-4">
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold text-white">{{ style_name|default:"Alex Hormozi Style" }}</span>
+                <span class="flex h-2 w-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
+            </div>
+            <div class="h-8 flex items-end gap-[3px]">
+                {% for bar in "12345678" %}
+                <div class="bg-{% if forloop.counter == 2 or forloop.counter == 6 %}primary{% else %}white/20{% endif %} w-full h-[{% cycle '40' '80' '60' '30' '95' '50' '45' '75' %}%] rounded-t-sm"></div>
+                {% endfor %}
+            </div>
+            <button type="button" class="w-full py-2 rounded bg-white/5 hover:bg-white/10 text-[10px] font-bold text-white/60 hover:text-white uppercase tracking-wider transition-all border border-white/5">
+                Match Pacing
+            </button>
+        </div>
+    </div>
+</details>

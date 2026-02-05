@@ -13,6 +13,7 @@
   --color-surface-dark: #1f1515;
   --color-dark-tooltip: #1e2939;
   --color-border-subtle: #2a2a2a;
+  --color-border-color: rgba(255, 255, 255, 0.06);
 
   --font-display: "Space Grotesk", "sans-serif";
   --font-body: "Noto Sans", "sans-serif";

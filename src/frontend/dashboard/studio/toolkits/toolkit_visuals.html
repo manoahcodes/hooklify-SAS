@@ -1,0 +1,22 @@
+<details class="group border-b border-border-color">
+    <summary class="flex items-center justify-between p-5 cursor-pointer hover:bg-white/[0.02] transition-colors select-none">
+        <div class="flex items-center gap-3">
+            <i class="fa-solid fa-video text-white/40 text-lg group-open:text-primary transition-colors w-5 text-center"></i>
+            <span class="text-sm font-medium text-white/80 group-open:text-white">Visual Directions</span>
+        </div>
+        <i class="fa-solid fa-chevron-down text-white/20 text-xs transition-transform duration-200 group-open:rotate-180"></i>
+    </summary>
+    <div class="px-5 pb-6 pt-1 space-y-3">
+        {% for direction in visual_directions %}
+        <div class="flex gap-4 items-start py-3 border-l-2 border-white/5 pl-4 hover:border-primary transition-colors cursor-pointer group/item {% if forloop.first %}bg-white/[0.01]{% endif %}">
+            <span class="text-[10px] font-mono text-primary font-bold">{{ direction.time }}</span>
+            <div>
+                <p class="text-xs font-bold text-white/90 group-hover/item:text-white">{{ direction.label }}</p>
+                <p class="text-[10px] text-white/40 mt-1">{{ direction.description }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-[10px] text-white/20 text-center py-4">No visual cues generated yet.</p>
+        {% endfor %}
+    </div>
+</details>

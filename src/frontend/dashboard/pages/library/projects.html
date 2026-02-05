@@ -1,7 +1,10 @@
 {% extends "dashboard/base.html" %}
-{% block title %}My Projects - {{ block.super }} {% endblock %}
+
+{% block title %}My Projects - {{ block.super }}{% endblock %}
+
 {% block content %}
 <div class="p-8 max-w-[1600px] mx-auto w-full space-y-8">
+    {# Header Section #}
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
             <h1 class="text-4xl font-black tracking-tighter text-white mb-2">My Projects</h1>
@@ -9,257 +12,164 @@
         </div>
         
         <div class="flex items-center gap-4">
+            {# View Toggle - Note: These would ideally be links with ?view=card/table #}
             <div class="flex items-center bg-surface-dark border border-white/10 rounded-lg p-1">
-                <button aria-label="Card View"
-                    class="w-9 h-9 flex items-center justify-center rounded bg-white/10 text-white shadow-sm transition-all">
+                <button aria-label="Card View" class="w-9 h-9 flex items-center justify-center rounded bg-white/10 text-white shadow-sm transition-all">
                     <i class="fa-solid fa-table-cells-large text-lg"></i>
                 </button>
-
-                <button aria-label="Table View"
-                    class="w-9 h-9 flex items-center justify-center rounded text-white/40 hover:text-white hover:bg-white/5 transition-all">
+                <button aria-label="Table View" class="w-9 h-9 flex items-center justify-center rounded text-white/40 hover:text-white hover:bg-white/5 transition-all">
                     <i class="fa-solid fa-list text-lg"></i>
-                </button>
-
-                <div class="w-[1px] h-5 bg-white/10 mx-1"></div>
-
-                <button aria-label="Detailed View"
-                    class="w-9 h-9 flex items-center justify-center rounded text-primary hover:bg-primary/10 transition-all relative group">
-                    <i class="fa-solid fa-square-poll-horizontal text-lg"></i>
-                    <span class="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full"></span>
                 </button>
             </div>
 
-            <button class="flex items-center gap-2 px-6 py-3 bg-primary hover:bg-red-600 rounded-xl font-bold text-white transition-all hover:scale-105 active:scale-95 glow-red shadow-lg shadow-primary/20">
+            <a href="#" class="flex items-center gap-2 px-6 py-3 bg-primary hover:bg-red-600 rounded-xl font-bold text-white transition-all hover:scale-105 active:scale-95 shadow-lg shadow-primary/20">
                 <i class="fa-solid fa-plus"></i>
                 <span class="uppercase tracking-wide text-xs">New Project</span>
-            </button>
+            </a>
         </div>
     </div>
 
+    {# Filter & Sort Bar #}
     <div class="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-white/5">
-
         <div class="flex items-center gap-2">
-            <button class="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-white text-black hover:bg-gray-200 transition-colors">
+            <a href="#" class="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider {% if not request.GET.platform %}bg-white text-black{% else %}text-white/40 hover:text-white hover:bg-white/5{% endif %} transition-colors">
                 All Projects
-            </button>
-
-            <button class="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider text-white/40 hover:text-white hover:bg-white/5 transition-colors flex items-center gap-2">
-                <i class="fa-brands fa-tiktok"></i>
-                TikTok
-            </button>
-
-            <button class="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider text-white/40 hover:text-white hover:bg-white/5 transition-colors flex items-center gap-2">
-                <i class="fa-brands fa-instagram"></i> 
-                Reels
-            </button>
-
-            <button class="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider text-white/40 hover:text-white hover:bg-white/5 transition-colors flex items-center gap-2">
-                <i class="fa-brands fa-youtube"></i>
-                Shorts
-            </button>
-
+            </a>
+            {% for platform in platforms %}
+            <a href="#" class="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider {% if request.GET.platform == platform.slug %}bg-white text-black{% else %}text-white/40 hover:text-white hover:bg-white/5{% endif %} transition-colors flex items-center gap-2">
+                <i class="fa-brands fa-{{ platform.icon }}"></i>
+                {{ platform.name }}
+            </a>
+            {% endfor %}
         </div>
 
-        <div class="flex items-center gap-4">
+        <form method="get" class="flex items-center gap-4">
             <div class="flex items-center gap-2 text-xs font-bold text-white/40 uppercase tracking-wider">
                 <i class="fa-solid fa-sort text-base"></i>
                 Sort by:
-                <select
-                    class="bg-transparent border-none text-white focus:ring-0 cursor-pointer text-xs font-bold uppercase tracking-wider p-0">
-                    <option>Last Modified</option>
-                    <option>Date Created</option>
-                    <option>Name</option>
+                <select name="sort" onchange="this.form.submit()" class="bg-transparent border-none text-white focus:ring-0 cursor-pointer text-xs font-bold uppercase tracking-wider p-0">
+                    <option value="-modified" {% if request.GET.sort == '-modified' %}selected{% endif %}>Last Modified</option>
+                    <option value="-created" {% if request.GET.sort == '-created' %}selected{% endif %}>Date Created</option>
+                    <option value="title" {% if request.GET.sort == 'title' %}selected{% endif %}>Name</option>
                 </select>
             </div>
-        </div>
-
+        </form>
     </div>
 
+    {# Project Grid #}
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="group relative bg-card-dark rounded-2xl border border-white/5 p-6 transition-all hover:border-white/20 hover:bg-surface-dark hover:shadow-xl hover:shadow-black/40 flex flex-col h-full">
-            <div class="flex items-start justify-between mb-4">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg flex items-center justify-center">
-                        <i class="fa-brands fa-tiktok text-xl"></i>
-                    </div>
-
-                    <div>
-                        <p class="text-[10px] text-white/40 font-bold uppercase tracking-widest">TikTok</p>
-                        <p class="text-xs text-white/60">Updated 2h ago</p>
-                    </div>
-                </div>
-
-                <button class="text-white/20 hover:text-white transition-colors">
-                    <i class="fa-solid fa-pen text-lg"></i>
-                </button>
-            </div>
-
-            <div class="mb-8 flex-1">
-                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                    10 Morning Habits for High Output Founders
-                </h3>
-                <div class="flex items-center gap-2 mt-3">
-                    <span class="px-2 py-1 rounded bg-green-500/10 text-green-500 text-[10px] font-bold uppercase tracking-wider border border-green-500/20">Ready</span>
-                    <span class="px-2 py-1 rounded bg-white/5 text-white/40 text-[10px] font-bold uppercase tracking-wider">Educational</span>
-                </div>
-            </div>
-
-            <button class="w-full py-3 rounded-xl border border-white/10 text-sm font-bold text-white hover:bg-primary hover:border-primary hover:text-white transition-all flex items-center justify-center gap-2 group/btn">
-                Open Studio
-                <i class="fa-solid fa-arrow-up-right-from-square text-sm group-hover/btn:translate-x-1 transition-transform"></i>
-            </button>
-        </div>
-
-        <div class="group relative bg-surface-dark rounded-2xl border border-primary/30 p-0 transition-all shadow-2xl shadow-primary/5 flex flex-col h-full overflow-hidden col-span-1 lg:col-span-2">
-            <div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
-            <div class="p-6 pb-0 flex items-start justify-between">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg p-[1px]">
-                        <div class="w-full h-full bg-surface-dark rounded-[7px] flex items-center justify-center">
-                            <i class="fa-brands fa-instagram text-xl"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <p class="text-[10px] text-primary font-bold uppercase tracking-widest">Active Preview</p>
-                        <p class="text-xs text-white/60">Reels • Created Yesterday</p>
-                    </div>
-                </div>
-
-                <div class="flex gap-2">
-                    <button class="text-white/20 hover:text-white transition-colors">
-                        <i class="fa-solid fa-pen text-lg"></i>
-                    </button>
-                </div>
-
-            </div>
-
-            <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="text-2xl font-black text-white mb-4">AI vs Human: The Truth</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <p class="text-[10px] text-white/30 font-bold uppercase tracking-[0.2em] mb-2">The Hook</p>
-                            <div class="p-3 bg-black/40 rounded-lg border border-white/5 text-white/90 text-sm italic border-l-2 border-l-primary">
-                                "Stop scrolling if you think AI is going to replace you. Here's why you're wrong."
+        {% for project in projects %}
+            {# Featured / Active Card (Example logic: first item or specific flag) #}
+            {% if forloop.first and not request.GET.platform %}
+                <div class="group relative bg-surface-dark rounded-2xl border border-primary/30 transition-all shadow-2xl flex flex-col h-full overflow-hidden col-span-1 lg:col-span-2">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+                    <div class="p-6 pb-0 flex items-start justify-between">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-brands fa-{{ project.get_platform_icon }} text-xl"></i>
+                            <div>
+                                <p class="text-[10px] text-primary font-bold uppercase tracking-widest">Active Preview</p>
+                                <p class="text-xs text-white/60">{{ project.get_platform_display }} • Updated {{ project.updated_at|timesince }} ago</p>
                             </div>
                         </div>
+                        <a href="#" class="text-white/20 hover:text-white transition-colors">
+                            <i class="fa-solid fa-pen text-lg"></i>
+                        </a>
+                    </div>
 
+                    <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
-                            <p class="text-[10px] text-white/30 font-bold uppercase tracking-[0.2em] mb-2">
-                                Performance Prediction
-                            </p>
-
-                            <div class="flex items-center gap-4">
-                                <div class="flex-1 h-2 bg-white/10 rounded-full overflow-hidden">
-                                    <div class="h-full w-[85%] bg-primary rounded-full glow-red"></div>
+                            <h3 class="text-2xl font-black text-white mb-4">{{ project.title }}</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <p class="text-[10px] text-white/30 font-bold uppercase tracking-[0.2em] mb-2">The Hook</p>
+                                    <div class="p-3 bg-black/40 rounded-lg border border-white/5 text-white/90 text-sm italic border-l-2 border-l-primary">
+                                        "{{ project.hook|truncatechars:100 }}"
+                                    </div>
                                 </div>
-                                <span class="text-sm font-bold text-primary">85/100</span>
+                                <div>
+                                    <p class="text-[10px] text-white/30 font-bold uppercase tracking-[0.2em] mb-2">Performance Prediction</p>
+                                    <div class="flex items-center gap-4">
+                                        <div class="flex-1 h-2 bg-white/10 rounded-full overflow-hidden">
+                                            <div class="h-full bg-primary rounded-full" style="width: {{ project.score }}%"></div>
+                                        </div>
+                                        <span class="text-sm font-bold text-primary">{{ project.score }}/100</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-surface-dark/90 z-10 pointer-events-none"></div>
+                            <p class="text-[10px] text-white/30 font-bold uppercase tracking-[0.2em] mb-2">Script Snippet</p>
+                            <div class="space-y-2 text-sm text-white/60 font-mono h-32 overflow-hidden">
+                                {{ project.content_preview|linebreaks }}
+                            </div>
+                            <a href="{% url 'projects:detail' project.id %}" class="absolute bottom-0 left-0 z-20 font-bold text-white hover:text-primary transition-colors flex items-center gap-1">
+                                Read Full Script <i class="fa-solid fa-chevron-down text-sm"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-
-                <div class="relative">
-                    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-surface-dark/90 z-10 pointer-events-none">
+            {% else %}
+                {# Standard Card #}
+                <div class="group relative bg-card-dark rounded-2xl border border-white/5 p-6 transition-all hover:border-white/20 hover:bg-surface-dark flex flex-col h-full">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-brands fa-{{ project.get_platform_icon }} text-xl"></i>
+                            <div>
+                                <p class="text-[10px] text-white/40 font-bold uppercase tracking-widest">{{ project.get_platform_display }}</p>
+                                <p class="text-xs text-white/60">Updated {{ project.updated_at|timesince }} ago</p>
+                            </div>
+                        </div>
+                        <a href="{% url 'projects:edit' project.id %}" class="text-white/20 hover:text-white transition-colors">
+                            <i class="fa-solid fa-pen text-lg"></i>
+                        </a>
                     </div>
-                    <p class="text-[10px] text-white/30 font-bold uppercase tracking-[0.2em] mb-2">Script Snippet</p>
-                    <div class="space-y-2 text-sm text-white/60 font-mono leading-relaxed h-32 overflow-hidden">
-                        <p><span class="text-blue-400 font-bold">[Scene: Close up of face]</span></p>
-                        <p>Most people are panicking about ChatGPT taking their jobs.</p>
-                        <p>But the truth is, AI isn't the enemy.</p>
-                        <p>It's the leverage you've been waiting for.</p>
-                        <p>Think about the calculator...</p>
+
+                    <div class="mb-8 flex-1">
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                            {{ project.title }}
+                        </h3>
+                        <div class="flex items-center gap-2 mt-3">
+                            <span class="px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider border 
+                                {% if project.status == 'ready' %}bg-green-500/10 text-green-500 border-green-500/20
+                                {% elif project.status == 'draft' %}bg-yellow-500/10 text-yellow-500 border-yellow-500/20
+                                {% else %}bg-white/5 text-white/40 border-white/10{% endif %}">
+                                {{ project.get_status_display }}
+                            </span>
+                            {% if project.category %}
+                            <span class="px-2 py-1 rounded bg-white/5 text-white/40 text-[10px] font-bold uppercase tracking-wider">{{ project.category }}</span>
+                            {% endif %}
+                        </div>
                     </div>
 
-                    <button class="absolute bottom-0 left-0 z-20 font-bold text-white hover:text-primary transition-colors flex items-center gap-1">
-                        Read Full Script
-                        <i class="fa-solid fa-chevron-down text-sm"></i>
-                    </button>
-
+                    <a href="#" class="w-full py-3 rounded-xl border border-white/10 text-sm font-bold text-white hover:bg-primary hover:border-primary transition-all flex items-center justify-center gap-2 group/btn">
+                        Open Studio <i class="fa-solid fa-arrow-up-right-from-square text-sm group-hover/btn:translate-x-1 transition-transform"></i>
+                    </a>
                 </div>
-            </div>
-        </div>
+            {% endif %}
+        {% empty %}
 
-        <div class="group relative bg-card-dark rounded-2xl border border-white/5 p-6 transition-all hover:border-white/20 hover:bg-surface-dark hover:shadow-xl hover:shadow-black/40 flex flex-col h-full">
-            <div class="flex items-start justify-between mb-4">
-
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg flex items-center justify-center">
-                        <i class="fa-brands fa-youtube text-xl"></i>
-                    </div>
-                    <div>
-                        <p class="text-[10px] text-white/40 font-bold uppercase tracking-widest">Shorts</p>
-                        <p class="text-xs text-white/60">Updated 1d ago</p>
-                    </div>
+        {% if not projects %}
+            {# No Projects Found Placeholder #}
+            <a href="#" class="col-span-full group relative bg-card-dark/30 rounded-2xl border-2 border-dashed border-white/10 p-6 transition-all hover:border-primary hover:bg-primary/5 flex flex-col items-center justify-center h-full min-h-[240px]">
+                <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-primary transition-all duration-300">
+                    <i class="fa-solid fa-plus text-3xl text-white/20 group-hover:text-white"></i>
                 </div>
-
-                <button class="text-white/20 hover:text-white transition-colors">
-                    <i class="fa-solid fa-pen text-lg"></i>
-                </button>
-            </div>
-
-            <div class="mb-8 flex-1">
-                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                    MrBeast Script Breakdown: 3 Viral Secrets
-                </h3>
-
-                <div class="flex items-center gap-2 mt-3">
-                    <span class="px-2 py-1 rounded bg-yellow-500/10 text-yellow-500 text-[10px] font-bold uppercase tracking-wider border border-yellow-500/20">Draft</span>
-                    <span class="px-2 py-1 rounded bg-white/5 text-white/40 text-[10px] font-bold uppercase tracking-wider">Analysis</span>
+                <h3 class="text-lg font-bold text-white/40 group-hover:text-white transition-colors">No projects found. Start by creating a new one!</h3>
+            </a>
+        {% elif projects %}
+            {# Add New Project Placeholder #}
+            <a href="#" class="group relative bg-card-dark/30 rounded-2xl border-2 border-dashed border-white/10 p-6 transition-all hover:border-primary hover:bg-primary/5 flex flex-col items-center justify-center h-full min-h-[240px]">
+                <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-primary transition-all duration-300">
+                    <i class="fa-solid fa-plus text-3xl text-white/20 group-hover:text-white"></i>
                 </div>
-            </div>
+                <h3 class="text-lg font-bold text-white/40 group-hover:text-white transition-colors">Start New Project</h3>
+            </a>
+        {% endif %}
 
-            <button class="w-full py-3 rounded-xl border border-white/10 text-sm font-bold text-white hover:bg-primary hover:border-primary hover:text-white transition-all flex items-center justify-center gap-2 group/btn">
-                Open Studio
-                <i class="fa-solid fa-arrow-up-right-from-square text-sm group-hover/btn:translate-x-1 transition-transform"></i>
-            </button>
-        </div>
+        {% endfor %}
 
-        <div class="group relative bg-card-dark rounded-2xl border border-white/5 p-6 transition-all hover:border-white/20 hover:bg-surface-dark hover:shadow-xl hover:shadow-black/40 flex flex-col h-full">
-            <div class="flex items-start justify-between mb-4">
-
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg flex items-center justify-center">
-                        <i class="fa-brands fa-tiktok text-xl"></i>
-                    </div>
-                    <div>
-                        <p class="text-[10px] text-white/40 font-bold uppercase tracking-widest">TikTok</p>
-                        <p class="text-xs text-white/60">Updated 3d ago</p>
-                    </div>
-                </div>
-
-                <button class="text-white/20 hover:text-white transition-colors">
-                    <i class="fa-solid fa-pen text-lg"></i>
-                </button>
-            </div>
-
-            <div class="mb-8 flex-1">
-                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                    Why Your Hooks Are Failing (And How to Fix Them)
-                </h3>
-                <div class="flex items-center gap-2 mt-3">
-                    <span class="px-2 py-1 rounded bg-blue-500/10 text-blue-500 text-[10px] font-bold uppercase tracking-wider border border-blue-500/20">Posted</span>
-                </div>
-            </div>
-
-            <button class="w-full py-3 rounded-xl border border-white/10 text-sm font-bold text-white hover:bg-primary hover:border-primary hover:text-white transition-all flex items-center justify-center gap-2 group/btn">
-                Open Studio
-                <i class="fa-solid fa-arrow-up-right-from-square text-sm group-hover/btn:translate-x-1 transition-transform"></i>
-            </button>
-        </div>
-
-        <button class="group relative bg-card-dark/30 rounded-2xl border-2 border-dashed border-white/10 p-6 transition-all hover:border-primary hover:bg-primary/5 flex flex-col items-center justify-center h-full min-h-[240px]">
-            <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                <i class="fa-solid fa-plus text-3xl text-white/20 group-hover:text-white"></i>
-            </div>
-            <h3 class="text-lg font-bold text-white/40 group-hover:text-white transition-colors">Start New Project</h3>
-            <p class="text-sm text-white/20 mt-2 text-center px-4 group-hover:text-white/60">
-                Generate a script from scratch or use a viral template
-            </p>
-        </button>
-
+        
     </div>
 </div>
-
 {% endblock content %}

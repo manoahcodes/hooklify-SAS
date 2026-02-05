@@ -1,0 +1,122 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% block title %}Studio - {{ block.super }}{% endblock %}
+{% block content %}
+
+<form method="POST" action="#" class="flex-1 flex flex-col min-h-0 w-full overflow-hidden">
+    {% csrf_token %}
+    
+    <div class="flex-1 flex overflow-hidden">
+        <main class="flex-1 flex flex-col min-w-0 border-r border-border-color bg-surface-dark">
+            
+            <header class="h-12 border-b border-border-color flex items-center justify-between px-6 bg-bg-main/50 backdrop-blur-sm sticky top-0 z-20">
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-1.5">
+                        <span class="text-[10px] font-bold text-white/40 uppercase tracking-wider mr-2">Format</span>
+                        <button type="button" class="p-1.5 hover:bg-white/5 rounded text-white/60 hover:text-white transition-colors" title="Bold">
+                            <i class="fa-solid fa-bold text-xs"></i>
+                        </button>
+                        <button type="button" class="p-1.5 hover:bg-white/5 rounded text-white/60 hover:text-white transition-colors" title="Italic">
+                            <i class="fa-solid fa-italic text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <label class="flex items-center gap-2 cursor-pointer group">
+                        <span class="text-[10px] font-bold text-white/40 group-hover:text-white/60 transition-colors uppercase tracking-wide">Safe Zone</span>
+                        <div class="relative inline-flex items-center cursor-pointer">
+                            <input checked class="sr-only peer" type="checkbox" name="safe_zone_toggle">
+                            <div class="w-8 h-4 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-primary"></div>
+                        </div>
+                    </label>
+                </div>
+            </header>
+
+            <div class="flex-1 overflow-y-auto px-12 custom-scrollbar">
+                <div class="w-full max-w-2xl mx-auto space-y-0 py-8">
+                    
+                    {% for section in script_sections %}
+                    <section class="group relative py-8 border-b border-border-color hover:bg-white/[0.01] transition-colors rounded-lg px-4 -mx-4">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                                <span class="text-[10px] font-bold {% if section.is_high_retention %}text-primary bg-primary/10{% else %}text-white/30{% endif %} px-2 py-0.5 rounded uppercase tracking-[0.2em]">
+                                    {{ section.label }} • {{ section.timestamp }}
+                                </span>
+                                {% if section.is_high_retention %}
+                                <span class="px-2 py-0.5 rounded-sm bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wide">High Retention</span>
+                                {% endif %}
+                            </div>
+                            <button type="button" class="cursor-grab active:cursor-grabbing text-white/10 group-hover:text-white/30">
+                                <i class="fa-solid fa-grip-vertical text-base"></i>
+                            </button>
+                        </div>
+
+                        <div 
+                            contenteditable="true" 
+                            class="outline-none text-white focus:ring-1 focus:ring-primary/20 rounded-sm px-1 transition-all"
+                            data-section-id="{{ section.id }}">
+                            {% if section.type == 'hook' %}
+                                <h1 class="text-3xl font-medium leading-tight">{{ section.content }}</h1>
+                            {% else %}
+                                <p class="text-lg text-white/80 leading-relaxed">{{ section.content }}</p>
+                            {% endif %}
+                        </div>
+                    </section>
+                    {% empty %}
+                        <div class="text-center py-20 text-white/20">Start by adding a Hook section.</div>
+                    {% endfor %}
+
+                    <div class="py-12 flex justify-center group/add">
+                        <button type="button" class="flex items-center gap-3 px-6 py-3 rounded-full border border-dashed border-white/10 text-white/20 hover:text-white/60 hover:border-white/30 hover:bg-white/5 transition-all">
+                            <i class="fa-solid fa-circle-plus text-lg"></i>
+                            <span class="text-xs font-bold uppercase tracking-widest">Add Section</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <aside class="w-80 bg-toolkit flex flex-col border-l border-border-color hidden lg:flex">
+            <div class="h-12 flex items-center justify-between px-5 border-b border-border-color">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-toolbox text-primary text-xs"></i>
+                    <h3 class="text-[10px] font-bold text-white/60 uppercase tracking-[0.15em]">Toolkit</h3>
+                </div>
+            </div>
+            
+            <div class="flex-1 overflow-y-auto custom-scrollbar">
+                {% include "dashboard/studio/toolkits/toolkit_cloner.html" %}
+                {% include "dashboard/studio/toolkits/toolkit_trends.html" %}
+                {% include "dashboard/studio/toolkits/toolkit_visuals.html" %}
+                {% include "dashboard/studio/toolkits/toolkit_scheduling.html" %}
+            </div>
+
+            <footer class="p-6 border-t border-border-color bg-bg-toolkit/80 backdrop-blur-md">
+                <div class="flex gap-4 items-start">
+                    <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-sparkles text-primary text-sm"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-white mb-1.5">AI Suggestion</p>
+                        <p class="text-[11px] text-white/50 leading-relaxed italic">"{{ ai_suggestion|default:"Analyze your script to get AI feedback." }}"</p>
+                    </div>
+                </div>
+            </footer>
+        </aside>
+    </div>
+
+    <div class="h-16 border-t border-border-color bg-bg-main shrink-0 flex items-center justify-between px-6 z-30">
+        <button type="button" class="text-white/30 hover:text-red-500 text-[10px] font-bold uppercase tracking-widest transition-colors flex items-center gap-2">
+            <i class="fa-solid fa-trash-can"></i> Delete Draft
+        </button>
+        <div class="flex items-center gap-4">
+            <button name="action" value="draft" class="px-5 py-2.5 rounded-md text-xs font-medium text-white/60 border border-white/10 hover:border-white/30 hover:text-white transition-all">
+                Update Draft
+            </button>
+            <button name="action" value="save" class="px-8 py-2.5 rounded-md text-xs font-bold text-white bg-primary hover:bg-primary/60 transition-all shadow-lg shadow-primary/20">
+                Save Project
+            </button>
+        </div>
+    </div>
+</form>
+{% endblock content %}

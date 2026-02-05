@@ -1,0 +1,21 @@
+<details class="group border-b border-border-color">
+    <summary class="flex items-center justify-between p-5 cursor-pointer hover:bg-white/[0.02] transition-colors select-none">
+        <div class="flex items-center gap-3">
+            <i class="fa-solid fa-calendar-days text-white/40 text-lg group-open:text-primary transition-colors w-5 text-center"></i>
+            <span class="text-sm font-medium text-white/80 group-open:text-white">Post Scheduling</span>
+        </div>
+        <i class="fa-solid fa-chevron-down text-white/20 text-xs transition-transform duration-200 group-open:rotate-180"></i>
+    </summary>
+    <div class="px-5 pb-6 pt-1">
+        <div class="flex items-center justify-between bg-bg-panel border border-border-color rounded-lg p-4">
+            <div>
+                <p class="text-[9px] text-white/40 uppercase font-bold tracking-wider mb-1">Peak Engagement</p>
+                <p class="text-2xl font-bold text-white">{{ peak_time|default:"18:00" }}</p>
+            </div>
+            <div class="text-right">
+                <p class="text-[9px] text-white/40 uppercase font-bold tracking-wider mb-1">Est. Reach</p>
+                <p class="text-sm font-bold text-green-500">+{{ reach_increase|default:"45.2" }}%</p>
+            </div>
+        </div>
+    </div>
+</details>

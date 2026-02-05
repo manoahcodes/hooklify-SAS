@@ -1,0 +1,28 @@
+<details class="group border-b border-border-color">
+    <summary class="flex items-center justify-between p-5 cursor-pointer hover:bg-white/[0.02] transition-colors select-none">
+        <div class="flex items-center gap-3">
+            <i class="fa-solid fa-arrow-trend-up text-white/40 text-lg group-open:text-primary transition-colors w-5 text-center"></i>
+            <span class="text-sm font-medium text-white/80 group-open:text-white">Trend Finder</span>
+        </div>
+        <i class="fa-solid fa-chevron-down text-white/20 text-xs transition-transform duration-200 group-open:rotate-180"></i>
+    </summary>
+    <div class="px-5 pb-6 pt-1">
+        {% for trend in trends %}
+        <div class="bg-bg-panel border border-border-color rounded-lg p-4 mb-3">
+            <div class="flex justify-between items-center mb-3">
+                <span class="text-xs font-bold text-white">{{ trend.name }}</span>
+                <span class="text-[9px] font-bold text-green-500 bg-green-500/10 px-2 py-0.5 rounded-full border border-green-500/20 uppercase">Trending</span>
+            </div>
+            <div class="space-y-2">
+                <div class="flex justify-between text-[10px] text-white/40 mb-1">
+                    <span>Momentum</span>
+                    <span>{{ trend.momentum_label }}</span>
+                </div>
+                <div class="w-full bg-white/5 rounded-full h-1.5 overflow-hidden">
+                    <div class="bg-primary h-full rounded-full transition-all duration-1000" style="width: {{ trend.score }}%;"></div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</details>
