@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
 from apps.subscriptions.models import Subscriber
+from apps.dashboard.forms import ContentCreationForm
 
 # Create your views here.
 
@@ -21,7 +22,7 @@ def ideas(request):
 
 @login_required
 def create(request):
-    return render(request, 'dashboard/pages/create.html')
+    return render(request, "dashboard/pages/create.html")
 
 @login_required
 def projects(request):

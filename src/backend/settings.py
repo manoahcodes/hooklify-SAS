@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     "apps.dashboard",
     "apps.generator",
     "apps.profiles",
-    "apps.api",
+    "apps.core",
 
     # 3RD PARTY APPS
     "allauth_ui",

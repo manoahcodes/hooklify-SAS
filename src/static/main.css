@@ -446,9 +446,6 @@
   .start-0 {
     inset-inline-start: calc(var(--spacing) * 0);
   }
-  .-top-1 {
-    top: calc(var(--spacing) * -1);
-  }
   .-top-2 {
     top: calc(var(--spacing) * -2);
   }
@@ -485,14 +482,8 @@
   .top-20 {
     top: calc(var(--spacing) * 20);
   }
-  .top-\[2px\] {
-    top: 2px;
-  }
   .top-full {
     top: 100%;
-  }
-  .-right-1 {
-    right: calc(var(--spacing) * -1);
   }
   .-right-4 {
     right: calc(var(--spacing) * -4);
@@ -563,9 +554,6 @@
   .left-4 {
     left: calc(var(--spacing) * 4);
   }
-  .left-\[2px\] {
-    left: 2px;
-  }
   .-z-10 {
     z-index: calc(10 * -1);
   }
@@ -616,9 +604,6 @@
   }
   .-mx-4 {
     margin-inline: calc(var(--spacing) * -4);
-  }
-  .mx-1 {
-    margin-inline: calc(var(--spacing) * 1);
   }
   .mx-2 {
     margin-inline: calc(var(--spacing) * 2);
@@ -805,9 +790,6 @@
   .h-2 {
     height: calc(var(--spacing) * 2);
   }
-  .h-3 {
-    height: calc(var(--spacing) * 3);
-  }
   .h-4 {
     height: calc(var(--spacing) * 4);
   }
@@ -853,32 +835,8 @@
   .h-64 {
     height: calc(var(--spacing) * 64);
   }
-  .h-\[30\%\] {
-    height: 30%;
-  }
-  .h-\[40\%\] {
-    height: 40%;
-  }
-  .h-\[45\%\] {
-    height: 45%;
-  }
-  .h-\[50\%\] {
-    height: 50%;
-  }
-  .h-\[60\%\] {
-    height: 60%;
-  }
-  .h-\[75\%\] {
-    height: 75%;
-  }
-  .h-\[80\%\] {
-    height: 80%;
-  }
   .h-\[90\%\] {
     height: 90%;
-  }
-  .h-\[95\%\] {
-    height: 95%;
   }
   .h-\[300px\] {
     height: 300px;
@@ -937,9 +895,6 @@
   .w-2\/3 {
     width: calc(2/3 * 100%);
   }
-  .w-3 {
-    width: calc(var(--spacing) * 3);
-  }
   .w-4 {
     width: calc(var(--spacing) * 4);
   }
@@ -996,15 +951,6 @@
   }
   .w-96 {
     width: calc(var(--spacing) * 96);
-  }
-  .w-\[1px\] {
-    width: 1px;
-  }
-  .w-\[78\%\] {
-    width: 78%;
-  }
-  .w-\[85\%\] {
-    width: 85%;
   }
   .w-\[90\%\] {
     width: 90%;
@@ -1507,9 +1453,6 @@
   .rounded-\[2\.5rem\] {
     border-radius: 2.5rem;
   }
-  .rounded-\[7px\] {
-    border-radius: 7px;
-  }
   .rounded-full {
     border-radius: var(--radius-full);
   }
@@ -1646,9 +1589,6 @@
   .border-border-subtle {
     border-color: var(--color-border-subtle);
   }
-  .border-gray-300 {
-    border-color: var(--color-gray-300);
-  }
   .border-gray-500\/20 {
     border-color: color-mix(in srgb, oklch(55.1% 0.027 264.364) 20%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -1719,12 +1659,6 @@
     border-color: color-mix(in srgb, oklch(63.7% 0.237 25.331) 40%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       border-color: color-mix(in oklab, var(--color-red-500) 40%, transparent);
-    }
-  }
-  .border-red-500\/50 {
-    border-color: color-mix(in srgb, oklch(63.7% 0.237 25.331) 50%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      border-color: color-mix(in oklab, var(--color-red-500) 50%, transparent);
     }
   }
   .border-red-600 {
@@ -2027,12 +1961,6 @@
   .bg-red-600 {
     background-color: var(--color-red-600);
   }
-  .bg-red-900\/20 {
-    background-color: color-mix(in srgb, oklch(39.6% 0.141 25.723) 20%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--color-red-900) 20%, transparent);
-    }
-  }
   .bg-red-900\/40 {
     background-color: color-mix(in srgb, oklch(39.6% 0.141 25.723) 40%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -2288,9 +2216,6 @@
   }
   .p-12 {
     padding: calc(var(--spacing) * 12);
-  }
-  .p-\[1px\] {
-    padding: 1px;
   }
   .px-1 {
     padding-inline: calc(var(--spacing) * 1);
@@ -2738,9 +2663,6 @@
   .text-purple-500 {
     color: var(--color-purple-500);
   }
-  .text-red-200 {
-    color: var(--color-red-200);
-  }
   .text-red-400 {
     color: var(--color-red-400);
   }
@@ -2980,12 +2902,6 @@
       --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-black) 50%, transparent) var(--tw-shadow-alpha), transparent);
     }
   }
-  .shadow-primary\/5 {
-    --tw-shadow-color: color-mix(in srgb, #f91f1f 5%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-primary) 5%, transparent) var(--tw-shadow-alpha), transparent);
-    }
-  }
   .shadow-primary\/10 {
     --tw-shadow-color: color-mix(in srgb, #f91f1f 10%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -3016,6 +2932,10 @@
   }
   .blur-3xl {
     --tw-blur: blur(var(--blur-3xl));
+    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+  }
+  .blur-\[2px\] {
+    --tw-blur: blur(2px);
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
   }
   .blur-\[80px\] {
@@ -3368,20 +3288,6 @@
       }
     }
   }
-  .peer-checked\:translate-x-full {
-    &:is(:where(.peer):checked ~ *) {
-      --tw-translate-x: 100%;
-      translate: var(--tw-translate-x) var(--tw-translate-y);
-    }
-  }
-  .peer-checked\:border-primary\/40 {
-    &:is(:where(.peer):checked ~ *) {
-      border-color: color-mix(in srgb, #f91f1f 40%, transparent);
-      @supports (color: color-mix(in lab, red, red)) {
-        border-color: color-mix(in oklab, var(--color-primary) 40%, transparent);
-      }
-    }
-  }
   .peer-checked\:border-primary\/50 {
     &:is(:where(.peer):checked ~ *) {
       border-color: color-mix(in srgb, #f91f1f 50%, transparent);
@@ -3390,30 +3296,9 @@
       }
     }
   }
-  .peer-checked\:border-white {
-    &:is(:where(.peer):checked ~ *) {
-      border-color: var(--color-white);
-    }
-  }
   .peer-checked\:bg-primary {
     &:is(:where(.peer):checked ~ *) {
       background-color: var(--color-primary);
-    }
-  }
-  .peer-checked\:bg-primary\/10 {
-    &:is(:where(.peer):checked ~ *) {
-      background-color: color-mix(in srgb, #f91f1f 10%, transparent);
-      @supports (color: color-mix(in lab, red, red)) {
-        background-color: color-mix(in oklab, var(--color-primary) 10%, transparent);
-      }
-    }
-  }
-  .peer-checked\:bg-primary\/20 {
-    &:is(:where(.peer):checked ~ *) {
-      background-color: color-mix(in srgb, #f91f1f 20%, transparent);
-      @supports (color: color-mix(in lab, red, red)) {
-        background-color: color-mix(in oklab, var(--color-primary) 20%, transparent);
-      }
     }
   }
   .peer-checked\:bg-white {
@@ -3494,14 +3379,6 @@
     }
     &::selection {
       color: var(--color-white);
-    }
-  }
-  .placeholder\:text-white\/20 {
-    &::placeholder {
-      color: color-mix(in srgb, #fff 20%, transparent);
-      @supports (color: color-mix(in lab, red, red)) {
-        color: color-mix(in oklab, var(--color-white) 20%, transparent);
-      }
     }
   }
   .after\:absolute {
@@ -3769,16 +3646,6 @@
       }
     }
   }
-  .hover\:border-primary\/20 {
-    &:hover {
-      @media (hover: hover) {
-        border-color: color-mix(in srgb, #f91f1f 20%, transparent);
-        @supports (color: color-mix(in lab, red, red)) {
-          border-color: color-mix(in oklab, var(--color-primary) 20%, transparent);
-        }
-      }
-    }
-  }
   .hover\:border-primary\/30 {
     &:hover {
       @media (hover: hover) {
@@ -3946,42 +3813,12 @@
       }
     }
   }
-  .hover\:bg-primary\/10 {
-    &:hover {
-      @media (hover: hover) {
-        background-color: color-mix(in srgb, #f91f1f 10%, transparent);
-        @supports (color: color-mix(in lab, red, red)) {
-          background-color: color-mix(in oklab, var(--color-primary) 10%, transparent);
-        }
-      }
-    }
-  }
-  .hover\:bg-primary\/50 {
-    &:hover {
-      @media (hover: hover) {
-        background-color: color-mix(in srgb, #f91f1f 50%, transparent);
-        @supports (color: color-mix(in lab, red, red)) {
-          background-color: color-mix(in oklab, var(--color-primary) 50%, transparent);
-        }
-      }
-    }
-  }
   .hover\:bg-primary\/60 {
     &:hover {
       @media (hover: hover) {
         background-color: color-mix(in srgb, #f91f1f 60%, transparent);
         @supports (color: color-mix(in lab, red, red)) {
           background-color: color-mix(in oklab, var(--color-primary) 60%, transparent);
-        }
-      }
-    }
-  }
-  .hover\:bg-primary\/90 {
-    &:hover {
-      @media (hover: hover) {
-        background-color: color-mix(in srgb, #f91f1f 90%, transparent);
-        @supports (color: color-mix(in lab, red, red)) {
-          background-color: color-mix(in oklab, var(--color-primary) 90%, transparent);
         }
       }
     }
@@ -4240,24 +4077,6 @@
       }
     }
   }
-  .hover\:shadow-xl {
-    &:hover {
-      @media (hover: hover) {
-        --tw-shadow: 0 20px 25px -5px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 8px 10px -6px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
-        box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
-      }
-    }
-  }
-  .hover\:shadow-black\/40 {
-    &:hover {
-      @media (hover: hover) {
-        --tw-shadow-color: color-mix(in srgb, #000 40%, transparent);
-        @supports (color: color-mix(in lab, red, red)) {
-          --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-black) 40%, transparent) var(--tw-shadow-alpha), transparent);
-        }
-      }
-    }
-  }
   .hover\:shadow-red-800\/20 {
     &:hover {
       @media (hover: hover) {
@@ -4287,11 +4106,6 @@
       @supports (color: color-mix(in lab, red, red)) {
         border-color: color-mix(in oklab, var(--color-primary) 50%, transparent);
       }
-    }
-  }
-  .focus\:text-primary {
-    &:focus {
-      color: var(--color-primary);
     }
   }
   .focus\:ring-0 {
@@ -4870,6 +4684,20 @@
   }
 }
 @layer utilities {
+  input[type="radio"], input[type="checkbox"] {
+    accent-color: #E11D48;
+  }
+  .chip-radio, .chip-checkbox {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  input:checked + label.chip-label, input:checked + label.chip-checkbox-label {
+    border-color: rgba(225, 29, 72, 0.5);
+    color: white;
+    background-color: rgba(225, 29, 72, 0.1);
+  }
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;

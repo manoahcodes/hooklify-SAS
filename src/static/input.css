@@ -33,6 +33,27 @@
 }
 
 @layer utilities {
+
+  /* Hides default radio/checkbox inputs but keeps them accessible/functional */
+  input[type="radio"], input[type="checkbox"] {
+        accent-color: #E11D48; /* Tailwind Primary Color fallback */
+  }
+
+  .chip-radio, .chip-checkbox {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+  }
+
+  /* Active states for chips based on hidden input state */
+  input:checked + label.chip-label,
+  input:checked + label.chip-checkbox-label {
+        border-color: rgba(225, 29, 72, 0.5); /* Primary color */
+        color: white;
+        background-color: rgba(225, 29, 72, 0.1);
+  }
+
   /* Hides scrollbar but allows scrolling */
   .no-scrollbar {
     -ms-overflow-style: none; /* IE and Edge */

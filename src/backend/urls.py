@@ -10,7 +10,6 @@ urlpatterns = [
     path('pricing/', include('apps.subscriptions.urls')),
     path('dashboard/', include('apps.dashboard.urls')),
     path('accounts/', include('apps.profiles.urls')),
-    path('api/', include('apps.api.urls')),
 
     path('', views.index, name='home'),
     path('about/', views.about_us_view, name='about_us'),
