@@ -2,11 +2,13 @@ from django.contrib import admin
 from apps.core.models import (
     Audience, AgeGroup, VideoScriptParams, 
     Tone, Style, GeneratedScript, 
-    Niche, SubNiche, Country, ReferenceLink
+    Niche, SubNiche, Country, ReferenceLink,
+    Platform
     )
 
 # Register your models here.
 admin.site.register(Audience)
+admin.site.register(Platform)
 admin.site.register(AgeGroup)
 admin.site.register(VideoScriptParams)
 admin.site.register(Tone)

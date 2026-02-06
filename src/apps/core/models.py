@@ -4,9 +4,11 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Platform(models.Model):
     name = models.CharField(max_length=100)
-    system_prompt = models.TextField()
-    metadata = models.JSONField(help_text="JSON Context for the AI to understand this Niche.", null=True)
-    description = models.TextField()
+    system_prompt = models.TextField(null=True, blank=True)
+    metadata = models.JSONField(help_text="JSON Context for the AI to understand this Platform.", null=True, blank=True)
+
+    def __str__(self):
+        return self.name
 
 class Niche(models.Model):
     """
@@ -79,7 +81,7 @@ class Audience(models.Model):
     """Specific segments like 'Entrepreneurs', 'Gen Z', etc."""
     name = models.CharField(max_length=100, unique=True)
     metadata = models.JSONField(help_text="JSON Context for the AI to understand this Audience.", null=True)
-    description = models.TextField(help_text="Context for the AI to understand this Age Group.")
+    description = models.TextField(help_text="Context for the AI to understand this Audience.")
     
     def __str__(self):
         return self.name
@@ -89,6 +91,7 @@ class Audience(models.Model):
 
 class VideoScriptParams(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="projects")
+    platform = models.ForeignKey(Platform, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=255)
 
     # Context

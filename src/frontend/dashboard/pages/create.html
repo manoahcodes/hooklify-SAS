@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="space-y-2">
-                            <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Sub-Niche / Focus</label>
+                            <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Sub-Niche</label>
                             <div class="relative group">
                                 <i class="fa-solid fa-crosshairs absolute left-3 top-3.5 text-white/20 text-xs"></i>
                                 <select name="sub_niche" id="subNicheSelect" required
@@ -51,6 +51,16 @@
                                 </select>
                                 <i class="fa-solid fa-chevron-down absolute right-3 top-4 text-white/20 text-[10px] pointer-events-none"></i>
                             </div>
+                        </div>
+                    </div>
+
+                    <div id="customSubNicheWrapper" class="space-y-2 pt-2 hidden">
+                        <label class="text-xs text-primary uppercase tracking-wider font-semibold">Enter Custom Sub-Niche</label>
+                        <div class="relative group">
+                            <i class="fa-solid fa-pen-to-square absolute left-3 top-3.5 text-white/20 text-xs"></i>
+                            <input type="text" name="custom_sub_niche" id="customSubNicheInput"
+                                class="w-full bg-[#0f0f0f] border border-primary/30 rounded-lg py-3 pl-9 pr-3 text-sm text-white placeholder-white/20 focus:border-primary focus:ring-0 focus:outline-none transition-all"
+                                placeholder="Describe your specific focus...">
                         </div>
                     </div>
 
@@ -175,7 +185,7 @@
                         </div>
                         
                         <div class="space-y-2">
-                            <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Video Reference (Vibe)</label>
+                            <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Video Reference</label>
                             <div class="relative group">
                                 <i class="fa-brands fa-tiktok absolute left-3 top-3.5 text-white/20 text-xs"></i>
                                 <input name="video_reference_url"
@@ -197,19 +207,22 @@
 
             <div class="border-t border-border-subtle bg-[#111] p-4 sticky bottom-0 z-20 mt-auto shadow-xl">
                 <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+                    
                     <div class="flex items-center gap-6">
                         <label class="flex items-center gap-2 cursor-pointer group">
-                            <input name="gen_hooks" checked class="sr-only peer" type="checkbox">
+                            <input name="gen_hooks" id="toggleHooks" checked class="sr-only peer" type="checkbox">
                             <div class="w-7 h-4 bg-gray-700 rounded-full peer peer-checked:bg-primary relative after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:after:translate-x-full"></div>
                             <span class="text-xs text-white/60 group-hover:text-white">Hooks</span>
                         </label>
+
                         <label class="flex items-center gap-2 cursor-pointer group">
-                            <input name="gen_script" checked class="sr-only peer" type="checkbox">
+                            <input name="gen_script" id="toggleScript" checked class="sr-only peer" type="checkbox">
                             <div class="w-7 h-4 bg-gray-700 rounded-full peer peer-checked:bg-primary relative after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:after:translate-x-full"></div>
                             <span class="text-xs text-white/60 group-hover:text-white">Full Script</span>
                         </label>
+
                         <label class="flex items-center gap-2 cursor-pointer group">
-                            <input name="gen_cta" checked class="sr-only peer" type="checkbox">
+                            <input name="gen_cta" id="toggleCTA" checked class="sr-only peer" type="checkbox">
                             <div class="w-7 h-4 bg-gray-700 rounded-full peer peer-checked:bg-primary relative after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:after:translate-x-full"></div>
                             <span class="text-xs text-white/60 group-hover:text-white">Call To Action</span>
                         </label>
@@ -227,6 +240,20 @@
 
     {% include "dashboard/pages/create_preview.html" %}
 </div>
+
+<script>
+    // Pass Django data to JS
+    const nicheData = {
+        {% for niche in niches %}
+        "{{ niche.id }}": [
+            {% for sub in niche.subniches.all %}
+            {"id": "{{ sub.id }}", "name": "{{ sub.name }}"},
+            {% endfor %}
+        ],
+        {% endfor %}
+    };
+    initNicheHandler(nicheData);
+</script>
 
 <script>
 function updateNicheDescription() {

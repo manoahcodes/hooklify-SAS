@@ -79,3 +79,55 @@ document.addEventListener('DOMContentLoaded', function () {
         btn.classList.add('bg-[#0f0f0f]', 'border-border-subtle', 'text-white/50');
     }
 });
+
+/**
+ * Handles dynamic sub-niche filtering and custom niche input toggling
+ */
+function initNicheHandler(nicheData) {
+    const nicheSelect = document.getElementById('nicheSelect');
+    const subNicheSelect = document.getElementById('subNicheSelect');
+    const customWrapper = document.getElementById('customSubNicheWrapper');
+    const customInput = document.getElementById('customSubNicheInput');
+
+    if (!nicheSelect || !subNicheSelect) return;
+
+    // Listen for Niche Change
+    nicheSelect.addEventListener('change', function() {
+        const selectedId = this.value;
+        
+        // Reset sub-niche dropdown
+        subNicheSelect.innerHTML = '<option value="" disabled selected>Select Sub-Niche</option>';
+        subNicheSelect.disabled = false;
+        customWrapper.classList.add('hidden');
+        customInput.required = false;
+
+        // Populate from data
+        if (nicheData[selectedId]) {
+            nicheData[selectedId].forEach(sub => {
+                const opt = document.createElement('option');
+                opt.value = sub.id;
+                opt.textContent = sub.name;
+                subNicheSelect.appendChild(opt);
+            });
+        }
+
+        // Add the "Other" option
+        const otherOpt = document.createElement('option');
+        otherOpt.value = "OTHER";
+        otherOpt.textContent = "+ Add Custom Sub-Niche";
+        otherOpt.classList.add('text-primary', 'font-bold');
+        subNicheSelect.appendChild(otherOpt);
+    });
+
+    // Listen for Sub-Niche Change (to show custom input)
+    subNicheSelect.addEventListener('change', function() {
+        if (this.value === "OTHER") {
+            customWrapper.classList.remove('hidden');
+            customInput.required = true;
+            customInput.focus();
+        } else {
+            customWrapper.classList.add('hidden');
+            customInput.required = false;
+        }
+    });
+}
