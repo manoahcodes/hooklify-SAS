@@ -3,11 +3,12 @@ from apps.core.models import (
     Audience, AgeGroup, VideoScriptParams, 
     Tone, Style, GeneratedScript, 
     Niche, SubNiche, Country, ReferenceLink,
-    Platform
+    Platform, VideoDuration
     )
 
 # Register your models here.
 admin.site.register(Audience)
+admin.site.register(VideoDuration)
 admin.site.register(Platform)
 admin.site.register(AgeGroup)
 admin.site.register(VideoScriptParams)

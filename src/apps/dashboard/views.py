@@ -5,7 +5,8 @@ from django.db import transaction
 from apps.subscriptions.models import Subscriber
 from apps.core.models import (
     Niche, Audience, AgeGroup, Tone, Style, 
-    VideoScriptParams, ReferenceLink, Country
+    VideoScriptParams, ReferenceLink, Country,
+    VideoDuration
 )
 
 # Create your views here.
@@ -34,6 +35,7 @@ def create(request):
         video_ref = request.POST.get('video_reference_url')
         concept = request.POST.get('core_concept')
         selected_country = request.POST.get('target_country')
+        selected_duration = request.POST.get('duration')
 
         # M2M Data (returns lists of IDs)
         selected_audiences = request.POST.getlist('target_audiences')
@@ -50,7 +52,9 @@ def create(request):
                     niche_id=niche_id,
                     sub_niche=sub_niche,
                     video_reference_url=video_ref,
-                    core_concept=concept
+                    core_concept=concept,
+                    video_duration=selected_duration,
+                    country=selected_country
                 )
 
                 # 2. Assign Many-to-Many relationships
@@ -82,6 +86,7 @@ def create(request):
         'tones': Tone.objects.all(),
         'styles': Style.objects.all(),
         'countries': Country.objects.all(),
+        'durations': VideoDuration.objects.all()
     }
 
     return render(request, "dashboard/pages/create.html", context)

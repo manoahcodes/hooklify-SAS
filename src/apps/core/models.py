@@ -23,6 +23,13 @@ class Niche(models.Model):
     def __str__(self):
         return self.name
     
+class VideoDuration(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    metadata = models.JSONField(help_text="JSON Context for the AI to understand this Niche.", null=True)
+
+    def __str__(self):
+        return self.name
+    
 class SubNiche(models.Model):
     """
     Examples: 
@@ -56,6 +63,7 @@ class Country(models.Model):
     name = models.CharField(max_length=100)
     iso2 = models.CharField(max_length=2, unique=True, help_text="ISO 3166-1 alpha-2 (e.g., US)")
     iso3 = models.CharField(max_length=3, unique=True, help_text="ISO 3166-1 alpha-3 (e.g., USA)")
+    metadata = models.JSONField(help_text="JSON Context for the AI to understand this Country.", null=True)
     
     class Meta:
         verbose_name_plural = "Countries"
@@ -91,12 +99,14 @@ class Audience(models.Model):
 
 class VideoScriptParams(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="projects")
-    platform = models.ForeignKey(Platform, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=255)
+    platform = models.ForeignKey(Platform, on_delete=models.SET_NULL, null=True)
 
     # Context
     niche = models.ForeignKey(Niche, on_delete=models.SET_NULL, null=True)
     sub_niche = models.ForeignKey(SubNiche, on_delete=models.SET_NULL, null=True)
+    video_duration = models.ForeignKey(VideoDuration, on_delete=models.SET_NULL, null=True)
+    country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True)
 
     target_audiences = models.ManyToManyField(Audience, blank=True)
     age_groups = models.ManyToManyField(AgeGroup, blank=True)
