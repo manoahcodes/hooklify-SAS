@@ -5,7 +5,7 @@ from django.db import transaction
 from apps.subscriptions.models import Subscriber
 from apps.core.models import (
     Niche, Audience, AgeGroup, Tone, Style, 
-    VideoScriptParams, ReferenceLink, Country,
+    Generation, ReferenceLink, Region,
     VideoDuration
 )
 
@@ -46,7 +46,7 @@ def create(request):
         try:
             with transaction.atomic():
                 # 1. Create the main Project
-                project = VideoScriptParams.objects.create(
+                project = Generation.objects.create(
                     user=request.user,
                     title=title,
                     niche_id=niche_id,
@@ -85,7 +85,7 @@ def create(request):
         'ages': AgeGroup.objects.all(),
         'tones': Tone.objects.all(),
         'styles': Style.objects.all(),
-        'countries': Country.objects.all(),
+        'countries': Region.objects.all(),
         'durations': VideoDuration.objects.all()
     }
 

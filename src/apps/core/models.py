@@ -58,7 +58,7 @@ class Style(models.Model):
     def __str__(self):
         return self.name
     
-class Country(models.Model):
+class Region(models.Model):
     """Standardized Country/Region list"""
     name = models.CharField(max_length=100)
     iso2 = models.CharField(max_length=2, unique=True, help_text="ISO 3166-1 alpha-2 (e.g., US)")
@@ -97,8 +97,8 @@ class Audience(models.Model):
     class Meta:
         ordering = ['name']
 
-class VideoScriptParams(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="projects")
+class Generation(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="generations")
     title = models.CharField(max_length=255)
     platform = models.ForeignKey(Platform, on_delete=models.SET_NULL, null=True)
 
@@ -106,7 +106,7 @@ class VideoScriptParams(models.Model):
     niche = models.ForeignKey(Niche, on_delete=models.SET_NULL, null=True)
     sub_niche = models.ForeignKey(SubNiche, on_delete=models.SET_NULL, null=True)
     video_duration = models.ForeignKey(VideoDuration, on_delete=models.SET_NULL, null=True)
-    country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True)
+    country = models.ForeignKey(Region, on_delete=models.SET_NULL, null=True)
 
     target_audiences = models.ManyToManyField(Audience, blank=True)
     age_groups = models.ManyToManyField(AgeGroup, blank=True)
@@ -139,36 +139,8 @@ class ReferenceLink(models.Model):
     """
     Allows up to 3 informational links (articles, competitors, blogs).
     """
-    project = models.ForeignKey(VideoScriptParams, on_delete=models.CASCADE, related_name="reference_links")
+    project = models.ForeignKey(Generation, on_delete=models.CASCADE, related_name="reference_links")
     url = models.URLField()
     
     def __str__(self):
         return self.url
-    
-
-class GeneratedScript(models.Model):
-    """
-    Stores the AI result. We separate this so we can have multiple
-    versions (Draft 1, Draft 2) for a single Project if needed.
-    """
-    project = models.OneToOneField(VideoScriptParams, on_delete=models.CASCADE, related_name="script_output")
-    
-    # 1. Full Text (Plain text version for easy copying)
-    full_script_content = models.TextField()
-
-    # 2. Structured Data (For "Section Editing")
-    # This stores the script as a JSON object, allowing the frontend to 
-    # render editable "blocks" (Hook, Body, CTA).
-    # Format: 
-    # [
-    #   {"section": "Hook", "content": "Did you know...", "visual_cue": "Face camera"},
-    #   {"section": "Body", "content": "Here are 3 tips...", "visual_cue": "Show screen"},
-    # ]
-    script_sections = models.JSONField(default=list, blank=True)
-    
-    # Meta
-    created_at = models.DateTimeField(auto_now_add=True)
-    is_finalized = models.BooleanField(default=False)
-
-    def __str__(self):
-        return f"Script for {self.project.title}"
