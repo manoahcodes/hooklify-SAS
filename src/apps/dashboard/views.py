@@ -1,8 +1,15 @@
+from django.views.generic import ListView, View
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404, redirect
+from django.contrib import messages
+from django.http import JsonResponse, HttpResponse
+from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 
 from apps.subscriptions.models import Subscriber
+from apps.core.models import Notification
 from apps.core.models import (
     Niche, Audience, AgeGroup, Tone, Style, 
     Generation, ReferenceLink, Region,
@@ -106,3 +113,73 @@ def user_generation_history(request):
 @login_required
 def studio(request):
     return render(request, 'dashboard/studio/index.html')
+
+
+class NotificationListView(LoginRequiredMixin, ListView):
+    model = Notification
+    template_name = "dashboard/pages/notifications.html"
+    context_object_name = "notifications"
+    paginate_by = 10
+
+    def get_queryset(self):
+        qs = Notification.objects.filter(recipient=self.request.user)\
+            .select_related('content_type')\
+            .prefetch_related('content_object')
+
+        search_query = self.request.GET.get('q')
+        if search_query:
+            qs = qs.filter(
+                Q(title__icontains=search_query) | 
+                Q(message__icontains=search_query)
+            )
+
+        category = self.request.GET.get('category')
+        valid_categories = dict(Notification.CATEGORY_CHOICES).keys()
+        
+        if category in valid_categories:
+            qs = qs.filter(category=category)
+
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['unread_count'] = Notification.objects.filter(
+            recipient=self.request.user, 
+            is_read=False
+        ).count()
+        return context
+
+
+class MarkNotificationReadView(LoginRequiredMixin, View):
+    def post(self, request, pk):
+        notification = get_object_or_404(Notification, pk=pk, recipient=request.user)
+        notification.is_read = True
+        notification.save()
+
+        if request.headers.get('HX-Request'):
+            return JsonResponse({'status': 'success', 'message': 'Marked as read'})
+
+        messages.success(request, "Notification marked as read.")
+        # FIX: Redirect to the dashboard namespace
+        return redirect('notifications')
+
+
+class MarkAllReadView(LoginRequiredMixin, View):
+    def post(self, request):
+        Notification.objects.filter(recipient=request.user, is_read=False).update(is_read=True)
+        messages.success(request, "All notifications marked as read.")
+        # FIX: Redirect to the dashboard namespace
+        return redirect('notifications')
+
+
+class DeleteNotificationView(LoginRequiredMixin, View):
+    def post(self, request, pk):
+        notification = get_object_or_404(Notification, pk=pk, recipient=request.user)
+        notification.delete()
+        
+        if request.headers.get('HX-Request'):
+            return HttpResponse("") 
+
+        messages.success(request, "Notification archived.")
+        # FIX: Redirect to the dashboard namespace
+        return redirect('notifications')
