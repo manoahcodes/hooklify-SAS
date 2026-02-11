@@ -1,0 +1,42 @@
+<div id="platform-selector-container">
+    <form hx-post="{% url 'update_platform' %}" class="relative z-50">
+        {% csrf_token %}
+        <div class="relative group cursor-pointer py-2">
+            
+            <div class="flex items-center gap-3">
+                <h2 class="text-lg font-bold leading-tight font-display text-[#111418] dark:text-white group-hover:text-primary transition-colors">
+                    {{ selected_platform.name|default:"Select Platform" }}
+                </h2>
+                <i class="fa-solid fa-chevron-down text-xs text-[#111418] dark:text-white group-hover:text-primary transition-transform duration-300 group-hover:-rotate-180"></i>
+            </div>
+
+            <div class="absolute top-full left-0 w-[260px] pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform -translate-y-2 group-hover:translate-y-0 origin-top-left">
+                <div class="bg-[#1a1111] border border-[#444] rounded-xl shadow-2xl p-2 backdrop-blur-md">
+                    <div class="px-2 py-1.5 text-xs text-[#553a3a] font-bold uppercase tracking-wider mb-1">
+                        Select Platform
+                    </div>
+
+                    {% for platform in platforms %}
+                        <button type="submit" name="platform_id" value="{{ platform.id }}"
+                            class="w-full flex items-center gap-3 px-3 py-2 rounded-lg group/item hover:bg-red-600 transition-colors duration-200 text-left mb-1 {% if selected_platform.id == platform.id %}bg-white/5{% endif %}">
+                            
+                            <div class="size-8 rounded-full flex items-center justify-center bg-[#222] border border-transparent group-hover/item:border-primary/50">
+                                <i class="text-white text-sm"></i>
+                            </div>
+
+                            <div class="flex-1">
+                                <p class="text-[#bb9b9b] text-sm font-bold group-hover/item:text-white">
+                                    {{ platform.name }}
+                                </p>
+                            </div>
+
+                            {% if selected_platform.id == platform.id %}
+                                <i class="fa-solid fa-check text-[10px] text-primary"></i>
+                            {% endif %}
+                        </button>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

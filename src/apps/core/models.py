@@ -1,9 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
+from django.urls import reverse
 
 # Create your models here.
 class Platform(models.Model):
     name = models.CharField(max_length=100)
+    icon = models.CharField(max_length=100, default='fa-solid fa-tiktok')
     system_prompt = models.TextField(null=True, blank=True)
     metadata = models.JSONField(help_text="JSON Context for the AI to understand this Platform.", null=True, blank=True)
 
@@ -25,7 +29,7 @@ class Niche(models.Model):
     
 class VideoDuration(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    metadata = models.JSONField(help_text="JSON Context for the AI to understand this Niche.", null=True)
+    metadata = models.JSONField(help_text="JSON Context for the AI to understand this Sub-Niche.", null=True)
 
     def __str__(self):
         return self.name
@@ -36,6 +40,7 @@ class SubNiche(models.Model):
     - Name: "Comedy"
     - Description: "This comedy niche handles comedies, and skits."
     """
+    niche = models.ForeignKey(Niche, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, unique=True)
     description = models.TextField(help_text="Context for the AI to understand this sub niche.")
 
@@ -144,3 +149,47 @@ class ReferenceLink(models.Model):
     
     def __str__(self):
         return self.url
+    
+
+class Notification(models.Model):
+    # Categories map to your specific SaaS needs
+    CATEGORY_CHOICES = (
+        ('success', 'Success'),   # Task complete, Export ready
+        ('error', 'Error'),       # Payment failed, Export failed
+        ('warning', 'Warning'),   # Trial ending, Usage limit approached
+        ('info', 'System'),       # Feature announcement, Maintenance
+    )
+
+    recipient = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notifications')
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='info')
+    title = models.CharField(max_length=255)
+    message = models.TextField(blank=True)
+
+    # --- The Linking Logic ---
+    # Option A: Link to an internal object (e.g., a specific Project or Invoice)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True, blank=True)
+    object_id = models.PositiveIntegerField(null=True, blank=True)
+    content_object = GenericForeignKey('content_type', 'object_id')
+
+    # Option B: Link to an external URL (e.g., Blog post, Help doc)
+    external_link = models.URLField(max_length=500, null=True, blank=True, help_text="Used if not linked to an internal object")
+
+    is_read = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    @property
+    def get_redirect_url(self):
+        """
+        Smart logic to decide where the user goes when they click.
+        Priority: External Link > Internal Object's get_absolute_url > Home
+        """
+        if self.external_link:
+            return self.external_link
+        
+        if self.content_object and hasattr(self.content_object, 'get_absolute_url'):
+            return self.content_object.get_absolute_url()
+            
+        return reverse('dashboard:home')

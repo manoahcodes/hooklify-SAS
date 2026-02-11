@@ -1,59 +1,92 @@
-<div class="relative group py-2">
-        <button type="button" data-tooltip-placement="right" data-tooltip-target="tooltip-hover-9" data-tooltip-trigger="hover" class="relative cursor-pointer w-10 h-10 flex items-center justify-center rounded-xl hover:bg-surface-dark text-white/60 hover:text-[#f91f1f] transition-all group-hover:bg-[#1a1111] group-hover:text-primary">
-            <i class="fa-regular fa-bell"></i>
+{% load humanize %}
+
+<div x-data="{ notificationOpen: false }" 
+     class="relative py-2"
+     @keydown.escape.window="notificationOpen = false">
+
+    <button type="button" 
+            @click="notificationOpen = !notificationOpen"
+            class="relative cursor-pointer w-10 h-10 flex items-center justify-center rounded-xl hover:bg-surface-dark text-white/60 hover:text-[#f91f1f] transition-all"
+            :class="notificationOpen ? 'bg-[#1a1111] text-primary' : ''">
+        
+        <i class="fa-regular fa-bell"></i>
+        
+        {% if unread_notification_count > 0 %}
             <span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full animate-pulse border border-[#f91f1f]"></span>
-        </button>
+        {% endif %}
+    </button>
 
-        <div id="tooltip-hover-9" role="tooltip" class="absolute z-10 invisible rounded-md inline-block px-3 py-2 text-sm font-medium text-white bg-surface-dark rounded-base shadow-xs opacity-0 tooltip">
-            Notifications
-        </div>
+    <div x-show="notificationOpen" 
+         x-transition:enter="transition ease-out duration-200"
+         x-transition:enter-start="opacity-0 translate-y-2"
+         x-transition:enter-end="opacity-100 translate-y-0"
+         x-transition:leave="transition ease-in duration-150"
+         x-transition:leave-start="opacity-100 translate-y-0"
+         x-transition:leave-end="opacity-0 translate-y-2"
+         @click.outside="notificationOpen = false"
+         class="absolute right-0 top-full mt-2 w-80 bg-[#1a1111] rounded-xl shadow-2xl z-50 origin-top-right"
+         style="display: none;"> <div class="bg-[#1a1111] border border-[#444] rounded-xl shadow-2xl backdrop-blur-md overflow-hidden">
 
-        <div class="absolute right-0 top-full mt-2 w-80 bg-[#1a1111] rounded-xl shadow-2xl z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 transition-all duration-300 transform origin-top-right after:absolute after:w-full after:h-4 after:content-[''] after:-top-4 after:left-0">
-            <div class="bg-[#1a1111] border border-[#444] rounded-xl shadow-2xl backdrop-blur-md overflow-hidden">
+            <div class="flex items-center justify-between px-4 py-3 border-b border-white/5">
+                <span class="text-xs font-bold uppercase tracking-wider text-[#553a3a]">
+                    Notifications
+                </span>
+                {% if unread_notification_count > 0 %}
+                    <form action="{% url 'notifications:mark_all_read' %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="text-[10px] font-bold text-primary hover:text-white transition-colors">
+                            Mark all read
+                        </button>
+                    </form>
+                {% endif %}
+            </div>
 
-                <div class="flex items-center justify-between px-4 py-3 border-b border-white/5">
-                    <span class="text-xs font-bold uppercase tracking-wider text-[#553a3a]">
-                        Notifications
-                    </span>
-                    <button type="button" class="text-[10px] font-bold text-primary hover:text-white transition-colors">
-                        Mark all read
-                    </button>
-                </div>
-
-                <div class="max-h-[50vh] overflow-y-auto">
-                    <a href="#" class="flex gap-3 px-4 py-3 hover:bg-white/5 transition group/item">
-                        <div class="size-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
-                            <i class="fa-solid fa-check text-xs"></i>
+            <div class="max-h-[50vh] overflow-y-auto custom-scrollbar">
+                {% for notification in notifications %}
+                    <a href="{{ notification.content_object.get_absolute_url|default:'#' }}" 
+                       class="flex gap-3 px-4 py-3 hover:bg-white/5 transition group/item {% if not notification.is_read %}bg-white/[0.02]{% endif %}">
+                        
+                        <div class="size-8 rounded-lg flex items-center justify-center shrink-0 
+                                    {% if notification.category == 'success' %}bg-primary/10 text-primary
+                                    {% elif notification.category == 'info' %}bg-blue-500/10 text-blue-400
+                                    {% else %}bg-gray-500/10 text-gray-400{% endif %}">
+                            
+                            {% if notification.category == 'success' %}
+                                <i class="fa-solid fa-check text-xs"></i>
+                            {% elif notification.category == 'info' %}
+                                <i class="fa-solid fa-chart-line text-xs"></i>
+                            {% else %}
+                                <i class="fa-solid fa-bell text-xs"></i>
+                            {% endif %}
                         </div>
 
                         <div>
-                            <p class="text-sm font-bold text-white group-hover/item:text-primary">
-                                Script ready
+                            <p class="text-sm font-bold text-white group-hover/item:text-primary transition-colors">
+                                {{ notification.title }}
                             </p>
-                            <p class="text-xs text-white/40">Your TikTok script is done</p>
-                            <p class="text-[10px] text-white/30 mt-1">2m ago</p>
-                        </div>
-                    </a>
-
-                    <a href="#" class="flex gap-3 px-4 py-3 hover:bg-white/5 transition group/item">
-                        <div class="size-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 shrink-0">
-                            <i class="fa-solid fa-chart-line text-xs"></i>
-                        </div>
-                        <div>
-                            <p class="text-sm font-bold text-white group-hover/item:text-blue-400">
-                                Weekly stats
+                            <p class="text-xs text-white/40 line-clamp-2">
+                                {{ notification.message }}
                             </p>
-                            <p class="text-xs text-white/40">Performance report available</p>
-                            <p class="text-[10px] text-white/30 mt-1">1h ago</p>
+                            <p class="text-[10px] text-white/30 mt-1">
+                                {{ notification.created_at|naturaltime }}
+                            </p>
                         </div>
                     </a>
-                </div>
+                {% empty %}
+                    <div class="px-4 py-6 text-center">
+                        <div class="inline-flex items-center justify-center w-10 h-10 mb-3 rounded-full bg-white/5 text-white/20">
+                            <i class="fa-regular fa-bell-slash"></i>
+                        </div>
+                        <p class="text-sm text-white/40">No new notifications</p>
+                    </div>
+                {% endfor %}
+            </div>
 
-                <div class="p-2 border-t border-white/5 bg-black/20">
-                    <a href="#" class="flex justify-center py-2 text-[10px] font-bold uppercase tracking-wider text-white/40 hover:text-white hover:bg-white/5 rounded-lg transition">
-                        View all notifications
-                    </a>
-                </div>
+            <div class="p-2 border-t border-white/5 bg-black/20">
+                <a href="#" class="flex justify-center py-2 text-[10px] font-bold uppercase tracking-wider text-white/40 hover:text-white hover:bg-white/5 rounded-lg transition">
+                    View all notifications
+                </a>
             </div>
         </div>
     </div>
+</div>

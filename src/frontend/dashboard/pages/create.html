@@ -89,12 +89,12 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div class="space-y-2">
-                            <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Target Country</label>
+                            <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Target Region</label>
                             <div class="relative group w-full">
                                 <i class="fa-solid fa-globe absolute left-3 top-3.5 text-white/20 text-xs"></i>
                                 <select name="target_country" required
                                     class="w-full bg-[#0f0f0f] border border-border-subtle rounded-lg py-3 pl-9 pr-8 text-sm text-white focus:border-primary/50 focus:ring-0 focus:outline-none transition-all hover:border-white/10 appearance-none cursor-pointer">
-                                    <option value="" disabled selected>Select Country</option>
+                                    <option value="" disabled selected>Select Region</option>
                                     {% for country in countries %}
                                         <option value="{{ country.id }}">{{ country.name }}</option>
                                     {% endfor %}
