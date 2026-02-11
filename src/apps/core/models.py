@@ -7,7 +7,7 @@ from django.urls import reverse
 # Create your models here.
 class Platform(models.Model):
     name = models.CharField(max_length=100)
-    icon = models.CharField(max_length=100, default='fa-solid fa-tiktok')
+    icon = models.CharField(max_length=100, blank=True, null=True)
     system_prompt = models.TextField(null=True, blank=True)
     metadata = models.JSONField(help_text="JSON Context for the AI to understand this Platform.", null=True, blank=True)
 
@@ -40,9 +40,10 @@ class SubNiche(models.Model):
     - Name: "Comedy"
     - Description: "This comedy niche handles comedies, and skits."
     """
-    niche = models.ForeignKey(Niche, on_delete=models.CASCADE)
+    niche = models.ForeignKey(Niche, on_delete=models.CASCADE, blank=True, null=True)
     name = models.CharField(max_length=100, unique=True)
     description = models.TextField(help_text="Context for the AI to understand this sub niche.")
+    metadata = models.JSONField(help_text="Context for the AI to understand this sub niche.", blank=True, null=True)
 
     def __str__(self):
         return self.name

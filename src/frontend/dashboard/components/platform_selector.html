@@ -21,7 +21,7 @@
                             class="w-full flex items-center gap-3 px-3 py-2 rounded-lg group/item hover:bg-red-600 transition-colors duration-200 text-left mb-1 {% if selected_platform.id == platform.id %}bg-white/5{% endif %}">
                             
                             <div class="size-8 rounded-full flex items-center justify-center bg-[#222] border border-transparent group-hover/item:border-primary/50">
-                                <i class="text-white text-sm"></i>
+                                <i class="{{ platform.icon|default:'fa-solid fa-circle' }} text-white text-sm"></i>
                             </div>
 
                             <div class="flex-1">
