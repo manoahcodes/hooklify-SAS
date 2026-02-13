@@ -91,6 +91,10 @@
     display: none;
   }
 
+  .sidebar-collapsed .sidebar-label:hover {
+    transition: 300ms ease-out;
+  }
+
   .sidebar-collapsed nav a {
     justify-content: center;
   }

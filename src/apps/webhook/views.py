@@ -12,6 +12,7 @@ from decouple import config
 from paddle_billing.Notifications import Secret, Verifier
 
 from apps.webhook.models import WebhookEvents
+from apps.core.models import Notification
 from apps.webhook.handlers.webhook_subscriptions import (
     handle_subscription_created, handle_subscription_updated, 
     handle_subscription_canceled, handle_transaction_completed,
@@ -65,6 +66,8 @@ def paddle_subscription_webhook(request):
     try:
         if event_type == "subscription.created":
             handle_subscription_created(data)
+            
+
 
         elif event_type == "subscription.updated":
             handle_subscription_updated(data)
