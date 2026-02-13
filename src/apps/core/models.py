@@ -193,4 +193,4 @@ class Notification(models.Model):
         if self.content_object and hasattr(self.content_object, 'get_absolute_url'):
             return self.content_object.get_absolute_url()
             
-        return reverse('dashboard:home')
+        return reverse('dashboard')
