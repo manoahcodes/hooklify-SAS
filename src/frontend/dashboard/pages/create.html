@@ -2,303 +2,214 @@
 {% block title %}Create - {{ block.super }}{% endblock %}
 
 {% block content %}
-<div class="flex-1 overflow-hidden grid grid-cols-1 lg:grid-cols-12 h-full">
-    <div class="lg:col-span-8 bg-surface-dark overflow-y-auto border-r border-border-subtle flex flex-col custom-scrollbar">
-        <form id="createContentForm" method="POST" action="." class="flex flex-col h-full">
-            {% csrf_token %}
-            <div class="p-8 xl:p-12 max-w-5xl mx-auto w-full flex-1">
-                <div class="mb-10">
-                    <h2 class="text-4xl font-bold tracking-tight text-white mb-2">Create Content</h2>
-                    <p class="text-white/40 text-sm">Define your parameters for high-conversion video.</p>
+<div class="flex-1 overflow-hidden h-full bg-surface-dark">
+    <form id="createContentForm" method="POST" action="." class="flex flex-col h-full">
+        {% csrf_token %}
+        <div class="p-6 lg:p-10 w-full flex-1 overflow-y-auto custom-scrollbar">
+            <div class="mb-10">
+                <h2 class="text-4xl font-bold tracking-tight text-white mb-2">Create Content</h2>
+                <p class="text-white/40 text-sm">Define your parameters for high-conversion video.</p>
+            </div>
+            
+            <div class="space-y-8 w-full">
+                <div class="space-y-2">
+                    <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Project Title</label>
+                    <div class="relative group">
+                        <i class="fa-solid fa-heading absolute left-3 top-3.5 text-white/20 text-xs"></i>
+                        <input name="title" required
+                            class="w-full bg-[#0f0f0f] border border-border-subtle rounded-lg py-3 pl-9 pr-3 text-sm text-white placeholder-white/20 focus:border-primary/50 focus:ring-0 focus:outline-none transition-all hover:border-white/10"
+                            placeholder="e.g. Summer Campaign V1" type="text">
+                    </div>
                 </div>
-                
-                <div class="space-y-8">
+
+                <div class="space-y-2">
+                    <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Niche Category</label>
+                    <div class="relative group">
+                        <i class="fa-solid fa-layer-group absolute left-3 top-3.5 text-white/20 text-xs"></i>
+                        <select name="niche" id="nicheSelect" required 
+                            class="w-full bg-[#0f0f0f] border border-border-subtle rounded-lg py-3 pl-9 pr-8 text-sm text-white focus:border-primary/50 focus:ring-0 focus:outline-none transition-all hover:border-white/10 appearance-none cursor-pointer">
+                            <option value="" disabled selected>Select Niche</option>
+                            {% for niche in niches %}
+                                <option value="{{ niche.id }}">{{ niche.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-3 top-4 text-white/20 text-[10px] pointer-events-none"></i>
+                    </div>
+                </div>
+
+                <div id="customSubNicheWrapper" class="space-y-2 hidden">
+                    <label class="text-xs text-primary uppercase tracking-wider font-semibold">Enter Custom Sub-Niche</label>
+                    <div class="relative group">
+                        <i class="fa-solid fa-pen-to-square absolute left-3 top-3.5 text-white/20 text-xs"></i>
+                        <input type="text" name="custom_sub_niche" id="customSubNicheInput"
+                            class="w-full bg-[#0f0f0f] border border-primary/30 rounded-lg py-3 pl-9 pr-3 text-sm text-white placeholder-white/20 focus:border-primary focus:ring-0 focus:outline-none transition-all"
+                            placeholder="Describe your specific focus...">
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Target Audience</label>
+                    <div class="flex flex-wrap gap-2">
+                        {% for audience in audiences %}
+                        <div class="relative">
+                            <input class="hidden peer" id="aud_{{ audience.id }}" name="target_audiences"
+                                value="{{ audience.id }}" type="checkbox">
+                            <label
+                                class="px-4 py-2 rounded-full border border-border-subtle bg-[#0f0f0f] text-white/60 text-xs hover:text-white hover:border-white/20 transition-all cursor-pointer peer-checked:bg-primary/10 peer-checked:text-primary peer-checked:border-primary/40 block"
+                                for="aud_{{ audience.id }}">{{ audience.name }}</label>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Target Age Group</label>
+                    <div class="flex flex-wrap gap-2">
+                        {% for age in ages %}
+                        <div class="relative">
+                            <input class="hidden peer" id="age_{{ age.id }}" name="age_groups" value="{{ age.id }}"
+                                type="checkbox">
+                            <label
+                                class="px-3 py-1.5 rounded-full border border-border-subtle bg-[#0f0f0f] text-white/60 text-[11px] hover:text-white hover:border-white/20 transition-all cursor-pointer peer-checked:bg-primary/10 peer-checked:text-primary peer-checked:border-primary/40 block"
+                                for="age_{{ age.id }}">{{ age.range }}</label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="space-y-2">
-                        <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Project Title</label>
+                        <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Target Region</label>
                         <div class="relative group">
-                            <i class="fa-solid fa-heading absolute left-3 top-3.5 text-white/20 text-xs"></i>
-                            <input name="title" required
-                                class="w-full bg-[#0f0f0f] border border-border-subtle rounded-lg py-3 pl-9 pr-3 text-sm text-white placeholder-white/20 focus:border-primary/50 focus:ring-0 focus:outline-none transition-all hover:border-white/10"
-                                placeholder="e.g. Summer Campaign V1" type="text">
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="space-y-2">
-                            <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Niche Category</label>
-                            <div class="relative group">
-                                <i class="fa-solid fa-layer-group absolute left-3 top-3.5 text-white/20 text-xs"></i>
-                                <select name="niche" id="nicheSelect" required 
-                                    class="w-full bg-[#0f0f0f] border border-border-subtle rounded-lg py-3 pl-9 pr-8 text-sm text-white focus:border-primary/50 focus:ring-0 focus:outline-none transition-all hover:border-white/10 appearance-none cursor-pointer">
-                                    <option value="" disabled selected>Select Niche</option>
-                                    {% for niche in niches %}
-                                        <option value="{{ niche.id }}">{{ niche.name }}</option>
-                                    {% endfor %}
-                                </select>
-                                <i class="fa-solid fa-chevron-down absolute right-3 top-4 text-white/20 text-[10px] pointer-events-none"></i>
-                            </div>
-                        </div>
-
-                        <div class="space-y-2">
-                            <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Sub-Niche</label>
-                            <div class="relative group">
-                                <i class="fa-solid fa-crosshairs absolute left-3 top-3.5 text-white/20 text-xs"></i>
-                                <select name="sub_niche" id="subNicheSelect" required
-                                    class="w-full bg-[#0f0f0f] border border-border-subtle rounded-lg py-3 pl-9 pr-8 text-sm text-white focus:border-primary/50 focus:ring-0 focus:outline-none transition-all hover:border-white/10 appearance-none cursor-pointer disabled:opacity-50" 
-                                    disabled>
-                                    <option value="" disabled selected>Select Niche First</option>
-                                </select>
-                                <i class="fa-solid fa-chevron-down absolute right-3 top-4 text-white/20 text-[10px] pointer-events-none"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="customSubNicheWrapper" class="space-y-2 pt-2 hidden">
-                        <label class="text-xs text-primary uppercase tracking-wider font-semibold">Enter Custom Sub-Niche</label>
-                        <div class="relative group">
-                            <i class="fa-solid fa-pen-to-square absolute left-3 top-3.5 text-white/20 text-xs"></i>
-                            <input type="text" name="custom_sub_niche" id="customSubNicheInput"
-                                class="w-full bg-[#0f0f0f] border border-primary/30 rounded-lg py-3 pl-9 pr-3 text-sm text-white placeholder-white/20 focus:border-primary focus:ring-0 focus:outline-none transition-all"
-                                placeholder="Describe your specific focus...">
-                        </div>
-                    </div>
-
-                    <div class="space-y-4">
-                        <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Target Audience & Age</label>
-                        <div class="flex flex-col gap-3">
-                            <div class="flex flex-wrap gap-2">
-                                {% for audience in audiences %}
-                                <div class="relative">
-                                    <input class="hidden peer" id="aud_{{ audience.id }}" name="target_audiences" value="{{ audience.id }}" type="checkbox">
-                                    <label class="px-4 py-2 rounded-full border border-border-subtle bg-[#0f0f0f] text-white/60 text-xs hover:text-white hover:border-white/20 transition-all cursor-pointer peer-checked:bg-primary/10 peer-checked:text-primary peer-checked:border-primary/40 block"
-                                        for="aud_{{ audience.id }}">{{ audience.name }}</label>
-                                </div>
+                            <i class="fa-solid fa-globe absolute left-3 top-3.5 text-white/20 text-xs"></i>
+                            <select name="target_country" required
+                                class="w-full bg-[#0f0f0f] border border-border-subtle rounded-lg py-3 pl-9 pr-8 text-sm text-white focus:border-primary/50 focus:ring-0 focus:outline-none transition-all hover:border-white/10 appearance-none cursor-pointer">
+                                <option value="" disabled selected>Select Region</option>
+                                {% for country in countries %}
+                                    <option value="{{ country.id }}">{{ country.name }}</option>
                                 {% endfor %}
-                            </div>
-                            <div class="flex flex-wrap gap-2 pt-3">
-                                {% for age in ages %}
-                                <div class="relative">
-                                    <input class="hidden peer" id="age_{{ age.id }}" name="age_groups" value="{{ age.id }}" type="checkbox">
-                                    <label class="px-3 py-1.5 rounded-full border border-border-subtle bg-[#0f0f0f] text-white/60 text-[11px] hover:text-white hover:border-white/20 transition-all cursor-pointer peer-checked:bg-primary/10 peer-checked:text-primary peer-checked:border-primary/40 block"
-                                        for="age_{{ age.id }}">{{ age.range }}</label>
-                                </div>
-                                {% endfor %}
-                            </div>
+                            </select>
+                            <i class="fa-solid fa-chevron-down absolute right-3 top-4 text-white/20 text-[10px] pointer-events-none"></i>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="space-y-2">
-                            <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Target Region</label>
-                            <div class="relative group w-full">
-                                <i class="fa-solid fa-globe absolute left-3 top-3.5 text-white/20 text-xs"></i>
-                                <select name="target_country" required
-                                    class="w-full bg-[#0f0f0f] border border-border-subtle rounded-lg py-3 pl-9 pr-8 text-sm text-white focus:border-primary/50 focus:ring-0 focus:outline-none transition-all hover:border-white/10 appearance-none cursor-pointer">
-                                    <option value="" disabled selected>Select Region</option>
-                                    {% for country in countries %}
-                                        <option value="{{ country.id }}">{{ country.name }}</option>
-                                    {% endfor %}
-                                </select>
-                                <i class="fa-solid fa-chevron-down absolute right-3 top-4 text-white/20 text-[10px] pointer-events-none"></i>
-                            </div>
-                        </div>
-
-                        <div class="space-y-4">
-                            <div class="space-y-2">
-                                <div class="text-xs text-white/50 uppercase tracking-wider font-semibold">Video Duration</div>
-                                <div class="flex flex-wrap gap-2 pt-1">
-                                    {% for duration in durations %}
-                                        <div class="relative">
-                                            <input class="hidden peer" id="dur_{{ duration.id }}" name="duration" value="{{ duration.id }}" type="radio" {% if forloop.first %}checked{% endif %}> 
-                                            <label class="px-3 py-1.5 rounded-full border border-border-subtle bg-[#0f0f0f] text-white/60 text-[11px] font-medium hover:text-white hover:border-white/20 transition-all cursor-pointer flex items-center gap-1.5 peer-checked:bg-primary/10 peer-checked:text-primary peer-checked:border-primary/40" 
-                                                for="dur_{{ duration.id }}">
-                                                {{ duration.name }}
-                                            </label>
-                                        </div>
-                                    {% endfor %}
+                    <div class="space-y-2">
+                        <div class="text-xs text-white/50 uppercase tracking-wider font-semibold">Video Duration</div>
+                        <div class="flex flex-wrap gap-2">
+                            {% for duration in durations %}
+                                <div class="relative">
+                                    <input class="hidden peer" id="dur_{{ duration.id }}" name="duration" value="{{ duration.id }}" type="radio" {% if forloop.first %}checked{% endif %}> 
+                                    <label class="px-3 py-1.5 rounded-full border border-border-subtle bg-[#0f0f0f] text-white/60 text-[11px] font-medium hover:text-white hover:border-white/20 transition-all cursor-pointer flex items-center gap-1.5 peer-checked:bg-primary/10 peer-checked:text-primary peer-checked:border-primary/40" 
+                                        for="dur_{{ duration.id }}">
+                                        {{ duration.name }}
+                                    </label>
                                 </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-4">
+                    <div class="space-y-3">
+                        <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Tone</label>
+                        <div class="flex flex-wrap gap-2">
+                            {% for tone in tones %}
+                            <div class="relative">
+                                <input class="hidden peer" id="tone_{{ tone.id }}" name="desired_tones" value="{{ tone.id }}" type="checkbox">
+                                <label class="px-3 py-1.5 rounded-full bg-[#0f0f0f] border border-border-subtle text-white/50 text-[11px] font-medium hover:text-white hover:border-white/20 transition-all cursor-pointer block peer-checked:bg-primary/10 peer-checked:border-primary/40 peer-checked:text-primary"
+                                    for="tone_{{ tone.id }}">{{ tone.name }}</label>
                             </div>
+                            {% endfor %}
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
-                        <div class="space-y-3">
-                            <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Tone</label>
-                            <div class="flex flex-wrap gap-2">
-                                {% for tone in tones %}
-                                <div class="relative">
-                                    <input class="hidden peer" id="tone_{{ tone.id }}" name="desired_tones" value="{{ tone.id }}" type="checkbox">
-                                    <label class="px-3 py-1.5 rounded-full bg-[#0f0f0f] border border-border-subtle text-white/50 text-[11px] font-medium hover:text-white hover:border-white/20 transition-all cursor-pointer block peer-checked:bg-primary/10 peer-checked:border-primary/40 peer-checked:text-primary"
-                                        for="tone_{{ tone.id }}">{{ tone.name }}</label>
-                                </div>
-                                {% endfor %}
+                    <div class="space-y-3">
+                        <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Style</label>
+                        <div class="flex flex-wrap gap-2">
+                            {% for style in styles %}
+                            <div class="relative">
+                                <input class="hidden peer" id="style_{{ style.id }}" name="visual_styles" value="{{ style.id }}" type="checkbox">
+                                <label class="px-3 py-1.5 rounded-full bg-[#0f0f0f] border border-border-subtle text-white/50 text-[11px] font-medium hover:text-white hover:border-white/20 transition-all cursor-pointer block peer-checked:bg-primary/10 peer-checked:border-primary/40 peer-checked:text-primary"
+                                    for="style_{{ style.id }}">{{ style.name }}</label>
                             </div>
+                            {% endfor %}
                         </div>
-                        <div class="space-y-3">
-                            <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Style</label>
-                            <div class="flex flex-wrap gap-2">
-                                {% for style in styles %}
-                                <div class="relative">
-                                    <input class="hidden peer" id="style_{{ style.id }}" name="visual_styles" value="{{ style.id }}" type="checkbox">
-                                    <label class="px-3 py-1.5 rounded-full bg-[#0f0f0f] border border-border-subtle text-white/50 text-[11px] font-medium hover:text-white hover:border-white/20 transition-all cursor-pointer block peer-checked:bg-primary/10 peer-checked:border-primary/40 peer-checked:text-primary"
-                                        for="style_{{ style.id }}">{{ style.name }}</label>
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
+                    </div>
 
-                        <div class="space-y-3">
-                            <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Video End Goals</label>
-                            <div class="flex flex-wrap gap-2">
-                                {% for outcome in outcomes %}
-                                <div class="relative">
+                    <div class="space-y-3">
+                        <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Video End Goals</label>
+                        <div class="flex flex-wrap gap-2">
+                            {% for outcome in outcomes %}
+                            <div class="relative">
                                 <input class="hidden peer" id="outcome_{{ outcome.id }}" name="outcome" value="{{ outcome.id }}" type="checkbox">
                                 <label class="px-3 py-1.5 rounded-full bg-[#0f0f0f] border border-border-subtle text-white/50 text-[11px] font-medium hover:text-white hover:border-white/20 transition-all cursor-pointer block peer-checked:bg-primary/10 peer-checked:border-primary/40 peer-checked:text-primary"
                                     for="outcome_{{ outcome.id }}">{{ outcome.name }}</label>
-                                </div>
-                                {% endfor %}
                             </div>
+                            {% endfor %}
                         </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 pt-4 border-t border-border-subtle mt-4">
-                        <div class="space-y-4">
-                            <label class="text-xs text-white/50 uppercase tracking-wider font-semibold relative flex items-center gap-1">
-                                Content References
-                                <div class="group/tooltip relative flex items-center">
-                                    <span class="text-gray-600 cursor-help hover:text-primary">
-                                        <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px" fill="currentColor"><path d="M440-280h80v-240h-80v240Zm68.5-331.5Q520-623 520-640t-11.5-28.5Q497-680 480-680t-28.5 11.5Q440-657 440-640t11.5 28.5Q463-600 480-600t28.5-11.5ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
-                                    </span>
-                                    <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-[#1a1a1a] border border-gray-700 rounded-lg shadow-xl opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 z-50 pointer-events-none transform translate-y-2 group-hover/tooltip:translate-y-0">
-                                        <p class="text-xs text-gray-300 font-normal leading-relaxed text-center">URLs of articles or blogs that align with your vision.</p>
-                                    </div>
-                                </div>
-                            </label>
-                            <div class="space-y-2">
-                                <div class="relative group">
-                                    <i class="fa-solid fa-link absolute left-3 top-3.5 text-white/20 text-xs"></i>
-                                    <input name="ref_url_1" class="w-full bg-[#0f0f0f] border border-border-subtle rounded-lg py-3 pl-9 pr-3 text-sm text-white focus:border-primary/50 focus:ring-0 outline-none transition-all" placeholder="Reference URL 1" type="url">
-                                </div>
-                                <div class="relative group">
-                                    <i class="fa-solid fa-link absolute left-3 top-3.5 text-white/20 text-xs"></i>
-                                    <input name="ref_url_2" class="w-full bg-[#0f0f0f] border border-border-subtle rounded-lg py-3 pl-9 pr-3 text-sm text-white focus:border-primary/50 focus:ring-0 outline-none transition-all" placeholder="Reference URL 2" type="url">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="space-y-6">
-                            <div class="space-y-2">
-                                <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Video Reference</label>
-                                <div class="relative group">
-                                    <i class="fa-brands fa-tiktok absolute left-3 top-3.5 text-white/20 text-xs"></i>
-                                    <input name="video_reference_url"
-                                        class="w-full bg-[#0f0f0f] border border-border-subtle rounded-lg py-3 pl-9 pr-3 text-sm text-white focus:border-primary/50 focus:ring-0 outline-none transition-all"
-                                        placeholder="Paste viral link (TikTok/Reels)..." type="url">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="space-y-2 pt-4">
-                        <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Core Concept</label>
-                        <textarea name="core_concept" required
-                            class="w-full bg-[#0f0f0f] border border-border-subtle rounded-xl p-4 text-sm text-white placeholder-white/20 focus:border-primary/50 focus:ring-0 outline-none transition-all h-32 resize-none leading-relaxed"
-                            placeholder="Describe the video concept in detail..."></textarea>
                     </div>
                 </div>
-            </div>
 
-            <div class="border-t border-border-subtle bg-[#111] p-4 sticky bottom-0 z-20 mt-auto shadow-xl">
-                <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-                    <div class="flex items-center gap-6">
-                        <label class="flex items-center gap-2 cursor-pointer group">
-                            <input name="gen_hooks" id="toggleHooks" checked class="sr-only peer" type="checkbox">
-                            <div class="w-7 h-4 bg-gray-700 rounded-full peer peer-checked:bg-primary relative after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:after:translate-x-full"></div>
-                            <span class="text-xs text-white/60 group-hover:text-white">Hooks</span>
-                        </label>
-                        <label class="flex items-center gap-2 cursor-pointer group">
-                            <input name="gen_script" id="toggleScript" checked class="sr-only peer" type="checkbox">
-                            <div class="w-7 h-4 bg-gray-700 rounded-full peer peer-checked:bg-primary relative after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:after:translate-x-full"></div>
-                            <span class="text-xs text-white/60 group-hover:text-white">Full Script</span>
-                        </label>
-                        <label class="flex items-center gap-2 cursor-pointer group">
-                            <input name="gen_cta" id="toggleCTA" checked class="sr-only peer" type="checkbox">
-                            <div class="w-7 h-4 bg-gray-700 rounded-full peer peer-checked:bg-primary relative after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:after:translate-x-full"></div>
-                            <span class="text-xs text-white/60 group-hover:text-white">Call To Action</span>
-                        </label>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 pt-4 border-t border-border-subtle mt-4">
+                    <div class="space-y-4">
+                        <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Content References</label>
+                        <div class="space-y-2">
+                            <div class="relative group">
+                                <i class="fa-solid fa-link absolute left-3 top-3.5 text-white/20 text-xs"></i>
+                                <input name="ref_url_1" class="w-full bg-[#0f0f0f] border border-border-subtle rounded-lg py-3 pl-9 pr-3 text-sm text-white focus:border-primary/50 focus:ring-0 outline-none transition-all" placeholder="Reference URL 1" type="url">
+                            </div>
+                            <div class="relative group">
+                                <i class="fa-solid fa-link absolute left-3 top-3.5 text-white/20 text-xs"></i>
+                                <input name="ref_url_2" class="w-full bg-[#0f0f0f] border border-border-subtle rounded-lg py-3 pl-9 pr-3 text-sm text-white focus:border-primary/50 focus:ring-0 outline-none transition-all" placeholder="Reference URL 2" type="url">
+                            </div>
+                        </div>
                     </div>
                     
-                    <button type="submit" id="submitBtn"
-                        class="w-full md:w-auto bg-primary hover:bg-red-600 text-white font-semibold text-sm py-3 px-8 rounded-lg transition-all active:scale-[0.98] flex items-center justify-center gap-2 group whitespace-nowrap">
-                        <i class="fa-solid fa-wand-magic-sparkles text-sm group-hover:animate-pulse"></i>
-                        <span>Create</span>
-                    </button>
+                    <div class="space-y-4">
+                        <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Video Reference</label>
+                        <div class="relative group">
+                            <i class="fa-brands fa-tiktok absolute left-3 top-3.5 text-white/20 text-xs"></i>
+                            <input name="video_reference_url"
+                                class="w-full bg-[#0f0f0f] border border-border-subtle rounded-lg py-3 pl-9 pr-3 text-sm text-white focus:border-primary/50 focus:ring-0 outline-none transition-all"
+                                placeholder="Paste viral link (TikTok/Reels)..." type="url">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-2 pt-4">
+                    <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Core Concept</label>
+                    <textarea name="core_concept" required
+                        class="w-full bg-[#0f0f0f] border border-border-subtle rounded-xl p-4 text-sm text-white placeholder-white/20 focus:border-primary/50 focus:ring-0 outline-none transition-all h-40 resize-none leading-relaxed"
+                        placeholder="Describe the video concept in detail..."></textarea>
                 </div>
             </div>
-        </form>
-    </div>
+        </div>
 
-    {% include "dashboard/pages/create_preview.html" %}
+        <div class="border-t border-border-subtle bg-[#111] p-6 sticky bottom-0 z-20 shadow-xl w-full">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-8">
+                    <label class="flex items-center gap-3 cursor-pointer group">
+                        <input name="gen_hooks" id="toggleHooks" checked class="sr-only peer" type="checkbox">
+                        <div class="w-9 h-5 bg-gray-700 rounded-full peer peer-checked:bg-primary relative after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-full"></div>
+                        <span class="text-sm text-white/60 group-hover:text-white">Hooks</span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer group">
+                        <input name="gen_script" id="toggleScript" checked class="sr-only peer" type="checkbox">
+                        <div class="w-9 h-5 bg-gray-700 rounded-full peer peer-checked:bg-primary relative after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-full"></div>
+                        <span class="text-sm text-white/60 group-hover:text-white">Full Script</span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer group">
+                        <input name="gen_cta" id="toggleCTA" checked class="sr-only peer" type="checkbox">
+                        <div class="w-9 h-5 bg-gray-700 rounded-full peer peer-checked:bg-primary relative after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-full"></div>
+                        <span class="text-sm text-white/60 group-hover:text-white">Call To Action</span>
+                    </label>
+                </div>
+                
+                <button type="submit" id="submitBtn"
+                    class="w-full md:w-auto bg-primary hover:bg-red-600 text-white font-bold text-base py-4 px-12 rounded-lg transition-all active:scale-[0.98] flex items-center justify-center gap-3 group whitespace-nowrap shadow-lg">
+                    <i class="fa-solid fa-wand-magic-sparkles text-lg group-hover:animate-pulse"></i>
+                    <span>Create Content</span>
+                </button>
+            </div>
+        </div>
+    </form>
 </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const nicheData = {
-        {% for niche in niches %}
-        "{{ niche.id }}": [
-            {% for sub in niche.subniches.all %}
-            {"id": "{{ sub.id }}", "name": "{{ sub.name|escapejs }}"}{% if not forloop.last %},{% endif %}
-            {% endfor %}
-        ]{% if not forloop.last %},{% endif %}
-        {% endfor %}
-    };
-
-    const nicheSelect = document.getElementById('nicheSelect');
-    const subNicheSelect = document.getElementById('subNicheSelect');
-    const customWrapper = document.getElementById('customSubNicheWrapper');
-    const customInput = document.getElementById('customSubNicheInput');
-    const form = document.getElementById('createContentForm');
-    const submitBtn = document.getElementById('submitBtn');
-
-    nicheSelect.addEventListener('change', function() {
-        const selectedId = this.value;
-        subNicheSelect.innerHTML = '<option value="" disabled selected>Select Sub-Niche</option>';
-        subNicheSelect.disabled = false;
-        customWrapper.classList.add('hidden');
-        customInput.required = false;
-
-        if (nicheData[selectedId]) {
-            nicheData[selectedId].forEach(sub => {
-                const opt = document.createElement('option');
-                opt.value = sub.id;
-                opt.textContent = sub.name;
-                subNicheSelect.appendChild(opt);
-            });
-        }
-
-        const otherOpt = document.createElement('option');
-        otherOpt.value = "OTHER";
-        otherOpt.textContent = "+ Add Custom Sub-Niche";
-        otherOpt.className = 'text-primary font-bold';
-        subNicheSelect.appendChild(otherOpt);
-    });
-
-    subNicheSelect.addEventListener('change', function() {
-        if (this.value === "OTHER") {
-            customWrapper.classList.remove('hidden');
-            customInput.required = true;
-            customInput.focus();
-        } else {
-            customWrapper.classList.add('hidden');
-            customInput.required = false;
-        }
-    });
-
-    form.addEventListener('submit', function() {
-        submitBtn.disabled = true;
-        submitBtn.querySelector('span').textContent = "Generating...";
-        submitBtn.querySelector('i').className = 'fa-solid fa-circle-notch fa-spin text-sm';
-    });
-});
-</script>
 {% endblock content %}

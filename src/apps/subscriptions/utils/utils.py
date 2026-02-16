@@ -132,7 +132,7 @@ def normalize_canceled_subscribers():
     price = Price.objects.get(pk=price_id)
 
     canceled_qs = Subscriber.objects.filter(
-        Q(status=Subscriber.StatusChoices.FREE) or 
+        Q(status=Subscriber.StatusChoices.FREE) | 
         Q(status=Subscriber.StatusChoices.CANCELED)
     )
 

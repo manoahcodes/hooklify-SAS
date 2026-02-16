@@ -2,6 +2,7 @@ import logging
 from django.db import transaction
 
 from apps.subscriptions.models import Price, Subscriber, Product, Customer
+from apps.core.models import Notification
 from .webhook_helper_functions import (
     WebhookProcessingError,
     SubscriptionSyncError,

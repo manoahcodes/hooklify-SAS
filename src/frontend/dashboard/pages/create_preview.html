@@ -1,64 +1,99 @@
-<div class="lg:col-span-4 bg-background-dark overflow-y-auto no-select border-l border-border-subtle flex flex-col custom-scrollbar relative">
-        
-        <div id="previewLoading" class="hidden absolute inset-0 z-50 bg-background-dark/90 flex flex-col items-center justify-center p-8 text-center">
-            <div class="w-12 h-12 border-4 border-primary/20 border-t-primary rounded-full animate-spin mb-4"></div>
-            <h3 class="text-white font-medium mb-2">Generating Content</h3>
-            <p class="text-xs text-white/40 leading-relaxed">Our AI is analyzing your parameters to craft high-conversion hooks and scripts...</p>
+<div id="previewSidebar"
+    class="{% if not generated_content %}hidden lg:block lg:col-span-0 w-0{% else %}lg:col-span-4{% endif %} bg-background-dark overflow-y-auto no-select border-l border-border-subtle flex flex-col custom-scrollbar relative transition-all duration-500">
+    <div id="previewLoading"
+        class="hidden absolute inset-0 z-50 bg-background-dark/95 flex flex-col items-center justify-center p-8 text-center backdrop-blur-sm">
+        <div class="w-12 h-12 border-4 border-primary/20 border-t-primary rounded-full animate-spin mb-4"></div>
+        <h3 id="loadingText" class="text-white font-medium mb-2">
+            Analyzing Data...
+        </h3>
+        <p id="loadingSubtext" class="text-xs text-white/40 leading-relaxed">
+            Crafting your viral hook and script structure.
+        </p>
+    </div>
+
+    <div class="p-6 space-y-8 h-full flex flex-col">
+        <div class="flex items-center justify-between">
+            <h2 class="text-sm font-semibold uppercase tracking-widest text-white/80 flex items-center gap-2">
+                <i class="fa-solid fa-eye text-primary text-xs"></i> Draft Preview
+            </h2>
+            <div class="flex gap-2">
+                <span class="text-[10px] text-white/30 bg-white/5 px-2 py-1 rounded border border-white/5">Step 1 of
+                    2</span>
+            </div>
         </div>
 
-        <div class="p-6 space-y-8 h-full flex flex-col">
-            <div class="flex items-center justify-between">
-                <h2 class="text-sm font-semibold uppercase tracking-widest text-white/80 flex items-center gap-2">
-                    <i class="fa-solid fa-eye text-primary text-xs"></i> Draft Preview
-                </h2>
-                <span class="text-[10px] text-white/30 bg-white/5 px-2 py-1 rounded border border-white/5">Read Only</span>
+        {% if not generated_content %}
+        <div id="previewEmptyState"
+            class="flex-1 flex flex-col items-center justify-center text-center space-y-4 px-4 opacity-50">
+            <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mb-2 border border-white/5">
+                <i class="fa-solid fa-wand-magic-sparkles text-white/20 text-xl"></i>
+            </div>
+            <p class="text-xs text-white/40 leading-relaxed max-w-[200px]">
+                Fill out the form on the left to generate your initial draft preview.
+            </p>
+        </div>
+        {% else %}
+        <div class="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700 flex-1">
+            <div class="space-y-3">
+                <h3 class="text-xs font-medium text-white/40 uppercase tracking-wider">
+                    Viral Hook
+                </h3>
+                <div class="bg-card-dark border border-white/5 p-4 rounded-lg relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-12 h-12 bg-gradient-to-bl from-primary/10 to-transparent">
+                    </div>
+                    <p class="text-white text-sm font-light leading-relaxed">
+                        "{{ generated_content.hook }}"
+                    </p>
+                </div>
             </div>
 
-            {% if not generated_content %}
-            <div id="previewEmptyState" class="flex-1 flex flex-col items-center justify-center text-center space-y-4 px-4">
-                <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mb-2">
-                    <i class="fa-solid fa-wand-magic-sparkles text-white/20 text-2xl"></i>
+            <div class="space-y-3">
+                <h3 class="text-xs font-medium text-white/40 uppercase tracking-wider">
+                    Script Snippet
+                </h3>
+                <div class="bg-card-dark border border-white/5 p-5 rounded-lg relative">
+                    <div class="font-mono text-[11px] leading-6 text-white/60">
+                        {{ generated_content.script_preview|linebreaks }}
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-card-dark to-transparent">
+                    </div>
                 </div>
-                <h3 class="text-white/60 text-sm font-medium">Ready to Visualize?</h3>
-                <p class="text-xs text-white/30 leading-relaxed">
-                    Fill out the form and click <span class="text-primary/60">Create</span> to see a preview of your next viral idea.
+            </div>
+
+            <div class="space-y-3">
+                <h3 class="text-xs font-medium text-white/40 uppercase tracking-wider">
+                    Suggested Hashtags
+                </h3>
+                <div class="flex flex-wrap gap-2">
+                    {% for tag in generated_content.hashtags %}
+                    <span
+                        class="text-xs text-primary bg-primary/5 px-2 py-1 rounded border border-primary/20">#{{ tag }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-auto pt-6 border-t border-white/5 animate-in fade-in duration-1000 delay-150">
+            <div class="text-center space-y-4">
+                <p class="text-[10px] text-white/40">Happy with this direction?</p>
+
+                <form id="finalizeForm" method="POST" action="{% url 'generate_full_script' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="draft_id" value="{{ generated_content.id }}" />
+                    <input type="hidden" name="action" value="finalize" />
+
+                    <button type="submit" id="finalizeBtn"
+                        class="w-full bg-primary hover:bg-red-600 text-white font-bold text-sm py-4 px-6 rounded-xl shadow-[0_0_20px_rgba(220,38,38,0.4)] hover:shadow-[0_0_30px_rgba(220,38,38,0.6)] transition-all transform active:scale-[0.98] flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-rocket"></i>
+                        <span>Generate Full Video Idea</span>
+                    </button>
+                </form>
+
+                <p class="text-[10px] text-white/20">
+                    This will consume 1 credit and save to your library.
                 </p>
             </div>
-            {% else %}
-            <div class="space-y-6 animate-in fade-in duration-700">
-                <div class="space-y-3">
-                    <h3 class="text-xs font-medium text-white/40 uppercase tracking-wider">Viral Hook</h3>
-                    <div class="bg-card-dark border border-white/5 p-4 rounded-lg relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 w-12 h-12 bg-gradient-to-bl from-primary/10 to-transparent"></div>
-                        <p class="text-white text-sm font-light leading-relaxed">
-                            {{ generated_content.hook }}
-                        </p>
-                    </div>
-                </div>
-
-                <div class="space-y-3">
-                    <h3 class="text-xs font-medium text-white/40 uppercase tracking-wider">Script Snippet</h3>
-                    <div class="bg-card-dark border border-white/5 p-5 rounded-lg relative">
-                        <div class="font-mono text-[11px] leading-6 text-white/60">
-                            {{ generated_content.script_preview|linebreaks }}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="space-y-3">
-                    <h3 class="text-xs font-medium text-white/40 uppercase tracking-wider">Suggested Hashtags</h3>
-                    <div class="flex flex-wrap gap-2">
-                        {% for tag in generated_content.hashtags %}
-                            <span class="text-xs text-primary bg-primary/5 px-2 py-1 rounded border border-primary/20">#{{ tag }}</span>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <div class="mt-auto pt-10 text-center opacity-50">
-                    <i class="fa-solid fa-lock text-white/20 text-2xl mb-3"></i>
-                    <p class="text-[10px] text-white/30 max-w-[200px] mx-auto">Full draft unlocked after export.</p>
-                </div>
-            </div>
-            {% endif %}
         </div>
+        {% endif %}
     </div>
+</div>
