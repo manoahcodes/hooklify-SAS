@@ -103,6 +103,13 @@ class Audience(models.Model):
     class Meta:
         ordering = ['name']
 
+class Outcome(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    metadata = models.JSONField(help_text="JSON Context for the AI to understand this Audience.", null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
 class Generation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="generations")
     title = models.CharField(max_length=255)
@@ -118,6 +125,7 @@ class Generation(models.Model):
     age_groups = models.ManyToManyField(AgeGroup, blank=True)
     desired_tones = models.ManyToManyField(Tone, blank=True)
     visual_styles = models.ManyToManyField(Style, blank=True)
+    endgoal = models.ManyToManyField(Outcome, blank=True)
 
     # --- Media & References ---
     # The primary video reference (Visual/Vibe match)
@@ -181,6 +189,9 @@ class Notification(models.Model):
     class Meta:
         ordering = ['-created_at']
 
+    def __str__(self):
+        return self.title
+    
     @property
     def get_redirect_url(self):
         """

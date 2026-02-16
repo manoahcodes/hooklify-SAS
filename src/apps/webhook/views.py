@@ -6,6 +6,7 @@ from django.db import transaction, IntegrityError
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 
 
 from decouple import config
@@ -65,15 +66,30 @@ def paddle_subscription_webhook(request):
 
     try:
         if event_type == "subscription.created":
-            handle_subscription_created(data)
-            
+            subscriber_obj = handle_subscription_created(data)
+
+            if subscriber_obj:
+                Notification.objects.create(
+                    recipient=subscriber_obj.user,
+                    category='success',
+                    title='Subscription Active',
+                    message=f'Welcome {subscriber_obj.user.username}! You have successfully subscribed to the {subscriber_obj.product.name} Plan.'
+                )
 
 
         elif event_type == "subscription.updated":
             handle_subscription_updated(data)
 
         elif event_type == "subscription.canceled":
-            handle_subscription_canceled(data)
+            cancelled_obj = handle_subscription_canceled(data)
+
+            if cancelled_obj:
+                Notification.objects.create(
+                    recipient=cancelled_obj.user,
+                    category='success',
+                    title='Subscription Cancelled',
+                    message=f'Your {cancelled_obj.subscriber.user.username} plan has been successfully cancelled.'
+                )
 
         elif event_type == "transaction.completed":
             handle_transaction_completed(data)

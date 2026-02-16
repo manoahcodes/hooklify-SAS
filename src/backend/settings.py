@@ -84,7 +84,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'apps.subscriptions.context_processors.subscriber',
-                'apps.dashboard.context_processors.platform_context'
+                'apps.dashboard.context_processors.platform_context',
+                'apps.core.context_processors.user_notifications'
             ],
         },
     },
@@ -163,7 +164,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 # AllAuth Settings
-LOGIN_REDIRECT_URL = "/dashboard/"
+LOGIN_REDIRECT_URL = "/app/dashboard/"
 
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"

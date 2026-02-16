@@ -154,7 +154,7 @@
                                 Content References
                                 <div class="group/tooltip relative flex items-center">
                                     <span class="text-gray-600 text-[4px] cursor-help transition-colors hover:text-primary">
-                                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-280h80v-240h-80v240Zm68.5-331.5Q520-623 520-640t-11.5-28.5Q497-680 480-680t-28.5 11.5Q440-657 440-640t11.5 28.5Q463-600 480-600t28.5-11.5ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px" fill="currentColor"><path d="M440-280h80v-240h-80v240Zm68.5-331.5Q520-623 520-640t-11.5-28.5Q497-680 480-680t-28.5 11.5Q440-657 440-640t11.5 28.5Q463-600 480-600t28.5-11.5ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
                                     </span>
                                     <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-[#1a1a1a] border border-gray-700 rounded-lg shadow-xl opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 z-50 pointer-events-none transform translate-y-2 group-hover/tooltip:translate-y-0">
                                         <p class="text-xs text-gray-300 font-normal leading-relaxed text-center">
@@ -189,6 +189,19 @@
                                     placeholder="Paste viral TikTok/Reels/Shorts link..." type="url">
                             </div>
                             <p class="text-[10px] text-white/30 px-1">Analyzes the hook structure and pacing.</p>
+                        </div>
+
+                        <div class="space-y-3">
+                            <label class="text-xs text-white/50 uppercase tracking-wider font-semibold">Video End Goals</label>
+                            <div class="flex flex-wrap gap-2">
+                                {% for outcome in outcomes %}
+                                <div class="relative">
+                                    <input class="hidden peer" id="outcome_{{ outcome.id }}" name="outcome" value="{{ outcome.id }}" type="checkbox">
+                                    <label class="px-3 py-1.5 rounded-full bg-[#0f0f0f] border border-border-subtle text-white/50 text-[11px] font-medium hover:text-white hover:border-white/20 transition-all cursor-pointer block peer-checked:bg-primary/10 peer-checked:border-primary/40 peer-checked:text-primary"
+                                        for="outcome_{{ outcome.id }}">{{ outcome.name }}</label>
+                                </div>
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
 
@@ -227,7 +240,7 @@
                     <button type="submit"
                         class="w-full md:w-auto bg-primary hover:bg-red-600 text-white font-semibold tracking-wide text-sm py-3 px-8 rounded-lg shadow-neon transition-all active:scale-[0.98] flex items-center justify-center gap-2 group whitespace-nowrap">
                         <i class="fa-solid fa-wand-magic-sparkles text-sm group-hover:animate-pulse"></i>
-                        <span>Generate Draft</span>
+                        <span>Create</span>
                     </button>
                 </div>
             </div>
@@ -238,6 +251,55 @@
 </div>
 
 <script>
+function initNicheHandler(nicheData) {
+    const nicheSelect = document.getElementById('nicheSelect');
+    const subNicheSelect = document.getElementById('subNicheSelect');
+    const customWrapper = document.getElementById('customSubNicheWrapper');
+    const customInput = document.getElementById('customSubNicheInput');
+
+    if (!nicheSelect || !subNicheSelect) return;
+
+    // Listen for Niche Change
+    nicheSelect.addEventListener('change', function() {
+        const selectedId = this.value;
+        
+        // Reset sub-niche dropdown
+        subNicheSelect.innerHTML = '<option value="" disabled selected>Select Sub-Niche</option>';
+        subNicheSelect.disabled = false;
+        customWrapper.classList.add('hidden');
+        customInput.required = false;
+
+        // Populate from data
+        if (nicheData[selectedId]) {
+            nicheData[selectedId].forEach(sub => {
+                const opt = document.createElement('option');
+                opt.value = sub.id;
+                opt.textContent = sub.name;
+                subNicheSelect.appendChild(opt);
+            });
+        }
+
+        // Add the "Other" option
+        const otherOpt = document.createElement('option');
+        otherOpt.value = "OTHER";
+        otherOpt.textContent = "+ Add Custom Sub-Niche";
+        otherOpt.classList.add('text-primary', 'font-bold');
+        subNicheSelect.appendChild(otherOpt);
+    });
+
+    // Listen for Sub-Niche Change (to show custom input)
+    subNicheSelect.addEventListener('change', function() {
+        if (this.value === "OTHER") {
+            customWrapper.classList.remove('hidden');
+            customInput.required = true;
+            customInput.focus();
+        } else {
+            customWrapper.classList.add('hidden');
+            customInput.required = false;
+        }
+    });
+}
+
     // Pass Django data to JS
     const nicheData = {
         {% for niche in niches %}
@@ -249,16 +311,6 @@
         {% endfor %}
     };
     initNicheHandler(nicheData);
-</script>
-
-<script>
-function updateNicheDescription() {
-    const select = document.getElementById('nicheSelect');
-    const descText = document.getElementById('nicheDescription');
-    const selectedOption = select.options[select.selectedIndex];
-    const description = selectedOption.getAttribute('data-desc');
-    descText.textContent = description ? description : "";
-}
 </script>
 
 {% endblock content %}

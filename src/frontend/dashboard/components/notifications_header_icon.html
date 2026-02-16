@@ -11,7 +11,7 @@
         
         <i class="fa-regular fa-bell"></i>
         
-        {% if unread_notification_count > 0 %}
+        {% if notifications %}
             <span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full animate-pulse border border-[#f91f1f]"></span>
         {% endif %}
     </button>
@@ -31,8 +31,8 @@
                 <span class="text-xs font-bold uppercase tracking-wider text-[#553a3a]">
                     Notifications
                 </span>
-                {% if unread_notification_count > 0 %}
-                    <form action="{% url 'notifications:mark_all_read' %}" method="POST">
+                {% if notifications %}
+                    <form action="{% url 'mark_all_notifications_read' %}" method="POST">
                         {% csrf_token %}
                         <button type="submit" class="text-[10px] font-bold text-primary hover:text-white transition-colors">
                             Mark all read
@@ -41,10 +41,10 @@
                 {% endif %}
             </div>
 
-            <div class="max-h-[50vh] overflow-y-auto custom-scrollbar">
+            <div class="max-h-80 overflow-y-auto custom-scrollbar">
                 {% for notification in notifications %}
-                    <a href="{{ notification.content_object.get_absolute_url|default:'#' }}" 
-                       class="flex gap-3 px-4 py-3 hover:bg-white/5 transition group/item {% if not notification.is_read %}bg-white/[0.02]{% endif %}">
+                    <a href="{% url "notifications" %}" 
+                       class="flex gap-3 relative px-4 py-3 hover:bg-white/5 transition group/item {% if not notification.is_read %}bg-white/[0.02]{% endif %}">
                         
                         <div class="size-8 rounded-lg flex items-center justify-center shrink-0 
                                     {% if notification.category == 'success' %}bg-primary/10 text-primary
@@ -54,17 +54,17 @@
                             {% if notification.category == 'success' %}
                                 <i class="fa-solid fa-check text-xs"></i>
                             {% elif notification.category == 'info' %}
-                                <i class="fa-solid fa-chart-line text-xs"></i>
+                                <i class="fa-solid fa-circle-info text-xs"></i>
                             {% else %}
                                 <i class="fa-solid fa-bell text-xs"></i>
                             {% endif %}
                         </div>
 
-                        <div>
+                        <div class="flex-1 min-w-0">
                             <p class="text-sm font-bold text-white group-hover/item:text-primary transition-colors">
                                 {{ notification.title }}
                             </p>
-                            <p class="text-xs text-white/40 line-clamp-2">
+                            <p class="text-[11px] text-white/40 mt-1 truncate">
                                 {{ notification.message }}
                             </p>
                             <p class="text-[10px] text-white/30 mt-1">

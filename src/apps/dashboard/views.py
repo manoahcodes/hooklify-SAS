@@ -13,7 +13,7 @@ from apps.core.models import Notification
 from apps.core.models import (
     Niche, Audience, AgeGroup, Tone, Style, 
     Generation, ReferenceLink, Region,
-    VideoDuration
+    VideoDuration, Outcome
 )
 
 # Create your views here.
@@ -93,7 +93,8 @@ def create(request):
         'tones': Tone.objects.all(),
         'styles': Style.objects.all(),
         'countries': Region.objects.all(),
-        'durations': VideoDuration.objects.all()
+        'durations': VideoDuration.objects.all(),
+        'outcomes': Outcome.objects.all()
     }
 
     return render(request, "dashboard/pages/create.html", context)

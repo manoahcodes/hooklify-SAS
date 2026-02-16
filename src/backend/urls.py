@@ -8,7 +8,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('webhook/', include('apps.webhook.urls')),
     path('pricing/', include('apps.subscriptions.urls')),
-    path('dashboard/', include('apps.dashboard.urls')),
+    path('app/', include('apps.dashboard.urls')),
     path('accounts/', include('apps.profiles.urls')),
     path('api', include('apps.core.urls')),
 
