@@ -50,6 +50,7 @@
             {% endif %}
 
             {# 3. Delete / Archive Button #}
+            {% if notification.category == "info" %}
             <form method="post" action="{% url 'delete_notification' notification.id %}" onsubmit="return confirm('Are you sure you want to delete this notification?');">
                 {% csrf_token %}
                 <button type="submit" 
@@ -58,6 +59,7 @@
                     <i class="fa-solid fa-trash"></i>
                 </button>
             </form>
+            {% endif %}
         </div>
     </div>
 </div>
