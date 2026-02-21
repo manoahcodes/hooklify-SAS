@@ -162,15 +162,14 @@ class ReferenceLink(models.Model):
 
 class Notification(models.Model):
     # Categories map to your specific SaaS needs
-    CATEGORY_CHOICES = (
-        ('success', 'Success'),   # Task complete, Export ready
-        ('error', 'Error'),       # Payment failed, Export failed
-        ('warning', 'Warning'),   # Trial ending, Usage limit approached
-        ('info', 'System'),       # Feature announcement, Maintenance
-    )
+    class NotificationChoices(models.TextChoices):
+        SUCCESS = "success", ("Success")   # Task complete, Export ready
+        ERROR = "error", ("Error")         # Payment failed, Export failed
+        WARNING = "warning", ("Warning")   # Trial ending, Usage limit approached
+        INFO = "info", ("System")          # Feature announcement, Maintenance
 
-    recipient = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notifications')
-    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='info')
+    recipient = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notifications', blank=True, null=True)
+    category = models.CharField(max_length=20, choices=NotificationChoices.choices, default=NotificationChoices.INFO)
     title = models.CharField(max_length=255)
     message = models.TextField(blank=True)
 
@@ -191,6 +190,14 @@ class Notification(models.Model):
 
     def __str__(self):
         return self.title
+
+    @property
+    def is_not_system_msg(self):
+        return self.category in {
+            self.NotificationChoices.SUCCESS,
+            self.NotificationChoices.ERROR,
+            self.NotificationChoices.WARNING,
+        }
     
     @property
     def get_redirect_url(self):

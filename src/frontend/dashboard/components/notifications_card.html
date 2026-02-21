@@ -50,7 +50,7 @@
             {% endif %}
 
             {# 3. Delete / Archive Button #}
-            {% if notification.category == "info" %}
+            {% if notification.is_not_system_msg %}
             <form method="post" action="{% url 'delete_notification' notification.id %}" onsubmit="return confirm('Are you sure you want to delete this notification?');">
                 {% csrf_token %}
                 <button type="submit" 

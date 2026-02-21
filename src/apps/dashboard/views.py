@@ -135,7 +135,7 @@ class NotificationListView(LoginRequiredMixin, ListView):
             )
 
         category = self.request.GET.get('category')
-        valid_categories = dict(Notification.CATEGORY_CHOICES).keys()
+        valid_categories = Notification.NotificationChoices
         
         if category in valid_categories:
             qs = qs.filter(category=category)
