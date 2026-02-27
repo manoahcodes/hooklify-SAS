@@ -1,10 +1,10 @@
 from apps.core.models import *
 
 def user_notifications(request):
-    # Fetch all notifications (cached by Django after the first query in a request)
-    notif_obj = Notification.objects.filter(recipient=request.user)
+    if not request.user.is_authenticated:
+        return {'notifications': []}
     
-    # Get selection from session or default to the first platform
+    notif_obj = Notification.objects.filter(recipient=request.user)
     
     return {
         'notifications': notif_obj
