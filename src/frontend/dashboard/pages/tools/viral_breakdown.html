@@ -1,272 +1,263 @@
 {% extends "dashboard/base.html" %}
-{% load i18n humanize %}
-{% block title %}{% trans "Viral Breakdown" %} - {{ block.super }}{% endblock %}
+{% block title %}Viral Breakdown - {{ block.super }}{% endblock %}
 {% block content %}
-<div class="flex-1 flex flex-col overflow-y-auto relative">
-    <div class="p-8 max-w-7xl mx-auto w-full space-y-12">
-        <div class="flex flex-col md:flex-row items-end justify-between gap-6">
-            <div class="space-y-1 max-w-lg w-full">
-                <h1 class="text-4xl font-black tracking-tighter text-white uppercase glow-red-text">
-                    Viral Breakdown
-                </h1>
-                <p class="text-white/50 text-base">Reverse-engineer successful patterns.</p>
-            </div>
-            <div class="w-full md:w-1/2 relative">
-                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                    <span class="material-symbols-outlined text-white/30">link</span>
-                </div>
-                <input
-                    class="w-full bg-surface-dark border border-white/10 rounded-xl py-4 pl-12 pr-36 text-white placeholder-white/20 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all font-medium"
-                    placeholder="Paste TikTok, Reel or Shorts link..." type="text">
-                <button
-                    class="absolute right-2 top-2 bottom-2 bg-primary hover:bg-red-600 text-white px-6 rounded-lg font-bold text-sm transition-all flex items-center gap-2 uppercase tracking-wide">
-                    Analyze
-                    <span class="material-symbols-outlined text-sm">bolt</span>
-                </button>
-            </div>
+<div class="p-8 max-w-7xl mx-auto w-full space-y-12">
+    <div class="flex flex-col md:flex-row items-end justify-between gap-6">
+        <div class="space-y-1 max-w-lg w-full">
+            <h1 class="text-4xl font-black tracking-tighter text-white uppercase glow-red-text">
+                Viral Breakdown
+            </h1>
+            <p class="text-white/50 text-base">Reverse-engineer successful patterns.</p>
         </div>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <div class="lg:col-span-5 flex flex-col gap-4">
+        <div class="w-full md:w-1/2 relative">
+            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <span class="material-symbols-outlined text-white/30">link</span>
+            </div>
+            <input
+                class="w-full bg-surface-dark border border-white/10 rounded-xl py-4 pl-12 pr-36 text-white placeholder-white/20 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all font-medium"
+                placeholder="Paste TikTok, Reel or Shorts link..." type="text">
+            <button
+                class="absolute right-2 top-2 bottom-2 bg-primary hover:bg-red-600 text-white px-6 rounded-lg font-bold text-sm transition-all flex items-center gap-2 uppercase tracking-wide">
+                Analyze
+                <span class="material-symbols-outlined text-sm">bolt</span>
+            </button>
+        </div>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div class="lg:col-span-5 flex flex-col gap-4">
+            <div
+                class="aspect-[9/16] bg-card-dark rounded-2xl border border-white/5 relative overflow-hidden group shadow-2xl">
+                <div class="absolute inset-0 flex items-center justify-center z-10">
+                    <button
+                        class="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white border border-white/20 hover:scale-110 transition-transform cursor-pointer">
+                        <span class="material-symbols-outlined text-4xl ml-1">play_arrow</span>
+                    </button>
+                </div>
                 <div
-                    class="aspect-[9/16] bg-card-dark rounded-2xl border border-white/5 relative overflow-hidden group shadow-2xl">
-                    <div class="absolute inset-0 flex items-center justify-center z-10">
-                        <button
-                            class="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white border border-white/20 hover:scale-110 transition-transform cursor-pointer">
-                            <span class="material-symbols-outlined text-4xl ml-1">play_arrow</span>
-                        </button>
-                    </div>
-                    <div
-                        class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 via-black/50 to-transparent z-20">
-                        <div class="flex justify-between items-end">
-                            <div>
-                                <p class="font-bold text-white text-sm mb-1">@creator_finance</p>
-                                <p class="text-xs text-white/70 line-clamp-2">Stop saving money in a regular bank
-                                    account. Do this instead... #finance #investing</p>
+                    class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 via-black/50 to-transparent z-20">
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <p class="font-bold text-white text-sm mb-1">@creator_finance</p>
+                            <p class="text-xs text-white/70 line-clamp-2">Stop saving money in a regular bank account.
+                                Do this instead... #finance #investing</p>
+                        </div>
+                        <div class="flex flex-col gap-3 items-center text-white/80">
+                            <div class="flex flex-col items-center gap-0.5">
+                                <span class="material-symbols-outlined text-xl">favorite</span>
+                                <span class="text-[10px] font-bold">1.2M</span>
                             </div>
-                            <div class="flex flex-col gap-3 items-center text-white/80">
-                                <div class="flex flex-col items-center gap-0.5">
-                                    <span class="material-symbols-outlined text-xl">favorite</span>
-                                    <span class="text-[10px] font-bold">1.2M</span>
-                                </div>
-                                <div class="flex flex-col items-center gap-0.5">
-                                    <span class="material-symbols-outlined text-xl">comment</span>
-                                    <span class="text-[10px] font-bold">8.4k</span>
-                                </div>
+                            <div class="flex flex-col items-center gap-0.5">
+                                <span class="material-symbols-outlined text-xl">comment</span>
+                                <span class="text-[10px] font-bold">8.4k</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="bg-surface-dark border border-white/5 rounded-xl p-4 flex items-center justify-between">
-                    <span class="text-xs font-bold text-white/40 uppercase tracking-widest">Platform: TikTok</span>
-                    <span class="text-xs font-bold text-white/40 uppercase tracking-widest">Posted: 2d ago</span>
-                </div>
             </div>
-            <div class="lg:col-span-7 space-y-6">
-                <div class="bg-card-dark p-8 rounded-2xl border border-white/5 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-8 opacity-5">
-                        <span class="material-symbols-outlined text-9xl">network_intelligence</span>
-                    </div>
-                    <div class="flex items-center gap-8 relative z-10">
-                        <div class="relative w-32 h-32 flex items-center justify-center">
-                            <svg class="w-full h-full transform -rotate-90">
-                                <circle class="text-white/5" cx="64" cy="64" fill="none" r="56" stroke="currentColor"
-                                    stroke-width="12"></circle>
-                                <circle class="text-primary" cx="64" cy="64" fill="none" r="56" stroke="currentColor"
-                                    stroke-dasharray="351.86" stroke-dashoffset="35.18" stroke-linecap="round"
-                                    stroke-width="12"></circle>
-                            </svg>
-                            <div class="absolute flex flex-col items-center">
-                                <span class="text-4xl font-black text-white">94</span>
-                                <span class="text-[10px] font-bold text-white/40 uppercase tracking-widest">Score</span>
-                            </div>
-                        </div>
-                        <div class="space-y-4 flex-1">
-                            <h3 class="text-2xl font-bold text-white">Viral Potential: <span
-                                    class="text-primary glow-red-text">Extremely High</span></h3>
-                            <p class="text-white/60 text-sm leading-relaxed">This video utilizes a <span
-                                    class="text-white font-bold">Negativity Bias Hook</span> combined with high-contrast
-                                visual interruptions every 1.5 seconds. Retention curve suggests 88% viewership at the
-                                3s mark.</p>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-white/5">
-                        <div class="text-center border-r border-white/5 last:border-0">
-                            <p class="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] mb-1">Retention</p>
-                            <p class="text-2xl font-black text-white">88<span class="text-sm text-primary">%</span></p>
-                        </div>
-                        <div class="text-center border-r border-white/5 last:border-0">
-                            <p class="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] mb-1">Est. Views
-                            </p>
-                            <p class="text-2xl font-black text-white">2.4<span class="text-sm text-white/50">M</span>
-                            </p>
-                        </div>
-                        <div class="text-center">
-                            <p class="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] mb-1">Engagement
-                            </p>
-                            <p class="text-2xl font-black text-white">High</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-surface-dark border border-white/5 p-6 rounded-2xl relative">
-                    <div class="flex items-center gap-2 mb-4">
-                        <span class="material-symbols-outlined text-primary">psychology</span>
-                        <h3 class="font-bold text-white text-lg">Hook Structure</h3>
-                    </div>
-                    <div class="bg-background-dark p-4 rounded-xl border border-white/5 mb-4">
-                        <p class="font-mono text-sm text-white/80 leading-relaxed">
-                            <span class="bg-primary/20 text-primary px-1 rounded border border-primary/20">"Stop saving
-                                money"</span> in a regular bank account. <span class="text-white/40">// Pattern
-                                Interrupt</span>
-                        </p>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <div class="flex-1">
-                            <h4 class="text-sm font-bold text-white mb-1">The Negativity Hook</h4>
-                            <p class="text-xs text-white/50">Leverages fear of loss ("Stop doing this") to trigger
-                                immediate attention. Highly effective in finance/education niches.</p>
-                        </div>
-                        <button
-                            class="text-xs font-bold text-primary uppercase tracking-wider border border-primary/30 px-3 py-1.5 rounded hover:bg-primary/10 transition-colors">
-                            Save Pattern
-                        </button>
-                    </div>
-                </div>
+            <div class="bg-surface-dark border border-white/5 rounded-xl p-4 flex items-center justify-between">
+                <span class="text-xs font-bold text-white/40 uppercase tracking-widest">Platform: TikTok</span>
+                <span class="text-xs font-bold text-white/40 uppercase tracking-widest">Posted: 2d ago</span>
             </div>
         </div>
-        <div>
-            <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-2">
-                <span class="material-symbols-outlined text-white/40">remove_red_eye</span>
-                Visual Pattern Detector
-            </h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div
-                    class="group relative aspect-video bg-card-dark rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition-colors">
-                    <div
-                        class="absolute inset-0 bg-white/5 flex items-center justify-center text-white/10 font-black text-4xl">
-                        0:01</div>
-                    <div
-                        class="absolute bottom-0 left-0 right-0 bg-surface-dark/90 backdrop-blur p-3 border-t border-white/5">
-                        <p class="text-[10px] font-bold text-primary uppercase mb-0.5">High Contrast</p>
-                        <p class="text-xs text-white/60">Yellow text on black bg</p>
+        <div class="lg:col-span-7 space-y-6">
+            <div class="bg-card-dark p-8 rounded-2xl border border-white/5 relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-8 opacity-5">
+                    <span class="material-symbols-outlined text-9xl">network_intelligence</span>
+                </div>
+                <div class="flex items-center gap-8 relative z-10">
+                    <div class="relative w-32 h-32 flex items-center justify-center">
+                        <svg class="w-full h-full transform -rotate-90">
+                            <circle class="text-white/5" cx="64" cy="64" fill="none" r="56" stroke="currentColor"
+                                stroke-width="12"></circle>
+                            <circle class="text-primary" cx="64" cy="64" fill="none" r="56" stroke="currentColor"
+                                stroke-dasharray="351.86" stroke-dashoffset="35.18" stroke-linecap="round"
+                                stroke-width="12"></circle>
+                        </svg>
+                        <div class="absolute flex flex-col items-center">
+                            <span class="text-4xl font-black text-white">94</span>
+                            <span class="text-[10px] font-bold text-white/40 uppercase tracking-widest">Score</span>
+                        </div>
+                    </div>
+                    <div class="space-y-4 flex-1">
+                        <h3 class="text-2xl font-bold text-white">Viral Potential: <span
+                                class="text-primary glow-red-text">Extremely High</span></h3>
+                        <p class="text-white/60 text-sm leading-relaxed">This video utilizes a <span
+                                class="text-white font-bold">Negativity Bias Hook</span> combined with high-contrast
+                            visual interruptions every 1.5 seconds. Retention curve suggests 88% viewership at the 3s
+                            mark.</p>
                     </div>
                 </div>
-                <div
-                    class="group relative aspect-video bg-card-dark rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition-colors">
-                    <div
-                        class="absolute inset-0 bg-white/5 flex items-center justify-center text-white/10 font-black text-4xl">
-                        0:03</div>
-                    <div
-                        class="absolute bottom-0 left-0 right-0 bg-surface-dark/90 backdrop-blur p-3 border-t border-white/5">
-                        <p class="text-[10px] font-bold text-primary uppercase mb-0.5">Subject Isolation</p>
-                        <p class="text-xs text-white/60">Blurred background</p>
+                <div class="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-white/5">
+                    <div class="text-center border-r border-white/5 last:border-0">
+                        <p class="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] mb-1">Retention</p>
+                        <p class="text-2xl font-black text-white">88<span class="text-sm text-primary">%</span></p>
                     </div>
-                </div>
-                <div
-                    class="group relative aspect-video bg-card-dark rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition-colors">
-                    <div
-                        class="absolute inset-0 bg-white/5 flex items-center justify-center text-white/10 font-black text-4xl">
-                        0:08</div>
-                    <div
-                        class="absolute bottom-0 left-0 right-0 bg-surface-dark/90 backdrop-blur p-3 border-t border-white/5">
-                        <p class="text-[10px] font-bold text-primary uppercase mb-0.5">Motion Graphics</p>
-                        <p class="text-xs text-white/60">Upward trend arrow</p>
+                    <div class="text-center border-r border-white/5 last:border-0">
+                        <p class="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] mb-1">Est. Views</p>
+                        <p class="text-2xl font-black text-white">2.4<span class="text-sm text-white/50">M</span></p>
                     </div>
-                </div>
-                <div
-                    class="group relative aspect-video bg-card-dark rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition-colors">
-                    <div
-                        class="absolute inset-0 bg-white/5 flex items-center justify-center text-white/10 font-black text-4xl">
-                        0:12</div>
-                    <div
-                        class="absolute bottom-0 left-0 right-0 bg-surface-dark/90 backdrop-blur p-3 border-t border-white/5">
-                        <p class="text-[10px] font-bold text-primary uppercase mb-0.5">Dynamic Cut</p>
-                        <p class="text-xs text-white/60">Zoom-in transition</p>
+                    <div class="text-center">
+                        <p class="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] mb-1">Engagement</p>
+                        <p class="text-2xl font-black text-white">High</p>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="bg-surface-dark border border-white/5 p-6 rounded-2xl">
-                <div class="flex items-center gap-2 mb-4 border-b border-white/5 pb-4">
-                    <span class="material-symbols-outlined text-white/40">subtitles</span>
-                    <h3 class="font-bold text-white text-base">Caption Analysis</h3>
+            <div class="bg-surface-dark border border-white/5 p-6 rounded-2xl relative">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="material-symbols-outlined text-primary">psychology</span>
+                    <h3 class="font-bold text-white text-lg">Hook Structure</h3>
                 </div>
-                <div class="space-y-4">
-                    <p class="text-sm text-white/80 italic">"Stop saving money in a regular bank account. Inflation is
-                        eating your profits. Do this instead... 📉💸 <span class="text-blue-400">#finance</span> <span
-                            class="text-blue-400">#investing</span>"</p>
-                    <div class="flex gap-2">
-                        <span class="px-2 py-1 bg-white/5 rounded text-[10px] font-bold text-white/50 uppercase">Short
-                            Length</span>
-                        <span class="px-2 py-1 bg-white/5 rounded text-[10px] font-bold text-white/50 uppercase">2
-                            Hashtags</span>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-surface-dark border border-white/5 p-6 rounded-2xl">
-                <div class="flex items-center gap-2 mb-4 border-b border-white/5 pb-4">
-                    <span class="material-symbols-outlined text-white/40">touch_app</span>
-                    <h3 class="font-bold text-white text-base">CTA Performance</h3>
+                <div class="bg-background-dark p-4 rounded-xl border border-white/5 mb-4">
+                    <p class="font-mono text-sm text-white/80 leading-relaxed">
+                        <span class="bg-primary/20 text-primary px-1 rounded border border-primary/20">"Stop saving
+                            money"</span> in a regular bank account. <span class="text-white/40">// Pattern
+                            Interrupt</span>
+                    </p>
                 </div>
                 <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 rounded bg-primary/10 flex items-center justify-center text-primary shrink-0">
-                        <span class="material-symbols-outlined">forum</span>
+                    <div class="flex-1">
+                        <h4 class="text-sm font-bold text-white mb-1">The Negativity Hook</h4>
+                        <p class="text-xs text-white/50">Leverages fear of loss ("Stop doing this") to trigger immediate
+                            attention. Highly effective in finance/education niches.</p>
                     </div>
-                    <div>
-                        <h4 class="font-bold text-white text-sm">"Comment 'GUIDE' for the link"</h4>
-                        <p class="text-xs text-white/50 mt-1">This specific CTA drove <span
-                                class="text-primary font-bold">3x more comments</span> than typical "Link in bio"
-                            requests. Algorithmic boost triggered.</p>
-                    </div>
+                    <button
+                        class="text-xs font-bold text-primary uppercase tracking-wider border border-primary/30 px-3 py-1.5 rounded hover:bg-primary/10 transition-colors">
+                        Save Pattern
+                    </button>
                 </div>
             </div>
         </div>
-        <div class="bg-card-dark border border-white/5 p-8 rounded-2xl relative overflow-hidden">
-            <div class="absolute top-0 right-0 p-6 opacity-[0.03]">
-                <span class="material-symbols-outlined text-8xl">timer</span>
-            </div>
-            <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-2 relative z-10">
-                <span class="material-symbols-outlined text-primary">speed</span>
-                Niche Benchmarks: Finance
-            </h3>
-            <div class="space-y-6 relative z-10">
-                <div>
-                    <div class="flex justify-between text-xs font-bold uppercase tracking-wider mb-2">
-                        <span class="text-white/60">Ideal Video Length</span>
-                        <span class="text-primary">Target: 45-55s</span>
-                    </div>
-                    <div class="relative h-4 bg-surface-dark rounded-full overflow-hidden border border-white/5">
-                        <div class="absolute top-0 left-0 h-full bg-gradient-to-r from-white/10 to-white/20 w-full">
-                        </div>
-                        <div class="absolute top-0 bottom-0 bg-primary/20 border-x border-primary/40"
-                            style="left: 60%; width: 15%;"></div>
-                        <div class="absolute top-0 bottom-0 w-1 bg-primary shadow-[0_0_10px_rgba(249,31,31,0.8)] z-10"
-                            style="left: 65%;"></div>
-                    </div>
-                    <div class="flex justify-between mt-2 text-[10px] font-medium text-white/30 uppercase">
-                        <span>0s</span>
-                        <span class="text-primary">This Video: 48s</span>
-                        <span>90s</span>
-                    </div>
+    </div>
+    <div>
+        <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-2">
+            <span class="material-symbols-outlined text-white/40">remove_red_eye</span>
+            Visual Pattern Detector
+        </h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div
+                class="group relative aspect-video bg-card-dark rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition-colors">
+                <div
+                    class="absolute inset-0 bg-white/5 flex items-center justify-center text-white/10 font-black text-4xl">
+                    0:01</div>
+                <div
+                    class="absolute bottom-0 left-0 right-0 bg-surface-dark/90 backdrop-blur p-3 border-t border-white/5">
+                    <p class="text-[10px] font-bold text-primary uppercase mb-0.5">High Contrast</p>
+                    <p class="text-xs text-white/60">Yellow text on black bg</p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
-                    <div class="bg-background-dark p-3 rounded-lg border border-white/5">
-                        <p class="text-[10px] text-white/40 uppercase font-bold">Avg. Hook Retention</p>
-                        <p class="text-white font-bold">65% <span class="text-green-500 text-[10px] ml-1">▲ 12%</span>
-                        </p>
-                    </div>
-                    <div class="bg-background-dark p-3 rounded-lg border border-white/5">
-                        <p class="text-[10px] text-white/40 uppercase font-bold">CTA Conversion</p>
-                        <p class="text-white font-bold">4.2% <span class="text-green-500 text-[10px] ml-1">▲ 0.8%</span>
-                        </p>
-                    </div>
-                    <div class="bg-background-dark p-3 rounded-lg border border-white/5">
-                        <p class="text-[10px] text-white/40 uppercase font-bold">Viral Probability</p>
-                        <p class="text-white font-bold">High</p>
-                    </div>
+            </div>
+            <div
+                class="group relative aspect-video bg-card-dark rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition-colors">
+                <div
+                    class="absolute inset-0 bg-white/5 flex items-center justify-center text-white/10 font-black text-4xl">
+                    0:03</div>
+                <div
+                    class="absolute bottom-0 left-0 right-0 bg-surface-dark/90 backdrop-blur p-3 border-t border-white/5">
+                    <p class="text-[10px] font-bold text-primary uppercase mb-0.5">Subject Isolation</p>
+                    <p class="text-xs text-white/60">Blurred background</p>
+                </div>
+            </div>
+            <div
+                class="group relative aspect-video bg-card-dark rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition-colors">
+                <div
+                    class="absolute inset-0 bg-white/5 flex items-center justify-center text-white/10 font-black text-4xl">
+                    0:08</div>
+                <div
+                    class="absolute bottom-0 left-0 right-0 bg-surface-dark/90 backdrop-blur p-3 border-t border-white/5">
+                    <p class="text-[10px] font-bold text-primary uppercase mb-0.5">Motion Graphics</p>
+                    <p class="text-xs text-white/60">Upward trend arrow</p>
+                </div>
+            </div>
+            <div
+                class="group relative aspect-video bg-card-dark rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition-colors">
+                <div
+                    class="absolute inset-0 bg-white/5 flex items-center justify-center text-white/10 font-black text-4xl">
+                    0:12</div>
+                <div
+                    class="absolute bottom-0 left-0 right-0 bg-surface-dark/90 backdrop-blur p-3 border-t border-white/5">
+                    <p class="text-[10px] font-bold text-primary uppercase mb-0.5">Dynamic Cut</p>
+                    <p class="text-xs text-white/60">Zoom-in transition</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-surface-dark border border-white/5 p-6 rounded-2xl">
+            <div class="flex items-center gap-2 mb-4 border-b border-white/5 pb-4">
+                <span class="material-symbols-outlined text-white/40">subtitles</span>
+                <h3 class="font-bold text-white text-base">Caption Analysis</h3>
+            </div>
+            <div class="space-y-4">
+                <p class="text-sm text-white/80 italic">"Stop saving money in a regular bank account. Inflation is
+                    eating your profits. Do this instead... 📉💸 <span class="text-blue-400">#finance</span> <span
+                        class="text-blue-400">#investing</span>"</p>
+                <div class="flex gap-2">
+                    <span class="px-2 py-1 bg-white/5 rounded text-[10px] font-bold text-white/50 uppercase">Short
+                        Length</span>
+                    <span class="px-2 py-1 bg-white/5 rounded text-[10px] font-bold text-white/50 uppercase">2
+                        Hashtags</span>
+                </div>
+            </div>
+        </div>
+        <div class="bg-surface-dark border border-white/5 p-6 rounded-2xl">
+            <div class="flex items-center gap-2 mb-4 border-b border-white/5 pb-4">
+                <span class="material-symbols-outlined text-white/40">touch_app</span>
+                <h3 class="font-bold text-white text-base">CTA Performance</h3>
+            </div>
+            <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                    <span class="material-symbols-outlined">forum</span>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white text-sm">"Comment 'GUIDE' for the link"</h4>
+                    <p class="text-xs text-white/50 mt-1">This specific CTA drove <span
+                            class="text-primary font-bold">3x more comments</span> than typical "Link in bio" requests.
+                        Algorithmic boost triggered.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-card-dark border border-white/5 p-8 rounded-2xl relative overflow-hidden">
+        <div class="absolute top-0 right-0 p-6 opacity-[0.03]">
+            <span class="material-symbols-outlined text-8xl">timer</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-2 relative z-10">
+            <span class="material-symbols-outlined text-primary">speed</span>
+            Niche Benchmarks: Finance
+        </h3>
+        <div class="space-y-6 relative z-10">
+            <div>
+                <div class="flex justify-between text-xs font-bold uppercase tracking-wider mb-2">
+                    <span class="text-white/60">Ideal Video Length</span>
+                    <span class="text-primary">Target: 45-55s</span>
+                </div>
+                <div class="relative h-4 bg-surface-dark rounded-full overflow-hidden border border-white/5">
+                    <div class="absolute top-0 left-0 h-full bg-gradient-to-r from-white/10 to-white/20 w-full"></div>
+                    <div class="absolute top-0 bottom-0 bg-primary/20 border-x border-primary/40"
+                        style="left: 60%; width: 15%;"></div>
+                    <div class="absolute top-0 bottom-0 w-1 bg-primary shadow-[0_0_10px_rgba(249,31,31,0.8)] z-10"
+                        style="left: 65%;"></div>
+                </div>
+                <div class="flex justify-between mt-2 text-[10px] font-medium text-white/30 uppercase">
+                    <span>0s</span>
+                    <span class="text-primary">This Video: 48s</span>
+                    <span>90s</span>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
+                <div class="bg-background-dark p-3 rounded-lg border border-white/5">
+                    <p class="text-[10px] text-white/40 uppercase font-bold">Avg. Hook Retention</p>
+                    <p class="text-white font-bold">65% <span class="text-green-500 text-[10px] ml-1">▲ 12%</span></p>
+                </div>
+                <div class="bg-background-dark p-3 rounded-lg border border-white/5">
+                    <p class="text-[10px] text-white/40 uppercase font-bold">CTA Conversion</p>
+                    <p class="text-white font-bold">4.2% <span class="text-green-500 text-[10px] ml-1">▲ 0.8%</span></p>
+                </div>
+                <div class="bg-background-dark p-3 rounded-lg border border-white/5">
+                    <p class="text-[10px] text-white/40 uppercase font-bold">Viral Probability</p>
+                    <p class="text-white font-bold">High</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-{% endblock %}
+{% endblock content %}

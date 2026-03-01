@@ -2607,6 +2607,10 @@
     --tw-tracking: 0.2em;
     letter-spacing: 0.2em;
   }
+  .tracking-\[0\.3em\] {
+    --tw-tracking: 0.3em;
+    letter-spacing: 0.3em;
+  }
   .tracking-\[0\.015em\] {
     --tw-tracking: 0.015em;
     letter-spacing: 0.015em;
