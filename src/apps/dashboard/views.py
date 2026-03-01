@@ -111,10 +111,14 @@ def user_templates(request):
 def user_generation_history(request):
     return render(request, 'dashboard/pages/library/history.html')
 
+# TOOLS
 @login_required
 def studio(request):
     return render(request, 'dashboard/studio/index.html')
 
+@login_required
+def viral_breakdown_tool_view(request):
+    return render(request, 'dashboard/pages/tools/viral_breakdown.html')
 
 class NotificationListView(LoginRequiredMixin, ListView):
     model = Notification

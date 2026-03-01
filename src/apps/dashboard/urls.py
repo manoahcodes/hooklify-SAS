@@ -15,7 +15,6 @@ urlpatterns = [
     path('notifications/mark-read/<int:pk>/', views.MarkNotificationReadView.as_view(), name='mark_notification_read'),
     path('notifications/mark-all-read/', views.MarkAllReadView.as_view(), name='mark_all_notifications_read'),
     path('notifications/delete/<int:pk>/', views.DeleteNotificationView.as_view(), name='delete_notification'),
-    # path('tools/'),
-    # path('library/'),
+    path('tools/viral/breakdown/', views.viral_breakdown_tool_view, name='viral_breakdown'),
 
 ]
