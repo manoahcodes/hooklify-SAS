@@ -105,41 +105,66 @@
 
         <nav class="space-y-1">
             <p class="sidebar-label px-3 text-[10px] font-bold text-[#553a3a] uppercase tracking-widest mb-2">Tools</p>
-            <a href="#" 
+            <a href="{% url "seo" %}"
             data-tooltip-placement="right" data-tooltip-target="tooltip-hover-12" data-tooltip-trigger="hover"
-            class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all">
+            class="flex items-center gap-3 px-3 py-2.5 rounded-lg mb-1 transition-all group
+            {% if request.resolver_match.url_name == 'seo' %}
+                bg-surface-dark bg-primary/10 border border-primary/20 shadow-[0_0_10px_rgba(249,31,31,0.1)] font-medium
+            {% else %}
+                border border-transparent hover:border-border-dark hover:bg-surface-dark
+            {% endif %}">
                 <i class="fa-solid fa-arrow-trend-up text-primary"></i>
-                <span class="sidebar-label font-bold">SEO</span>
+                <span class="sidebar-label font-bold">PEO</span>
             </a>
             <div id="tooltip-hover-12" role="tooltip" class="sidebar-tooltip-e truncate absolute z-10 invisible rounded-md inline-block px-3 py-2 text-sm font-medium text-white bg-surface-dark rounded-base shadow-xs opacity-0 tooltip">SEO</div>
 
-            <a href="#" 
+            <a href="{% url "calender" %}" 
             data-tooltip-placement="right" data-tooltip-target="tooltip-hover-13" data-tooltip-trigger="hover"
-            class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all">
+            class="flex items-center gap-3 px-3 py-2.5 rounded-lg mb-1 transition-all group
+            {% if request.resolver_match.url_name == 'calender' %}
+                bg-surface-dark bg-primary/10 border border-primary/20 shadow-[0_0_10px_rgba(249,31,31,0.1)] font-medium
+            {% else %}
+                border border-transparent hover:border-border-dark hover:bg-surface-dark
+            {% endif %}">
                 <i class="fa-solid fa-calendar text-primary"></i>
                 <span class="sidebar-label font-bold">Content Calendar</span>
             </a>
             <div id="tooltip-hover-13" role="tooltip" class="sidebar-tooltip-e truncate absolute z-10 invisible rounded-md inline-block px-3 py-2 text-sm font-medium text-white bg-surface-dark rounded-base shadow-xs opacity-0 tooltip">Content Calendar</div>
 
-            <a href="#" 
+            <a href="{% url "trend_intelligence" %}" 
             data-tooltip-placement="right" data-tooltip-target="tooltip-hover-14" data-tooltip-trigger="hover"
-            class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all">
+            class="flex items-center gap-3 px-3 py-2.5 rounded-lg mb-1 transition-all group
+            {% if request.resolver_match.url_name == 'trend_intelligence' %}
+                bg-surface-dark bg-primary/10 border border-primary/20 shadow-[0_0_10px_rgba(249,31,31,0.1)] font-medium
+            {% else %}
+                border border-transparent hover:border-border-dark hover:bg-surface-dark
+            {% endif %}">
                 <i class="fa-solid fa-brain text-primary"></i>
                 <span class="sidebar-label font-bold">Trend Intelligence</span>
             </a>
             <div id="tooltip-hover-14" role="tooltip" class="sidebar-tooltip-e truncate absolute z-10 invisible rounded-md inline-block px-3 py-2 text-sm font-medium text-white bg-surface-dark rounded-base shadow-xs opacity-0 tooltip">Trend Intelligence</div>
 
-            <a href="#" 
+            <a href="{% url "niche_insights" %}" 
             data-tooltip-placement="right" data-tooltip-target="tooltip-hover-15" data-tooltip-trigger="hover"
-            class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all">
+            class="flex items-center gap-3 px-3 py-2.5 rounded-lg mb-1 transition-all group
+            {% if request.resolver_match.url_name == 'niche_insights' %}
+                bg-surface-dark bg-primary/10 border border-primary/20 shadow-[0_0_10px_rgba(249,31,31,0.1)] font-medium
+            {% else %}
+                border border-transparent hover:border-border-dark hover:bg-surface-dark
+            {% endif %}">
                 <i class="fa-solid fa-magnifying-glass-chart text-primary"></i>
                 <span class="sidebar-label font-bold">Niche Insights</span>
             </a>
             <div id="tooltip-hover-15" role="tooltip" class="sidebar-tooltip-e truncate absolute z-10 invisible rounded-md inline-block px-3 py-2 text-sm font-medium text-white bg-surface-dark rounded-base shadow-xs opacity-0 tooltip">Niche Insights</div>
             
-            <a href="#" 
+            <a href="{% url "creator_spy" %}"
             data-tooltip-placement="right" data-tooltip-target="tooltip-hover-16" data-tooltip-trigger="hover"
-            class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all">
+            class="flex items-center gap-3 px-3 py-2.5 rounded-lg mb-1 transition-all group
+            {% if request.resolver_match.url_name == 'creator_spy' %}
+                bg-surface-dark bg-primary/10 border border-primary/20 shadow-[0_0_10px_rgba(249,31,31,0.1)] font-medium
+            {% else %}
+                border border-transparent hover:border-border-dark hover:bg-surface-dark
+            {% endif %}">
                 <i class="fa-solid fa-user-secret text-primary"></i>
                 <span class="sidebar-label font-bold">Creator Spy</span>
             </a>
@@ -147,7 +172,12 @@
 
             <a href="{% url "viral_breakdown" %}"
             data-tooltip-placement="right" data-tooltip-target="tooltip-hover-17" data-tooltip-trigger="hover"
-            class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#bb9b9b] border border-transparent hover:border-border-dark hover:bg-surface-dark hover:text-white transition-all">
+            class="flex items-center gap-3 px-3 py-2.5 rounded-lg mb-1 transition-all group
+            {% if request.resolver_match.url_name == 'viral_breakdown' %}
+                bg-surface-dark bg-primary/10 border border-primary/20 shadow-[0_0_10px_rgba(249,31,31,0.1)] font-medium
+            {% else %}
+                border border-transparent hover:border-border-dark hover:bg-surface-dark
+            {% endif %}">
                 <i class="fa-solid fa-fire text-primary"></i>
                 <span class="sidebar-label font-bold">Viral Breakdown</span>
             </a>

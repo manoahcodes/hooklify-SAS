@@ -120,6 +120,26 @@ def studio(request):
 def viral_breakdown_tool_view(request):
     return render(request, 'dashboard/pages/tools/viral_breakdown.html')
 
+@login_required
+def creator_spy_tool_view(request):
+    return render(request, 'dashboard/pages/tools/creator_spy.html')
+
+@login_required
+def niche_insights_tool_view(request):
+    return render(request, 'dashboard/pages/tools/niche_insights.html')
+
+@login_required
+def trend_intelligence_tool_view(request):
+    return render(request, 'dashboard/pages/tools/trend_intelligence.html')
+
+@login_required
+def creator_calender_tool_view(request):
+    return render(request, 'dashboard/pages/tools/calender.html')
+
+@login_required
+def seo_tool_view(request):
+    return render(request, 'dashboard/pages/tools/seo.html')
+
 class NotificationListView(LoginRequiredMixin, ListView):
     model = Notification
     template_name = "dashboard/pages/notifications.html"

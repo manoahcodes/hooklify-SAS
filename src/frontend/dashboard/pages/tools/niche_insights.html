@@ -1,0 +1,221 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Niche Insights - {{ block.super }}{% endblock %}
+{% block content %}
+<div class="p-8 max-w-7xl mx-auto w-full space-y-8">
+    <div class="flex flex-col gap-1">
+        <div class="flex items-center gap-3">
+            <h1 class="text-4xl font-black tracking-tighter text-white uppercase">
+                Niche Insights
+            </h1>
+            <span
+                class="bg-primary/20 text-primary border border-primary/30 px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-widest">Trending</span>
+        </div>
+        <p class="text-white/50 text-sm">Analysis generated on Oct 24, 2024 • Global Market Data</p>
+    </div>
+    <div
+        class="bg-gradient-to-r from-primary/20 via-[#231414] to-surface-dark rounded-xl p-6 border border-primary/30 relative overflow-hidden">
+        <div class="absolute right-0 top-0 h-full w-1/3 bg-gradient-to-l from-primary/10 to-transparent"></div>
+        <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div>
+                <div class="flex items-center gap-2 mb-2">
+                    <i class="fa-solid fa-hammer text-primary text-xl"></i>
+                    <span class="text-primary font-bold uppercase tracking-[0.2em] text-xs">Hooklify Verdict</span>
+                </div>
+                <h2 class="text-2xl font-bold text-white mb-1">High Potential - <span
+                        class="text-primary glow-text">Early Adopter Advantage</span></h2>
+                <p class="text-white/60 text-sm max-w-2xl">This niche is showing rapid growth signals with moderate
+                    competition. Current saturation is low, making it ideal for new entrants focusing on "No-Code"
+                    solutions.</p>
+            </div>
+            <div class="flex items-center gap-4 shrink-0">
+                <div class="text-right hidden md:block">
+                    <p class="text-[10px] text-white/40 uppercase font-bold tracking-widest">Confidence Score</p>
+                    <p class="text-3xl font-black text-white">94<span class="text-lg text-white/50">%</span></p>
+                </div>
+                <button
+                    class="bg-white text-black px-6 py-3 rounded-lg font-bold text-sm hover:bg-gray-200 transition-colors uppercase tracking-wide flex items-center gap-2">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    Generate Hooks
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+        <div
+            class="md:col-span-4 bg-surface-dark p-6 rounded-2xl border border-white/5 relative overflow-hidden group hover:border-white/10 transition-all">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <h3 class="text-white/40 text-[10px] font-bold uppercase tracking-widest mb-1">Estimated Audience
+                    </h3>
+                    <p class="text-white/30 text-[10px]">Monthly Active Users Interest</p>
+                </div>
+                <div class="w-8 h-8 rounded bg-white/5 flex items-center justify-center">
+                    <i class="fa-solid fa-users text-white/40"></i>
+                </div>
+            </div>
+            <div class="flex items-baseline gap-2 mb-2">
+                <span class="text-5xl font-black text-white tracking-tight">2.4M</span>
+                <span
+                    class="text-green-500 font-bold text-sm flex items-center gap-1 bg-green-500/10 px-2 py-0.5 rounded">
+                    <i class="fa-solid fa-arrow-trend-up text-xs"></i> +18%
+                </span>
+            </div>
+            <div class="w-full bg-white/5 h-1.5 rounded-full mt-4 overflow-hidden">
+                <div class="bg-green-500 h-full w-[75%] rounded-full shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
+            </div>
+            <p class="text-[10px] text-white/40 mt-2 font-mono">Trajectory: Explosive Growth</p>
+        </div>
+        <div
+            class="md:col-span-4 bg-surface-dark p-6 rounded-2xl border border-white/5 relative overflow-hidden group hover:border-white/10 transition-all">
+            <div class="flex justify-between items-start mb-2">
+                <h3 class="text-white/40 text-[10px] font-bold uppercase tracking-widest">Monetization Potential</h3>
+                <i class="fa-solid fa-hand-holding-dollar text-primary/50"></i>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="relative w-24 h-24 shrink-0">
+                    <svg class="circular-chart" viewBox="0 0 36 36">
+                        <path class="circle-bg"
+                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                        <path class="circle"
+                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                            stroke="#f91f1f" stroke-dasharray="85, 100"></path>
+                        <text class="percentage text-xs" x="18" y="20.35">8.5/10</text>
+                    </svg>
+                </div>
+                <div class="space-y-3 w-full">
+                    <div>
+                        <div class="flex justify-between text-[10px] uppercase font-bold text-white/60 mb-1">
+                            <span>Sponsorships</span>
+                            <span class="text-white">High</span>
+                        </div>
+                        <div class="w-full bg-white/5 h-1 rounded-full">
+                            <div class="bg-primary h-full w-[90%] rounded-full shadow-[0_0_8px_rgba(249,31,31,0.5)]">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-[10px] uppercase font-bold text-white/60 mb-1">
+                            <span>Affiliate</span>
+                            <span class="text-white">Med</span>
+                        </div>
+                        <div class="w-full bg-white/5 h-1 rounded-full">
+                            <div class="bg-primary/60 h-full w-[60%] rounded-full"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-[10px] uppercase font-bold text-white/60 mb-1">
+                            <span>Ad Revenue</span>
+                            <span class="text-white">High</span>
+                        </div>
+                        <div class="w-full bg-white/5 h-1 rounded-full">
+                            <div class="bg-primary h-full w-[85%] rounded-full shadow-[0_0_8px_rgba(249,31,31,0.5)]">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            class="md:col-span-4 bg-surface-dark p-6 rounded-2xl border border-white/5 relative overflow-hidden group hover:border-white/10 transition-all flex flex-col">
+            <div class="flex justify-between items-start mb-4">
+                <h3 class="text-white/40 text-[10px] font-bold uppercase tracking-widest">Competition Density</h3>
+                <i class="fa-solid fa-chart-area text-white/40"></i>
+            </div>
+            <div class="flex-1 flex flex-col justify-center items-center">
+                <div class="relative w-full h-4 bg-white/10 rounded-full mb-2 overflow-hidden">
+                    <div class="absolute top-0 left-0 h-full w-[35%] bg-gradient-to-r from-green-500 to-yellow-500">
+                    </div>
+                </div>
+                <div class="flex w-full justify-between text-[10px] uppercase font-bold text-white/30 px-1">
+                    <span>Low</span>
+                    <span>Medium</span>
+                    <span>High</span>
+                </div>
+            </div>
+            <div class="mt-4 text-center">
+                <p class="text-2xl font-bold text-white">Low - Medium</p>
+                <p class="text-xs text-white/50 mt-1">Room for 3-5 major new creators.</p>
+            </div>
+        </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-surface-dark rounded-2xl border border-white/5 p-6 h-full">
+            <h3 class="text-white/90 font-bold mb-6 flex items-center gap-2">
+                <i class="fa-solid fa-trophy text-primary"></i>
+                Top Benchmarks
+            </h3>
+            <div class="space-y-4">
+                <div class="flex items-center justify-between p-3 bg-card-dark rounded-xl border border-white/5">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">
+                            <i class="fa-solid fa-eye text-white/60 text-xs"></i>
+                        </div>
+                        <span class="text-sm font-medium text-white/80">Avg. Views</span>
+                    </div>
+                    <span class="font-bold text-white">145k</span>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-card-dark rounded-xl border border-white/5">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">
+                            <i class="fa-solid fa-heart text-white/60 text-xs"></i>
+                        </div>
+                        <span class="text-sm font-medium text-white/80">Avg. Likes</span>
+                    </div>
+                    <span class="font-bold text-white">12.5k</span>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-card-dark rounded-xl border border-white/5">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">
+                            <i class="fa-solid fa-comment-dots text-white/60 text-xs"></i>
+                        </div>
+                        <span class="text-sm font-medium text-white/80">Engagement Rate</span>
+                    </div>
+                    <span class="font-bold text-primary">8.2%</span>
+                </div>
+            </div>
+        </div>
+        <div class="bg-surface-dark rounded-2xl border border-white/5 p-6 h-full">
+            <h3 class="text-white/90 font-bold mb-6 flex items-center gap-2">
+                <i class="fa-solid fa-hashtag text-primary"></i>
+                Trending Keywords
+            </h3>
+            <div class="flex flex-wrap gap-2">
+                <span
+                    class="px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs font-medium text-white transition-colors cursor-pointer">#AIAutomation</span>
+                <span
+                    class="px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs font-medium text-white transition-colors cursor-pointer">#NoCodeTools</span>
+                <span
+                    class="px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs font-medium text-white transition-colors cursor-pointer">#ProductivityHacks</span>
+                <span
+                    class="px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs font-medium text-white transition-colors cursor-pointer">#MakeMoneyOnline</span>
+                <span
+                    class="px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs font-medium text-white transition-colors cursor-pointer">#ChatGPT</span>
+                <span
+                    class="px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs font-medium text-white transition-colors cursor-pointer">#SaaS</span>
+                <span
+                    class="px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs font-medium text-white transition-colors cursor-pointer">#PassiveIncome</span>
+            </div>
+            <div class="mt-8">
+                <h4 class="text-xs font-bold text-white/40 uppercase tracking-widest mb-3">Content Gap Opportunity</h4>
+                <div class="p-4 bg-primary/10 border border-primary/20 rounded-xl">
+                    <p class="text-sm text-white/90 italic">"Tutorials focusing on <span
+                            class="text-primary font-bold">free</span> AI tools for students are currently underserved."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div
+        class="relative bg-gradient-to-r from-primary/10 to-transparent rounded-2xl p-8 border border-primary/20 flex items-center justify-between group overflow-hidden">
+        <div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative z-10">
+            <h2 class="text-xl font-bold text-white mb-1">Deep Dive Report</h2>
+            <p class="text-sm text-white/60">Unlock competitor ad spend data and advanced keyword metrics.</p>
+        </div>
+        <button
+            class="relative z-10 px-6 py-2.5 bg-primary text-white rounded-lg font-bold text-xs uppercase tracking-wider hover:bg-red-600 transition-colors shadow-lg shadow-primary/20">
+            Access Pro Data
+        </button>
+    </div>
+</div>
+{% endblock content %}

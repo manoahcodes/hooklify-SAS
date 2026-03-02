@@ -1,0 +1,349 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Creator Spy - {{ block.super }}{% endblock %}
+{% block content %}
+<div class="p-8 max-w-7xl mx-auto w-full space-y-10">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div class="space-y-2">
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-user-secret text-primary text-3xl"></i>
+                <h1 class="text-4xl font-black tracking-tighter text-white uppercase glow-text-red">
+                    Creator Spy
+                </h1>
+            </div>
+            <p class="text-white/50 text-sm font-medium tracking-wide">Monitor competitor strategies. Steal their
+                growth.</p>
+        </div>
+        <div class="w-full md:w-96">
+            <div class="relative group">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i
+                        class="fa-solid fa-magnifying-glass text-white/30 group-focus-within:text-primary transition-colors"></i>
+                </div>
+                <input
+                    class="block w-full pl-10 pr-4 py-3 border border-white/10 rounded-xl leading-5 bg-surface-dark text-white placeholder-white/30 focus:outline-none focus:bg-[#1a1111] focus:border-primary/50 focus:ring-1 focus:ring-primary/50 sm:text-sm transition-all"
+                    placeholder="Add Creator to Watchlist (@username)..." type="text">
+                <button
+                    class="absolute inset-y-1 right-1 px-4 bg-primary/10 hover:bg-primary text-primary hover:text-white rounded-lg text-xs font-bold uppercase tracking-wider transition-colors flex items-center gap-1">
+                    <i class="fa-solid fa-plus text-xs"></i>
+                    Track
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div
+            class="bg-card-dark p-6 rounded-2xl border border-white/5 relative overflow-hidden group hover:border-primary/30 transition-all">
+            <div class="flex justify-between items-start mb-4">
+                <p class="text-white/40 text-[10px] font-bold uppercase tracking-[0.2em]">Avg. Posting Frequency</p>
+                <i class="fa-solid fa-tower-broadcast text-white/20 group-hover:text-primary transition-colors"></i>
+            </div>
+            <div class="flex items-baseline gap-2">
+                <span class="text-4xl font-black text-white">1.8</span>
+                <span class="text-sm font-bold text-white/50">posts/day</span>
+            </div>
+            <div class="mt-4 h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                <div class="h-full bg-primary w-3/4 rounded-full glow-red"></div>
+            </div>
+        </div>
+        <div
+            class="bg-card-dark p-6 rounded-2xl border border-white/5 relative overflow-hidden group hover:border-primary/30 transition-all">
+            <div class="flex justify-between items-start mb-4">
+                <p class="text-white/40 text-[10px] font-bold uppercase tracking-[0.2em]">Median Engagement</p>
+                <i class="fa-solid fa-comments text-white/20 group-hover:text-primary transition-colors"></i>
+            </div>
+            <div class="flex items-baseline gap-2">
+                <span class="text-4xl font-black text-white">8.4</span>
+                <span class="text-xl font-bold text-primary">%</span>
+            </div>
+            <div class="mt-4 flex gap-1">
+                <div class="h-1 w-full bg-primary rounded-full glow-red"></div>
+                <div class="h-1 w-full bg-primary/50 rounded-full"></div>
+                <div class="h-1 w-full bg-white/5 rounded-full"></div>
+            </div>
+        </div>
+        <div
+            class="bg-card-dark p-6 rounded-2xl border border-white/5 relative overflow-hidden group hover:border-primary/30 transition-all">
+            <div class="flex justify-between items-start mb-4">
+                <p class="text-white/40 text-[10px] font-bold uppercase tracking-[0.2em]">Network Growth Velocity</p>
+                <i class="fa-solid fa-chart-line text-white/20 group-hover:text-primary transition-colors"></i>
+            </div>
+            <div class="flex items-baseline gap-2">
+                <span class="text-4xl font-black text-white">+12.5</span>
+                <span class="text-sm font-bold text-white/50">k/week</span>
+            </div>
+            <div class="mt-4 h-8 flex items-end gap-1">
+                <div class="w-1/6 bg-white/10 h-2 rounded-sm"></div>
+                <div class="w-1/6 bg-white/10 h-3 rounded-sm"></div>
+                <div class="w-1/6 bg-white/10 h-2 rounded-sm"></div>
+                <div class="w-1/6 bg-primary/30 h-4 rounded-sm"></div>
+                <div class="w-1/6 bg-primary/60 h-6 rounded-sm"></div>
+                <div class="w-1/6 bg-primary h-full rounded-sm glow-red"></div>
+            </div>
+        </div>
+    </div>
+    <div class="space-y-6">
+        <div class="flex items-center justify-between border-b border-white/5 pb-4">
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-eye text-primary"></i>
+                Active Targets
+            </h2>
+            <div class="flex gap-2">
+                <button
+                    class="text-xs font-bold text-white/40 hover:text-white uppercase tracking-wider bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded transition-colors flex items-center gap-1">
+                    <i class="fa-solid fa-filter mr-1"></i> Filter
+                </button>
+                <button
+                    class="text-xs font-bold text-white/40 hover:text-white uppercase tracking-wider bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded transition-colors flex items-center gap-1">
+                    <i class="fa-solid fa-file-export mr-1"></i> Export
+                </button>
+            </div>
+        </div>
+        <div class="space-y-4">
+            <div
+                class="bg-surface-dark border border-white/5 rounded-xl p-6 flex flex-col lg:flex-row items-center gap-6 hover:border-primary/40 hover:bg-white/[0.02] transition-all group">
+                <div class="flex items-center gap-4 w-full lg:w-1/4">
+                    <div class="relative">
+                        <div class="w-12 h-12 rounded-lg bg-gray-700 bg-cover bg-center border border-white/10"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDzuyjVv74XCcmS0qKv1AdDKADDeev_Fjz0nclBnKsLeXNCm9eTDjCOx7CtJHBxcqZhDL_aU28zMNI1nWUrlSCMjSlZDQiClmvUcTI2Oc-DqMgikdQbLVXJVqI6s4hUfJVwWNnlPNBNCWGwZfU3q7bA0Ropftc-jNS4y6Z7oYxCx2KvLZSFUxsbm1bJfKw-NiTfW4mNmf8PIwn4-Sj4QHjJmM1xbwt0ArYufTZcIn1omYPbahtS1uA3e6io-qHccnUm6_rMsp3LryI');">
+                        </div>
+                        <div
+                            class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-surface-dark">
+                        </div>
+                    </div>
+                    <div class="min-w-0">
+                        <h3 class="font-bold text-white truncate">Alex Hormozi</h3>
+                        <p class="text-xs text-white/40 font-mono">@hormozi</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 gap-8 w-full lg:w-2/4 border-l border-r border-white/5 px-6">
+                    <div class="flex flex-col justify-center">
+                        <p class="text-[9px] text-white/30 uppercase tracking-widest font-bold mb-2">Frequency</p>
+                        <div class="flex items-end gap-1 h-8">
+                            <div class="w-1.5 bg-white/20 h-[40%] rounded-full"></div>
+                            <div class="w-1.5 bg-white/20 h-[60%] rounded-full"></div>
+                            <div class="w-1.5 bg-primary h-[90%] rounded-full glow-red"></div>
+                            <div class="w-1.5 bg-white/20 h-[50%] rounded-full"></div>
+                            <div class="w-1.5 bg-white/20 h-[70%] rounded-full"></div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col justify-center">
+                        <p class="text-[9px] text-white/30 uppercase tracking-widest font-bold mb-2">Velocity</p>
+                        <div class="h-8 w-full flex items-center">
+                            <svg class="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 20">
+                                <path d="M0 20 L20 15 L40 18 L60 10 L80 5 L100 0" fill="none" stroke="#f91f1f"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                <circle cx="100" cy="0" fill="#f91f1f" r="2"></circle>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="flex flex-col justify-center">
+                        <p class="text-[9px] text-white/30 uppercase tracking-widest font-bold mb-2">Engagement</p>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xl font-bold text-white">4.8%</span>
+                            <i class="fa-solid fa-arrow-trend-up text-green-500 text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/4 flex justify-end">
+                    <button
+                        class="group/btn flex items-center gap-2 px-5 py-2.5 bg-white/5 hover:bg-primary text-white rounded-lg transition-all text-xs font-bold uppercase tracking-wider border border-white/10 hover:border-primary">
+                        <span class="flex items-center gap-1"><i class="fa-solid fa-bolt-lightning text-xs"></i> Intel
+                            Feed</span>
+                        <i
+                            class="fa-solid fa-chevron-right text-[10px] group-hover/btn:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+            </div>
+            <div
+                class="bg-surface-dark border border-white/5 rounded-xl p-6 flex flex-col lg:flex-row items-center gap-6 hover:border-primary/40 hover:bg-white/[0.02] transition-all group">
+                <div class="flex items-center gap-4 w-full lg:w-1/4">
+                    <div class="relative">
+                        <div class="w-12 h-12 rounded-lg bg-gray-700 bg-cover bg-center border border-white/10"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCENm_KRb0ujGQ73N3FAbHqtWRgkFgEorkZnKsRmGxZ-yOi7HZjoC1FP4sIeo_Bpjy5MWGuIZsJSJaalIn_XFSfUplLzamDn16D6XRb2bPOahaKjW5LlKfWb1w_SU07kuLEP09wg7Ixjoi708_d3GGZtaKw84b7vHPaQ-jP2xNaJQgHya0OyguihXL8A0SkbFwGtY7E4vJNIloTNIiM3nH2z0vlCemImOp2AkEtdUPcIEzO87ztxu4CNtuxdzzylm2nTQg5wLelo6I');">
+                        </div>
+                        <div
+                            class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-surface-dark">
+                        </div>
+                    </div>
+                    <div class="min-w-0">
+                        <h3 class="font-bold text-white truncate">Iman Gadzhi</h3>
+                        <p class="text-xs text-white/40 font-mono">@imangadzhi</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 gap-8 w-full lg:w-2/4 border-l border-r border-white/5 px-6">
+                    <div class="flex flex-col justify-center">
+                        <p class="text-[9px] text-white/30 uppercase tracking-widest font-bold mb-2">Frequency</p>
+                        <div class="flex items-end gap-1 h-8">
+                            <div class="w-1.5 bg-white/20 h-[30%] rounded-full"></div>
+                            <div class="w-1.5 bg-white/20 h-[30%] rounded-full"></div>
+                            <div class="w-1.5 bg-white/20 h-[40%] rounded-full"></div>
+                            <div class="w-1.5 bg-primary h-[80%] rounded-full glow-red"></div>
+                            <div class="w-1.5 bg-white/20 h-[30%] rounded-full"></div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col justify-center">
+                        <p class="text-[9px] text-white/30 uppercase tracking-widest font-bold mb-2">Velocity</p>
+                        <div class="h-8 w-full flex items-center">
+                            <svg class="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 20">
+                                <path d="M0 15 L20 18 L40 12 L60 14 L80 8 L100 2" fill="none" stroke="#f91f1f"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                <circle cx="100" cy="2" fill="#f91f1f" r="2"></circle>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="flex flex-col justify-center">
+                        <p class="text-[9px] text-white/30 uppercase tracking-widest font-bold mb-2">Engagement</p>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xl font-bold text-white">6.2%</span>
+                            <i class="fa-solid fa-arrow-trend-up text-green-500 text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/4 flex justify-end">
+                    <button
+                        class="group/btn flex items-center gap-2 px-5 py-2.5 bg-white/5 hover:bg-primary text-white rounded-lg transition-all text-xs font-bold uppercase tracking-wider border border-white/10 hover:border-primary">
+                        <span class="flex items-center gap-1"><i class="fa-solid fa-bolt-lightning text-xs"></i> Intel
+                            Feed</span>
+                        <i
+                            class="fa-solid fa-chevron-right text-[10px] group-hover/btn:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+            </div>
+            <div
+                class="bg-surface-dark border border-primary/40 rounded-xl p-0 flex flex-col transition-all group relative overflow-hidden">
+                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+                <div class="p-6 flex flex-col lg:flex-row items-center gap-6">
+                    <div class="flex items-center gap-4 w-full lg:w-1/4">
+                        <div class="relative">
+                            <div class="w-12 h-12 rounded-lg bg-gray-700 bg-cover bg-center border border-white/10"
+                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCAPO4S322WDCB1ObU6Kq7djuvfVOTuoke_fb7hma1Urm9-m4Ms66oD9-y-itQApJPwhkG0OIYmnRYOHOpI6r0QW0-Cq1ZWyFXbkMJeM6BiA2dWrR369TEC519TdwUeBiv7fvikvgV0j3G9i0rEEiVOHVt-fG34C2AQCmM-zcjTj9Q-0hZWVRZnob-rWL4xngiULVdsHAqN7ZObvoNTmq4xrY6rpJYDtH02R_dzF1uVAjJW40gpdpEqBFTJitZGpflInd26TaSVBSA');">
+                            </div>
+                            <div
+                                class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-surface-dark">
+                            </div>
+                        </div>
+                        <div class="min-w-0">
+                            <h3 class="font-bold text-white truncate">Codie Sanchez</h3>
+                            <p class="text-xs text-white/40 font-mono">@codiesanchez</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-8 w-full lg:w-2/4 border-l border-r border-white/5 px-6">
+                        <div class="flex flex-col justify-center">
+                            <p class="text-[9px] text-white/30 uppercase tracking-widest font-bold mb-2">Frequency</p>
+                            <div class="flex items-end gap-1 h-8">
+                                <div class="w-1.5 bg-primary h-[80%] rounded-full glow-red"></div>
+                                <div class="w-1.5 bg-primary h-[90%] rounded-full glow-red"></div>
+                                <div class="w-1.5 bg-white/20 h-[50%] rounded-full"></div>
+                                <div class="w-1.5 bg-white/20 h-[60%] rounded-full"></div>
+                                <div class="w-1.5 bg-primary h-[85%] rounded-full glow-red"></div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col justify-center">
+                            <p class="text-[9px] text-white/30 uppercase tracking-widest font-bold mb-2">Velocity</p>
+                            <div class="h-8 w-full flex items-center">
+                                <svg class="w-full h-full overflow-visible" preserveAspectRatio="none"
+                                    viewBox="0 0 100 20">
+                                    <path d="M0 18 L20 15 L40 10 L60 8 L80 12 L100 4" fill="none" stroke="#f91f1f"
+                                        stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                    <circle cx="100" cy="4" fill="#f91f1f" r="2"></circle>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="flex flex-col justify-center">
+                            <p class="text-[9px] text-white/30 uppercase tracking-widest font-bold mb-2">Engagement</p>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xl font-bold text-white">9.1%</span>
+                                <i class="fa-solid fa-arrow-trend-up text-green-500 text-xs"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-1/4 flex justify-end">
+                        <button
+                            class="group/btn flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-lg transition-all text-xs font-bold uppercase tracking-wider shadow-lg shadow-primary/20">
+                            <span>Hide Intel</span>
+                            <i class="fa-solid fa-chevron-up text-[10px]"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="border-t border-white/5 bg-black/20 p-6">
+                    <h4 class="text-xs font-bold text-white/50 uppercase tracking-widest mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-trophy text-yellow-500"></i> Top Viral Hooks
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div
+                            class="bg-[#151515] p-4 rounded-lg border border-white/5 hover:border-white/20 transition-all cursor-pointer group/card">
+                            <div class="flex justify-between items-start mb-2">
+                                <span
+                                    class="px-2 py-1 rounded bg-white/5 text-[10px] font-bold text-white/60 uppercase">Contrarian
+                                    Hook</span>
+                                <span class="flex items-center gap-1 text-[10px] font-bold text-primary">
+                                    <i class="fa-solid fa-eye"></i> 2.4M Views
+                                </span>
+                            </div>
+                            <p
+                                class="text-sm font-medium text-white mb-3 line-clamp-2 leading-relaxed group-hover/card:text-white transition-colors">
+                                "Stop buying real estate if you want to get rich in 2024. Here's what you should buy
+                                instead..."
+                            </p>
+                            <div class="flex items-center justify-between mt-auto">
+                                <span class="text-[10px] text-white/30">Posted 2d ago</span>
+                                <div class="flex items-center gap-1 text-white/30">
+                                    <i class="fa-solid fa-clock text-[10px]"></i>
+                                    <span class="text-[10px]">2:04</span>
+                                </div>
+                                <i
+                                    class="fa-solid fa-arrow-right text-white/20 group-hover/card:text-primary transition-colors text-sm"></i>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-[#151515] p-4 rounded-lg border border-white/5 hover:border-white/20 transition-all cursor-pointer group/card">
+                            <div class="flex justify-between items-start mb-2">
+                                <span
+                                    class="px-2 py-1 rounded bg-white/5 text-[10px] font-bold text-white/60 uppercase">Negative
+                                    Hook</span>
+                                <span class="flex items-center gap-1 text-[10px] font-bold text-white/50">
+                                    <i class="fa-solid fa-eye"></i> 890K Views
+                                </span>
+                            </div>
+                            <p class="text-sm font-medium text-white mb-3 line-clamp-2 leading-relaxed">
+                                "The number one reason most businesses fail in the first 12 months is actually this..."
+                            </p>
+                            <div class="flex items-center justify-between mt-auto">
+                                <span class="text-[10px] text-white/30">Posted 5d ago</span>
+                                <div class="flex items-center gap-1 text-white/30">
+                                    <i class="fa-solid fa-clock text-[10px]"></i>
+                                    <span class="text-[10px]">0:58</span>
+                                </div>
+                                <i
+                                    class="fa-solid fa-arrow-right text-white/20 group-hover/card:text-primary transition-colors text-sm"></i>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-[#151515] p-4 rounded-lg border border-white/5 hover:border-white/20 transition-all cursor-pointer group/card">
+                            <div class="flex justify-between items-start mb-2">
+                                <span
+                                    class="px-2 py-1 rounded bg-white/5 text-[10px] font-bold text-white/60 uppercase">Listicle
+                                    Hook</span>
+                                <span class="flex items-center gap-1 text-[10px] font-bold text-white/50">
+                                    <i class="fa-solid fa-eye"></i> 650K Views
+                                </span>
+                            </div>
+                            <p class="text-sm font-medium text-white mb-3 line-clamp-2 leading-relaxed">
+                                "3 boring businesses that print cash (and require zero employees to start)..."
+                            </p>
+                            <div class="flex items-center justify-between mt-auto">
+                                <span class="text-[10px] text-white/30">Posted 1w ago</span>
+                                <div class="flex items-center gap-1 text-white/30">
+                                    <i class="fa-solid fa-clock text-[10px]"></i>
+                                    <span class="text-[10px]">3:12</span>
+                                </div>
+                                <i class="fa-solid fa-arrow-right text-white/20 group-hover/card:text-primary transition-colors text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,371 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Creator Calender - {{ block.super }}{% endblock %}
+{% block content %}
+<div class="p-8 max-w-full mx-auto w-full space-y-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="bg-card-dark p-5 rounded-xl border border-white/5 flex items-center justify-between">
+            <div>
+                <p class="text-white/40 text-[10px] font-bold uppercase tracking-widest mb-1">Weekly Volume</p>
+                <p class="text-2xl font-black text-white">14 Posts</p>
+            </div>
+            <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-white/30">
+                <i class="fa-solid fa-layer-group"></i>
+            </div>
+        </div>
+        <div class="bg-card-dark p-5 rounded-xl border border-white/5 flex items-center justify-between">
+            <div>
+                <p class="text-white/40 text-[10px] font-bold uppercase tracking-widest mb-1">Projected Reach</p>
+                <p class="text-2xl font-black text-white flex items-center gap-2">250K <span
+                        class="text-xs text-green-500 font-bold bg-green-500/10 px-1.5 py-0.5 rounded">+12%</span></p>
+            </div>
+            <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-white/30">
+                <i class="fa-solid fa-users"></i>
+            </div>
+        </div>
+        <div class="bg-card-dark p-5 rounded-xl border border-white/5 flex items-center justify-between">
+            <div>
+                <p class="text-white/40 text-[10px] font-bold uppercase tracking-widest mb-1">Top Platform</p>
+                <p class="text-2xl font-black text-white">TikTok</p>
+            </div>
+            <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-white/30">
+                <i class="fa-brands fa-tiktok"></i>
+            </div>
+        </div>
+        <div
+            class="bg-card-dark p-5 rounded-xl border border-white/5 flex items-center justify-between relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent"></div>
+            <div>
+                <p class="text-primary/80 text-[10px] font-bold uppercase tracking-widest mb-1">Viral Potential</p>
+                <p class="text-2xl font-black text-white">High</p>
+            </div>
+            <div class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center text-primary animate-pulse">
+                <i class="fa-solid fa-fire"></i>
+            </div>
+        </div>
+    </div>
+    <div class="flex items-center justify-between mt-4">
+        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-robot text-primary"></i>
+            AI-Generated Weekly Posting Plan
+        </h3>
+        <div class="flex bg-surface-dark p-1 rounded-lg border border-white/5">
+            <button class="px-4 py-1.5 rounded-md text-xs font-bold bg-white/10 text-white shadow-sm">Week View</button>
+            <button
+                class="px-4 py-1.5 rounded-md text-xs font-bold text-white/40 hover:text-white transition-colors">Month
+                View</button>
+        </div>
+    </div>
+    <div class="grid grid-cols-7 gap-4">
+        <div class="flex flex-col gap-4">
+            <div class="text-center pb-2 border-b border-white/10">
+                <span class="text-xs font-bold text-white/40 uppercase tracking-wider">Mon</span>
+                <span class="block text-xl font-bold text-white mt-1">12</span>
+            </div>
+            <div
+                class="bg-card-dark rounded-xl p-3 border border-white/5 border-l-4 border-l-primary glow-slot cursor-pointer group transition-all relative">
+                <div class="absolute top-2 right-2 text-white/20 group-hover:text-white cursor-move">
+                    <i class="fa-solid fa-grip-lines"></i>
+                </div>
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="bg-black/40 p-1.5 rounded-md text-white border border-white/10"><i
+                            class="fa-brands fa-tiktok text-xs"></i></span>
+                    <span class="bg-black/40 p-1.5 rounded-md text-white border border-white/10 opacity-50"><i
+                            class="fa-brands fa-youtube text-xs"></i></span>
+                </div>
+                <div class="mb-2">
+                    <span class="text-[10px] font-bold text-primary uppercase tracking-wider">09:00 AM</span>
+                    <h4 class="text-sm font-bold text-white leading-tight mt-1">AI Productivity Hack</h4>
+                    <p class="text-[10px] text-white/50 mt-1 line-clamp-2">"Stop working hard. Let AI do the heavy
+                        lifting..."</p>
+                </div>
+                <div class="flex items-center justify-between mt-3 pt-3 border-t border-white/5">
+                    <span class="text-[9px] font-bold text-white/40 uppercase">SEO Window</span>
+                    <span
+                        class="flex items-center gap-1 text-[9px] font-bold text-green-400 bg-green-500/10 px-1.5 py-0.5 rounded">
+                        <i class="fa-solid fa-arrow-trend-up"></i> High Pot.
+                    </span>
+                </div>
+            </div>
+            <div
+                class="bg-surface-dark rounded-xl p-3 border border-white/5 border-dashed hover:border-white/20 transition-all cursor-pointer flex flex-col items-center justify-center py-6 group">
+                <i class="fa-solid fa-plus text-white/20 group-hover:text-primary mb-2 transition-colors"></i>
+                <span class="text-xs font-bold text-white/30 group-hover:text-white transition-colors">Add Slot</span>
+            </div>
+        </div>
+        <div class="flex flex-col gap-4">
+            <div class="text-center pb-2 border-b border-white/10">
+                <span class="text-xs font-bold text-white/40 uppercase tracking-wider">Tue</span>
+                <span class="block text-xl font-bold text-white mt-1">13</span>
+            </div>
+            <div
+                class="bg-card-dark rounded-xl p-3 border border-white/5 glow-slot cursor-pointer group transition-all relative">
+                <div class="absolute top-2 right-2 text-white/20 group-hover:text-white cursor-move">
+                    <i class="fa-solid fa-grip-lines"></i>
+                </div>
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="bg-black/40 p-1.5 rounded-md text-white border border-white/10"><i
+                            class="fa-brands fa-instagram text-xs"></i></span>
+                </div>
+                <div class="mb-2">
+                    <span class="text-[10px] font-bold text-white/60 uppercase tracking-wider">12:30 PM</span>
+                    <h4 class="text-sm font-bold text-white leading-tight mt-1">Behind the Scenes</h4>
+                    <p class="text-[10px] text-white/50 mt-1 line-clamp-2">Office tour showing the new setup.</p>
+                </div>
+                <div class="flex items-center justify-between mt-3 pt-3 border-t border-white/5">
+                    <span class="text-[9px] font-bold text-white/40 uppercase">Lifestyle</span>
+                    <span
+                        class="flex items-center gap-1 text-[9px] font-bold text-yellow-400 bg-yellow-500/10 px-1.5 py-0.5 rounded">
+                        <i class="fa-solid fa-bolt"></i> Med Pot.
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col gap-4">
+            <div class="text-center pb-2 border-b border-white/10">
+                <span class="text-xs font-bold text-white/40 uppercase tracking-wider">Wed</span>
+                <span class="block text-xl font-bold text-white mt-1">14</span>
+            </div>
+            <div
+                class="bg-card-dark rounded-xl p-3 border border-white/5 border-l-4 border-l-primary glow-slot cursor-pointer group transition-all relative">
+                <div class="absolute top-2 right-2 text-white/20 group-hover:text-white cursor-move">
+                    <i class="fa-solid fa-grip-lines"></i>
+                </div>
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="bg-black/40 p-1.5 rounded-md text-white border border-white/10"><i
+                            class="fa-brands fa-tiktok text-xs"></i></span>
+                    <span class="bg-black/40 p-1.5 rounded-md text-white border border-white/10"><i
+                            class="fa-brands fa-instagram text-xs"></i></span>
+                    <span class="bg-black/40 p-1.5 rounded-md text-white border border-white/10"><i
+                            class="fa-brands fa-youtube text-xs"></i></span>
+                </div>
+                <div class="mb-2">
+                    <span class="text-[10px] font-bold text-primary uppercase tracking-wider">10:00 AM</span>
+                    <h4 class="text-sm font-bold text-white leading-tight mt-1">Controversial Take</h4>
+                    <p class="text-[10px] text-white/50 mt-1 line-clamp-2">"Why 9-5 is actually better than
+                        freelancing..."</p>
+                </div>
+                <div class="flex items-center justify-between mt-3 pt-3 border-t border-white/5">
+                    <span class="text-[9px] font-bold text-white/40 uppercase">Engagement</span>
+                    <span
+                        class="flex items-center gap-1 text-[9px] font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded">
+                        <i class="fa-solid fa-fire"></i> Viral
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col gap-4">
+            <div class="text-center pb-2 border-b border-white/10">
+                <span class="text-xs font-bold text-white/40 uppercase tracking-wider">Thu</span>
+                <span class="block text-xl font-bold text-white mt-1">15</span>
+            </div>
+            <div
+                class="bg-card-dark rounded-xl p-3 border border-white/5 glow-slot cursor-pointer group transition-all relative opacity-70 hover:opacity-100">
+                <div class="absolute top-2 right-2 text-white/20 group-hover:text-white cursor-move">
+                    <i class="fa-solid fa-grip-lines"></i>
+                </div>
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="bg-black/40 p-1.5 rounded-md text-white border border-white/10"><i
+                            class="fa-brands fa-youtube text-xs"></i></span>
+                </div>
+                <div class="mb-2">
+                    <span class="text-[10px] font-bold text-white/60 uppercase tracking-wider">04:00 PM</span>
+                    <h4 class="text-sm font-bold text-white leading-tight mt-1">Tutorial: editing</h4>
+                    <p class="text-[10px] text-white/50 mt-1 line-clamp-2">Quick cuts tutorial for beginners.</p>
+                </div>
+                <div class="flex items-center justify-between mt-3 pt-3 border-t border-white/5">
+                    <span class="text-[9px] font-bold text-white/40 uppercase">Education</span>
+                    <span
+                        class="flex items-center gap-1 text-[9px] font-bold text-white/60 bg-white/5 px-1.5 py-0.5 rounded">
+                        <i class="fa-solid fa-chart-simple"></i> Avg
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col gap-4">
+            <div class="text-center pb-2 border-b border-white/10">
+                <span class="text-xs font-bold text-white/40 uppercase tracking-wider">Fri</span>
+                <span class="block text-xl font-bold text-white mt-1">16</span>
+            </div>
+            <div
+                class="bg-card-dark rounded-xl p-3 border border-white/5 border-l-4 border-l-primary glow-slot cursor-pointer group transition-all relative">
+                <div class="absolute top-2 right-2 text-white/20 group-hover:text-white cursor-move">
+                    <i class="fa-solid fa-grip-lines"></i>
+                </div>
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="bg-black/40 p-1.5 rounded-md text-white border border-white/10"><i
+                            class="fa-brands fa-tiktok text-xs"></i></span>
+                    <span class="bg-black/40 p-1.5 rounded-md text-white border border-white/10"><i
+                            class="fa-brands fa-instagram text-xs"></i></span>
+                </div>
+                <div class="mb-2">
+                    <span class="text-[10px] font-bold text-primary uppercase tracking-wider">06:00 PM</span>
+                    <h4 class="text-sm font-bold text-white leading-tight mt-1">Weekend Challenge</h4>
+                    <p class="text-[10px] text-white/50 mt-1 line-clamp-2">"Try this for 48 hours and see results."</p>
+                </div>
+                <div class="flex items-center justify-between mt-3 pt-3 border-t border-white/5">
+                    <span class="text-[9px] font-bold text-white/40 uppercase">Community</span>
+                    <span
+                        class="flex items-center gap-1 text-[9px] font-bold text-green-400 bg-green-500/10 px-1.5 py-0.5 rounded">
+                        <i class="fa-solid fa-arrow-trend-up"></i> High Pot.
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col gap-4">
+            <div class="text-center pb-2 border-b border-white/10">
+                <span class="text-xs font-bold text-white/40 uppercase tracking-wider">Sat</span>
+                <span class="block text-xl font-bold text-white mt-1">17</span>
+            </div>
+            <div
+                class="bg-surface-dark rounded-xl p-3 border border-white/5 border-dashed hover:border-white/20 transition-all cursor-pointer flex flex-col items-center justify-center py-6 group">
+                <i class="fa-solid fa-plus text-white/20 group-hover:text-primary mb-2 transition-colors"></i>
+                <span class="text-xs font-bold text-white/30 group-hover:text-white transition-colors">Add Slot</span>
+            </div>
+        </div>
+        <div class="flex flex-col gap-4">
+            <div class="text-center pb-2 border-b border-white/10">
+                <span class="text-xs font-bold text-white/40 uppercase tracking-wider">Sun</span>
+                <span class="block text-xl font-bold text-white mt-1">18</span>
+            </div>
+            <div
+                class="bg-surface-dark rounded-xl p-3 border border-white/5 border-dashed hover:border-white/20 transition-all cursor-pointer flex flex-col items-center justify-center py-6 group">
+                <i class="fa-solid fa-plus text-white/20 group-hover:text-primary mb-2 transition-colors"></i>
+                <span class="text-xs font-bold text-white/30 group-hover:text-white transition-colors">Add Slot</span>
+            </div>
+        </div>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 pt-4">
+        <div class="lg:col-span-8 bg-card-dark rounded-2xl border border-white/5 p-6">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-shuffle text-white/40"></i>
+                    Repurposing Pipeline
+                </h3>
+                <button class="text-xs font-bold text-primary hover:text-white transition-colors">
+                    Manage Rules <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+            <div class="space-y-4">
+                <div class="flex items-center gap-4 bg-surface-dark p-4 rounded-xl border border-white/5">
+                    <div
+                        class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl font-bold shrink-0">
+                        01
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-white text-sm">Main Asset: "AI Productivity Hack"</h4>
+                        <p class="text-xs text-white/40 mt-1 flex items-center gap-1">
+                            <i class="fa-regular fa-clock text-[10px]"></i> Origin: TikTok (Mon 09:00 AM)
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="h-[2px] w-8 bg-white/10"></div>
+                        <div class="flex flex-col items-center gap-1">
+                            <span class="bg-card-dark p-2 rounded-lg border border-white/10 text-white/80"><i
+                                    class="fa-brands fa-youtube"></i></span>
+                            <span class="text-[9px] text-white/30 font-bold">Shorts</span>
+                        </div>
+                        <div class="h-[2px] w-4 bg-white/10"></div>
+                        <div class="flex flex-col items-center gap-1">
+                            <span class="bg-card-dark p-2 rounded-lg border border-white/10 text-white/80"><i
+                                    class="fa-brands fa-instagram"></i></span>
+                            <span class="text-[9px] text-white/30 font-bold">Reels</span>
+                        </div>
+                        <div class="h-[2px] w-4 bg-white/10"></div>
+                        <div class="flex flex-col items-center gap-1 opacity-40">
+                            <span class="bg-card-dark p-2 rounded-lg border border-white/10 text-white/80"><i
+                                    class="fa-brands fa-linkedin"></i></span>
+                            <span class="text-[9px] text-white/30 font-bold">Post</span>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <button
+                            class="text-xs font-bold bg-white/5 hover:bg-white/10 text-white px-3 py-1.5 rounded-lg transition-colors flex items-center gap-2">
+                            <i class="fa-solid fa-pen text-[10px]"></i> Edit
+                        </button>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 bg-surface-dark p-4 rounded-xl border border-white/5">
+                    <div
+                        class="w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center text-white/40 text-xl font-bold shrink-0">
+                        02
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-white text-sm">Main Asset: "Controversial Take"</h4>
+                        <p class="text-xs text-white/40 mt-1 flex items-center gap-1">
+                            <i class="fa-regular fa-clock text-[10px]"></i> Origin: TikTok (Wed 10:00 AM)
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="h-[2px] w-8 bg-white/10"></div>
+                        <div class="flex flex-col items-center gap-1">
+                            <span class="bg-card-dark p-2 rounded-lg border border-white/10 text-white/80"><i
+                                    class="fa-brands fa-twitter"></i></span>
+                            <span class="text-[9px] text-white/30 font-bold">Thread</span>
+                        </div>
+                        <div class="h-[2px] w-4 bg-white/10"></div>
+                        <div class="flex flex-col items-center gap-1">
+                            <span class="bg-card-dark p-2 rounded-lg border border-white/10 text-white/80"><i
+                                    class="fa-brands fa-instagram"></i></span>
+                            <span class="text-[9px] text-white/30 font-bold">Story</span>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <button
+                            class="text-xs font-bold bg-white/5 hover:bg-white/10 text-white px-3 py-1.5 rounded-lg transition-colors flex items-center gap-2">
+                            <i class="fa-solid fa-pen text-[10px]"></i> Edit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lg:col-span-4 space-y-6">
+            <div
+                class="bg-gradient-to-br from-card-dark to-surface-dark rounded-2xl border border-white/5 p-6 relative overflow-hidden group">
+                <div class="absolute -right-4 -top-4 opacity-[0.05] group-hover:opacity-10 transition-opacity">
+                    <i class="fa-solid fa-lightbulb text-[100px] text-white"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-4 relative z-10">Quick Ideation</h3>
+                <div class="space-y-3 relative z-10">
+                    <input
+                        class="w-full bg-black/30 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-primary placeholder-white/20"
+                        placeholder="Enter topic (e.g., AI tools)..." type="text">
+                    <div class="flex gap-2">
+                        <button
+                            class="flex-1 bg-white/5 hover:bg-white/10 text-white py-2 rounded-lg text-xs font-bold border border-white/5 transition-all">Viral
+                            Hook</button>
+                        <button
+                            class="flex-1 bg-white/5 hover:bg-white/10 text-white py-2 rounded-lg text-xs font-bold border border-white/5 transition-all">Educate</button>
+                        <button
+                            class="flex-1 bg-white/5 hover:bg-white/10 text-white py-2 rounded-lg text-xs font-bold border border-white/5 transition-all">Story</button>
+                    </div>
+                    <button
+                        class="w-full bg-white text-black font-bold py-3 rounded-lg text-sm hover:bg-gray-200 transition-colors mt-2 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-sparkles"></i> Generate Ideas
+                    </button>
+                </div>
+            </div>
+            <div class="bg-card-dark rounded-2xl border border-white/5 p-6">
+                <h3 class="text-sm font-bold text-white mb-4 uppercase tracking-wider opacity-60">Milestones</h3>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-2 h-2 rounded-full bg-primary"></div>
+                        <p class="text-sm text-white font-medium flex-1">Reach 10k Followers</p>
+                        <span class="text-xs font-bold text-white/40">82%</span>
+                    </div>
+                    <div class="w-full bg-white/5 rounded-full h-1.5 overflow-hidden">
+                        <div class="bg-primary h-full rounded-full w-[82%] shadow-[0_0_10px_rgba(249,31,31,0.5)]"></div>
+                    </div>
+                    <div class="flex items-center gap-3 pt-2">
+                        <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+                        <p class="text-sm text-white font-medium flex-1">Post 100 Videos</p>
+                        <span class="text-xs font-bold text-white/40">45%</span>
+                    </div>
+                    <div class="w-full bg-white/5 rounded-full h-1.5 overflow-hidden">
+                        <div class="bg-blue-500 h-full rounded-full w-[45%]"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

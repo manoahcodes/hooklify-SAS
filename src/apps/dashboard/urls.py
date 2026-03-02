@@ -15,6 +15,13 @@ urlpatterns = [
     path('notifications/mark-read/<int:pk>/', views.MarkNotificationReadView.as_view(), name='mark_notification_read'),
     path('notifications/mark-all-read/', views.MarkAllReadView.as_view(), name='mark_all_notifications_read'),
     path('notifications/delete/<int:pk>/', views.DeleteNotificationView.as_view(), name='delete_notification'),
+    
+    # Tools
     path('tools/viral/breakdown/', views.viral_breakdown_tool_view, name='viral_breakdown'),
+    path('tools/creator/spy/', views.creator_spy_tool_view, name='creator_spy'),
+    path('tools/niche/insights/', views.niche_insights_tool_view, name='niche_insights'),
+    path('tools/trend/intelligence/', views.trend_intelligence_tool_view, name='trend_intelligence'),
+    path('tools/calender/', views.creator_calender_tool_view, name='calender'),
+    path('tools/seo/', views.seo_tool_view, name='seo'),
 
 ]

@@ -1,0 +1,257 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Trend Intelligence - {{ block.super }}{% endblock %}
+{% block content %}
+<div class="p-8 max-w-[1600px] w-full mx-auto space-y-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div class="lg:col-span-8 bg-surface-dark border border-white/5 rounded-xl p-6 relative overflow-hidden group">
+            <div class="absolute top-0 right-0 p-6 flex gap-4">
+                <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-white/40">
+                    <span class="w-2 h-2 bg-white/20 rounded-full"></span> Historic
+                </div>
+                <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-primary">
+                    <span class="w-2 h-2 bg-primary rounded-full shadow-neon-sm"></span> Live Trajectory
+                </div>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-1 flex items-center gap-2">
+                <i class="fa-solid fa-gauge-simple-high text-primary"></i> Trend Trajectory
+            </h3>
+            <p class="text-xs text-white/40 mb-8 font-mono">TOPIC: "AI FACELESS CHANNELS"</p>
+            <div class="h-64 w-full relative">
+                <svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 800 300">
+                    <line class="grid-line" x1="0" x2="800" y1="250" y2="250"></line>
+                    <line class="grid-line" x1="0" x2="800" y1="150" y2="150"></line>
+                    <line class="grid-line" x1="0" x2="800" y1="50" y2="50"></line>
+                    <defs>
+                        <linearGradient id="gradientArea" x1="0" x2="0" y1="0" y2="1">
+                            <stop offset="0%" stop-color="#ff2a2a" stop-opacity="0.2"></stop>
+                            <stop offset="100%" stop-color="#ff2a2a" stop-opacity="0"></stop>
+                        </linearGradient>
+                    </defs>
+                    <path d="M0,250 C150,250 200,240 300,150 C380,80 450,50 550,50 C650,50 700,100 800,180 V250 H0 Z"
+                        fill="url(#gradientArea)"></path>
+                    <path class="graph-line"
+                        d="M0,250 C150,250 200,240 300,150 C380,80 450,50 550,50 C650,50 700,100 800,180"></path>
+                    <circle class="dot-rising" cx="300" cy="150" r="6"></circle>
+                    <text fill="#666" font-family="Space Grotesk" font-size="10" font-weight="bold" letter-spacing="1"
+                        x="100" y="270">DORMANT</text>
+                    <text fill="#ff2a2a" font-family="Space Grotesk" font-size="10" font-weight="bold"
+                        letter-spacing="1" x="300" y="270">RISING</text>
+                    <text fill="#666" font-family="Space Grotesk" font-size="10" font-weight="bold" letter-spacing="1"
+                        x="550" y="270">PEAK</text>
+                    <text fill="#666" font-family="Space Grotesk" font-size="10" font-weight="bold" letter-spacing="1"
+                        x="750" y="270">DECLINE</text>
+                </svg>
+                <div
+                    class="absolute top-[38%] left-[37.5%] transform -translate-x-1/2 -translate-y-full mb-2 bg-background-dark border border-primary text-primary px-3 py-2 rounded text-xs font-bold shadow-neon whitespace-nowrap z-10">
+                    Current Velocity: +84%
+                    <div
+                        class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 rotate-45 w-2 h-2 bg-background-dark border-r border-b border-primary">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lg:col-span-4 flex flex-col gap-6">
+            <div
+                class="flex-1 bg-surface-dark border-l-4 border-l-primary border-y border-r border-y-white/5 border-r-white/5 rounded-r-xl p-6 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-50"></div>
+                <div class="relative z-10">
+                    <div class="flex justify-between items-start mb-4">
+                        <div
+                            class="bg-primary/10 border border-primary/20 px-2 py-1 rounded text-[10px] font-bold text-primary uppercase tracking-widest flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-primary rounded-full animate-ping"></span> Emerging Alert
+                        </div>
+                        <i class="fa-solid fa-bell text-white/20 text-lg"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white mb-2 leading-tight">"Micro-Vlogging"</h2>
+                    <p class="text-sm text-white/60 mb-6">Short-form, chaotic vlogs under 15s are displacing polished
+                        content. High retention detected.</p>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <p class="text-[10px] text-white/30 uppercase font-bold tracking-widest">Growth</p>
+                            <p class="text-xl font-bold text-primary">+128%</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-white/30 uppercase font-bold tracking-widest">Saturation</p>
+                            <p class="text-xl font-bold text-white">Low</p>
+                        </div>
+                    </div>
+                    <button
+                        class="w-full py-3 bg-white text-black font-bold uppercase text-xs tracking-wider rounded hover:bg-gray-200 transition-colors flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Script
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="space-y-4">
+        <div class="flex items-center justify-between">
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-layer-group text-white/40"></i> Cross-Platform Signals
+            </h3>
+            <div class="flex gap-2">
+                <button class="p-2 text-white/40 hover:text-white transition-colors"><i
+                        class="fa-solid fa-list"></i></button>
+                <button class="p-2 text-primary bg-primary/10 rounded"><i class="fa-solid fa-border-all"></i></button>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div
+                class="bg-card-dark border border-white/5 rounded-xl p-5 hover:border-white/10 transition-all group hover:bg-surface-dark relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#ff0050] to-[#00f2ea]"></div>
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-brands fa-tiktok text-white text-lg"></i>
+                        <span class="text-xs font-bold text-white/50 uppercase tracking-wide">TikTok</span>
+                    </div>
+                    <span
+                        class="text-[10px] font-mono text-primary bg-primary/10 px-2 py-1 rounded border border-primary/20">HOT
+                        NOW</span>
+                </div>
+                <h4 class="text-base font-bold text-white mb-2 group-hover:text-primary transition-colors">Silent
+                    Reviews</h4>
+                <p class="text-xs text-white/50 mb-4 h-8 overflow-hidden line-clamp-2">Creators reviewing products using
+                    only facial expressions and ASMR taps.</p>
+                <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                    <div>
+                        <p class="text-[10px] text-white/30 uppercase font-bold">Virality Window</p>
+                        <p class="text-xs font-bold text-white flex items-center gap-1">
+                            <i class="fa-solid fa-clock text-primary"></i> Next 48 Hours
+                        </p>
+                    </div>
+                    <button class="text-white/20 hover:text-white transition-colors">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            <div
+                class="bg-card-dark border border-white/5 rounded-xl p-5 hover:border-white/10 transition-all group hover:bg-surface-dark relative overflow-hidden">
+                <div
+                    class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045]">
+                </div>
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-brands fa-instagram text-white text-lg"></i>
+                        <span class="text-xs font-bold text-white/50 uppercase tracking-wide">Reels</span>
+                    </div>
+                    <span
+                        class="text-[10px] font-mono text-white/40 bg-white/5 px-2 py-1 rounded border border-white/10">PEAKING</span>
+                </div>
+                <h4 class="text-base font-bold text-white mb-2 group-hover:text-primary transition-colors">POV: Late
+                    Night Coding</h4>
+                <p class="text-xs text-white/50 mb-4 h-8 overflow-hidden line-clamp-2">Aesthetic desk setups with lofi
+                    music and overlay text about burnout.</p>
+                <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                    <div>
+                        <p class="text-[10px] text-white/30 uppercase font-bold">Virality Window</p>
+                        <p class="text-xs font-bold text-white flex items-center gap-1">
+                            <i class="fa-solid fa-clock text-yellow-500"></i> Closing Soon
+                        </p>
+                    </div>
+                    <button class="text-white/20 hover:text-white transition-colors">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            <div
+                class="bg-card-dark border border-white/5 rounded-xl p-5 hover:border-white/10 transition-all group hover:bg-surface-dark relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-[#ff0000]"></div>
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-brands fa-youtube text-white text-lg"></i>
+                        <span class="text-xs font-bold text-white/50 uppercase tracking-wide">Shorts</span>
+                    </div>
+                    <span
+                        class="text-[10px] font-mono text-primary bg-primary/10 px-2 py-1 rounded border border-primary/20">RISING</span>
+                </div>
+                <h4 class="text-base font-bold text-white mb-2 group-hover:text-primary transition-colors">The "Did You
+                    Know" Hook</h4>
+                <p class="text-xs text-white/50 mb-4 h-8 overflow-hidden line-clamp-2">Fast-paced trivia facts with
+                    obscure knowledge. High replay value.</p>
+                <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                    <div>
+                        <p class="text-[10px] text-white/30 uppercase font-bold">Virality Window</p>
+                        <p class="text-xs font-bold text-white flex items-center gap-1">
+                            <i class="fa-solid fa-clock text-primary"></i> Next 72 Hours
+                        </p>
+                    </div>
+                    <button class="text-white/20 hover:text-white transition-colors">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="border border-white/5 rounded-xl bg-surface-dark overflow-hidden">
+        <div class="px-6 py-4 border-b border-white/5 flex items-center justify-between">
+            <h3 class="font-bold text-sm uppercase tracking-wider text-white">Top Performing Niches</h3>
+            <button
+                class="text-[10px] font-bold text-primary uppercase hover:text-white transition-colors flex items-center gap-1">
+                <i class="fa-solid fa-file-lines"></i> View Full Report
+            </button>
+        </div>
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="text-[10px] text-white/30 uppercase tracking-widest border-b border-white/5">
+                    <th class="px-6 py-3 font-medium">Niche</th>
+                    <th class="px-6 py-3 font-medium">Avg. Views</th>
+                    <th class="px-6 py-3 font-medium">Competition</th>
+                    <th class="px-6 py-3 font-medium text-right">Trend Score</th>
+                </tr>
+            </thead>
+            <tbody class="text-sm">
+                <tr class="border-b border-white/5 hover:bg-white/5 transition-colors group">
+                    <td class="px-6 py-4 font-bold text-white group-hover:text-primary transition-colors">
+                        <i
+                            class="fa-solid fa-chart-simple mr-2 text-white/20 group-hover:text-primary transition-colors"></i>AI
+                        Education
+                    </td>
+                    <td class="px-6 py-4 text-white/60">245K</td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-2">
+                            <div class="w-16 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-yellow-500 w-[60%]"></div>
+                            </div>
+                            <span class="text-xs text-white/40">Med</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 text-right font-mono text-primary font-bold">98/100</td>
+                </tr>
+                <tr class="border-b border-white/5 hover:bg-white/5 transition-colors group">
+                    <td class="px-6 py-4 font-bold text-white group-hover:text-primary transition-colors">
+                        <i
+                            class="fa-solid fa-chart-simple mr-2 text-white/20 group-hover:text-primary transition-colors"></i>Personal
+                        Finance
+                    </td>
+                    <td class="px-6 py-4 text-white/60">180K</td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-2">
+                            <div class="w-16 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-red-500 w-[85%]"></div>
+                            </div>
+                            <span class="text-xs text-white/40">High</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 text-right font-mono text-primary/80 font-bold">92/100</td>
+                </tr>
+                <tr class="hover:bg-white/5 transition-colors group">
+                    <td class="px-6 py-4 font-bold text-white group-hover:text-primary transition-colors">
+                        <i
+                            class="fa-solid fa-chart-simple mr-2 text-white/20 group-hover:text-primary transition-colors"></i>Fitness
+                        Motivation
+                    </td>
+                    <td class="px-6 py-4 text-white/60">120K</td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-2">
+                            <div class="w-16 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-green-500 w-[30%]"></div>
+                            </div>
+                            <span class="text-xs text-white/40">Low</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 text-right font-mono text-primary/60 font-bold">85/100</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}
