@@ -12,18 +12,8 @@
         </div>
         
         <div class="flex items-center gap-4">
-            {# View Toggle - Note: These would ideally be links with ?view=card/table #}
-            <div class="flex items-center bg-surface-dark border border-white/10 rounded-lg p-1">
-                <button aria-label="Card View" class="w-9 h-9 flex items-center justify-center rounded bg-white/10 text-white shadow-sm transition-all">
-                    <i class="fa-solid fa-table-cells-large text-lg"></i>
-                </button>
-                <button aria-label="Table View" class="w-9 h-9 flex items-center justify-center rounded text-white/40 hover:text-white hover:bg-white/5 transition-all">
-                    <i class="fa-solid fa-list text-lg"></i>
-                </button>
-            </div>
-
             {% if platform|length > 5 and platform %}
-                <a href="#" class="flex items-center gap-2 px-6 py-3 bg-primary hover:bg-red-600 rounded-xl font-bold text-white transition-all hover:scale-105 active:scale-95 shadow-lg shadow-primary/20">
+                <a href="{% url "create" %}" class="flex items-center gap-2 px-6 py-3 bg-primary hover:bg-red-600 rounded-xl font-bold text-white transition-all hover:scale-105 active:scale-95 shadow-lg shadow-primary/20">
                     <i class="fa-solid fa-plus"></i>
                     <span class="uppercase tracking-wide text-xs">New Project</span>
                 </a>
@@ -166,7 +156,7 @@
 
         {% if not projects %}
             {# No Projects Found Placeholder #}
-            <a href="#" class="col-span-full group relative bg-card-dark/30 rounded-2xl border-2 border-dashed border-white/10 p-6 transition-all hover:border-primary hover:bg-primary/5 flex flex-col items-center justify-center h-full min-h-[240px]">
+            <a href="{% url "create" %}" class="col-span-full group relative bg-card-dark/30 rounded-2xl border-2 border-dashed border-white/10 p-6 transition-all hover:border-primary hover:bg-primary/5 flex flex-col items-center justify-center h-full min-h-[240px]">
                 <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-primary transition-all duration-300">
                     <i class="fa-solid fa-plus text-3xl text-white/20 group-hover:text-white"></i>
                 </div>
@@ -174,7 +164,7 @@
             </a>
         {% elif projects %}
             {# Add New Project Placeholder #}
-            <a href="#" class="group relative bg-card-dark/30 rounded-2xl border-2 border-dashed border-white/10 p-6 transition-all hover:border-primary hover:bg-primary/5 flex flex-col items-center justify-center h-full min-h-[240px]">
+            <a href="{% url "create" %}" class="group relative bg-card-dark/30 rounded-2xl border-2 border-dashed border-white/10 p-6 transition-all hover:border-primary hover:bg-primary/5 flex flex-col items-center justify-center h-full min-h-[240px]">
                 <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-primary transition-all duration-300">
                     <i class="fa-solid fa-plus text-3xl text-white/20 group-hover:text-white"></i>
                 </div>

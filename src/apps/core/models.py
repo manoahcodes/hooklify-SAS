@@ -113,7 +113,7 @@ class Outcome(models.Model):
 class Generation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="generations")
     title = models.CharField(max_length=255)
-    platform = models.ForeignKey(Platform, on_delete=models.SET_NULL, null=True)
+    platform = models.ForeignKey(Platform, on_delete=models.SET_NULL, null=True, blank=False)
 
     # Context
     niche = models.ForeignKey(Niche, on_delete=models.SET_NULL, null=True)

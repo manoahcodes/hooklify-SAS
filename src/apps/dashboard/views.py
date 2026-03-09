@@ -13,7 +13,7 @@ from apps.core.models import Notification
 from apps.core.models import (
     Niche, Audience, AgeGroup, Tone, Style, 
     Generation, ReferenceLink, Region,
-    VideoDuration, Outcome
+    VideoDuration, Outcome, Platform
 )
 
 # Create your views here.
@@ -42,16 +42,18 @@ def create(request):
         concept = request.POST.get('core_concept')
         selected_country = request.POST.get('target_country')
         selected_duration = request.POST.get('duration')
-
-        hooks = request.POST.get('gen_hooks')
-        scripts = request.POST.get('gen_scripts')
-        cta = request.POST.get('gen_cta')
+        selected_platform = request.session.get('selected_platform_id')
 
         # M2M Data (returns lists of IDs)
         selected_audiences = request.POST.getlist('target_audiences')
         selected_ages = request.POST.getlist('age_groups')
         selected_tones = request.POST.getlist('desired_tones')
         selected_styles = request.POST.getlist('visual_styles')
+
+        # Guard — ensure platform exists before proceeding
+        if not selected_platform or not Platform.objects.filter(id=selected_platform).exists():
+            messages.info(request, "Please select a platform in the top left before creating a project.")
+            return redirect('create')
 
         try:
             with transaction.atomic():
@@ -60,11 +62,12 @@ def create(request):
                     user=request.user,
                     title=title,
                     niche_id=niche_id,
-                    sub_niche=sub_niche,
+                    platform_id=selected_platform,
+                    sub_niche_id=sub_niche,
                     video_reference_url=video_ref,
                     core_concept=concept,
-                    video_duration=selected_duration,
-                    country=selected_country
+                    video_duration_id=selected_duration,
+                    country_id=selected_country
                 )
 
                 # 2. Assign Many-to-Many relationships
@@ -73,9 +76,9 @@ def create(request):
                 project.desired_tones.set(selected_tones)
                 project.visual_styles.set(selected_styles)
 
-                project.generate_hooks = hooks in request.POST
-                project.generate_scripts = scripts in request.POST
-                project.generate_cta = cta in request.POST
+                project.generate_hooks = 'gen_hooks' in request.POST
+                project.generate_scripts = 'gen_scripts' in request.POST
+                project.generate_cta = 'gen_cta' in request.POST
 
                 # 3. Handle the 3 Reference URLs
                 for i in range(1, 4):
@@ -83,14 +86,18 @@ def create(request):
                     if url:
                         ReferenceLink.objects.create(project=project, url=url)
 
+                project.save()
+                messages.success(request, "Project was successfully created.")
+
                 # 4. Trigger AI Generation (Next Step)
                 # This is where you will call your Gemini API function
                 # generate_and_save_script(project.id)
 
-            # return redirect('dashboard:project_detail', pk=project.pk)
+            return redirect('projects')
             
         except Exception as e:
             # Handle errors (e.g., add a message)
+            messages.error(request, "Their was an error when creating your project. Please Contact Support to resolve the issue.")
             print(f"Error creating project: {e}")
 
     context = {
@@ -102,14 +109,42 @@ def create(request):
         'countries': Region.objects.all(),
         'durations': VideoDuration.objects.all(),
         'outcomes': Outcome.objects.all(),
-        'toggles': Generation.objects.all()
     }
 
     return render(request, "dashboard/pages/create.html", context)
 
 @login_required
 def projects(request):
-    return render(request, 'dashboard/pages/library/projects.html')
+    qs = Generation.objects.filter(user=request.user).select_related(
+        'platform', 'niche', 'sub_niche', 'video_duration', 'country'
+    ).prefetch_related(
+        'target_audiences', 'age_groups', 'desired_tones', 'visual_styles', 'endgoal'
+    )
+
+    # Sorting
+    sort = request.GET.get('sort', '-updated_at')
+    sort_map = {
+        '-modified': '-updated_at',
+        '-created': '-created_at',
+        'title': 'title',
+    }
+    qs = qs.order_by(sort_map.get(sort, '-updated_at'))
+
+    # Search
+    query = request.GET.get('q')
+    if query:
+        qs = qs.filter(title__icontains=query)
+
+    # Platform filter
+    platform_slug = request.GET.get('platform')
+    if platform_slug:
+        qs = qs.filter(platform__slug=platform_slug)
+
+    context = {
+        'projects': qs,
+    }
+
+    return render(request, 'dashboard/pages/library/projects.html', context)
 
 @login_required
 def user_templates(request):
