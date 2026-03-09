@@ -17,7 +17,6 @@ from apps.core.models import (
 )
 
 # Create your views here.
-
 def _render_page(request, full_template, partial_template, context=None):
     context = context or {}
     if getattr(request, "htmx", False):
@@ -43,6 +42,10 @@ def create(request):
         concept = request.POST.get('core_concept')
         selected_country = request.POST.get('target_country')
         selected_duration = request.POST.get('duration')
+
+        hooks = request.POST.get('gen_hooks')
+        scripts = request.POST.get('gen_scripts')
+        cta = request.POST.get('gen_cta')
 
         # M2M Data (returns lists of IDs)
         selected_audiences = request.POST.getlist('target_audiences')
@@ -70,6 +73,10 @@ def create(request):
                 project.desired_tones.set(selected_tones)
                 project.visual_styles.set(selected_styles)
 
+                project.generate_hooks = hooks in request.POST
+                project.generate_scripts = scripts in request.POST
+                project.generate_cta = cta in request.POST
+
                 # 3. Handle the 3 Reference URLs
                 for i in range(1, 4):
                     url = request.POST.get(f'ref_url_{i}')
@@ -80,7 +87,7 @@ def create(request):
                 # This is where you will call your Gemini API function
                 # generate_and_save_script(project.id)
 
-            return redirect('dashboard:project_detail', pk=project.pk)
+            # return redirect('dashboard:project_detail', pk=project.pk)
             
         except Exception as e:
             # Handle errors (e.g., add a message)
@@ -94,7 +101,8 @@ def create(request):
         'styles': Style.objects.all(),
         'countries': Region.objects.all(),
         'durations': VideoDuration.objects.all(),
-        'outcomes': Outcome.objects.all()
+        'outcomes': Outcome.objects.all(),
+        'toggles': Generation.objects.all()
     }
 
     return render(request, "dashboard/pages/create.html", context)

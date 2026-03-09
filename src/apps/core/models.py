@@ -130,7 +130,8 @@ class Generation(models.Model):
     # --- Media & References ---
     # The primary video reference (Visual/Vibe match)
     video_reference_url = models.URLField(
-        blank=True, null=True, 
+        blank=True, 
+        null=True,
         help_text="A specific Shorts/Reels/TikTok link that captures the visual vibe you want."
     )
 
@@ -139,7 +140,7 @@ class Generation(models.Model):
     
     generate_hooks = models.BooleanField(default=True)
     generate_scripts = models.BooleanField(default=True)
-    generate_cta = models.BooleanField(default=True)
+    generate_cta = models.BooleanField(default=False)
 
 
     created_at = models.DateTimeField(auto_now_add=True)
