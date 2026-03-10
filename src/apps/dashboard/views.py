@@ -7,6 +7,7 @@ from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
+from django.core.paginator import Paginator
 
 from apps.subscriptions.models import Subscriber
 from apps.core.models import Notification
@@ -152,7 +153,56 @@ def user_templates(request):
 
 @login_required
 def user_generation_history(request):
-    return render(request, 'dashboard/pages/library/history.html')
+    queryset = Generation.objects.filter(user=request.user).select_related(
+        'platform'
+    ).order_by('-created_at')
+
+    # Search
+    query = request.GET.get('q')
+    if query:
+        queryset = queryset.filter(title__icontains=query)
+
+    # Platform filter
+    current_platform = request.GET.get('platform', 'all')
+    if current_platform != 'all':
+        queryset = queryset.filter(platform__id=current_platform)
+
+    # Shape data to match what the template expects
+    history_items = []
+    for gen in queryset:
+        if gen.generate_scripts:
+            item_type = 'Script'
+        elif gen.generate_hooks:
+            item_type = 'Hook'
+        else:
+            item_type = 'CTA'
+
+        history_items.append({
+            'id': gen.id,
+            'title': gen.title,
+            'preview_text': gen.core_concept[:100] if gen.core_concept else '',
+            'type': item_type,
+            'platform_icon': gen.platform.icon if gen.platform else '',
+            'platform_name': gen.platform.name if gen.platform else 'Unknown',
+            'created_at': gen.created_at,
+        })
+
+    # Pagination
+    paginator = Paginator(history_items, 20)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'history_items': page_obj,
+        'total_count': queryset.count(),
+        'platforms': Platform.objects.all(),
+        'current_platform': current_platform,
+        'page_obj': page_obj,
+        'paginator': paginator,
+        'is_paginated': paginator.num_pages > 1,
+    }
+
+    return render(request, 'dashboard/pages/library/history.html', context)
 
 # TOOLS
 @login_required

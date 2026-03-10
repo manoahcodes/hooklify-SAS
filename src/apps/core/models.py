@@ -5,6 +5,12 @@ from django.contrib.contenttypes.models import ContentType
 from django.urls import reverse
 
 # Create your models here.
+STATUS_CHOICES = [
+    ('draft', 'Draft'),
+    ('ready', 'Ready'),
+    ('processing', 'Processing'),
+]
+
 class Platform(models.Model):
     name = models.CharField(max_length=100)
     icon = models.CharField(max_length=100, blank=True, null=True)
@@ -114,6 +120,7 @@ class Generation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="generations")
     title = models.CharField(max_length=255)
     platform = models.ForeignKey(Platform, on_delete=models.SET_NULL, null=True, blank=False)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft')
 
     # Context
     niche = models.ForeignKey(Niche, on_delete=models.SET_NULL, null=True)
@@ -148,7 +155,14 @@ class Generation(models.Model):
 
     def __str__(self):
         return self.title
+
+    @property
+    def get_platform_icon(self):
+        return self.platform.icon if self.platform else ''
     
+    @property
+    def get_platform_display(self):
+        return self.platform.name if self.platform else ''
 
 class ReferenceLink(models.Model):
     """

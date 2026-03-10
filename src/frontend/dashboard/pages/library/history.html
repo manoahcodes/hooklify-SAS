@@ -98,10 +98,10 @@
 
                         <td class="px-6 py-4 text-right">
                             <div class="flex items-center justify-end gap-6">
-                                <a href="{% url 'restore_content' item.id %}" class="text-xs font-bold text-primary hover:text-white transition-colors uppercase tracking-wider">
+                                <a href="#" class="text-xs font-bold text-primary hover:text-white transition-colors uppercase tracking-wider">
                                     Restore
                                 </a>
-                                <form action="{% url 'delete_content' item.id %}" method="POST" class="inline" onsubmit="return confirm('Permanently delete this item?');">
+                                <form action="#" method="POST" class="inline" onsubmit="return confirm('Permanently delete this item?');">
                                     {% csrf_token %}
                                     <button type="submit" class="text-white/20 hover:text-red-500 transition-colors">
                                         <i class="fa-solid fa-trash-can text-lg"></i>

@@ -76,9 +76,6 @@
                                 <p class="text-xs text-white/60">{{ project.get_platform_display }} • Updated {{ project.updated_at|timesince }} ago</p>
                             </div>
                         </div>
-                        <a href="#" class="text-white/20 hover:text-white transition-colors">
-                            <i class="fa-solid fa-pen text-lg"></i>
-                        </a>
                     </div>
 
                     <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -108,7 +105,7 @@
                             <div class="space-y-2 text-sm text-white/60 font-mono h-32 overflow-hidden">
                                 {{ project.content_preview|linebreaks }}
                             </div>
-                            <a href="{% url 'projects:detail' project.id %}" class="absolute bottom-0 left-0 z-20 font-bold text-white hover:text-primary transition-colors flex items-center gap-1">
+                            <a href="#" class="absolute bottom-0 left-0 z-20 font-bold text-white hover:text-primary transition-colors flex items-center gap-1">
                                 Read Full Script <i class="fa-solid fa-chevron-down text-sm"></i>
                             </a>
                         </div>
@@ -125,7 +122,7 @@
                                 <p class="text-xs text-white/60">Updated {{ project.updated_at|timesince }} ago</p>
                             </div>
                         </div>
-                        <a href="{% url 'projects:edit' project.id %}" class="text-white/20 hover:text-white transition-colors">
+                        <a href="#" class="text-white/20 hover:text-white transition-colors">
                             <i class="fa-solid fa-pen text-lg"></i>
                         </a>
                     </div>
